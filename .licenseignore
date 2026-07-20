@@ -1,0 +1,6 @@
+# Sphinx / theme / extension static assets
+**/_static/**
+**/_sphinx_design_static/**
+
+# Generated search index
+**/searchindex.js
