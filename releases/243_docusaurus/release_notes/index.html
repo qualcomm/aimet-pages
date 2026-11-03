@@ -1,0 +1,2333 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-release_notes" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.2"><title data-rh=true>Release notes | AIMET</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://qualcomm.github.io/aimet-pages/releases/243_docusaurus/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://qualcomm.github.io/aimet-pages/releases/243_docusaurus/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://qualcomm.github.io/aimet-pages/releases/243_docusaurus/release_notes /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Release notes | AIMET"/><meta data-rh=true name=description content=2.43.0 /><meta data-rh=true property=og:description content=2.43.0 /><link data-rh=true rel=icon href=/aimet-pages/releases/243_docusaurus/img/ai-hub-workbench-icon.png /><link data-rh=true rel=canonical href=https://qualcomm.github.io/aimet-pages/releases/243_docusaurus/release_notes /><link data-rh=true rel=alternate href=https://qualcomm.github.io/aimet-pages/releases/243_docusaurus/release_notes hreflang=en /><link data-rh=true rel=alternate href=https://qualcomm.github.io/aimet-pages/releases/243_docusaurus/release_notes hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://qualcomm.github.io/aimet-pages/releases/243_docusaurus/release_notes","name":"Release notes","position":1}]}</script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css type=text/css integrity=sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM crossorigin=anonymous><link rel=stylesheet href=/aimet-pages/releases/243_docusaurus/assets/css/styles.de6ff9ee.css /><script src=/aimet-pages/releases/243_docusaurus/assets/js/runtime~main.0742c3be.js defer></script><script src=/aimet-pages/releases/243_docusaurus/assets/js/main.c2161f11.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-e05")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/aimet-pages/releases/243_docusaurus/><b class="navbar__title text--truncate">AIMET</b></a><a class="navbar__item navbar__link" href=/aimet-pages/releases/243_docusaurus/intro>Get Started</a><a class="navbar__item navbar__link" href=/aimet-pages/releases/243_docusaurus/tutorials>Tutorials</a><a class="navbar__item navbar__link" href=/aimet-pages/releases/243_docusaurus/techniques>Techniques</a><a class="navbar__item navbar__link" href=/aimet-pages/releases/243_docusaurus/ptq_techniques>PTQ Techniques</a><a class="navbar__item navbar__link" href=/aimet-pages/releases/243_docusaurus/genai-quantization>GenAI Quantization</a><a class="navbar__item navbar__link" href=/aimet-pages/releases/243_docusaurus/apiref>API Reference</a><a aria-current=page class="navbar__item navbar__link navbar__link--active" href=/aimet-pages/releases/243_docusaurus/release_notes>Release Notes</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class=navbarSearchContainer_Bca1><div class="navbar__search searchBarContainer_NW3z" dir=ltr><svg aria-hidden=true class=searchIcon_T3tP focusable=false viewBox="0 0 16 16"><path fill=currentColor d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"/></svg><input placeholder=Search aria-label=Search class="navbar__search-input searchInput_YFbd" value="" /><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div><div class=navbar__item><a href=https://workbench.aihub.qualcomm.com/docs/hub/quantize_examples.html target=_blank rel="noopener noreferrer" class=navbar-icon-link aria-label="Qualcomm AI Hub Workbench"><img src=/aimet-pages/releases/243_docusaurus/img/ai-hub-workbench-icon.png width=20 height=20 alt="" /></a></div><div class=navbar__item><a href=https://qualcomm-ai-hub.slack.com/archives/C08JKBE0UHY target=_blank rel="noopener noreferrer" class=navbar-icon-link aria-label=Slack><svg width=20 height=20 viewBox="0 0 24 24" fill=currentColor><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.521A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.521-2.521h6.313zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.522 2.521 2.527 2.527 0 0 1-2.52-2.521V2.521A2.527 2.527 0 0 1 15.166 0a2.528 2.528 0 0 1 2.522 2.521v6.313zM15.166 18.956a2.528 2.528 0 0 1 2.522 2.522A2.528 2.528 0 0 1 15.166 24a2.528 2.528 0 0 1-2.522-2.522v-2.522h2.522zM15.166 17.688a2.527 2.527 0 0 1-2.522-2.522 2.526 2.526 0 0 1 2.522-2.52h6.312A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.522h-6.312z"/></svg></a></div><div class=navbar__item><a href=https://github.com/qualcomm/aimet target=_blank rel="noopener noreferrer" class=navbar-icon-link aria-label=GitHub><svg width=20 height=20 viewBox="0 0 16 16" fill=currentColor><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false href=/aimet-pages/releases/243_docusaurus/intro><span class=categoryLinkLabel_W154>Get Started</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" href=/aimet-pages/releases/243_docusaurus/techniques><span class=categoryLinkLabel_W154>Techniques</span></a><button aria-label="Expand sidebar category 'Techniques'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" href=/aimet-pages/releases/243_docusaurus/tutorials><span class=categoryLinkLabel_W154>Tutorials</span></a><button aria-label="Expand sidebar category 'Tutorials'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" href=/aimet-pages/releases/243_docusaurus/ptq_techniques><span class=categoryLinkLabel_W154>PTQ Techniques</span></a><button aria-label="Expand sidebar category 'PTQ Techniques'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" href=/aimet-pages/releases/243_docusaurus/apiref><span class=categoryLinkLabel_W154>API Reference</span></a><button aria-label="Expand sidebar category 'API Reference'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current=page href=/aimet-pages/releases/243_docusaurus/release_notes><span class=linkLabel_WmDU>Release notes</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/aimet-pages/releases/243_docusaurus/glossary><span class=linkLabel_WmDU>Glossary</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/aimet-pages/releases/243_docusaurus/external-resources><span class=linkLabel_WmDU>External resources</span></a></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/aimet-pages/releases/243_docusaurus/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>Release notes</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Release notes</h1></header><h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2430>2.43.0<a href=#2430 class=hash-link aria-label="Direct link to 2.43.0" title="Direct link to 2.43.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Support bfloat16 graphs in <code>QuantizationSimModel</code>, including calibration, SeqMSE, AdaScale, AdaRound, AMP, cross-layer equalization, BatchNorm folding, SpinQuant, QuantAnalyzer, layer output dumping, PSNR/lite-mp evaluation, and LoRA adapters in <code>aimet_onnx.peft</code> (<a href=https://github.com/qualcomm/aimet/commit/ff4f611a4b36c92f994a9a824b652ec977785033 target=_blank rel="noopener noreferrer" class=""><code>ff4f611</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/901c4cf31ea03f4f2729c0d0c9566b75b05387b0 target=_blank rel="noopener noreferrer" class=""><code>901c4cf</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/76e0b471f1c470ce689073576e0101ad75ae77c1 target=_blank rel="noopener noreferrer" class=""><code>76e0b47</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/28ace307e23f82b43b74379018099feda7813d4f target=_blank rel="noopener noreferrer" class=""><code>28ace30</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/36190d4f9bd48e35d482512cdeb359825c2861b2 target=_blank rel="noopener noreferrer" class=""><code>36190d4</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/bea0d4ebcdca87c46291f3fced596464ace1f9e2 target=_blank rel="noopener noreferrer" class=""><code>bea0d4e</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/fee0d315660bb473884a91efd6638a07fb91e135 target=_blank rel="noopener noreferrer" class=""><code>fee0d31</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/66e6e3b27a0eaf56665d3294ba9b68d279f5189e target=_blank rel="noopener noreferrer" class=""><code>66e6e3b</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/606ee2f3783ec8741a0e4a3cdbf52b441d2123cd target=_blank rel="noopener noreferrer" class=""><code>606ee2f</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/46bbd5df83c67ba206bbd7cec1e480ba8b4efbb6 target=_blank rel="noopener noreferrer" class=""><code>46bbd5d</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/a3f7904f4875a9e7a59e25f7800a42d1daec5379 target=_blank rel="noopener noreferrer" class=""><code>a3f7904</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/cfa85a5a712d5bc347e892f7534c70f3e2419a47 target=_blank rel="noopener noreferrer" class=""><code>cfa85a5</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/c507684c6fe44a0d844d82663d4081d878c4209e target=_blank rel="noopener noreferrer" class=""><code>c507684</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/e4092b707d00df206fa90e0f11a83aa538743684 target=_blank rel="noopener noreferrer" class=""><code>e4092b7</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/e572b3606b40bcc966fead41fdc6195e97d4d9d1 target=_blank rel="noopener noreferrer" class=""><code>e572b36</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/7b28de80f58e8f28836bc090fa51bd8438fc84da target=_blank rel="noopener noreferrer" class=""><code>7b28de8</code></a>)</li>
+<li class="">Quantize <code>If</code> branches in <code>QuantizationSimModel</code> behind the subgraph flag (<a href=https://github.com/qualcomm/aimet/commit/e4f515bec0568fc527198dfbdb6b7ca600973eb6 target=_blank rel="noopener noreferrer" class=""><code>e4f515b</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/3019fd1463517ffc57396724598fdf33537bad71 target=_blank rel="noopener noreferrer" class=""><code>3019fd1</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/6a25cb6ba0fde2f1df5045b855082170e3639b26 target=_blank rel="noopener noreferrer" class=""><code>6a25cb6</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Redesign <code>aimet_onnx.experimental.lora</code>: adapters are now prepared with <code>aimet_onnx.peft.load_lora_adapters</code> instead of <code>prepare_lora_onnx</code>, and quantized with a smaller, renamed helper set (<a href=https://github.com/qualcomm/aimet/commit/f37106493fd544568e3afdb90435935595f629d5 target=_blank rel="noopener noreferrer" class=""><code>f371064</code></a>)</li>
+<li class="">Skip unsafe encoding tying through <code>Split</code> (<a href=https://github.com/qualcomm/aimet/commit/980d9d76b4217e1c73c702e9ebd7945f01cad436 target=_blank rel="noopener noreferrer" class=""><code>980d9d7</code></a>)</li>
+<li class="">Refactor <code>to_onnx_qdq()</code> helpers to use the <code>onnx_ir</code> API and fix a missing helper export (<a href=https://github.com/qualcomm/aimet/commit/fd36575cba5cfa5449a6ba5814396842eb5466ca target=_blank rel="noopener noreferrer" class=""><code>fd36575</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/f909dafca906e3f9fb5f3ec181d3764a933a1981 target=_blank rel="noopener noreferrer" class=""><code>f909daf</code></a>)</li>
+<li class="">Don't optimize frozen quantizers in AdaScale (<a href=https://github.com/qualcomm/aimet/commit/9ca2127f5c7efa49b993860d7d3aa42203633bb7 target=_blank rel="noopener noreferrer" class=""><code>9ca2127</code></a>)</li>
+<li class="">Add <code>strict</code> option to <code>encodings_to_onnx_qdq</code> to skip unmatched encodings instead of raising (<a href=https://github.com/qualcomm/aimet/commit/78f0907299192de1ab19a72ee101eb36fe5020be target=_blank rel="noopener noreferrer" class=""><code>78f0907</code></a>)</li>
+<li class="">Tie <code>Scan</code> body inputs to their boundary quantizers (<a href=https://github.com/qualcomm/aimet/commit/94ad369b3fd62153dae612e4faf4bfae1677ae42 target=_blank rel="noopener noreferrer" class=""><code>94ad369</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Fix clipped QDQ scale gradients with zero-point shifts (<a href=https://github.com/qualcomm/aimet/commit/aa91641d0f63f8c6957d240a7d06a2fa0cd3bd9c target=_blank rel="noopener noreferrer" class=""><code>aa91641</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Upgrade onnxsim to 0.7.0 (<a href=https://github.com/qualcomm/aimet/commit/4867813b36cb75e5bbded18692d6a49e4b85f436 target=_blank rel="noopener noreferrer" class=""><code>4867813</code></a>)</li>
+<li class="">Windows (x64/arm64) and macOS <code>aimet-onnx</code> wheels are now available on PyPI (<a href=https://github.com/qualcomm/aimet/commit/81d3a20cd4f71ee9ee9eb36822d2ce7e80625428 target=_blank rel="noopener noreferrer" class=""><code>81d3a20</code></a>)</li>
+<li class="">Update quantization recipe docs for Gemma 4 and Qwen3-VL (<a href=https://github.com/qualcomm/aimet/commit/af9c4066ca5cd8f8afde6d7fc50b297133757cd6 target=_blank rel="noopener noreferrer" class=""><code>af9c406</code></a>)</li>
+<li class="">Pin <code>torch&amp;lt;2.15</code> and <code>torchvision&amp;lt;0.29.2</code> in released wheels to avoid pulling CUDA 13 builds incompatible with CUDA 12.x drivers (<a href=https://github.com/qualcomm/aimet/commit/cd33832c72ce1a948e3006089f2fd2029775a9c8 target=_blank rel="noopener noreferrer" class=""><code>cd33832</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2420>2.42.0<a href=#2420 class=hash-link aria-label="Direct link to 2.42.0" title="Direct link to 2.42.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Add experimental support for quantizing <code>Scan</code> bodies in <code>QuantizationSimModel</code>, including export and tied boundary quantizers (<a href=https://github.com/qualcomm/aimet/commit/98862fd3cf3e957d497ee574f2f0b7add239afd6 target=_blank rel="noopener noreferrer" class=""><code>98862fd</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/0b7790ccb239917f4b8ed51ce80eb17abd3d6cc2 target=_blank rel="noopener noreferrer" class=""><code>0b7790c</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/b1f9dcdb600e0b5811438dd72e4c1d94c5dcab9d target=_blank rel="noopener noreferrer" class=""><code>b1f9dcd</code></a>)</li>
+<li class="">Support <code>Scan</code> models in SeqMSE and AdaScale (<a href=https://github.com/qualcomm/aimet/commit/96708be0bafb1c721c60653f5e4d76f1c72c03ff target=_blank rel="noopener noreferrer" class=""><code>96708be</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/e4f5c5c38a2bc8703d406fcd263f28cb2b185d5b target=_blank rel="noopener noreferrer" class=""><code>e4f5c5c</code></a>)</li>
+<li class="">Support Mamba2 in <code>analyze_llm_topology</code> (<a href=https://github.com/qualcomm/aimet/commit/d62b91bcb38b770f09786ee219252f34d88426e1 target=_blank rel="noopener noreferrer" class=""><code>d62b91b</code></a>)</li>
+<li class="">Add <code>strict</code> option to <code>set_param_type</code> to skip incompatible quantizers (<a href=https://github.com/qualcomm/aimet/commit/6f1416e0bc3868a1dc43ce48072a4d5fe778f042 target=_blank rel="noopener noreferrer" class=""><code>6f1416e</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Add analysis pass support to GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/d6e86eaa12b67e7eed3b3493341357472e148b0b target=_blank rel="noopener noreferrer" class=""><code>d6e86ea</code></a>)</li>
+<li class="">Add predicated-experts MoE adaptation for Qwen3-MoE and Qwen3.5-MoE to GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/6b8e29882cf2635d546f68d25c081d9d6cf61f12 target=_blank rel="noopener noreferrer" class=""><code>6b8e298</code></a>)</li>
+<li class="">Enable subgraph quantization for ONNX <code>QuantizationSimModel</code> in GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/594ebe8d7db29d98ee166ffefaf72df62f380c42 target=_blank rel="noopener noreferrer" class=""><code>594ebe8</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Always save models with external data regardless of size (<a href=https://github.com/qualcomm/aimet/commit/fe922f818eb02ee4c67eeaa90108b223441216bc target=_blank rel="noopener noreferrer" class=""><code>fe922f8</code></a>)</li>
+<li class="">Fix stale quantization axes when loading encodings (<a href=https://github.com/qualcomm/aimet/commit/bbaeb29b581740c6c64142edf6dea3a083caf41b target=_blank rel="noopener noreferrer" class=""><code>bbaeb29</code></a>)</li>
+<li class="">Preserve runtime reduction axes and patch <code>cumsum</code> support in AdaScale's ONNX to torch conversion (<a href=https://github.com/qualcomm/aimet/commit/db50a5c3a809ea8de57e60ee9055cd95fc84b796 target=_blank rel="noopener noreferrer" class=""><code>db50a5c</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/c300055e5e6ba82e2fa2a9515ea2818bdf3fef86 target=_blank rel="noopener noreferrer" class=""><code>c300055</code></a>)</li>
+<li class="">Keep <code>Split</code> sizes inline in SeqMSE's saved model (<a href=https://github.com/qualcomm/aimet/commit/f69c5d6c8d783efe8b85e50c2aec8b2f3a4ab7fc target=_blank rel="noopener noreferrer" class=""><code>f69c5d6</code></a>)</li>
+<li class="">Align LLM configurator with GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/64dcabd811f485ea85e5215f44bb1e66ce9313b8 target=_blank rel="noopener noreferrer" class=""><code>64dcabd</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Preserve zero-point shift in SeqMSE candidate encodings (<a href=https://github.com/qualcomm/aimet/commit/5a979d8559965d33bcba068846ff26e62fb18733 target=_blank rel="noopener noreferrer" class=""><code>5a979d8</code></a>)</li>
+<li class="">Fix SpinQuant visual merger rotation compensation (<a href=https://github.com/qualcomm/aimet/commit/dcd291d8681e41c0fc1d4bb4e508fd655b8bf1a5 target=_blank rel="noopener noreferrer" class=""><code>dcd291d</code></a>)</li>
+<li class="">Apply encoding post-processing to canonical <code>QuantizeLinear</code>-<code>DequantizeLinear</code> pairs during ONNX export (<a href=https://github.com/qualcomm/aimet/commit/e25d5116107e2c3b8fa5c1e583cf1aecd9ac60a7 target=_blank rel="noopener noreferrer" class=""><code>e25d511</code></a>)</li>
+<li class="">Synchronize <code>precomputed_zero_point</code>'s device with offset (<a href=https://github.com/qualcomm/aimet/commit/ee5ca3c9c6eeafa1ada6a0a3753781ddb81f470c target=_blank rel="noopener noreferrer" class=""><code>ee5ca3c</code></a>)</li>
+<li class="">Quantize <code>Qwen3MoeTopKRouter</code> pre-softmax logits to match the transformers 4.x gate (<a href=https://github.com/qualcomm/aimet/commit/5e9e56535017546e9637112c0291d547f478f386 target=_blank rel="noopener noreferrer" class=""><code>5e9e565</code></a>)</li>
+<li class="">Fix <code>CallbackFunc</code> import in quant_analyzer notebook (<a href=https://github.com/qualcomm/aimet/commit/26e7eca4658955f647553e7e1ca0aef1db4a55e5 target=_blank rel="noopener noreferrer" class=""><code>26e7eca</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Fix import-time assertion error with onnx&lt;1.18 (<a href=https://github.com/qualcomm/aimet/commit/3c937bc865b3154e7e3089511051764f2d667252 target=_blank rel="noopener noreferrer" class=""><code>3c937bc</code></a>)</li>
+<li class="">Delete unused legacy quantsim config files (<a href=https://github.com/qualcomm/aimet/commit/093e72f41185445b4f9e3a469624ccd2d44f95cb target=_blank rel="noopener noreferrer" class=""><code>093e72f</code></a>)</li>
+<li class="">Use <code>configure_llm</code> API in GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/bbb2c979203defc367e622b14d92f0a41204f8c9 target=_blank rel="noopener noreferrer" class=""><code>bbb2c97</code></a>)</li>
+<li class="">Fix Qwen 3.5 export on transformers >= 5.15 in GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/1d669a63948203a2d5cc18268afefb2f6b3edd44 target=_blank rel="noopener noreferrer" class=""><code>1d669a6</code></a>)</li>
+<li class="">Export dynamo backbones with one <code>torch.export</code> mode per torch version in GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/7d13097a36bc3da873b8b62d4eff168362b5fc47 target=_blank rel="noopener noreferrer" class=""><code>7d13097</code></a>)</li>
+<li class="">Rename GenAI Lab linear-attention state I/O to <code>conv_state</code> / <code>recurrent_state</code> (<a href=https://github.com/qualcomm/aimet/commit/e078c16ce21d1eb0315e04d5b5adcadf94f8529e target=_blank rel="noopener noreferrer" class=""><code>e078c16</code></a>)</li>
+<li class="">Fix GenAI Lab relative imports (<a href=https://github.com/qualcomm/aimet/commit/6c0d5d3053662695899d682b3c5b97adee621301 target=_blank rel="noopener noreferrer" class=""><code>6c0d5d3</code></a>)</li>
+<li class="">Document v2.1.0 encoding spec and fix broken AdaScale/SpinQuant doc snippets (<a href=https://github.com/qualcomm/aimet/commit/38dc8929160091015d5099d453f06c5e1b30488a target=_blank rel="noopener noreferrer" class=""><code>38dc892</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/191d51b1273a0d2ac73cb2beac33cd1f2b5e81f9 target=_blank rel="noopener noreferrer" class=""><code>191d51b</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Deprecations</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Move <code>adascale</code>, <code>spinquant</code>, <code>llm_topology</code> and <code>llm_configurator</code> out of <code>aimet_onnx.experimental</code> into top-level <code>aimet_onnx</code>. The old <code>aimet_onnx.experimental.*</code> import paths still work but emit a deprecation warning, and will be removed in AIMET 2.45 (<a href=https://github.com/qualcomm/aimet/commit/94a23193af1f9598b5e2698fbb49654d58fe57c6 target=_blank rel="noopener noreferrer" class=""><code>94a2319</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Move <code>adascale</code> and <code>spinquant</code> out of <code>aimet_torch.experimental</code> into top-level <code>aimet_torch</code>. The old <code>aimet_torch.experimental.*</code> import paths still work but emit a deprecation warning, and will be removed in AIMET 2.45 (<a href=https://github.com/qualcomm/aimet/commit/6360e0c7d9f122cfa64f42475f099c3dafca4010 target=_blank rel="noopener noreferrer" class=""><code>6360e0c</code></a>)</li>
+<li class="">Deprecate <code>save_encodings_to_json</code>, <code>load_encodings</code>, <code>load_and_freeze_encodings</code>, <code>set_and_freeze_param_encodings</code> and <code>load_encodings_to_sim</code> in favor of <code>QuantizationSimModel.quantizer_state_dict</code> and <code>torch.nn.Module.load_state_dict</code> (<a href=https://github.com/qualcomm/aimet/commit/c34cf342150dcece0574ef5fd51c88b1139a2d78 target=_blank rel="noopener noreferrer" class=""><code>c34cf34</code></a>)</li>
+<li class=""><code>save_checkpoint</code>, <code>load_checkpoint</code>, <code>check_accumulator_overflow</code> and <code>compute_encodings_for_sims</code> are deprecated and will be removed in AIMET 2.44 (<a href=https://github.com/qualcomm/aimet/commit/c34cf342150dcece0574ef5fd51c88b1139a2d78 target=_blank rel="noopener noreferrer" class=""><code>c34cf34</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2410>2.41.0<a href=#2410 class=hash-link aria-label="Direct link to 2.41.0" title="Direct link to 2.41.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Fix encoding propagation across the <code>Pad</code> op (<a href=https://github.com/qualcomm/aimet/commit/5f80b044ab80420d2fc5a31923587bb6a5f849ee target=_blank rel="noopener noreferrer" class=""><code>5f80b04</code></a>)</li>
+<li class="">Fix AdaScale silently overriding per-quantizer weight bitwidth (<a href=https://github.com/qualcomm/aimet/commit/4591f60d797128eeec1367c7e09b7ef5d56247d7 target=_blank rel="noopener noreferrer" class=""><code>4591f60</code></a>)</li>
+<li class="">Remove quantizers from the <code>onnx_ir</code> model instead of <code>ModelProto</code> during export (<a href=https://github.com/qualcomm/aimet/commit/6a6824d5f5c0e2c4cc81bff7900aa27b3e34fc73 target=_blank rel="noopener noreferrer" class=""><code>6a6824d</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Fix stale <code>ConnectedGraph</code> products when an op output feeds the same consumer twice (<a href=https://github.com/qualcomm/aimet/commit/db7a805e726a500d6eec5e39feb3d3be85486947 target=_blank rel="noopener noreferrer" class=""><code>db7a805</code></a>)</li>
+<li class="">Use a trivial encoding when an uninitialized quantizer receives an empty input (<a href=https://github.com/qualcomm/aimet/commit/55615645e1ed2d05fb381a97832c05ce8f9b6d0b target=_blank rel="noopener noreferrer" class=""><code>5561564</code></a>)</li>
+<li class="">Restrict power-of-two scales to MXFP4 instead of all FP4 quantizers (<a href=https://github.com/qualcomm/aimet/commit/065e5a0e8feea36b0d7210b0381cb3452d56a520 target=_blank rel="noopener noreferrer" class=""><code>065e5a0</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Add compatibility with onnx 1.23.0 (<a href=https://github.com/qualcomm/aimet/commit/88b4cb6280ccbdbbe0b00e12efd8ad88def6eae7 target=_blank rel="noopener noreferrer" class=""><code>88b4cb6</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2400>2.40.0<a href=#2400 class=hash-link aria-label="Direct link to 2.40.0" title="Direct link to 2.40.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Add <code>encodings_to_onnx_qdq</code> to convert an ONNX model plus encodings into a QDQ model (<a href=https://github.com/qualcomm/aimet/commit/fcfc439cc89adccff3784bccfcd35e1ec2ef46ac target=_blank rel="noopener noreferrer" class=""><code>fcfc439</code></a>)</li>
+<li class="">Add <code>session_options_kwargs</code> argument to <code>QuantizationSimModel</code> to set onnxruntime session options (<a href=https://github.com/qualcomm/aimet/commit/c1739263e68b48e29526e62537319b46e9cd749b target=_blank rel="noopener noreferrer" class=""><code>c173926</code></a>)</li>
+<li class="">Accept an explicit <code>LlmTopology</code> in <code>apply_spinquant</code> and <code>apply_adascale</code> (<a href=https://github.com/qualcomm/aimet/commit/00c6089d1b579cf6d22a12f1e1b3c4cf14d23505 target=_blank rel="noopener noreferrer" class=""><code>00c6089</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/c548be0488cc6e038dd5f903ccee4c9e4e0b92dd target=_blank rel="noopener noreferrer" class=""><code>c548be0</code></a>)</li>
+<li class="">Enable FP8 (<code>float8e4m3fn</code>, <code>float8e5m2</code>) quantization simulation on both CPU and CUDA, completing FP8 support alongside ONNX QDQ export (<a href=https://github.com/qualcomm/aimet/commit/644c7bdfaa7987939a915ec7fa5afd8e76f130b8 target=_blank rel="noopener noreferrer" class=""><code>644c7bd</code></a>)</li>
+</ul>
+</li>
+<li class="">Torch<!-- -->
+<ul>
+<li class="">Implement <code>set_weight_quantizer_to_nvfp4_int8</code> API (<a href=https://github.com/qualcomm/aimet/commit/05cc606b7ea1c1286039208d6a95c1c9694dbaca target=_blank rel="noopener noreferrer" class=""><code>05cc606</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Fix calibration state restoration in <code>QuantizationSimModel</code> (<a href=https://github.com/qualcomm/aimet/commit/df588756ab5713e74ebed5716dd080dc97bf6cdb target=_blank rel="noopener noreferrer" class=""><code>df58875</code></a>)</li>
+<li class="">Analyze LLM topology and run SpinQuant on <code>onnx_ir</code> instead of <code>ConnectedGraph</code> (<a href=https://github.com/qualcomm/aimet/commit/23633b15fd63dc1d872ef25f0b685a501f6a2088 target=_blank rel="noopener noreferrer" class=""><code>23633b1</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/7b9aef6459ee51e6686c75b43761d61d11ef6e42 target=_blank rel="noopener noreferrer" class=""><code>7b9aef6</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/092a9dc8d7a11605ef973584565fa0a5056cdeaf target=_blank rel="noopener noreferrer" class=""><code>092a9dc</code></a>)</li>
+<li class="">Add all kv-cache inputs/outputs to <code>LlmTopology</code> (<a href=https://github.com/qualcomm/aimet/commit/68e24d20ce3759d7dceaccc72480a77b8679b840 target=_blank rel="noopener noreferrer" class=""><code>68e24d2</code></a>)</li>
+<li class="">Drop ignored <code>connected_graph</code> parameter from <code>get_decoder_block_boundaries</code> (<a href=https://github.com/qualcomm/aimet/commit/2d71c85b59e8a80392d5080d0da1b37071476e91 target=_blank rel="noopener noreferrer" class=""><code>2d71c85</code></a>)</li>
+<li class="">Auto-upcast fp16 AdaScale blocks to bf16 (<a href=https://github.com/qualcomm/aimet/commit/1f03b7c9f00ff82efff10e585c2b6c05695d2a46 target=_blank rel="noopener noreferrer" class=""><code>1f03b7c</code></a>)</li>
+<li class="">Default to using all float outputs in <code>make_psnr_eval_fn</code> (<a href=https://github.com/qualcomm/aimet/commit/5c414527d607e17747fa3c19e0709e84fc2a3183 target=_blank rel="noopener noreferrer" class=""><code>5c41452</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Fix device mismatch upon <code>.to()</code> for qmodules with pre-quantized parameters (<a href=https://github.com/qualcomm/aimet/commit/4111e41202fb3a7a9fc8a7d01c3e1f6102d714d4 target=_blank rel="noopener noreferrer" class=""><code>4111e41</code></a>)</li>
+<li class="">Fix fp4-int8 dynamo export bug (<a href=https://github.com/qualcomm/aimet/commit/68588d47e03ccb4c9aacfa7442d3911c46987a8c target=_blank rel="noopener noreferrer" class=""><code>68588d4</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Exclude depthwise Conv/ConvTranspose from supergroups and fix false negatives in depthwise conv detection (<a href=https://github.com/qualcomm/aimet/commit/7729c9760c45a9d8dfb48472da04c4473b6def65 target=_blank rel="noopener noreferrer" class=""><code>7729c97</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/2a6b723a1d1245588d9928bcf2b5eef5fda98631 target=_blank rel="noopener noreferrer" class=""><code>2a6b723</code></a>)</li>
+<li class="">Publish a single wheel per platform instead of <code>+cpu</code>/<code>+cuXXX</code> variants to the GitHub release (<a href=https://github.com/qualcomm/aimet/commit/4fc12d8cb7f4436c4165f8527d9785e69c3f16b2 target=_blank rel="noopener noreferrer" class=""><code>4fc12d8</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2390>2.39.0<a href=#2390 class=hash-link aria-label="Direct link to 2.39.0" title="Direct link to 2.39.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Support tuple of <code>(param_type, act_type)</code> in the LiteMP API (<a href=https://github.com/qualcomm/aimet/commit/64ecf7e409a06ac9e1c5da4439515bf4bd1a1070 target=_blank rel="noopener noreferrer" class=""><code>64ecf7e</code></a>)</li>
+</ul>
+</li>
+<li class="">Torch<!-- -->
+<ul>
+<li class="">Implement NVFP4 JSON encoding export (<a href=https://github.com/qualcomm/aimet/commit/b0c8d15173149b6c7c9ac8a8cc4cfd84433b4fa7 target=_blank rel="noopener noreferrer" class=""><code>b0c8d15</code></a>)</li>
+<li class="">Implement NVFP4 ONNX QDQ export (<a href=https://github.com/qualcomm/aimet/commit/ddcc3d1094da2afb5dcc1ab7050553d6d8c28738 target=_blank rel="noopener noreferrer" class=""><code>ddcc3d1</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/86fe90e27a417e6ee192ab176f06afd471991fcb target=_blank rel="noopener noreferrer" class=""><code>86fe90e</code></a>)</li>
+<li class="">Implement LPBQ export in v2.1.0 encoding format (<a href=https://github.com/qualcomm/aimet/commit/607c5dc092053148bbbeae1cf548ee55580544a1 target=_blank rel="noopener noreferrer" class=""><code>607c5dc</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Fix loading encodings to fp16 sims (<a href=https://github.com/qualcomm/aimet/commit/bb616e90c853dcd37808af20b602627a34a2e728 target=_blank rel="noopener noreferrer" class=""><code>bb616e9</code></a>)</li>
+<li class="">Fix matmul exception rule triggering with float16 input (<a href=https://github.com/qualcomm/aimet/commit/20440b561c8b497fc19e3ebd7bcb72fa4cfb5a67 target=_blank rel="noopener noreferrer" class=""><code>20440b5</code></a>)</li>
+<li class="">Avoid protobuf 2GB serialize+reparse cap when duplicating shared ONNX initializers (<a href=https://github.com/qualcomm/aimet/commit/7e31da085fa753cef4ca5c7369f0d5d3983916bf target=_blank rel="noopener noreferrer" class=""><code>7e31da0</code></a>)</li>
+<li class="">Place online SpinQuant R1 rotation at the final residual for models with no lm_head (<a href=https://github.com/qualcomm/aimet/commit/03e40db1d15bbeb274c93045aedf5e9bd6b91992 target=_blank rel="noopener noreferrer" class=""><code>03e40db</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Fix quantsim init failure for models with an int-to-float Cast op (<a href=https://github.com/qualcomm/aimet/commit/217d66d6b6382fb8d67cb9f6a59c2532ab6712f4 target=_blank rel="noopener noreferrer" class=""><code>217d66d</code></a>)</li>
+<li class="">Derive ONNX channel/block axis safely from input shape during export (<a href=https://github.com/qualcomm/aimet/commit/796046cb5f04ed9656af8afafb403fef127dd33b target=_blank rel="noopener noreferrer" class=""><code>796046c</code></a>)</li>
+<li class="">Reduce memory footprint of the <code>_decompose_prequantized_tensor</code> early-exit check and full grid search (<a href=https://github.com/qualcomm/aimet/commit/e04d5ca2345a290e73a3b96b8f981f3cd1878b1a target=_blank rel="noopener noreferrer" class=""><code>e04d5ca</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/b2ef967d166aaf46c9776a192fc5398aa48850c6 target=_blank rel="noopener noreferrer" class=""><code>b2ef967</code></a>)</li>
+<li class="">Remove <code>input_dtype</code> from LPBQ JSON encoding v2.1.0 (<a href=https://github.com/qualcomm/aimet/commit/99d637b5972f9ec88ba5daf1fd9541ff42ff3a77 target=_blank rel="noopener noreferrer" class=""><code>99d637b</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Derive FP8 scales from the raw observed range instead of the quantization-grid-snapped range (<a href=https://github.com/qualcomm/aimet/commit/058e4d54d1f987afa1c2a8ee65776c3f8d480b38 target=_blank rel="noopener noreferrer" class=""><code>058e4d5</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2380>2.38.0<a href=#2380 class=hash-link aria-label="Direct link to 2.38.0" title="Direct link to 2.38.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Add <code>QSpec</code> and <code>QcQuantizeOp.set_qspec</code> to configure a quantizer's precision, granularity, and symmetry in a single call (<a href=https://github.com/qualcomm/aimet/commit/495702ee67f3766a7392906ab6593e49156ee0db target=_blank rel="noopener noreferrer" class=""><code>495702e</code></a>)</li>
+<li class="">Accept <code>QSpec</code> in <code>set_param_type</code> to configure blockwise/LPBQ param quantization (<a href=https://github.com/qualcomm/aimet/commit/e29e8d996b94f5a4c46b9925f5e3fb39bfaed0f2 target=_blank rel="noopener noreferrer" class=""><code>e29e8d9</code></a>)</li>
+<li class="">Add experimental <code>create_truncation_aware_session</code> to simulate int32 accumulator truncation for MatMul/Conv (<a href=https://github.com/qualcomm/aimet/commit/cc65cdcac0288ff460d2893af769b16e41d25e97 target=_blank rel="noopener noreferrer" class=""><code>cc65cdc</code></a>)</li>
+<li class="">Support SpinQuant R1 with online embedding rotation, including models with no LM head (<a href=https://github.com/qualcomm/aimet/commit/8960f1b80c5888e2e06a33ca064c11cb7de55e05 target=_blank rel="noopener noreferrer" class=""><code>8960f1b</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/9a7726ef95f44e2a0402cdc91f035475e8812068 target=_blank rel="noopener noreferrer" class=""><code>9a7726e</code></a>)</li>
+</ul>
+</li>
+<li class="">Torch<!-- -->
+<ul>
+<li class="">Preserve the graph signature of user inputs throughout <code>aimet_torch.export</code> (<a href=https://github.com/qualcomm/aimet/commit/443f638066c0f32c3bcea33826af6a29c1ed63b0 target=_blank rel="noopener noreferrer" class=""><code>443f638</code></a>)</li>
+</ul>
+</li>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Propagate encodings of grid-equivariant ops at export time (<a href=https://github.com/qualcomm/aimet/commit/89bf3b74bf89884d4ad43e9fcb486359c7ae0bde target=_blank rel="noopener noreferrer" class=""><code>89bf3b7</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Skip overwriting encodings of frozen quantizers when loading encodings (<a href=https://github.com/qualcomm/aimet/commit/1feeb61672c6aed5a68f551ca330ba7ce863b975 target=_blank rel="noopener noreferrer" class=""><code>1feeb61</code></a>)</li>
+<li class="">Consolidate LPBQ encoding loading directly onto <code>QcQuantizeOp</code> in support of the new <code>QSpec</code> API (<a href=https://github.com/qualcomm/aimet/commit/354a33ebbbfc254ccd1dcfb0c6dbfeab4143d991 target=_blank rel="noopener noreferrer" class=""><code>354a33e</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Permanently remove the deprecated <code>enable_recompute</code> API; use <code>torch.utils.checkpoint</code> instead (<a href=https://github.com/qualcomm/aimet/commit/006db48c91ba8dc8a81e35acd3aceefb387321c0 target=_blank rel="noopener noreferrer" class=""><code>006db48</code></a>)</li>
+<li class="">Fix sequential MSE failure with deepspeed 0.19.4 (<a href=https://github.com/qualcomm/aimet/commit/cee185a950710084b4a827b5dce4e571c711427e target=_blank rel="noopener noreferrer" class=""><code>cee185a</code></a>)</li>
+<li class="">Export transposed linear weight as a param encoding in v1.0.0 format (<a href=https://github.com/qualcomm/aimet/commit/2411e7f0e036335c91981b482643bb71cf54af55 target=_blank rel="noopener noreferrer" class=""><code>2411e7f</code></a>)</li>
+<li class="">Recognize <code>quantize_per_tensor</code>/<code>dequantize_per_tensor</code> as quantization encodings during ONNX QDQ export (<a href=https://github.com/qualcomm/aimet/commit/d76bb1e5279ad325944728302b1b6bc992592a2b target=_blank rel="noopener noreferrer" class=""><code>d76bb1e</code></a>)</li>
+<li class="">Suppress encoding propagation across RotaryEmbedding boundary during export (<a href=https://github.com/qualcomm/aimet/commit/0d653dc98f9ea81da4f390f2f2d0f908441cf33a target=_blank rel="noopener noreferrer" class=""><code>0d653dc</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Fix sin/cos output range to -1..1 in default quantsim configs (<a href=https://github.com/qualcomm/aimet/commit/2c95329c57f45070c08015f8e570156ab778a88f target=_blank rel="noopener noreferrer" class=""><code>2c95329</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2370>2.37.0<a href=#2370 class=hash-link aria-label="Direct link to 2.37.0" title="Direct link to 2.37.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Add quantization sensitivity analysis and result visualization (<a href=https://github.com/qualcomm/aimet/commit/5da28088f8d72ee370e48d7602d95e6aa87b2971 target=_blank rel="noopener noreferrer" class=""><code>5da2808</code></a>)</li>
+<li class="">Add quant stats range visualizer (<code>aimet_onnx.analysis.visualize_stats</code>) (<a href=https://github.com/qualcomm/aimet/commit/32841549596117eb869215bfc014641e4003a433 target=_blank rel="noopener noreferrer" class=""><code>3284154</code></a>)</li>
+</ul>
+</li>
+<li class="">Torch<!-- -->
+<ul>
+<li class="">Add support for the RotaryEmbedding op (<a href=https://github.com/qualcomm/aimet/commit/2f50387da8740acacc0f2591a6de7ca0ac48e2af target=_blank rel="noopener noreferrer" class=""><code>2f50387</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Guard analytical bias-scale against fp16 export-dtype underflow (<a href=https://github.com/qualcomm/aimet/commit/9728bba33968466ef0635976dd100031fb1f2ee8 target=_blank rel="noopener noreferrer" class=""><code>9728bba</code></a>)</li>
+<li class="">Raise error on shared bias tensor with analytic scale (<a href=https://github.com/qualcomm/aimet/commit/43ede58cbaa02b11daaf05b5686abbd002c40f58 target=_blank rel="noopener noreferrer" class=""><code>43ede58</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Recover pre-quantized weight grid scale via divisor search (<a href=https://github.com/qualcomm/aimet/commit/8e91e22d43bf339effb9196c19c9b5ff422f13f5 target=_blank rel="noopener noreferrer" class=""><code>8e91e22</code></a>)</li>
+<li class="">Deprecate the <code>enable_recompute</code> API (<a href=https://github.com/qualcomm/aimet/commit/c85549d03fac9a6267fcc5df4a3040ca5cf6422f target=_blank rel="noopener noreferrer" class=""><code>c85549d</code></a>)</li>
+<li class="">Fix QuantizedLora attribute error (<a href=https://github.com/qualcomm/aimet/commit/d016c841a156abe19f906d1ce0c2faaff6367d86 target=_blank rel="noopener noreferrer" class=""><code>d016c84</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Add recipe schema to GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/ad454cfab6a0e40b0591e890075ddd8b0b9f3968 target=_blank rel="noopener noreferrer" class=""><code>ad454cf</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2360>2.36.0<a href=#2360 class=hash-link aria-label="Direct link to 2.36.0" title="Direct link to 2.36.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Add tensor-level set_precision API to aimet-onnx QuantSim (<a href=https://github.com/qualcomm/aimet/commit/ad61748ebc0547f9e2ba2a6546bbcacf27e9693f target=_blank rel="noopener noreferrer" class=""><code>ad61748</code></a>)</li>
+<li class="">Enable AdaScale for Qwen3.5 (<a href=https://github.com/qualcomm/aimet/commit/03df10a75c82604a8e32fd4a7517880b454acf67 target=_blank rel="noopener noreferrer" class=""><code>03df10a</code></a>)</li>
+</ul>
+</li>
+<li class="">Torch<!-- -->
+<ul>
+<li class="">Add R2 per-head rotation to aimet-torch SpinQuant (<a href=https://github.com/qualcomm/aimet/commit/0ba884a84ff4b591c71268c87ae0d9acc2b4ec41 target=_blank rel="noopener noreferrer" class=""><code>0ba884a</code></a>)</li>
+<li class="">Enable AdaScale for Qwen3.5 (<a href=https://github.com/qualcomm/aimet/commit/e5f546229444db0ed0466c5b6c291b01f92253cb target=_blank rel="noopener noreferrer" class=""><code>e5f5462</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Skip weightless dynamic MatMuls in sequential MSE (<a href=https://github.com/qualcomm/aimet/commit/8413aea0d7d412bcbce8278b3f95daf6023981d7 target=_blank rel="noopener noreferrer" class=""><code>8413aea</code></a>)</li>
+<li class="">Fix bugged or missing op types in onnx2torch (<a href=https://github.com/qualcomm/aimet/commit/6f3255bfa71f01553311f6ac7c8ef64987bb0632 target=_blank rel="noopener noreferrer" class=""><code>6f3255b</code></a>)</li>
+<li class="">Define QcQuantizeOp interface to set precision via qtype (<a href=https://github.com/qualcomm/aimet/commit/d0c1e4ba31b5ca93bf097afb615c317e0d934c56 target=_blank rel="noopener noreferrer" class=""><code>d0c1e4b</code></a>)</li>
+<li class="">Consolidate ONNX decoder block detection into block_topology package (<a href=https://github.com/qualcomm/aimet/commit/f441f2fc3a6661fd5521c7db1c6a05d173716e31 target=_blank rel="noopener noreferrer" class=""><code>f441f2f</code></a>)</li>
+<li class="">Detect decoder residual writers by graph walk in role map (<a href=https://github.com/qualcomm/aimet/commit/22e605200c5dab794385a0b00bb44512b666e675 target=_blank rel="noopener noreferrer" class=""><code>22e6052</code></a>)</li>
+<li class="">Propagate through float-to-float casts to find effective quantizer (<a href=https://github.com/qualcomm/aimet/commit/9ca5115993c5ecb254cf932fcce2beebd22e3ac0 target=_blank rel="noopener noreferrer" class=""><code>9ca5115</code></a>)</li>
+<li class="">Fix export omitting bias encodings for dynamic convs (<a href=https://github.com/qualcomm/aimet/commit/326167c638f41cdd83034cd5480940a9705f1c11 target=_blank rel="noopener noreferrer" class=""><code>326167c</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Fall back from Triton to PyTorch if input size exceeds 2^31 (<a href=https://github.com/qualcomm/aimet/commit/a8636b572c46542b4ed3864c487c77e33ab818c4 target=_blank rel="noopener noreferrer" class=""><code>a8636b5</code></a>)</li>
+<li class="">Skip deriving data movement op output encoding for MaskedSoftmax subgraph (<a href=https://github.com/qualcomm/aimet/commit/75bf0f75281579ebfedd4cecbbc0c6e92bdac130 target=_blank rel="noopener noreferrer" class=""><code>75bf0f7</code></a>)</li>
+<li class="">Fall back to chained sampling for cached-region resume in BlockwiseSampler (<a href=https://github.com/qualcomm/aimet/commit/53419977e18ecc590a2d59aeae14a75e3093b8f6 target=_blank rel="noopener noreferrer" class=""><code>5341997</code></a>)</li>
+<li class="">Remove erroneous QuantizationMixin.ignore in Gemma4 (<a href=https://github.com/qualcomm/aimet/commit/dcfe9de8b23c94f33f35e937e34715d15563b7b3 target=_blank rel="noopener noreferrer" class=""><code>dcfe9de</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Add fp16 support in GenAILab (<a href=https://github.com/qualcomm/aimet/commit/fec7c2cb4face57dbbbcac9c7a0e2b5d690927b0 target=_blank rel="noopener noreferrer" class=""><code>fec7c2c</code></a>)</li>
+<li class="">Onboard gemma4 qat model to GenAILab (<a href=https://github.com/qualcomm/aimet/commit/f65cf6625d8ba1862a6ffb8f716d8ff36cf24dcb target=_blank rel="noopener noreferrer" class=""><code>f65cf66</code></a>)</li>
+<li class="">Add SplitFusedLayers adaptation to GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/0c1729d5dc179fd2b9098c3ce6654d49ff256e7f target=_blank rel="noopener noreferrer" class=""><code>0c1729d</code></a>)</li>
+<li class="">Add MMLU Pro dataset/metric to GenAI Lab (<a href=https://github.com/qualcomm/aimet/commit/c16100b691d323761f7163c8212a0bac9d1f1670 target=_blank rel="noopener noreferrer" class=""><code>c16100b</code></a>)</li>
+<li class="">Update GenAILab pinned package dependencies (<a href=https://github.com/qualcomm/aimet/commit/7b3f0fba0d7bf535b989a0a899400668b77d532f target=_blank rel="noopener noreferrer" class=""><code>7b3f0fb</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2351>2.35.1<a href=#2351 class=hash-link aria-label="Direct link to 2.35.1" title="Direct link to 2.35.1" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Prevent HTP-specific requantization scale underflow and accumulator bias overflow issues (<a href=https://github.com/qualcomm/aimet/commit/a052923a7c8fb1107f3d6a790cd79ee1fc53ac6d target=_blank rel="noopener noreferrer" class=""><code>a052923</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2350>2.35.0<a href=#2350 class=hash-link aria-label="Direct link to 2.35.0" title="Direct link to 2.35.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Support pattern-matching Rsqrt-based RMSNorm patterns (<a href=https://github.com/qualcomm/aimet/commit/f02eed2fbb48a3502664e2ca77a8e130e0c0ae6a target=_blank rel="noopener noreferrer" class=""><code>f02eed2</code></a>)</li>
+<li class="">Support SpinQuant R1 for models with no lm_head matmul (<a href=https://github.com/qualcomm/aimet/commit/ce5933daa01d44f26149b01c6b8aad4bac2dfaef target=_blank rel="noopener noreferrer" class=""><code>ce5933d</code></a>)</li>
+<li class="">Support models with ScatterElements nodes in AdaScale (<a href=https://github.com/qualcomm/aimet/commit/71300befd32faae8d4e10f7dc91a17ae20e43b90 target=_blank rel="noopener noreferrer" class=""><code>71300be</code></a>)</li>
+<li class="">Fix AMP phase 1 computing inaccurate sensitivity for tied quantizers (<a href=https://github.com/qualcomm/aimet/commit/6eef3ba8ab867b873d5b35cd0434ce318d6f2008 target=_blank rel="noopener noreferrer" class=""><code>6eef3ba</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Enable SpinQuant R1 for Qwen3.5 architecture (<a href=https://github.com/qualcomm/aimet/commit/6a47c31cf638d73653ec99463a34025509af9f10 target=_blank rel="noopener noreferrer" class=""><code>6a47c31</code></a>)</li>
+<li class="">Fix graph tracing for Gather op inputs (<a href=https://github.com/qualcomm/aimet/commit/d261af14ebd195621f454b166c344474694f15ef target=_blank rel="noopener noreferrer" class=""><code>d261af1</code></a>)</li>
+<li class="">Fix back-to-back QDQs inserted in ONNX QDQ export for deduplicated weights (<a href=https://github.com/qualcomm/aimet/commit/5b4f9ee9211bf9e1119da56dec2ea3fa062e94ae target=_blank rel="noopener noreferrer" class=""><code>5b4f9ee</code></a>)</li>
+<li class="">Support lossless calibration for pre-quantized weights (<a href=https://github.com/qualcomm/aimet/commit/9f8c52e69c0daddf80319750dd6c6808b2a262d9 target=_blank rel="noopener noreferrer" class=""><code>9f8c52e</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/5fc100707ae32a2e65e46c1d56d37f5c596336f4 target=_blank rel="noopener noreferrer" class=""><code>5fc1007</code></a>)</li>
+<li class="">Fix protobuf error in QDQ export for models > 2GB (<a href=https://github.com/qualcomm/aimet/commit/1b7dbab6d9526e03a9906f4c063ecd7ac74bda23 target=_blank rel="noopener noreferrer" class=""><code>1b7dbab</code></a>)</li>
+<li class="">Add compatibility with torch 2.13 (<a href=https://github.com/qualcomm/aimet/commit/7637a271fe964a8b6c7a856296b07db758e84f61 target=_blank rel="noopener noreferrer" class=""><code>7637a27</code></a>)</li>
+<li class="">Export mxfp4-to-int8 quantized weights on mxfp4 grid (<a href=https://github.com/qualcomm/aimet/commit/2f451203d28412f645526ccb9d9a950095d3969f target=_blank rel="noopener noreferrer" class=""><code>2f45120</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Disable Gather op output quantizer in htp_v68 config (<a href=https://github.com/qualcomm/aimet/commit/2f7dedb21a6c4175dff3e7579e7ba261538e502e target=_blank rel="noopener noreferrer" class=""><code>2f7dedb</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2340>2.34.0<a href=#2340 class=hash-link aria-label="Direct link to 2.34.0" title="Direct link to 2.34.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Added <code>fold_param_quantizers()</code> to <code>QuantizationSimModel</code> to bake param QDQ into initializers for faster inference (<a href=https://github.com/qualcomm/aimet/commit/bc1b47e18 target=_blank rel="noopener noreferrer" class=""><code>bc1b47e</code></a>)</li>
+<li class="">Excluded SpinQuant R3 online rotations from sequential MSE to avoid shape mismatches under GQA (<a href=https://github.com/qualcomm/aimet/commit/901cd936d target=_blank rel="noopener noreferrer" class=""><code>901cd93</code></a>)</li>
+<li class="">Supported ScatterElements KV-cache pattern in <code>_tie_quantizers_for_kv_cache</code> (<a href=https://github.com/qualcomm/aimet/commit/94551756e target=_blank rel="noopener noreferrer" class=""><code>9455175</code></a>)</li>
+<li class="">Aligned <code>QcQuantizeOp.quantize_dequantize</code> output dtype with input (<a href=https://github.com/qualcomm/aimet/commit/9e1195254 target=_blank rel="noopener noreferrer" class=""><code>9e11952</code></a>)</li>
+<li class="">Emit per-channel axis for fused bias quantizers in ONNX QDQ export (<a href=https://github.com/qualcomm/aimet/commit/725ffe724 target=_blank rel="noopener noreferrer" class=""><code>725ffe7</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Implemented int32 bias overflow protection (<a href=https://github.com/qualcomm/aimet/commit/d1b9b0c2b target=_blank rel="noopener noreferrer" class=""><code>d1b9b0c</code></a>)</li>
+<li class="">Removed graph breaks from almost all quantized modules for improved <code>torch.compile</code> performance (<a href=https://github.com/qualcomm/aimet/commit/18501cbdb target=_blank rel="noopener noreferrer" class=""><code>18501cb</code></a>)</li>
+<li class="">Precomputed transposed MatMul weight at ONNX QDQ export time, removing the intermediate transpose in <code>nn.Linear</code> export (<a href=https://github.com/qualcomm/aimet/commit/a203e14fe target=_blank rel="noopener noreferrer" class=""><code>a203e14</code></a>)</li>
+<li class="">Enabled exporting <code>FloatQuantizeDequantize</code> with the dynamo-based ONNX exporter (<a href=https://github.com/qualcomm/aimet/commit/97e64111a target=_blank rel="noopener noreferrer" class=""><code>97e6411</code></a>)</li>
+<li class="">Worked around <code>torch.jit.trace</code> bug on Gather-ScatterElements sequences (<a href=https://github.com/qualcomm/aimet/commit/170ccf418 target=_blank rel="noopener noreferrer" class=""><code>170ccf4</code></a>)</li>
+<li class="">Represented mxfp4 e8m0 scale with float32 (<a href=https://github.com/qualcomm/aimet/commit/ccdeabc10 target=_blank rel="noopener noreferrer" class=""><code>ccdeabc</code></a>)</li>
+<li class="">Propagated <code>block_size</code> attribute through <code>FloatEncoding.to()</code> (<a href=https://github.com/qualcomm/aimet/commit/1feeb5fc5 target=_blank rel="noopener noreferrer" class=""><code>1feeb5f</code></a>)</li>
+<li class="">Added optional <code>producer</code> attribute to <code>EncodingBase</code> (<a href=https://github.com/qualcomm/aimet/commit/4eff161e5 target=_blank rel="noopener noreferrer" class=""><code>4eff161</code></a>)</li>
+<li class="">Skip importing InternVL on transformers &lt; 4.52 without raising (<a href=https://github.com/qualcomm/aimet/commit/3737b161f target=_blank rel="noopener noreferrer" class=""><code>3737b16</code></a>)</li>
+<li class="">AdaScale: Enabled AdaScale for Gemma 4 (<a href=https://github.com/qualcomm/aimet/commit/674805703 target=_blank rel="noopener noreferrer" class=""><code>6748057</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">AdaScale: Made block loss function configurable (<a href=https://github.com/qualcomm/aimet/commit/25aeac5a1 target=_blank rel="noopener noreferrer" class=""><code>25aeac5</code></a>)</li>
+<li class="">AdaScale: Made scaled (sum-over-seq-dim) loss the default block loss function (<a href=https://github.com/qualcomm/aimet/commit/c1a2c4444 target=_blank rel="noopener noreferrer" class=""><code>c1a2c44</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Documentation</p>
+<ul>
+<li class="">Refactored GenAI model results, added AIMET Torch companion recipe page, and added Qwen3 0.6B/1.7B recipe rows (<a href=https://github.com/qualcomm/aimet/commit/b9d1a1034 target=_blank rel="noopener noreferrer" class=""><code>b9d1a10</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/b5452d769 target=_blank rel="noopener noreferrer" class=""><code>b5452d7</code></a>)</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2330>2.33.0<a href=#2330 class=hash-link aria-label="Direct link to 2.33.0" title="Direct link to 2.33.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Added SpinQuant R2 merged rotation support (<a href=https://github.com/qualcomm/aimet/commit/e941326bd target=_blank rel="noopener noreferrer" class=""><code>e941326</code></a>)</li>
+<li class="">Added SpinQuant R3 online rotation support (<a href=https://github.com/qualcomm/aimet/commit/e941326bd target=_blank rel="noopener noreferrer" class=""><code>e941326</code></a>)</li>
+<li class="">SpinQuant API now operates on an ONNX model instead of a QuantSim model (<a href=https://github.com/qualcomm/aimet/commit/e941326bd target=_blank rel="noopener noreferrer" class=""><code>e941326</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Fused RMSNorms with an internal Cast (<a href=https://github.com/qualcomm/aimet/commit/66db262be target=_blank rel="noopener noreferrer" class=""><code>66db262</code></a>)</li>
+<li class="">Added <code>mask_val</code> as an input of the MaskedSoftmax function (<a href=https://github.com/qualcomm/aimet/commit/555c0df4d target=_blank rel="noopener noreferrer" class=""><code>555c0df</code></a>)</li>
+<li class="">Aligned MinMaxEncodingAnalyzer's minimum scale with aimet-torch (<a href=https://github.com/qualcomm/aimet/commit/edfe1e071 target=_blank rel="noopener noreferrer" class=""><code>edfe1e0</code></a>)</li>
+<li class="">AdaScale: Added mechanism to speed up algo by stopping early if the loss has converged (<a href=https://github.com/qualcomm/aimet/commit/9d2ec9e0b target=_blank rel="noopener noreferrer" class=""><code>9d2ec9e</code></a>)</li>
+<li class="">AdaScale: Added a new experimental loss function (<a href=https://github.com/qualcomm/aimet/commit/3761adde4 target=_blank rel="noopener noreferrer" class=""><code>3761add</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Enabled full-graph compilation of affine QDQ for improved performance (<a href=https://github.com/qualcomm/aimet/commit/1239f0070 target=_blank rel="noopener noreferrer" class=""><code>1239f00</code></a>)</li>
+<li class="">Supported root module registered as a quantized module (<a href=https://github.com/qualcomm/aimet/commit/ff69bb809 target=_blank rel="noopener noreferrer" class=""><code>ff69bb8</code></a>)</li>
+<li class="">Change to raise error when exporting QLoRA models via <code>QuantizationSimModel.export</code> (<a href=https://github.com/qualcomm/aimet/commit/0dc003a07 target=_blank rel="noopener noreferrer" class=""><code>0dc003a</code></a>)</li>
+<li class="">Removed outdated warning about switching the default quant scheme to min-max (<a href=https://github.com/qualcomm/aimet/commit/ad1ecd1f2 target=_blank rel="noopener noreferrer" class=""><code>ad1ecd1</code></a>)</li>
+<li class="">AdaScale: Added mechanism to speed up algo by stopping early if the loss has converged (<a href=https://github.com/qualcomm/aimet/commit/9d2ec9e0b target=_blank rel="noopener noreferrer" class=""><code>9d2ec9e</code></a>)</li>
+<li class="">AdaScale: Added a new experimental loss function (<a href=https://github.com/qualcomm/aimet/commit/3761adde4 target=_blank rel="noopener noreferrer" class=""><code>3761add</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Add eNPU v7 quantsim config files (<a href=https://github.com/qualcomm/aimet/commit/17018b6f8 target=_blank rel="noopener noreferrer" class=""><code>17018b6</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2321>2.32.1<a href=#2321 class=hash-link aria-label="Direct link to 2.32.1" title="Direct link to 2.32.1" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Fix onnxruntime dispatching to incorrect function overload (<a href=https://github.com/qualcomm/aimet/commit/a969ada target=_blank rel="noopener noreferrer" class=""><code>a969ada</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2320>2.32.0<a href=#2320 class=hash-link aria-label="Direct link to 2.32.0" title="Direct link to 2.32.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Add C++ support for bfloat16 quantization (<a href=https://github.com/qualcomm/aimet/commit/ca7d3e01b target=_blank rel="noopener noreferrer" class=""><code>ca7d3e0</code></a>)</li>
+<li class="">Fix large model support with protobuf 7.x (<a href=https://github.com/qualcomm/aimet/commit/9ef22519a target=_blank rel="noopener noreferrer" class=""><code>9ef2251</code></a>)</li>
+<li class="">Skip QDQ pair scale/zp in duplicate_shared_initializers (<a href=https://github.com/qualcomm/aimet/commit/05e8332ce target=_blank rel="noopener noreferrer" class=""><code>05e8332</code></a>)</li>
+<li class="">Handle Identity passthrough in duplicate_shared_initializers (<a href=https://github.com/qualcomm/aimet/commit/1b27d9841 target=_blank rel="noopener noreferrer" class=""><code>1b27d98</code></a>)</li>
+<li class="">Fix SpinQuant embed_tokens filter to exclude non-embedding Gathers (<a href=https://github.com/qualcomm/aimet/commit/81b80411a target=_blank rel="noopener noreferrer" class=""><code>81b8041</code></a>)</li>
+<li class="">Inline fused supergroups after encoding propagation (<a href=https://github.com/qualcomm/aimet/commit/68fdcb673 target=_blank rel="noopener noreferrer" class=""><code>68fdcb6</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Disable output quantizers of reused modules before output encoding propagation (<a href=https://github.com/qualcomm/aimet/commit/b66b9a1e0 target=_blank rel="noopener noreferrer" class=""><code>b66b9a1</code></a>)</li>
+<li class="">Inline Q/DQ nodes statically without re-invoking torch.export (<a href=https://github.com/qualcomm/aimet/commit/de79ae495 target=_blank rel="noopener noreferrer" class=""><code>de79ae4</code></a>)</li>
+<li class="">Stop incorrect encoding propagation through non-grid-preserving ops (<a href=https://github.com/qualcomm/aimet/commit/66b2834fc target=_blank rel="noopener noreferrer" class=""><code>66b2834</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2310>2.31.0<a href=#2310 class=hash-link aria-label="Direct link to 2.31.0" title="Direct link to 2.31.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Support Qwen 3VL in AdaScale ONNX (<a href=https://github.com/qualcomm/aimet/commit/35d2440db target=_blank rel="noopener noreferrer" class=""><code>35d2440</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Add Gemma 3 support for AdaScale (<a href=https://github.com/qualcomm/aimet/commit/a2da0de9c target=_blank rel="noopener noreferrer" class=""><code>a2da0de</code></a>)</li>
+<li class="">LoRA integration (<a href=https://github.com/qualcomm/aimet/commit/0b90d8a4f target=_blank rel="noopener noreferrer" class=""><code>0b90d8a</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Removed Features</p>
+<ul>
+<li class="">Torch<!-- -->
+<ul>
+<li class="">Delete AutoQuant (<a href=https://github.com/qualcomm/aimet/commit/a2382756e target=_blank rel="noopener noreferrer" class=""><code>a238275</code></a>)</li>
+<li class="">Delete bias correction (<a href=https://github.com/qualcomm/aimet/commit/a2382756e target=_blank rel="noopener noreferrer" class=""><code>a238275</code></a>)</li>
+<li class="">Delete quantizable transformer (<a href=https://github.com/qualcomm/aimet/commit/a2382756e target=_blank rel="noopener noreferrer" class=""><code>a238275</code></a>)</li>
+<li class="">Delete winnow (<a href=https://github.com/qualcomm/aimet/commit/a2382756e target=_blank rel="noopener noreferrer" class=""><code>a238275</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Fuse supergroups to ONNX function nodes in QuantSim init (<a href=https://github.com/qualcomm/aimet/commit/441ac6dc8 target=_blank rel="noopener noreferrer" class=""><code>441ac6d</code></a>)</li>
+<li class="">Enable ONNX initializer deduplication pass in torch>=2.12 (<a href=https://github.com/qualcomm/aimet/commit/21dc8e05f target=_blank rel="noopener noreferrer" class=""><code>21dc8e0</code></a>)</li>
+<li class="">Detect post-writing norm incompatibility in ONNX SpinQuant (<a href=https://github.com/qualcomm/aimet/commit/85bdbdb88 target=_blank rel="noopener noreferrer" class=""><code>85bdbdb</code></a>)</li>
+<li class="">Remove incorrect entries from grid-preserving ops list (<a href=https://github.com/qualcomm/aimet/commit/4007d7f3f target=_blank rel="noopener noreferrer" class=""><code>4007d7f</code></a>)</li>
+<li class="">Set self.session = None to avoid double memory allocation during rebuild session (<a href=https://github.com/qualcomm/aimet/commit/18664a4db target=_blank rel="noopener noreferrer" class=""><code>18664a4</code></a>)</li>
+<li class="">Give fused supergroup nodes intuitive naming (<a href=https://github.com/qualcomm/aimet/commit/a775b6e09 target=_blank rel="noopener noreferrer" class=""><code>a775b6e</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Raise ValueError for unsupported architectures in PyTorch SpinQuant (<a href=https://github.com/qualcomm/aimet/commit/a96261475 target=_blank rel="noopener noreferrer" class=""><code>a962614</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Documentation</p>
+<ul>
+<li class="">Add zero_point_shift to 1.0.0 encoding spec documentation (<a href=https://github.com/qualcomm/aimet/commit/094deadfa target=_blank rel="noopener noreferrer" class=""><code>094dead</code></a>)</li>
+<li class="">Add float8/float4 encoding to 2.0.0 spec documentation (<a href=https://github.com/qualcomm/aimet/commit/02e75aa95 target=_blank rel="noopener noreferrer" class=""><code>02e75aa</code></a>)</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2300>2.30.0<a href=#2300 class=hash-link aria-label="Direct link to 2.30.0" title="Direct link to 2.30.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Extend SpinQuant support for Vision-Language Models (VLM) (<a href=https://github.com/qualcomm/aimet/commit/e5cd62847 target=_blank rel="noopener noreferrer" class=""><code>e5cd628</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Remove legacy aimet_torch v1. v2 is now the sole API (<a href=https://github.com/qualcomm/aimet/commit/4192da749 target=_blank rel="noopener noreferrer" class=""><code>4192da7</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/00e3c7220 target=_blank rel="noopener noreferrer" class=""><code>00e3c72</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Improve set_and_freeze_param_encodings (<a href=https://github.com/qualcomm/aimet/commit/39bf1f69b target=_blank rel="noopener noreferrer" class=""><code>39bf1f6</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/d320cae7e target=_blank rel="noopener noreferrer" class=""><code>d320cae</code></a>)</li>
+<li class="">Optimize GPU calibration for fp16 models (<a href=https://github.com/qualcomm/aimet/commit/d7faee0e9 target=_blank rel="noopener noreferrer" class=""><code>d7faee0</code></a>)</li>
+<li class="">Only save model with external data if necessary (<a href=https://github.com/qualcomm/aimet/commit/29fbef23e target=_blank rel="noopener noreferrer" class=""><code>29fbef2</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Fix exception rule bug with mixed precision (<a href=https://github.com/qualcomm/aimet/commit/c9add2219 target=_blank rel="noopener noreferrer" class=""><code>c9add22</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Documentation</p>
+<ul>
+<li class="">Add SpinQuant ONNX documentation and examples (<a href=https://github.com/qualcomm/aimet/commit/37454b34e target=_blank rel="noopener noreferrer" class=""><code>37454b3</code></a>)</li>
+<li class="">Document 2.0.0 encoding specification (<a href=https://github.com/qualcomm/aimet/commit/7e54291c3 target=_blank rel="noopener noreferrer" class=""><code>7e54291</code></a>)</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2290>2.29.0<a href=#2290 class=hash-link aria-label="Direct link to 2.29.0" title="Direct link to 2.29.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Add support for Qwen 2.5 VL in aimet-onnx (<a href=https://github.com/qualcomm/aimet/commit/f25668610 target=_blank rel="noopener noreferrer" class=""><code>f256686</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Support OOTB quantization of nn.MultiHeadAttention (<a href=https://github.com/qualcomm/aimet/commit/4d19f470f target=_blank rel="noopener noreferrer" class=""><code>4d19f47</code></a>)</li>
+<li class="">Support OOTB quantization of Qwen 3.5 normalization layers (<a href=https://github.com/qualcomm/aimet/commit/01b912f65 target=_blank rel="noopener noreferrer" class=""><code>01b912f</code></a>)</li>
+<li class="">Support OOTB quantization of InternVL GELU (<a href=https://github.com/qualcomm/aimet/commit/c5f65b782 target=_blank rel="noopener noreferrer" class=""><code>c5f65b7</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Make export_int32_bias default to True if encoding_version >= 2.0.0 (<a href=https://github.com/qualcomm/aimet/commit/22876ca30 target=_blank rel="noopener noreferrer" class=""><code>22876ca</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Optimize QDQ latency for fp16 models (<a href=https://github.com/qualcomm/aimet/commit/c817a17a5 target=_blank rel="noopener noreferrer" class=""><code>c817a17</code></a>)</li>
+<li class="">Support pattern matching LayerNormalization without bias (<a href=https://github.com/qualcomm/aimet/commit/84f880aee target=_blank rel="noopener noreferrer" class=""><code>84f880a</code></a>)</li>
+<li class="">Make from_onnx_export ignore unloadable encodings by default (<a href=https://github.com/qualcomm/aimet/commit/1b5072751 target=_blank rel="noopener noreferrer" class=""><code>1b50727</code></a>)</li>
+<li class="">Enable loading models with redundant back-to-back QDQ using from_onnx_qdq (<a href=https://github.com/qualcomm/aimet/commit/0f2be91bf target=_blank rel="noopener noreferrer" class=""><code>0f2be91</code></a>)</li>
+<li class="">Skip folding BatchNormalization when the Conv layer has shared weights (<a href=https://github.com/qualcomm/aimet/commit/8f552b7a6 target=_blank rel="noopener noreferrer" class=""><code>8f552b7</code></a>)</li>
+<li class="">Fix bug in standalone BatchNormalization fold with shared tensors (<a href=https://github.com/qualcomm/aimet/commit/eb7ae4b72 target=_blank rel="noopener noreferrer" class=""><code>eb7ae4b</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Disable activation quantizers for re-used stateless nn.Modules (<a href=https://github.com/qualcomm/aimet/commit/8f552b7a6 target=_blank rel="noopener noreferrer" class=""><code>8f552b7</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2280>2.28.0<a href=#2280 class=hash-link aria-label="Direct link to 2.28.0" title="Direct link to 2.28.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Add resumable checkpointing for AdaScale optimization (<a href=https://github.com/qualcomm/aimet/commit/20ecb0ae89a1261250d5b5a8128802bc8d442bae target=_blank rel="noopener noreferrer" class=""><code>20ecb0a</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Migrate pybind11 bindings to Cython using Python's Stable ABI to enable Python-version-independent wheels (<a href=https://github.com/qualcomm/aimet/commit/0d6f856cfe9ea5160a3f7ae0e23c1fb80017108c target=_blank rel="noopener noreferrer" class=""><code>0d6f856</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">Torch<!-- -->
+<ul>
+<li class="">Fix rescale encodings not propagating with shared scale values (<a href=https://github.com/qualcomm/aimet/commit/d9f3a9094876db4834e9b1359b36627ff3ef6570 target=_blank rel="noopener noreferrer" class=""><code>d9f3a90</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Documentation</p>
+<ul>
+<li class="">Update docs and examples to use new API for setting lm_head precision (<a href=https://github.com/qualcomm/aimet/commit/ac3e11e1c6d835a6f65b83e29fd5e36479a9a750 target=_blank rel="noopener noreferrer" class=""><code>ac3e11e</code></a>)</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2270>2.27.0<a href=#2270 class=hash-link aria-label="Direct link to 2.27.0" title="Direct link to 2.27.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Add <code>force_activation_as</code> option to export APIs to control activation signedness (<a href=https://github.com/qualcomm/aimet/commit/35834628c5631853d3d7f36fd32b3ea1dceb8926 target=_blank rel="noopener noreferrer" class=""><code>3583462</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Reduce quantize-dequantize latency overhead (<a href=https://github.com/qualcomm/aimet/commit/9ca3bf4cf74bc6b6db2a4d508ee260303a466edf target=_blank rel="noopener noreferrer" class=""><code>9ca3bf4</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/525e993be3daec18ac7733b6822281bace4d0ca3 target=_blank rel="noopener noreferrer" class=""><code>525e993</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/b3de9a2b3591648e47067ac619ae8ceeb7984fd0 target=_blank rel="noopener noreferrer" class=""><code>b3de9a2</code></a>)</li>
+<li class="">Optimize inference speed for GenAITests models (<a href=https://github.com/qualcomm/aimet/commit/cacd5cc7a08ba91b359d2fdcab30adaaa9f99df8 target=_blank rel="noopener noreferrer" class=""><code>cacd5cc</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/b6ea5bd022d4622f77a59694ef5d90fde0f5ac1e target=_blank rel="noopener noreferrer" class=""><code>b6ea5bd</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/30ab60a7f210a8297e66c743d6f33a92aa186689 target=_blank rel="noopener noreferrer" class=""><code>30ab60a</code></a>)</li>
+<li class="">Allow checkpointing and loading during SeqMSE optimization (<a href=https://github.com/qualcomm/aimet/commit/4eb97f093e37e2d8c71d40a7aa7222a32063b4d7 target=_blank rel="noopener noreferrer" class=""><code>4eb97f0</code></a>)</li>
+<li class="">Fix SeqMSE error when model contains unquantized Conv/Linear layers (<a href=https://github.com/qualcomm/aimet/commit/3dd4ca9f44159b27a9eb3e802dd9fdde5af90e16 target=_blank rel="noopener noreferrer" class=""><code>3dd4ca9</code></a>)</li>
+<li class="">Populate scalar constant Mul/Div output encodings at export (<a href=https://github.com/qualcomm/aimet/commit/1228394ae2f534890cf29062332062105e6cd9db target=_blank rel="noopener noreferrer" class=""><code>1228394</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/169952d8582a289962eb3a168bb5aa70132c86d8 target=_blank rel="noopener noreferrer" class=""><code>169952d</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/ca2a324a99724a1222818fe5bb53ea0a47fb3850 target=_blank rel="noopener noreferrer" class=""><code>ca2a324</code></a>)</li>
+<li class="">Propagate tensor encodings through scalar Mul/Div operations (<a href=https://github.com/qualcomm/aimet/commit/54c746272d29058219eb0b57725de5cacd97a6ba target=_blank rel="noopener noreferrer" class=""><code>54c7462</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/2cfd07edccc6a5715ff99294dbc6057159acdd73 target=_blank rel="noopener noreferrer" class=""><code>2cfd07e</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Propagate concat input quantizers to output when possible (<a href=https://github.com/qualcomm/aimet/commit/5ee0f13d08b00294460566fe7d4bde5244f9c6db target=_blank rel="noopener noreferrer" class=""><code>5ee0f13</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2260>2.26.0<a href=#2260 class=hash-link aria-label="Direct link to 2.26.0" title="Direct link to 2.26.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Implement onnxscript RMSNorm fusion for improved graph optimization (<a href=https://github.com/qualcomm/aimet/commit/68710d9bf6cc0eeaed90b529671f8873a2f6bc56 target=_blank rel="noopener noreferrer" class=""><code>68710d9</code></a>)</li>
+<li class="">Propagate encoding through Concat during ONNX QDQ export (<a href=https://github.com/qualcomm/aimet/commit/4811a34a20d6aa209bd53178fa2cacdd9e147372 target=_blank rel="noopener noreferrer" class=""><code>4811a34</code></a>)</li>
+<li class="">Export scale & offset as initializers instead of Constants in ONNX QDQ export (<a href=https://github.com/qualcomm/aimet/commit/ea9a619539382ad9f02e8d097ad7068abd62f58e target=_blank rel="noopener noreferrer" class=""><code>ea9a619</code></a>)</li>
+<li class="">Fix AdaScale (aimet-onnx) for Qwen3 models (<a href=https://github.com/qualcomm/aimet/commit/beac8f80226d57adcad6a5cc7c534afbea707045 target=_blank rel="noopener noreferrer" class=""><code>beac8f8</code></a>)</li>
+<li class="">Fix BN fold for YOLO models (<a href=https://github.com/qualcomm/aimet/commit/bae99538e0043ffadc36a17cb5757687f8979edc target=_blank rel="noopener noreferrer" class=""><code>bae9953</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Support int2 ONNX QDQ export (<a href=https://github.com/qualcomm/aimet/commit/5fa79cfb394b84a7fc469134efbe322d854b2c3d target=_blank rel="noopener noreferrer" class=""><code>5fa79cf</code></a>)</li>
+<li class="">Significantly improve ONNX export performance by eliminating O(N^2) iterations and redundant Q/DQ operations (<a href=https://github.com/qualcomm/aimet/commit/695465ed29923ecee3ae54a87a29ffd1c884dadb target=_blank rel="noopener noreferrer" class=""><code>695465e</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/cb1f9aee2e5f484c53bc3094a74e5243835c8bc1 target=_blank rel="noopener noreferrer" class=""><code>cb1f9ae</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/abe0ef597d70af7429625d0046c82df9cdef3531 target=_blank rel="noopener noreferrer" class=""><code>abe0ef5</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/c547cfb4d279055349e7a202a65ea692c71ad8a8 target=_blank rel="noopener noreferrer" class=""><code>c547cfb</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/310b43d973a7d06cc63fb632eeebf1c9cbd385d7 target=_blank rel="noopener noreferrer" class=""><code>310b43d</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/fb9629df4bdd9ccdd939cd93c78778e24165bce2 target=_blank rel="noopener noreferrer" class=""><code>fb9629d</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/d54efa030dcd525cdccd3e9ecd3b71a8d5b01cb5 target=_blank rel="noopener noreferrer" class=""><code>d54efa0</code></a>)</li>
+<li class="">Add native support for Qwen3 MoE models (<a href=https://github.com/qualcomm/aimet/commit/389d71fc418e213e535e09bc24a413923b933a13 target=_blank rel="noopener noreferrer" class=""><code>389d71f</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/ab6e81066ff478d0c086ea401791ce0af8252b03 target=_blank rel="noopener noreferrer" class=""><code>ab6e810</code></a>)</li>
+<li class="">Fix triton kernel bug upon transposed inputs (<a href=https://github.com/qualcomm/aimet/commit/a1f6795daaafff3adca9f134b643be6b76b74a9a target=_blank rel="noopener noreferrer" class=""><code>a1f6795</code></a>)</li>
+<li class="">Fix GPU memory leak in AdaScale optimization loop (<a href=https://github.com/qualcomm/aimet/commit/f52f2e247db6cb3da3f77347b8800f0cb5d9fd05 target=_blank rel="noopener noreferrer" class=""><code>f52f2e2</code></a>)</li>
+<li class="">Fix AdaScale device error with caching disabled (<a href=https://github.com/qualcomm/aimet/commit/964d11f2ea8833f7185405cfe7a7722189ed1648 target=_blank rel="noopener noreferrer" class=""><code>964d11f</code></a>)</li>
+<li class="">Work around torch.compile bugs and exclude internal quantization methods from compilation (<a href=https://github.com/qualcomm/aimet/commit/b8bcb4793869bbe1007bcfdd70c822b2f717072f target=_blank rel="noopener noreferrer" class=""><code>b8bcb47</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/d518f35a2873eacdaa941d368c028c403e76ba2d target=_blank rel="noopener noreferrer" class=""><code>d518f35</code></a>)</li>
+<li class="">Fix tie quantizers removing relu encoding constraint (<a href=https://github.com/qualcomm/aimet/commit/3cc72529f747ab3e4355fe8cee60e92cdbd13c4c target=_blank rel="noopener noreferrer" class=""><code>3cc7252</code></a>)</li>
+<li class="">Fail immediately without retrying upon torch.cuda.OutOfMemoryError (<a href=https://github.com/qualcomm/aimet/commit/4f84eb1e481d239edeb42d6c724746374dae3d79 target=_blank rel="noopener noreferrer" class=""><code>4f84eb1</code></a>)</li>
+<li class="">Release blockwise sampler input memory before yielding to reduce memory usage (<a href=https://github.com/qualcomm/aimet/commit/ee3d1933e80ac37c79cf52b53d5a1528b16987ea target=_blank rel="noopener noreferrer" class=""><code>ee3d193</code></a>)</li>
+<li class="">Add aimet_torch.v1 end-of-life warning (<a href=https://github.com/qualcomm/aimet/commit/8fc52c6c7c710c1c9989e493b0f6d6936239dd0a target=_blank rel="noopener noreferrer" class=""><code>8fc52c6</code></a>)</li>
+<li class="">Use whitelist approach for enabling per-channel quantization in quantsim config (<a href=https://github.com/qualcomm/aimet/commit/817d3b1f8f521750737d974f629d0cf54b29861f target=_blank rel="noopener noreferrer" class=""><code>817d3b1</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Tie concat and interpolation op quantizers by default with safe edge case handling (<a href=https://github.com/qualcomm/aimet/commit/5ce72290e2e6614e29fe3c8363695d41cb689430 target=_blank rel="noopener noreferrer" class=""><code>5ce7229</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/5084af38f40e297a0f73240c8ce8f9bad40880a0 target=_blank rel="noopener noreferrer" class=""><code>5084af3</code></a>)</li>
+<li class="">Implement supergroup unrolling without name mangling (<a href=https://github.com/qualcomm/aimet/commit/e35111218ebad4b907443a0a9fb874df3d1b1dcf target=_blank rel="noopener noreferrer" class=""><code>e351112</code></a>)</li>
+<li class="">Treat CG_split as grid-preserving op (<a href=https://github.com/qualcomm/aimet/commit/738ee26272a04d6220bb0342a259a8690dc91e28 target=_blank rel="noopener noreferrer" class=""><code>738ee26</code></a>)</li>
+<li class="">Handle dynamic matmul add in connected graph passes (<a href=https://github.com/qualcomm/aimet/commit/3c0de8e575fc159d4b0130def6f813c0d9f255ce target=_blank rel="noopener noreferrer" class=""><code>3c0de8e</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Documentation</p>
+<ul>
+<li class="">Add AdaScale documentation with HuggingFace LLM example (<a href=https://github.com/qualcomm/aimet/commit/c4035624e65de059e9c11d7e201a1aab7f3b35b8 target=_blank rel="noopener noreferrer" class=""><code>c403562</code></a>)</li>
+<li class="">Update doc code examples to use aimet_torch.onnx.export (<a href=https://github.com/qualcomm/aimet/commit/fed2a0600c2f45dc9b1bb31d88fc55133d2d0cd3 target=_blank rel="noopener noreferrer" class=""><code>fed2a06</code></a>)</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2251>2.25.1<a href=#2251 class=hash-link aria-label="Direct link to 2.25.1" title="Direct link to 2.25.1" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Fix for encoding propagation for concat layers (<a href=https://github.com/qualcomm/aimet/commit/5084af38f40e297a0f73240c8ce8f9bad40880a0 target=_blank rel="noopener noreferrer" class=""><code>5084af3</code></a>)</li>
+</ul>
+</li>
+<li class="">Torch<!-- -->
+<ul>
+<li class="">Fix to reduce GPU RAM usage for AdaScale for Qwen 3 VL model (<a href=https://github.com/qualcomm/aimet/commit/ee3d1933e80ac37c79cf52b53d5a1528b16987ea target=_blank rel="noopener noreferrer" class=""><code>ee3d193</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2250>2.25.0<a href=#2250 class=hash-link aria-label="Direct link to 2.25.0" title="Direct link to 2.25.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Reduced peak CPU memory usage for AdaScale and SeqMSE techniques (<a href=https://github.com/qualcomm/aimet/commit/28f89a7b4a212d651c62f4a25433ee4a41e25d55 target=_blank rel="noopener noreferrer" class=""><code>28f89a7</code></a>)</li>
+<li class="">Reduced peak CUDA memory usage for AdaScale technique (<a href=https://github.com/qualcomm/aimet/commit/a29f44ff6fa1c268da37c71ed0bf44014161d43e target=_blank rel="noopener noreferrer" class=""><code>a29f44f</code></a>)</li>
+<li class="">Added support for Qwen3 VL models in GenAITests  (<a href=https://github.com/qualcomm/aimet/commit/c0149612d5b2d1ee629f6183a5c023ed9e9f09fd target=_blank rel="noopener noreferrer" class=""><code>c014961</code></a>)</li>
+<li class="">ONNX-IR based supergroup pattern detection and replacement (<a href=https://github.com/qualcomm/aimet/commit/9972c1b5bfabcfa1b1487fecbe2aee16e94ca591 target=_blank rel="noopener noreferrer" class=""><code>9972c1b</code></a>)</li>
+<li class="">Tie concat and interpolation ops by default (<a href=https://github.com/qualcomm/aimet/commit/a8ac6f412b2266fb4043a4d18db7475ab6289140 target=_blank rel="noopener noreferrer" class=""><code>a8ac6f4</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Bug fix for onnx qdq export with control flow ops (<a href=https://github.com/qualcomm/aimet/commit/ae1abd1462de8d958fde33df122603300790d31f target=_blank rel="noopener noreferrer" class=""><code>ae1abd1</code></a>)</li>
+<li class="">Use Triton kernels by default if available (<a href=https://github.com/qualcomm/aimet/commit/3adcbeeed4b85845eeb523a50cc9e371b03d96fb target=_blank rel="noopener noreferrer" class=""><code>3adcbee</code></a>)</li>
+<li class="">Introduces <code>block_size</code> parameter to EncodingAnalyzer (<a href=https://github.com/qualcomm/aimet/commit/e250abd61d0a95c120aa755e87b51d0270cee95c target=_blank rel="noopener noreferrer" class=""><code>e250abd</code></a>)</li>
+<li class="">Always export encodings as uint (<a href=https://github.com/qualcomm/aimet/commit/ae7d5ef19b3071dde90d5564ae81907c95f17101 target=_blank rel="noopener noreferrer" class=""><code>ae7d5ef</code></a>)</li>
+<li class="">float4/8 QDQ export support (<a href=https://github.com/qualcomm/aimet/commit/135a0afca6250556a363291c1df8c17682645b16 target=_blank rel="noopener noreferrer" class=""><code>135a0af</code></a>)</li>
+<li class="">Support loading zero_point_shift with sim.load_encodings() (<a href=https://github.com/qualcomm/aimet/commit/624ba30ac50a36159ea21b90293ddfa25d79fe6b target=_blank rel="noopener noreferrer" class=""><code>624ba30</code></a>)</li>
+<li class="">Support built-in quantization of SyncBatchNorm (<a href=https://github.com/qualcomm/aimet/commit/1e8eceb320189fd37dc7f1b75f86a47c9ab8d52c target=_blank rel="noopener noreferrer" class=""><code>1e8eceb</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2240>2.24.0<a href=#2240 class=hash-link aria-label="Direct link to 2.24.0" title="Direct link to 2.24.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Add Windows ARM64 wheel build/test support, distribute Windows ARM64 wheel on GitHub releases (<a href=https://github.com/qualcomm/aimet/commit/1390b96ec4bd014055c4a9c6b116eb9f06a85afd target=_blank rel="noopener noreferrer" class=""><code>1390b96</code></a>)</li>
+<li class="">Add transpose MatMul support in Sequential MSE (<a href=https://github.com/qualcomm/aimet/commit/ff7a2841935620615ccd52c001886f8ae8e29705 target=_blank rel="noopener noreferrer" class=""><code>ff7a284</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Expose block-level AdaScale API (<a href=https://github.com/qualcomm/aimet/commit/72246dbb168559972fd5c9fc3a02d07b70a732d8 target=_blank rel="noopener noreferrer" class=""><code>72246db</code></a>)</li>
+<li class="">Improve numerical stability of zero point shifting ([-1.5, -.5, .5, 1.5]) implementation (<a href=https://github.com/qualcomm/aimet/commit/489f7df64c73260e83704fd09f0cab63f98f425d target=_blank rel="noopener noreferrer" class=""><code>489f7df</code></a>)</li>
+<li class="">Fix <code>replace_lora_layers_with_quantizable_layers</code> to inherit train/eval flag (<a href=https://github.com/qualcomm/aimet/commit/af5a82ddacff1f5f01a9e2d3f5450677a359049c target=_blank rel="noopener noreferrer" class=""><code>af5a82d</code></a>)</li>
+<li class="">Fix SpinQuant evaluation by untying lm_head and embed_tokens prior to loading the state_dict. (<a href=https://github.com/qualcomm/aimet/commit/47f574de4d2f51d5a6189a3f3de18726d5abcf5a target=_blank rel="noopener noreferrer" class=""><code>47f574d</code></a>)</li>
+<li class="">Experimental - Implement Progressive Gradient Scaling (PGS) support for Triton-based quantization kernels (<a href=https://github.com/qualcomm/aimet/commit/b58b00bd35c905ad1499e37f97dea7b0c264dbdd target=_blank rel="noopener noreferrer" class=""><code>b58b00b</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Fix TFEnhanced incorrectly producing negative scales when encountering empty (size‑0) inputs (<a href=https://github.com/qualcomm/aimet/commit/ea4af6a99ea61029bfaae48f041299cdbccb2508 target=_blank rel="noopener noreferrer" class=""><code>ea4af6a</code></a>)</li>
+<li class="">Unpin numpy dependency (<a href=https://github.com/qualcomm/aimet/commit/8a999a1cf8c42e0a4cdfa9db52e3ea959aa155a4 target=_blank rel="noopener noreferrer" class=""><code>8a999a1</code></a>)</li>
+<li class="">Add an alias for referencing the eNPU configuration file (<a href=https://github.com/qualcomm/aimet/commit/b79611c86b52054a286adca257a2ba6d131ed5b0 target=_blank rel="noopener noreferrer" class=""><code>b79611c</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2230>2.23.0<a href=#2230 class=hash-link aria-label="Direct link to 2.23.0" title="Direct link to 2.23.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Disable per-channel quantization for ConvTranspose ops (<a href=https://github.com/qualcomm/aimet/commit/9395e3243fdfdc245540ef8a39b3058b27404baa target=_blank rel="noopener noreferrer" class=""><code>9395e32</code></a>)</li>
+<li class="">New top level API for configuring parameter quantization type (<a href=https://github.com/qualcomm/aimet/commit/a1c197d06c72793a4d903fdecdd214389c3f4b3e target=_blank rel="noopener noreferrer" class=""><code>a1c197d</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Enable Torch Dynamo ONNX export (<a href=https://github.com/qualcomm/aimet/commit/59e01254fefdc99394b984ef4c9a8bb907ac4a3c target=_blank rel="noopener noreferrer" class=""><code>59e0125</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Enable per-channel matmul quantization in config files (<a href=https://github.com/qualcomm/aimet/commit/71378496f6a966904938b600d562e7d3eb402b90 target=_blank rel="noopener noreferrer" class=""><code>7137849</code></a>)</li>
+<li class="">LLM quantization recipes in docs (<a href=https://github.qualcomm.com/qualcomm-ai/aimet/commit/6561f0e06e339596201ea93963f75f187094e79c target=_blank rel="noopener noreferrer" class=""><code>6561f0e</code></a>)</li>
+<li class="">Fix CUDA discrepancies against CPU wheel (<a href=https://github.com/qualcomm/aimet/commit/01e7422dd0da63f8fcf338dcc1636cf6a0294823 target=_blank rel="noopener noreferrer" class=""><code>01e7422</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2220>2.22.0<a href=#2220 class=hash-link aria-label="Direct link to 2.22.0" title="Direct link to 2.22.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Allow loading 2.0.0 encoding format to sim (<a href=https://github.com/qualcomm/aimet/commit/e8cb098c19a786ab3cdae693f6cc651d348bc824 target=_blank rel="noopener noreferrer" class=""><code>e8cb098</code></a>)</li>
+<li class="">Fix Cast unpacking error (<a href=https://github.com/qualcomm/aimet/commit/6761a1920718cf161a8c5f42614cd5b25ac0be70 target=_blank rel="noopener noreferrer" class=""><code>6761a19</code></a>)</li>
+<li class="">Enable exporting non-LPBQ encodings with zero_point shift (<a href=https://github.com/qualcomm/aimet/commit/7b3cc4c927991e0cdd98df5fa69c4c529147b787 target=_blank rel="noopener noreferrer" class=""><code>7b3cc4c</code></a>)</li>
+<li class="">Implement aimet-onnx LPBQEncoding (<a href=https://github.com/qualcomm/aimet/commit/5ad7ea66056a3e243e17f14e2f3daad3c1c517ac target=_blank rel="noopener noreferrer" class=""><code>5ad7ea6</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Support exporting 1x1 Conv LPBQ to ONNX QDQ (<a href=https://github.com/qualcomm/aimet/commit/58ce71de197e681d364a958da9b2d2389dfbf501 target=_blank rel="noopener noreferrer" class=""><code>58ce71d</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2210>2.21.0<a href=#2210 class=hash-link aria-label="Direct link to 2.21.0" title="Direct link to 2.21.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Fix IndexError when Conv or Linear layers are reused in the model (<a href=https://github.com/qualcomm/aimet/commit/65c4b3b9f58cbeddfb41f79db42e79a80d6427df target=_blank rel="noopener noreferrer" class=""><code>65c4b3b</code></a>)</li>
+<li class="">Add optional argument <code>export_int32_bias</code> to aimet-onnx export (<a href=https://github.com/qualcomm/aimet/commit/3b8e0f03f7701003377a65cf5d782143f627db2b target=_blank rel="noopener noreferrer" class=""><code>3b8e0f0</code></a>)</li>
+<li class="">Unpin PyTorch version in aimet-onnx (<a href=https://github.com/qualcomm/aimet/commit/d99b6c4a9e54f0f05e2ac2b72487058d7c19fcdc target=_blank rel="noopener noreferrer" class=""><code>d99b6c4</code></a>)</li>
+<li class="">Align NaN handling with ORT CPU Execution Provider (<a href=https://github.com/qualcomm/aimet/commit/e4c49eb6c5e1b5c666221313981b8fab44f19ea8 target=_blank rel="noopener noreferrer" class=""><code>e4c49eb</code></a>)</li>
+<li class="">Fix quantization axis handling for transposed MatMul operations (<a href=https://github.com/qualcomm/aimet/commit/6ca06d60b82b59bf2f30e90663d8cfdb3777da91 target=_blank rel="noopener noreferrer" class=""><code>6ca06d6</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>PyTorch</p>
+<ul>
+<li class="">Fix quantization logic to enable input quantizers for layers following ignored layers (<a href=https://github.com/qualcomm/aimet/commit/80fb4fef91bf81bb5a7356645295168ca1ccef88 target=_blank rel="noopener noreferrer" class=""><code>80fb4fe</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2200>2.20.0<a href=#2200 class=hash-link aria-label="Direct link to 2.20.0" title="Direct link to 2.20.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Update supported python version to >=3.10 (<a href=https://github.com/qualcomm/aimet/commit/2bc8c94fcced5ceff790f2c8a0b8347ee42f0be1 target=_blank rel="noopener noreferrer" class=""><code>2bc8c94</code></a>)</li>
+<li class="">Repackage aimet_common as alias to aimet_onnx.common or aimet_torch.common (<a href=https://github.com/qualcomm/aimet/commit/074e85fd15b92c2b65b03059374a5272f07bdeb5 target=_blank rel="noopener noreferrer" class=""><code>074e85f</code></a>)</li>
+<li class="">Remove Pad op from data movement ops (<a href=https://github.com/qualcomm/aimet/commit/21cddb68889e3d01843de8744e8493f6daa3db28 target=_blank rel="noopener noreferrer" class=""><code>21cddb6</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Export data movement op output encoding in sim.export by default (<a href=https://github.com/qualcomm/aimet/commit/550c0291d074626e555db6b6a5fa3239f333787e target=_blank rel="noopener noreferrer" class=""><code>550c029</code></a>)</li>
+<li class="">Assign generic node names if node name is missing or duplicate (<a href=https://github.com/qualcomm/aimet/commit/273dd8202489205ff39d20d52a227053ee6cd2e6 target=_blank rel="noopener noreferrer" class=""><code>273dd82</code></a>)</li>
+<li class="">Add PyTorch Pad modules to nn.Module -> onnx op mapping (<a href=https://github.com/qualcomm/aimet/commit/7e5342bcf60e6e51467ebf791ab96ac9eadbca65 target=_blank rel="noopener noreferrer" class=""><code>7e5342b</code></a>)</li>
+<li class="">Add LSTM cell state int32 quantization mechanism for LPAI (<a href=https://github.com/qualcomm/aimet/commit/3a8659b3b97b7d923d2f32b44b55fae48b7f6ac2 target=_blank rel="noopener noreferrer" class=""><code>3a8659b</code></a>)</li>
+<li class="">Support stacked RNN/GRU/LSTM (<a href=https://github.com/qualcomm/aimet/commit/552ad83f861502f99765358d83ccda252f8a40fa target=_blank rel="noopener noreferrer" class=""><code>552ad83</code></a>)</li>
+<li class="">Make exclude/include node argument naming consistent (<a href=https://github.com/qualcomm/aimet/commit/ec22d8682ba076eb6e09b29a96cd3aab827e8e2b target=_blank rel="noopener noreferrer" class=""><code>ec22d86</code></a>)</li>
+<li class="">Implement LPBQ support in aimet-onnx SeqMSE (<a href=https://github.com/qualcomm/aimet/commit/495567f3bf05d447e76580a1b30aa5aa86ce6c0b target=_blank rel="noopener noreferrer" class=""><code>495567f</code></a>)</li>
+<li class="">Add support for dilation, grouping, stride to Quantized Conv (<a href=https://github.com/qualcomm/aimet/commit/f94f3e22d89f71d6dbced1cfa1393dc83c19f1b4 target=_blank rel="noopener noreferrer" class=""><code>f94f3e2</code></a>)</li>
+<li class="">Remove block type from adascale config  (<a href=https://github.com/qualcomm/aimet/commit/b55b058445fe552986e0ddae5f837570aebae69c target=_blank rel="noopener noreferrer" class=""><code>b55b058</code></a>)</li>
+<li class="">Skip tying concat encoding if input has multiple consumers (<a href=https://github.com/qualcomm/aimet/commit/3136828f051ff4f1032b9fc8fec2c31e979dc67c target=_blank rel="noopener noreferrer" class=""><code>3136828</code></a>)</li>
+<li class="">Tie quantizers upstream first and downstream later (<a href=https://github.com/qualcomm/aimet/commit/59aac3e4a65c295d6f25d6fb5cb53b7c0441774f target=_blank rel="noopener noreferrer" class=""><code>59aac3e</code></a>)</li>
+<li class="">Fix ValidationError in LazyExtractor when external files are missing or inconsistent (<a href=https://github.com/qualcomm/aimet/commit/a8f32fce6188564a4cec2db63085d40b26056534 target=_blank rel="noopener noreferrer" class=""><code>a8f32fc</code></a>)</li>
+<li class="">Align torch and onnx GenAI recipes (<a href=https://github.com/qualcomm/aimet/commit/7d4659dae2541e6a72c6cea5cba3f6dc676601eb target=_blank rel="noopener noreferrer" class=""><code>7d4659d</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Use separate input quantizer for each concat input (<a href=https://github.com/qualcomm/aimet/commit/755c54ad7f716f39f7088f995f37f25deedb3520 target=_blank rel="noopener noreferrer" class=""><code>755c54a</code></a>)</li>
+<li class="">Add predict and fallback later approach for batched matmul in aimet-torch seq mse (<a href=https://github.com/qualcomm/aimet/commit/887417350d00f8a505c6c3c1754868cfcdd552f7 target=_blank rel="noopener noreferrer" class=""><code>8874173</code></a>)</li>
+<li class="">Refactored MMP to not use rounding mode (<a href=https://github.com/qualcomm/aimet/commit/fd7e40dbf43660bfb733ff50fe72ea889f2d8c09 target=_blank rel="noopener noreferrer" class=""><code>fd7e40d</code></a>)</li>
+<li class="">Use tuple for strided slice indexing (<a href=https://github.com/qualcomm/aimet/commit/4ddbd66aac7e75183cfa219a6da60bb576f0e0e8 target=_blank rel="noopener noreferrer" class=""><code>4ddbd66</code></a>)</li>
+<li class="">Fix symmetry bug in _from_qnn_encoding_dict (<a href=https://github.com/qualcomm/aimet/commit/35602eac649576812078a2d93b73d8f319dd25bf target=_blank rel="noopener noreferrer" class=""><code>35602ea</code></a>)</li>
+<li class="">Align onnx 1.0.0 BQ encoding export ordering with QAIRT expectation (<a href=https://github.com/qualcomm/aimet/commit/0182b7aea8a62647269893a9291fd83cd8959f2c target=_blank rel="noopener noreferrer" class=""><code>0182b7a</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2190>2.19.0<a href=#2190 class=hash-link aria-label="Direct link to 2.19.0" title="Direct link to 2.19.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Make LiteMP API percentage float (<a href=https://github.com/qualcomm/aimet/commit/69f96ff1af7c69603f325dbdf2a89cf6b22d57a7 target=_blank rel="noopener noreferrer" class=""><code>69f96ff</code></a>)</li>
+<li class="">Set layernorm int16 weight to symmetric by default (<a href=https://github.com/qualcomm/aimet/commit/8560e136914216a1003bb2888b827daaae490991 target=_blank rel="noopener noreferrer" class=""><code>8560e13</code></a>)</li>
+<li class="">Automatically insert data movement op output qdq during to_onnx_qdq (<a href=https://github.com/qualcomm/aimet/commit/15c8b9b2672671fd3cff1c92267460340c40db48 target=_blank rel="noopener noreferrer" class=""><code>15c8b9b</code></a>)</li>
+<li class="">Create LazyExtractor to handle external data for onnx Extractor utils (<a href=https://github.com/qualcomm/aimet/commit/104e7e8284393ae383c31e0c2045ab06674fac35 target=_blank rel="noopener noreferrer" class=""><code>104e7e8</code></a>)</li>
+<li class="">Tie input/output encodings across maximum Concat subgraph (<a href=https://github.com/qualcomm/aimet/commit/832ea917f48fd1fd70096827c3fca647d7621e2d target=_blank rel="noopener noreferrer" class=""><code>832ea91</code></a>)</li>
+<li class="">Tie hidden state quantizers of RNN/GRU/LSTM (<a href=https://github.com/qualcomm/aimet/commit/c18fd056674614b44c443679a5620ed5223303d0 target=_blank rel="noopener noreferrer" class=""><code>c18fd05</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Fix histogram observer rebinning logic (<a href=https://github.com/qualcomm/aimet/commit/2c88364f75f893ec1f798afd7530436685aa5b7a target=_blank rel="noopener noreferrer" class=""><code>2c88364</code></a>)</li>
+<li class="">Fix connectedgraph input ordering for non-trivial layer types (<a href=https://github.com/qualcomm/aimet/commit/2b7b54816b0f35db5bf09c107075d7b7285f871c target=_blank rel="noopener noreferrer" class=""><code>2b7b548</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Disable per-channel quantization of RNN/GRU/LSTM for all HTP backends (<a href=https://github.com/qualcomm/aimet/commit/df8b87516dc894baf768377a037944fcdd60f0f6 target=_blank rel="noopener noreferrer" class=""><code>df8b875</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2180>2.18.0<a href=#2180 class=hash-link aria-label="Direct link to 2.18.0" title="Direct link to 2.18.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">Torch<!-- -->
+<ul>
+<li class="">Promoted aimet_torch.onnx.export and QuantizationSimModel.onnx.export as production APIs (<a href=https://github.com/qualcomm/aimet/commit/99160d2 target=_blank rel="noopener noreferrer" class=""><code>99160d2</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/e026fd1 target=_blank rel="noopener noreferrer" class=""><code>e026fd1</code></a>)</li>
+<li class="">Added utility functions to exclude some or all unknown nn.Modules from quantization (<a href=https://github.com/qualcomm/aimet/commit/5a419f3 target=_blank rel="noopener noreferrer" class=""><code>5a419f3</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/501eebd target=_blank rel="noopener noreferrer" class=""><code>501eebd</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Fixed supergroup misidentification bug upon MatMul-MatMul-Add sequence (<a href=https://github.com/qualcomm/aimet/commit/ab63866 target=_blank rel="noopener noreferrer" class=""><code>ab63866</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Made compatible with PyTorch 1.13 (<a href=https://github.com/qualcomm/aimet/commit/47fae94 target=_blank rel="noopener noreferrer" class=""><code>47fae94</code></a>)</li>
+<li class="">Made compatible with PyTorch 2.9 (<a href=https://github.com/qualcomm/aimet/commit/283ecc1 target=_blank rel="noopener noreferrer" class=""><code>283ecc1</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Set priority among supergroups (<a href=https://github.com/qualcomm/aimet/commit/6676a6c target=_blank rel="noopener noreferrer" class=""><code>6676a6c</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2170>2.17.0<a href=#2170 class=hash-link aria-label="Direct link to 2.17.0" title="Direct link to 2.17.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Optimize SeqMSE latency and CPU memory usage (<a href=https://github.com/qualcomm/aimet/commit/434ac6b8ac5347935a0e3902b2e37e0c49dfe242 target=_blank rel="noopener noreferrer" class=""><code>434ac6b</code></a>)</li>
+<li class="">Support excluding nodes from SeqMSE optimization (<a href=https://github.com/qualcomm/aimet/commit/6a37239ffbaf0187ead2ddee205960c403817e17 target=_blank rel="noopener noreferrer" class=""><code>6a37239</code></a>)</li>
+<li class="">Support exporting large models (> 2GB) to ONNX QDQ (<a href=https://github.com/qualcomm/aimet/commit/b1dafe6fa5173fc2247802313224e40013b68822 target=_blank rel="noopener noreferrer" class=""><code>b1dafe6</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/1bf8b82fe6c23846d9fe615773797a1df7fb5545 target=_blank rel="noopener noreferrer" class=""><code>1bf8b82</code></a>)</li>
+<li class="">Support exporting float16 ONNX models to ONNX QDQ (<a href=https://github.com/qualcomm/aimet/commit/66ccb45343abd6a475816b395a1658b6998df202 target=_blank rel="noopener noreferrer" class=""><code>66ccb45</code></a>)</li>
+<li class="">Allow disabling MatMul-Add supergroup via config file (<a href=https://github.com/qualcomm/aimet/commit/e49660c87fb3097f247e680c93ddc1c1f62c8871 target=_blank rel="noopener noreferrer" class=""><code>e49660c</code></a>)</li>
+<li class="">Fix bug where on-disk tensor data is deleted before InferenceSession (<a href=https://github.com/qualcomm/aimet/commit/d57a934cb25539f7f2809c3f5ef8b44e384ef051 target=_blank rel="noopener noreferrer" class=""><code>d57a934</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Fix sim.export bug when using Python >= 3.12 (<a href=https://github.com/qualcomm/aimet/commit/ee949a2d1ad8a64c0de8bfbf34339251f0804294 target=_blank rel="noopener noreferrer" class=""><code>ee949a2</code></a>)</li>
+<li class="">Allow export for back-to-back quantizers which share the same encodings (<a href=https://github.com/qualcomm/aimet/commit/28a73829aee6d77991c100ea4ed9fdeab5fc009c target=_blank rel="noopener noreferrer" class=""><code>28a7382</code></a>)</li>
+<li class="">Fix numerical issue in FPTQuant (<a href=https://github.com/qualcomm/aimet/commit/f0bc6c9b0ae4a45d517c8b96fc032022a07c6217 target=_blank rel="noopener noreferrer" class=""><code>f0bc6c9</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Remove Conv-Relu supergroup from HTP &lt; V73 config files (<a href=https://github.com/qualcomm/aimet/commit/19e5a4ecb3a1e58bcf71f455d7d3855bcc5d86f2 target=_blank rel="noopener noreferrer" class=""><code>19e5a4e</code></a>)</li>
+<li class="">Fix LayerNorm and InstanceNorm weight symmetry in HTP &lt; V73 config files (<a href=https://github.com/qualcomm/aimet/commit/eb1ac5c36e7dd198d43d4aa450b5933cf94755b4 target=_blank rel="noopener noreferrer" class=""><code>eb1ac5c</code></a>), (<a href=https://github.com/qualcomm/aimet/commit/ce1ea63845d0f7b6ddef66ebcc70922cbcad511b target=_blank rel="noopener noreferrer" class=""><code>ce1ea63</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2160>2.16.0<a href=#2160 class=hash-link aria-label="Direct link to 2.16.0" title="Direct link to 2.16.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Experimental - Added Adascale, a post-training quantization technique (<a href=https://github.com/qualcomm/aimet/commit/5e23cebea551c074f7a380ef2f385fd95433bb53 target=_blank rel="noopener noreferrer" class=""><code>5e23ceb</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Skip tying Concat input/output quantizers with conflicting encoding constraints (<a href=https://github.com/qualcomm/aimet/commit/b9241073256c4a455426451efbc1f3d0672e37b2 target=_blank rel="noopener noreferrer" class=""><code>b924107</code></a>)</li>
+<li class="">Small updates to FPT Quant for improved accuracy (<a href=https://github.com/qualcomm/aimet/commit/ba10947bdbdecdf2980f076560453991c3888e77 target=_blank rel="noopener noreferrer" class=""><code>ba10947</code></a>)</li>
+<li class="">Implement partial encoding freezing mechanism in aimet-onnx (<a href=https://github.com/qualcomm/aimet/commit/658ec3c20be379b582321171e28f92e8fab1102b target=_blank rel="noopener noreferrer" class=""><code>658ec3c</code></a>)</li>
+<li class="">Add Relu partial encoding constraints to HTP config files (<a href=https://github.com/qualcomm/aimet/commit/dc8d978f672e5a93ecb5c8de64017ccaf949d2bf target=_blank rel="noopener noreferrer" class=""><code>dc8d978</code></a>)</li>
+<li class="">Clear encoding analyzer stats after computing param encodings (<a href=https://github.com/qualcomm/aimet/commit/3d4725fc172bffeadd87ee993b7a30e5d51691b2 target=_blank rel="noopener noreferrer" class=""><code>3d4725f</code></a>)</li>
+<li class="">Remove wasted computation/memory in FPTQuant local optimizer (<a href=https://github.com/qualcomm/aimet/commit/59350afb881678dc0313a7445bb2e61d5b14328b target=_blank rel="noopener noreferrer" class=""><code>59350af</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Torch</p>
+<ul>
+<li class="">Allow boolean type casting of QuantizedTensors (<a href=https://github.com/qualcomm/aimet/commit/7d63e6660050399479c804b474b9cb87c7991fce target=_blank rel="noopener noreferrer" class=""><code>7d63e66</code></a>)</li>
+<li class="">Implement partial encoding freezing mechanism in aimet-torch (<a href=https://github.com/qualcomm/aimet/commit/1b99a39b6c19f6b7fc77c871b5dc232981e6eac9 target=_blank rel="noopener noreferrer" class=""><code>1b99a39</code></a>)</li>
+<li class="">Improve scale post-processing to prevent scale freezing during QAT (<a href=https://github.com/qualcomm/aimet/commit/6fe56b0d94b1de7f659f4e1d08be5847e4313a09 target=_blank rel="noopener noreferrer" class=""><code>6fe56b0</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2150>2.15.0<a href=#2150 class=hash-link aria-label="Direct link to 2.15.0" title="Direct link to 2.15.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug fixes and Improvements<!-- -->
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Throws an error on <code>bfloat16</code> models (<a href=https://github.com/qualcomm/aimet/commit/5181860434e75e67cb161e3c0e9135df10b04507 target=_blank rel="noopener noreferrer" class=""><code>5181860</code></a>)</li>
+<li class="">Added docs and examples for LiteMP (<a href=https://github.com/qualcomm/aimet/commit/3d5e0ddd5dab7b0fec2aea5fc20bf21955e918d8 target=_blank rel="noopener noreferrer" class=""><code>3d5e0dd</code></a>)</li>
+<li class="">Export to QDQ ONNX with pre-quantized constants (<a href=https://github.com/qualcomm/aimet/commit/a97354f0f6b72d790a8c03fea1338d7cb5c6aa64 target=_blank rel="noopener noreferrer" class=""><code>a97354f</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>PyTorch</p>
+<ul>
+<li class="">Fix multiple dispatch issue when torch function is called in nested context manager (<a href=https://github.com/qualcomm/aimet/commit/6216ca03e0d15ce47d5c4273f59d72d6d5ad46dc target=_blank rel="noopener noreferrer" class=""><code>6216ca0</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Keras</p>
+<ul>
+<li class="">2.14.0 is the last release of aimet-tf (<a href=https://github.com/qualcomm/aimet/commit/087e9b1ddefea24f21580256f8b20606b931d74c target=_blank rel="noopener noreferrer" class=""><code>087e9b1</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Added PSNR metrics (<a href=https://github.com/qualcomm/aimet/commit/14c8e81a8309504d564799801cfde102618efc8a target=_blank rel="noopener noreferrer" class=""><code>14c8e81</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2140>2.14.0<a href=#2140 class=hash-link aria-label="Direct link to 2.14.0" title="Direct link to 2.14.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Feature</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Add support for FP16 in <code>QuantizationSimModel</code> (<a href=https://github.com/qualcomm/aimet/commit/2494d9048241b0b84e388f69d3c202b2e45285ee target=_blank rel="noopener noreferrer" class=""><code>2494d90</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Add sequential MSE support for <code>onnx >= 1.18.0</code>. (<a href=https://github.com/qualcomm/aimet/commit/754d030838cb676b6f6b08f6e8cc91838bcf8be9 target=_blank rel="noopener noreferrer" class=""><code>754d030</code></a>)</li>
+<li class="">Improve histogram granularity during TFE calibration (<a href=https://github.com/qualcomm/aimet/commit/91109aff222711a4ce0528e8b2dc2eb2c63cf18d target=_blank rel="noopener noreferrer" class=""><code>91109af</code></a>)</li>
+<li class="">Improve runtime for <code>QuantizationSimModel</code> creation for large models like LLMs (<a href=https://github.com/qualcomm/aimet/commit/f7e700f98973bdf39907482d3092349ceae2047e target=_blank rel="noopener noreferrer" class=""><code>f7e700f</code></a>)</li>
+<li class="">Improve runtime for setting quantizers in a <code>QuantizationSimModel</code> for use cases like tying KV Cache input and output quantizers. (<a href=https://github.com/qualcomm/aimet/commit/c0bdb466f0e26b5757f473308af0c41c47a50fb1 target=_blank rel="noopener noreferrer" class=""><code>c0bdb46</code></a>)</li>
+<li class="">Add a check for None values in the <code>group</code> attribute of <code>Conv</code> layers and fix improper handling of None <code>group</code> attribute in <code>ConvTranspose</code> within <code>fold_all_batch_norms_to_weight</code> (<a href=https://github.com/qualcomm/aimet/commit/374e8dbc344f40cf356d3bae2ede521ad5341622 target=_blank rel="noopener noreferrer" class=""><code>374e8db</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>PyTorch</p>
+<ul>
+<li class="">Address QAT convergence issue: Add a fix for cases where <code>quantizer.min</code> becomes equal to <code>quantizer.max</code> during training, leading to NaN values (<a href=https://github.com/qualcomm/aimet/commit/51f899080ea7260dc2591023a868b30a88ff5fa4 target=_blank rel="noopener noreferrer" class=""><code>51f8990</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Keras</p>
+<ul>
+<li class="">Fix accuracy drop issue for GPU wheel by excluding <code>libpython*.so*</code> from the aimet wheel packages (<a href=https://github.com/qualcomm/aimet/commit/22cac5c7cb69e8ea66f710ab1b967c6f9b44f0f5 target=_blank rel="noopener noreferrer" class=""><code>22cac5c</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Remove <code>Conv3d</code>, <code>Conv3dTranspose</code>, and <code>DepthwiseConv</code> ops followed by activation from the supergroup until HTP support is available. (<a href=https://github.com/qualcomm/aimet/commit/05f6810a5a0e1eef2cfaf6525c572fc02b0174bc target=_blank rel="noopener noreferrer" class=""><code>05f6810</code></a>)</li>
+<li class="">Fix color theme issue in documentation causing code snippets to render incorrectly (<a href=https://github.com/qualcomm/aimet/commit/2c64eac1801724500028e926585c558b936f12ae target=_blank rel="noopener noreferrer" class=""><code>2c64eac</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2130>2.13.0<a href=#2130 class=hash-link aria-label="Direct link to 2.13.0" title="Direct link to 2.13.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Adjust weight scale for int32 bias overflow in W16A16 quantization (<a href=https://github.com/qualcomm/aimet/commit/f39c0bf3e3fc1e21527f9a99c8b8d42e1ebdd277 target=_blank rel="noopener noreferrer" class=""><code>f39c0bf</code></a>)</li>
+<li class="">AutoQuant: Remove deprecated feature (<a href=https://github.com/qualcomm/aimet/commit/414cddec3d7317cf7251c0134e6f4b3a15bbcb1e target=_blank rel="noopener noreferrer" class=""><code>414cdde</code></a>)</li>
+<li class="">Support exporting large models in aimet-onnx (<a href=https://github.com/qualcomm/aimet/commit/0fe67010fd06641c2ef9696f7e36ce87e58456fb target=_blank rel="noopener noreferrer" class=""><code>0fe6701</code></a>)</li>
+<li class="">AdaRound: Delete deprecated top-level API. (<a href=https://github.com/qualcomm/aimet/commit/bfba5573007b41935b217e79ada931598b44da19 target=_blank rel="noopener noreferrer" class=""><code>bfba557</code></a>)</li>
+<li class="">AdaRound: Skip optimization if no input to layer (<a href=https://github.com/qualcomm/aimet/commit/18dfedcc3fa0eecfec57b7352c1b467b8c826650 target=_blank rel="noopener noreferrer" class=""><code>18dfedc</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>PyTorch</p>
+<ul>
+<li class="">Enable save_model_as_external_data for sim.onnx.export (<a href=https://github.com/qualcomm/aimet/commit/107b339fe9cb9ee105e7aa97257751d44d878f34 target=_blank rel="noopener noreferrer" class=""><code>107b339</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Known Issues</p>
+<ul>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Accuracy drop observed with AIMET Keras for certain models. Fix is planned for the next release.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2120>2.12.0<a href=#2120 class=hash-link aria-label="Direct link to 2.12.0" title="Direct link to 2.12.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Remove data movement ops from config (<a href=https://github.com/qualcomm/aimet/commit/ae02aa852aff4f8c9dec651dd13cc7d177904642 target=_blank rel="noopener noreferrer" class=""><code>ae02aa8</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Exclude bias from quantization when weights are not quantized (<a href=https://github.com/qualcomm/aimet/commit/62f587909a91d50fe60ae8d453d8e557b6ab67d5 target=_blank rel="noopener noreferrer" class=""><code>62f5879</code></a>)</li>
+<li class="">AdaRound: Fix prelu failing in CUDA model (<a href=https://github.com/qualcomm/aimet/commit/b2350b2f87247a4d879fc83496c7e2d042569917 target=_blank rel="noopener noreferrer" class=""><code>b2350b2</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>PyTorch</p>
+<ul>
+<li class="">Wrap aimet_torch.onnx.export with torch.no_grad (<a href=https://github.com/qualcomm/aimet/commit/b73bb7168532469cf0b93e886508fd00bb071fc6 target=_blank rel="noopener noreferrer" class=""><code>b73bb71</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Known Issues</p>
+<ul>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Accuracy drop observed with AIMET Keras for certain models. Fix is planned for the next release.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2110>2.11.0<a href=#2110 class=hash-link aria-label="Direct link to 2.11.0" title="Direct link to 2.11.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Feature</p>
+<ul>
+<li class="">
+<p>PyTorch</p>
+<ul>
+<li class="">SpinQuant (experimental) - implement SpinQuant PTQ technique (<a href=https://arxiv.org/pdf/2405.16406 target=_blank rel="noopener noreferrer" class="">https://arxiv.org/pdf/2405.16406</a>) for Llama, Qwen2, and Mistral families (R1 rotation w/o optimization) (<a href=https://github.com/qualcomm/aimet/commit/7364b37c9ab5cb0f90f02209634c5fc412cce8d8 target=_blank rel="noopener noreferrer" class=""><code>7364b37</code></a>)</li>
+<li class="">Enable Adascale and Omniquant for Mistral (<a href=https://github.com/qualcomm/aimet/commit/d33e98c427f4cdcb19bc6443dec772590d1011a5 target=_blank rel="noopener noreferrer" class=""><code>d33e98c</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Enable llm_configurator for Llama (Experimental) (<a href=https://github.com/qualcomm/aimet/commit/08c17b875cbe6fce0a5d6f2ba75a7ddea508ad0f target=_blank rel="noopener noreferrer" class=""><code>08c17b8</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">
+<p>Common</p>
+<ul>
+<li class="">Represent LPBQ as DequantizeLinear in onnx QDQ (<a href=https://github.com/qualcomm/aimet/commit/a967b8f0d71abe5d24c0a381abcdda3622982d15 target=_blank rel="noopener noreferrer" class=""><code>a967b8f</code></a>)</li>
+<li class="">Add additional sanity checks in LPBQ export logic (<a href=https://github.com/qualcomm/aimet/commit/45c2a65e254ee674bfc4c00f4bb5fbe830aa4922 target=_blank rel="noopener noreferrer" class=""><code>45c2a65</code></a>)</li>
+<li class="">Allow negative block axis in LPBQ QDQ export (<a href=https://github.com/qualcomm/aimet/commit/6f670a41d75fbe4664a24c3d899ab37faac7fbfc target=_blank rel="noopener noreferrer" class=""><code>6f670a4</code></a>)</li>
+<li class="">Add support for enabling param bw=2 in QuantSim (<a href=https://github.com/qualcomm/aimet/commit/2d4e0eb7b235b1ff7c420362037f0292b183dfe1 target=_blank rel="noopener noreferrer" class=""><code>2d4e0eb</code></a>)</li>
+<li class="">Fix tanh output encoding range to [-1, 1] (<a href=https://github.com/qualcomm/aimet/commit/3c92bb72683fb6a5ed89142dbeacf9bea901bf67 target=_blank rel="noopener noreferrer" class=""><code>3c92bb7</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Apply matmul exception rule only for integer quantization (<a href=https://github.com/qualcomm/aimet/commit/bb93c765bdcc2f06a4d9fd1a07833bb54e2627a9 target=_blank rel="noopener noreferrer" class=""><code>bb93c76</code></a>)</li>
+<li class="">Optimize blockwise min-max encoding analyzer (<a href=https://github.com/qualcomm/aimet/commit/4febdd4f72a1414c90b37704db220321b8a43d77 target=_blank rel="noopener noreferrer" class=""><code>4febdd4</code></a>)</li>
+<li class="">Remove explicit FP32 model creation inside AdaRound and optimize building sessions during the optimization process (<a href=https://github.com/qualcomm/aimet/commit/b1415bded1d7ba539d7a1f35b04adf7a7ebf17be target=_blank rel="noopener noreferrer" class=""><code>b1415bd</code></a>)</li>
+<li class="">Make Concat output quantizer inherit fixed input range (<a href=https://github.com/qualcomm/aimet/commit/50f35dd933744a2096de22b679e6e4a08ed29cb4 target=_blank rel="noopener noreferrer" class=""><code>50f35dd</code></a>)</li>
+<li class="">Enable output quantizers to inherit input encoding when tying encodings (<a href=https://github.com/qualcomm/aimet/commit/3750526bb6c6e339c16773cc1bdc752fffcb9802 target=_blank rel="noopener noreferrer" class=""><code>3750526</code></a>)</li>
+<li class="">Fix bug in CLE with bn_conv groups (<a href=https://github.com/qualcomm/aimet/commit/654f4b181bc4825c6122f5191d29cc218996caac target=_blank rel="noopener noreferrer" class=""><code>654f4b1</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>PyTorch</p>
+<ul>
+<li class="">Guarantee positive scale during aimet-torch QAT (<a href=https://github.com/qualcomm/aimet/commit/2ed8305190856a81881a590d5f7390e02531d912 target=_blank rel="noopener noreferrer" class=""><code>2ed8305</code></a>)</li>
+<li class="">Add secondary progress bars to Adascale and Omniquant (<a href=https://github.com/qualcomm/aimet/commit/6c92a9760fdb0fd1f095acd58935564eab18e69f target=_blank rel="noopener noreferrer" class=""><code>6c92a97</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Documentation Updates</p>
+<ul>
+<li class="">Update Quick Start example and PTQ section (<a href=https://github.com/qualcomm/aimet/commit/6c9f5848edbbe8bc1a3d87bed2ed0072abda0e9b target=_blank rel="noopener noreferrer" class=""><code>6c9f584</code></a>)</li>
+<li class="">Add missing workflow images (<a href=https://github.com/qualcomm/aimet/commit/f961ed40f3f0f1c05315b901add3275751aa3afe target=_blank rel="noopener noreferrer" class=""><code>f961ed4</code></a>)</li>
+</ul>
+</li>
+<li class="">
+<p>Known Issues</p>
+<ul>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Accuracy drop observed with AIMET Keras for certain models. Fix is planned for the next release.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2100>2.10.0<a href=#2100 class=hash-link aria-label="Direct link to 2.10.0" title="Direct link to 2.10.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Feature</p>
+<ul>
+<li class="">Promote to_onnx_qdq to a public API (<a href=https://github.com/qualcomm/aimet/commit/f3331884a2e7da0dc22770fd1ae792564f0fa094 target=_blank rel="noopener noreferrer" class=""><code>f333188</code></a>). Note: This is currently a beta feature</li>
+</ul>
+</li>
+<li class="">
+<p>Bug fixes and Improvements</p>
+<ul>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Added hover tooltip to plot per layer sensitivity. Changed x-axis to plot layer indices instead of names (<a href=https://github.com/qualcomm/aimet/commit/c96894f3795e1b0986ba0c2b6f0b04464d003d0f target=_blank rel="noopener noreferrer" class=""><code>c96894f</code></a>)</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Implement scaling factor in aimet-torch float QDQ (<a href=https://github.com/qualcomm/aimet/commit/9b8c655a6a17cc4339f494f17e063f36aa679383 target=_blank rel="noopener noreferrer" class=""><code>9b8c655</code></a>)</li>
+<li class="">Fix CustomSiLU bug (<a href=https://github.com/qualcomm/aimet/commit/499df9f24054c291160272d2a4155ad82919d8b7 target=_blank rel="noopener noreferrer" class=""><code>499df9f</code></a>)</li>
+<li class="">Added extra logic to isolate model outputs from connectedgraph (<a href=https://github.com/qualcomm/aimet/commit/4ad0703ba3e6e6dd688831eb6f297f3c735a4e8b target=_blank rel="noopener noreferrer" class=""><code>4ad0703</code></a>)</li>
+<li class="">Always instantiate quantizers with requires_grad=True (<a href=https://github.com/qualcomm/aimet/commit/5aac9c503961aa832ae1350d3fdbc81fd2c10ff0 target=_blank rel="noopener noreferrer" class=""><code>5aac9c5</code></a>)</li>
+</ul>
+</li>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Allow AdaRound and SeqMSE to take uncalibrated sims(<a href=https://github.com/qualcomm/aimet/commit/31ca7fdead574bd8614720bba5a7cae2739c7841 target=_blank rel="noopener noreferrer" class=""><code>31ca7fd</code></a>)</li>
+<li class="">Modify bias quantizer setting based on weight quantizer (<a href=https://github.com/qualcomm/aimet/commit/b47a97eef0b89ea1becea3b4cbca0de018cc113c target=_blank rel="noopener noreferrer" class=""><code>b47a97e</code></a>)</li>
+<li class="">Fix cnt overflow issue (<a href=https://github.com/qualcomm/aimet/commit/70029c596cff1d188fcfbc308cc06f99bdff1fdf target=_blank rel="noopener noreferrer" class=""><code>70029c5</code></a>)</li>
+<li class="">Make memory saving optimization default in build_session and _infer_activation_dtypes (<a href=https://github.com/qualcomm/aimet/commit/4b94ca9267cb9513f996fedc350b583e6f28ce30 target=_blank rel="noopener noreferrer" class=""><code>4b94ca9</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Documentation</p>
+<ul>
+<li class="">Update SeqMSE feature guide (<a href=https://github.com/qualcomm/aimet/commit/fefd504c79de738a99b82d051e7b70ffcb195a3e target=_blank rel="noopener noreferrer" class=""><code>fefd504</code></a>)</li>
+<li class="">Fix links in example notebooks (<a href=https://github.com/qualcomm/aimet/commit/fe66376f5704b9fa4dc494dd8d22f8a2689fc0c4 target=_blank rel="noopener noreferrer" class=""><code>fe66376</code></a>)</li>
+<li class="">Modify docs for CLE (<a href=https://github.com/qualcomm/aimet/commit/f9d0d6cb1719ef8eaf2a51b8c0984c50240f01f6 target=_blank rel="noopener noreferrer" class=""><code>f9d0d6c</code></a>)</li>
+<li class="">Edit automatic mixed precision feature guide (<a href=https://github.com/qualcomm/aimet/commit/22b5c94ecf3f743c3954a44fc93de31aab223a47 target=_blank rel="noopener noreferrer" class=""><code>22b5c94</code></a>)</li>
+<li class="">Polish BQ user guide (<a href=https://github.com/qualcomm/aimet/commit/f547a49db222011c354ad2df6703e0a60ef5c767 target=_blank rel="noopener noreferrer" class=""><code>f547a49</code></a>)</li>
+<li class="">Polish QAT user guide (<a href=https://github.com/qualcomm/aimet/commit/339a22514ef0aaa1961f82d4832e07d45817779f target=_blank rel="noopener noreferrer" class=""><code>339a225</code></a>)</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=290>2.9.0<a href=#290 class=hash-link aria-label="Direct link to 2.9.0" title="Direct link to 2.9.0" translate=no>​</a></h2>
+<ul>
+<li class="">Bug Fixes and Improvements<!-- -->
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Rename QuantizeLinear outputs from &lt;...>_int to &lt;...>_q in onnx QDQ export (<a href=https://github.com/qualcomm/aimet/commit/e78dbecb76f5f278baabb6f32a45de299f03a75a target=_blank rel="noopener noreferrer" class=""><code>e78dbec</code></a>)</li>
+<li class="">Preserve I/O names in onnx QDQ export (<a href=https://github.com/qualcomm/aimet/commit/35ad990c4e476f8ef2b51eecbafba1ff25d439cb target=_blank rel="noopener noreferrer" class=""><code>35ad990</code></a>)</li>
+<li class="">Allow freezing loaded encodings in load_encodings_to_sim (<a href=https://github.com/qualcomm/aimet/commit/911af7587ef111e7d90d66db4988e5df218337ee target=_blank rel="noopener noreferrer" class=""><code>911af75</code></a>)</li>
+<li class="">Represent activation QDQ with uint in encodings 2.0.0 in onnx QDQ export (<a href=https://github.com/qualcomm/aimet/commit/92f63f55127f90a6c939d4e8e7fd65189d741e4f target=_blank rel="noopener noreferrer" class=""><code>92f63f5</code></a>)</li>
+<li class="">Allow aimet-onnx to load partial encodings (<a href=https://github.com/qualcomm/aimet/commit/66365155f5f0d5620c1bb84321732099ce1d8719 target=_blank rel="noopener noreferrer" class=""><code>6636515</code></a>)</li>
+<li class="">Fix onnx sim.export permanently removing quantizers (<a href=https://github.com/qualcomm/aimet/commit/9a2a40708a73d105cb56152ece5bd127e0ed9474 target=_blank rel="noopener noreferrer" class=""><code>9a2a407</code></a>)</li>
+<li class="">Fix onnx QDQ export output name swapping bug (<a href=https://github.com/qualcomm/aimet/commit/6d1664c110d86c401e9715f92cbad10230f489a0 target=_blank rel="noopener noreferrer" class=""><code>6d1664c</code></a>)</li>
+<li class="">Switch AdaRound API naming to num_iterations (<a href=https://github.com/qualcomm/aimet/commit/fea395f750de16147a5ce541f2a9723558f0a710 target=_blank rel="noopener noreferrer" class=""><code>fea395f</code></a>)</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Add native support for Mistral-0.3 (<a href=https://github.com/qualcomm/aimet/commit/db99447da525b114d081acc81d60dfaa95863e79 target=_blank rel="noopener noreferrer" class=""><code>db99447</code></a>)</li>
+<li class="">AdaScale: Update the learning rates for AdaScale learnable parameters (<a href=https://github.com/qualcomm/aimet/commit/7336eadb286592eb5f798a689ee5b6e8b918483f target=_blank rel="noopener noreferrer" class=""><code>7336ead</code></a>)</li>
+<li class="">AdaScale: Add LR scheduler and add block input sampling probability (<a href=https://github.com/qualcomm/aimet/commit/2f0517539ce02bff32c79b82501aca543dbefc33 target=_blank rel="noopener noreferrer" class=""><code>2f05175</code></a>)</li>
+<li class="">AdaScale: Maintain LR per model and fix first sample being used during loss computation(<a href=https://github.com/qualcomm/aimet/commit/ac05d10752c3f5034f475b483f2cf049e23d66f6 target=_blank rel="noopener noreferrer" class=""><code>ac05d10</code></a>)</li>
+</ul>
+</li>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Add docs to build aimet from source (<a href=https://github.com/qualcomm/aimet/commit/ae981f73f91580d26024c652a5bbda4d4d8ff77d target=_blank rel="noopener noreferrer" class=""><code>ae981f7</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=280>2.8.0<a href=#280 class=hash-link aria-label="Direct link to 2.8.0" title="Direct link to 2.8.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Update aimet_onnx <code>QuantizationSimModel.__init__</code> function signature (<a href=https://github.com/qualcomm/aimet/commit/cbe67ae291f3519f3207d438450d22964f5a8c0d target=_blank rel="noopener noreferrer" class=""><code>cbe67ae</code></a>)</li>
+<li class="">Defined new AdaRound API <code>aimet_onnx.apply_adaround</code> (<a href=https://github.com/qualcomm/aimet/commit/84edcf580ac76afa8d128316e03c7737f2599c2d target=_blank rel="noopener noreferrer" class=""><code>84edcf5</code></a>)</li>
+<li class="">Defined new sequential MSE API <code>aimet_onnx.apply_seq_mse</code> (<a href=https://github.com/qualcomm/aimet/commit/836ab1e56de792569155269dbe3c54d717649468 target=_blank rel="noopener noreferrer" class=""><code>836ab1e</code></a>)</li>
+<li class="">Defined new per-layer sensitivity analysis API <code>aimet_onnx.analyze_per_layer_sensitivity</code> (<a href=https://github.com/qualcomm/aimet/commit/dc34fa46e802cc50bfc16cfbc197e3b56d9d8d9e target=_blank rel="noopener noreferrer" class=""><code>dc34fa4</code></a>)</li>
+<li class="">Allowed onnx <code>QuantizationSimModel.compute_encodings</code> to take iterables (<a href=https://github.com/qualcomm/aimet/commit/2c8ae88193da0f6284e5dc416ee6af53a9aea701 target=_blank rel="noopener noreferrer" class=""><code>2c8ae88</code></a>)</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added native support for huggingface Phi-3 (<a href=https://github.com/qualcomm/aimet/commit/80cd14176448e586b7b53e624f1dd38b93e78d24 target=_blank rel="noopener noreferrer" class=""><code>80cd141</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug Fixes and Improvements</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Made dynamic weights of Conv, ConvTranspose, Gemm, and MatMul follow the symmetry of static weights (<a href=https://github.com/qualcomm/aimet/commit/ce68e75f2d55ad07e918f9b0ffb2dc23893ceaf6 target=_blank rel="noopener noreferrer" class=""><code>ce68e75</code></a>)</li>
+<li class="">aimet-onnx on PyPI is now compatible with onnxruntime-gpu (<a href=https://github.com/qualcomm/aimet/commit/6d3aa97195317010fe650df7fe612570b53f1d13 target=_blank rel="noopener noreferrer" class=""><code>6d3aa97</code></a>)</li>
+<li class="">Unpinned onnx version (<a href=https://github.com/qualcomm/aimet/commit/abe87827fa77bc6b850289ae35566e7de437c8d1 target=_blank rel="noopener noreferrer" class=""><code>abe8782</code></a>)</li>
+<li class="">Changed default execution provider to CPUExecutionProvider (<a href=https://github.com/qualcomm/aimet/commit/e7d10c799d29beb2b8b36cd4bce8dcaacd1bd9f7 target=_blank rel="noopener noreferrer" class=""><code>e7d10c7</code></a>)</li>
+<li class="">Made QcQuantizeOp's data_type attribute always consistent without additional reconfiguration (<a href=https://github.com/qualcomm/aimet/commit/8009871262dc702b277b34ae53f70d760e300736 target=_blank rel="noopener noreferrer" class=""><code>8009871</code></a>)</li>
+<li class="">Made delta/offset and min/max always consistent (<a href=https://github.com/qualcomm/aimet/commit/88706eff5301eeb4274b333efbab140a1bc1b5f5 target=_blank rel="noopener noreferrer" class=""><code>88706ef</code></a>)</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Made input quantizers always get enabled whenever the input wasn't already quantized (<a href=https://github.com/qualcomm/aimet/commit/a2adae2e9ca7ee261bb03e407da0598715b9f933 target=_blank rel="noopener noreferrer" class=""><code>a2adae2</code></a>)</li>
+<li class="">Deprecated saving PyTorch model object during <code>QuantizationsimModel.export</code> (<a href=https://github.com/qualcomm/aimet/commit/b5521f3fefc5ee405f0596fcf01be670af81cd4a target=_blank rel="noopener noreferrer" class=""><code>b5521f3</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Known Issues</p>
+</li>
+<li class="">
+<p>ONNX</p>
+<ul>
+<li class="">Adaround runs over 2x slower with onnxruntime 1.20 or higher. The root cause has been identified, and a fix is in progress</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=270>2.7.0<a href=#270 class=hash-link aria-label="Direct link to 2.7.0" title="Direct link to 2.7.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">OmniQuant (experimental) - implement OmniQuant PTQ technique (<a href=https://arxiv.org/pdf/2308.13137 target=_blank rel="noopener noreferrer" class="">https://arxiv.org/pdf/2308.13137</a>) for Llama and Qwen2 model families</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug Fixes and Improvements</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Remove DlCompression, DlEqualization, OpenCV, zlib dependencies</li>
+<li class="">Support loading encodings for missing quantizers</li>
+<li class="">Set bitwidth of tensor quantizer while loading encodings</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Remove DlCompression, DlEqualization, OpenCV, zlib dependencies</li>
+<li class="">Export encodings for data movement operations in ONNX QDQ export</li>
+<li class="">AdaScale (experimental) - support for updating Conv2D layers in blocks</li>
+<li class="">AdaScale (experimental) - update API to take num_iterations instead of num_epochs</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=260>2.6.0<a href=#260 class=hash-link aria-label="Direct link to 2.6.0" title="Direct link to 2.6.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Support for passing onnxruntime EPs directly to <code>QuantizationSimModel.__init__</code></li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Support for simulating float8 quantization</li>
+<li class="">Experimental: Added <code>aimet_torch.onnx.export</code> API for exporting <code>QuantizationSimModel</code> to onnx QDQ graph</li>
+<li class="">Added native support for huggingface Llama, Qwen2, and Gemma3 (<a href=https://github.com/qualcomm/aimet/commit/1493fe1d8e40e5b8d041f11603b2d60cd76d94d3 target=_blank rel="noopener noreferrer" class=""><code>1493fe1</code></a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug Fixes and Improvements</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Reduced CPU and GPU memory usage during sequential MSE</li>
+<li class="">Fixed AMP generating incompatible quantizer configurations</li>
+<li class="">Fixed AMP errors with dynamic Conv ops</li>
+<li class="">Aligned computation of symmetric encodings with <code>aimet_torch</code></li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Fixed AttributeError when catching <code>torch.onnx.export</code> failures during QuantSim export</li>
+<li class="">Fixed errors being thrown when deepspeed import fails</li>
+<li class="">Aligned input and output encodings for Resize layers</li>
+<li class="">Added supergroup fusion handling for LeakyRelu layers</li>
+<li class="">Docs: Updated LoRA user guide</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Deprecations:</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Deprecated <code>use_cuda</code>, <code>device</code>, <code>rounding_mode</code>, and <code>use_symmetric_encodings</code> args to <code>QuantizationSimModel.__init__</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=250>2.5.0<a href=#250 class=hash-link aria-label="Direct link to 2.5.0" title="Direct link to 2.5.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Added a new set_quantizers() API to QuantizationSimModel</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added new api to fold param quantizers</li>
+<li class="">Experimental: AdaScale - a new post-training quantization technique</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug Fixes</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Cleaned up tempfiles generated by large model export</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Fixed nullptr error in FloatEncoding</li>
+<li class="">Checked wrong parameter access only upon AttributeError</li>
+<li class="">Changed to import spconv lazily</li>
+<li class="">Fixed type error in transformer utils</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=240>2.4.0<a href=#240 class=hash-link aria-label="Direct link to 2.4.0" title="Direct link to 2.4.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Introduced option to export only encodings</li>
+</ul>
+</li>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Added RMSNormalization in default AIMET config</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug Fixes</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Removed cublas dependency from the libpymo executable</li>
+<li class="">Represent y_zero_point as int</li>
+<li class="">Represent per-block scale as int</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">SeqMSE optimizes nested modules once improving turn-around time</li>
+<li class="">CrossLayerEqualization does not replaces ReLU6 with ReLU automatically</li>
+<li class="">AMP creates distict quantizer groups for model inputs</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=230>2.3.0<a href=#230 class=hash-link aria-label="Direct link to 2.3.0" title="Direct link to 2.3.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Upgraded CUDA to 12.1.0</li>
+<li class="">Upgraded ONNX-Runtime to 1.19.2</li>
+<li class="">Reduced <code>QuantizationSimModel.export()</code> time</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug Fixes</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Fixed bug in <code>QuantizationSimModel.export()</code> to export ONNX models with external weights to one file</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=220>2.2.0<a href=#220 class=hash-link aria-label="Direct link to 2.2.0" title="Direct link to 2.2.0" translate=no>​</a></h2>
+<ul>
+<li class="">New Features<!-- -->
+<ul>
+<li class="">PyTorch and ONNX<!-- -->
+<ul>
+<li class="">Added "min_max" (<code>QuantScheme.min_max</code>) as a new name for "post_training_tf" quant scheme</li>
+</ul>
+</li>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Introduced supergroup pattern-matching for complicated patterns such as LayerNormalization and RMSNorm</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Bug Fixes<!-- -->
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Restored <code>aimet_torch.v1</code> tf-enhanced behavior</li>
+<li class="">Updated Sequential MSE candidate logic to compute encoding candidates. Vectorized blockwise sequential MSE loss calculation for <code>nn.Linear</code></li>
+</ul>
+</li>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Fixed bug in <code>QuantizationSimModel._tie_quantizers()</code> which propagates encodings to first op of parent ops if parent op is not quantizable</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=210>2.1.0<a href=#210 class=hash-link aria-label="Direct link to 2.1.0" title="Direct link to 2.1.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">PyTorch and ONNX<!-- -->
+<ul>
+<li class="">AIMET QuantSim by default uses per-channel quantization for weights instead of per-tensor [Breaking change]</li>
+<li class="">AIMET QuantSim exports encoding json schema version 1.0.0 by default</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">AIMET now quantizes scalar inputs of type <code>torch.nn.Parameter</code> - these were not quantized in prior releases</li>
+<li class="">Published recipe for performing LoRA QAT - using LoRA adapters to recover quantized accuracy of the base model. Includes recipes for weight-only (WQ) and weight-and-activation (QWA) QAT</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug Fixes</p>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Fixed a bug that prevented Adaround from caching data samples with PyTorch versions 2.6 and later</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=200>2.0.0<a href=#200 class=hash-link aria-label="Direct link to 2.0.0" title="Direct link to 2.0.0" translate=no>​</a></h2>
+<ul>
+<li class="">
+<p>New Features</p>
+<ul>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Reorganized the documentation to more clearly explain AIMET procedures</li>
+<li class="">Redesigned the documentation using the <code>Furo theme &lt;https://sphinx-themes.readthedocs.io/en/latest/sample-sites/furo/></code>_</li>
+<li class="">Added post-AIMET procedures on how to take AIMET quantized model to |qnn| and |qai_hub|</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">BREAKING CHANGE: <code>aimet_torch.v2</code> has become the default API. All the legacy APIs are migrated to <code>aimet_torch.v1</code> subpackage, for example from <code>aimet_torch.qc_quantize_op</code> to <code>aimet_torch.v1.qc_quantize_op</code></li>
+<li class="">Added Manual Mixed Precision Configurator (Beta) to make it easy to configure a model in Mixed Precision.</li>
+</ul>
+</li>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Optimized <code>QuantizationSimModel.__init__</code> latency</li>
+<li class="">Align <code>ConnectedGraph</code> representation with onnx graph</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Bug Fixes</p>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Bug fixes for Adaround</li>
+<li class="">Bug fixes for BN fold</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Upgrading</p>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">aimet_torch 2 is fully backward compatible with all the public APIs of aimet_torch 1.x. If you are using low-level components of <code>QuantizationSimModel</code>, please see Migrate to aimet_torch 2 .</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1351>1.35.1<a href=#1351 class=hash-link aria-label="Direct link to 1.35.1" title="Direct link to 1.35.1" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Fixed package versioning for compatibility with latest pip version</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1350>1.35.0<a href=#1350 class=hash-link aria-label="Direct link to 1.35.0" title="Direct link to 1.35.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added support for W16A16 in Autoquant.</li>
+</ul>
+</li>
+<li class="">Deprecation Notice<!-- -->
+<ul>
+<li class="">Support for Pytorch 1.13 is deprecated. It will be removed in next release.</li>
+</ul>
+</li>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Optimized Memory and Speed utilization (for CPU).</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1340>1.34.0<a href=#1340 class=hash-link aria-label="Direct link to 1.34.0" title="Direct link to 1.34.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added support for WSL2</li>
+<li class="">CUDA version upgraded for Pytorch 2.1</li>
+<li class="">Extended QuantAnalyzer functionality for LLM range analysis</li>
+</ul>
+</li>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Adds support for certain TFOpLambda layers created by tf functional calls.</li>
+</ul>
+</li>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Upgraded AIMET to support ONNX version 1.16.1 and ONNXRUNTIME version 1.18.1.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1335>1.33.5<a href=#1335 class=hash-link aria-label="Direct link to 1.33.5" title="Direct link to 1.33.5" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Various bugfixes/QoL updates for LoRA</li>
+<li class="">Updated minimum scale value and registered additional custom quantized ops with QuantSim 2.0</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1330>1.33.0<a href=#1330 class=hash-link aria-label="Direct link to 1.33.0" title="Direct link to 1.33.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Enhancements done in export pipeline for GPU memory optimization with LLMs.</li>
+<li class="">[Experimental] Added support for handling of LoRA (via PEFT API) in AIMET. and enabled export of
+required artifacts for QNN.</li>
+<li class="">Added examples for training pipeline with for distributed KD-QAT.</li>
+<li class="">[Experimental] Added support for block wise quantization (BQ) to support w4fp16 format, and the
+low-power block quantization (LPBQ) to support w4a8 and w4a16 formats. This feature needs
+QuantSim V2.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1320>1.32.0<a href=#1320 class=hash-link aria-label="Direct link to 1.32.0" title="Direct link to 1.32.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added MultiGPU support for Adaround.</li>
+<li class="">Upgraded AIMET to support PyTorch version 2.1 as a new variant. AIMET with PyTorch version 1.13
+remains the default.</li>
+</ul>
+</li>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">For models with SeparableConv2D layers, use model_preparer first before applying any quantization
+API.</li>
+</ul>
+</li>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Upgraded AIMET to support Ubuntu22 and Python3.10 for all AIMET variants.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1310>1.31.0<a href=#1310 class=hash-link aria-label="Direct link to 1.31.0" title="Direct link to 1.31.0" translate=no>​</a></h2>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Added support for custom ops in QuantSim, CLE, AdaRound and AMP.</li>
+<li class="">Added support for Quant Analyzer.</li>
+</ul>
+</li>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Added support for unrolled quantized LSTM with only Quantsim in PTQ mode.</li>
+<li class="">Fix for ReLU Encoding min going past 0 for QAT.</li>
+<li class="">Fixes Input Quantizers for TFOpLambda Layers (kwargs)</li>
+<li class="">Fixes logic for placing input quantizers</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1300>1.30.0<a href=#1300 class=hash-link aria-label="Direct link to 1.30.0" title="Direct link to 1.30.0" translate=no>​</a></h2>
+<ul>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Upgraded AIMET to support Onnx version 1.14 and ONNXRUNTIME version 1.15.</li>
+<li class="">Added support for AutoQuant.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1290>1.29.0<a href=#1290 class=hash-link aria-label="Direct link to 1.29.0" title="Direct link to 1.29.0" translate=no>​</a></h2>
+<ul>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Fixes issues with TF Op Lambda Layers in Qc Quantize Wrappers call.</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">[experimental] Support for embedding AIMET encodings within the graph using ONNX quantize/dequantize
+operators. Currently this option is only supported when using 8bit per-tensor quantization.</li>
+</ul>
+</li>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">Added support for Adaround.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1280>1.28.0<a href=#1280 class=hash-link aria-label="Direct link to 1.28.0" title="Direct link to 1.28.0" translate=no>​</a></h2>
+<ul>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Added Support for Spatial SVD Compression feature.</li>
+<li class="">[experimental] Debugging APIs have been added for dumping intermediate tensor outputs. This data
+can be used with current QNN/SNPE tools for debugging accuracy problems.</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Upgraded AIMET Pytorch default version to 1.13. AIMET remains compatible with Pytorch version 1.9.</li>
+</ul>
+</li>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">[experimental] Debugging APIs have been added for dumping intermediate tensor outputs. This data
+can be used with current QNN/SNPE tools for debugging accuracy problems.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1270>1.27.0<a href=#1270 class=hash-link aria-label="Direct link to 1.27.0" title="Direct link to 1.27.0" translate=no>​</a></h2>
+<ul>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Update support for TFOpLambda layers in Batch Norm Folding with extra call args/kwargs.</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added AIMET to support PyTorch version 1.13.0. Only ONNX opset 14 is supported for export.</li>
+<li class="">[experimental] Debugging APIs have been added for dumping intermediate tensor data. This data can
+be used with current QNN/SNPE tools for debugging accuracy problems. Layer Output Generation API
+gives incorrect tensor data for the layer just before Relu when used for original FP32 model.</li>
+<li class="">[experimental] Support for embedding AIMET encodings within the graph using ONNX quantize/dequantize
+operators. Currently this is option is only supported when using 8bit per-tensor quantization.</li>
+<li class="">Fixed a bug in AIMET QuantSim for PyTorch models to handle non-contiguous tensors.</li>
+</ul>
+</li>
+<li class="">ONNX<!-- -->
+<ul>
+<li class="">AIMET support for ONNX 1.11.0 has been added. However there is currently limited op support
+in QNN/SNPE. If the model fails to load please continue to use opset 11 for export.</li>
+</ul>
+</li>
+<li class="">TensorFlow<!-- -->
+<ul>
+<li class="">[experimental] Debugging APIs have been added for dumping intermediate tensor outputs. This data
+can be used with current QNN/SNPE tools for debugging accuracy problems.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1260>1.26.0<a href=#1260 class=hash-link aria-label="Direct link to 1.26.0" title="Direct link to 1.26.0" translate=no>​</a></h2>
+<ul>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Added a feature called BN Re-estimation that can improve model accuracy after QAT for INT4
+quantization.</li>
+<li class="">Updated the AutoQuant feature to automatically choose the optimal calibration scheme, create an
+HTML report on which optimizations were applied.</li>
+<li class="">Update to Model Preparer to replace separable conventional with depth wise and point wise conv
+layers.</li>
+<li class="">Fixes BN fold implementation to account for a subsequent multi-input layer</li>
+<li class="">Fixed a bug where min/max encoding values were not aligned with scale/offset during QAT.</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Several bug fixes</li>
+</ul>
+</li>
+<li class="">TensorFlow<!-- -->
+<ul>
+<li class="">Added a feature called BN Re-estimation that can improve model accuracy after QAT for INT4
+quantization</li>
+<li class="">Updated the AutoQuant feature to automatically choose the optimal calibration scheme, create an
+HTML report on which optimizations were applied.</li>
+<li class="">Fixed a bug where min/max encoding values were not aligned with scale/offset during QAT.</li>
+</ul>
+</li>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Documentation updates for taking AIMET models to target.</li>
+<li class="">Standalone Batchnorm layers parameter’s conversion such that it will behave as linear/dense layer.</li>
+<li class="">[Experimental] Added new Architecture Checker feature to identify and report model architecture
+constructs that are not ideal for quantized runtimes. Users can utilize this information to change
+their model architectures accordingly.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1250>1.25.0<a href=#1250 class=hash-link aria-label="Direct link to 1.25.0" title="Direct link to 1.25.0" translate=no>​</a></h2>
+<ul>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Added QuantAnalyzer feature</li>
+<li class="">Adds Batch Normalization folding for Functional Keras Models. This allows the default config files
+to work for super grouping.</li>
+<li class="">Resolved an issue with quantizer placement in Sequential blocks in subclassed models</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added AutoQuant V2 which includes advanced features such as out-of-the-box inference, model
+preparer, quant scheme search, improved summary report, etc.</li>
+<li class="">Fixes to resolve minor accuracy diffs in the learnedGrid quantizer for per-channel quantization</li>
+<li class="">Fixes to improve EfficientNetB4 accuracy w/respect to target</li>
+<li class="">Fixed rare case where quantizer may calculate incorrect offset when generating QAT 2.0 learned
+encodings</li>
+</ul>
+</li>
+<li class="">TensorFlow<!-- -->
+<ul>
+<li class="">Added QuantAnalyzer feature</li>
+<li class="">Fixed an accuracy issue due to rare cases where the incorrect BN epsilon was being used</li>
+<li class="">Fixed an accuracy issue due to Quantsim export incorrectly recomputing QAT2.0 encodings</li>
+</ul>
+</li>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Updated AIMET python package version format to support latest pip</li>
+<li class="">Fixed an issue where not all inputs might be quantized properly</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1240>1.24.0<a href=#1240 class=hash-link aria-label="Direct link to 1.24.0" title="Direct link to 1.24.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Fixes to resolve minor accuracy diffs in the learnedGrid quantizer for per-channel quantization</li>
+<li class="">Added support for AMP 2.0 which enables faster automatic mixed precision</li>
+<li class="">Added support for QAT for INT4 quantized models – includes a feature for performing BN Re-estimation
+after QAT</li>
+</ul>
+</li>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Added support for AMP 2.0 which enables faster automatic mixed precision</li>
+<li class="">Support for basic transformer networks</li>
+<li class="">Added support for subclassed models. The current subclassing feature includes support for only a
+single level of subclassing and does not support lambdas.</li>
+<li class="">Added QAT per-channel gradient support</li>
+<li class="">Minor updates to the quantization configuration</li>
+<li class="">Fixed QuantSim bug where layers using dtypes other than float were incorrectly quantized</li>
+</ul>
+</li>
+<li class="">TensorFlow<!-- -->
+<ul>
+<li class="">Added an additional prelu mapping pattern to ensure proper folding and quantsim node placement</li>
+<li class="">Fixed per-channel encoding representation to align with Pytorch and Keras</li>
+</ul>
+</li>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Export quantsim configuration for configuring downstream target quantization</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1230>1.23.0<a href=#1230 class=hash-link aria-label="Direct link to 1.23.0" title="Direct link to 1.23.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Fixed backward pass of the fake-quantize (QcQuantizeWrapper) nodes to handle symmetric mode
+correctly</li>
+<li class="">Per-channel quantization is now enabled on a per-op-type basis</li>
+<li class="">Support for recursively excluding module from a root module in QuantSim</li>
+<li class="">Support for excluding layers when running model validator and model preparer</li>
+<li class="">Reduced memory usage in AdaRound</li>
+<li class="">Fixed bugs in AdaRound for per-channel quantization</li>
+<li class="">Made ConnectedGraph more robust when identifying custom layers</li>
+<li class="">Added jupyter notebook-based examples for the following features</li>
+<li class="">AutoQuant: Added support for sparse conv layers in QuantSim (experimental)</li>
+</ul>
+</li>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Added support for Keras per-channel quantization</li>
+<li class="">Changed interface to CLE to accept a pre-compiled model</li>
+<li class="">Added jupyter notebook-based examples for the following features: Transformer quantization</li>
+</ul>
+</li>
+<li class="">TensorFlow<!-- -->
+<ul>
+<li class="">Fix to avoid unnecessary indexing in AdaRound</li>
+</ul>
+</li>
+<li class="">Common<!-- -->
+<ul>
+<li class="">TF-enhanced calibration scheme has been accelerated using a custom CUDA kernel. Runs significantly
+faster now.</li>
+<li class="">Installation instructions are now combined with rest of the documentation (User-Guide and API docs)</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1222>1.22.2<a href=#1222 class=hash-link aria-label="Direct link to 1.22.2" title="Direct link to 1.22.2" translate=no>​</a></h2>
+<ul>
+<li class="">Tensorflow<!-- -->
+<ul>
+<li class="">Added support for supergroups : MatMul + Add</li>
+<li class="">Added support for TF-Slim BN name with backslash</li>
+<li class="">Added support for Depthwise + Conv in CLS</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1221>1.22.1<a href=#1221 class=hash-link aria-label="Direct link to 1.22.1" title="Direct link to 1.22.1" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added support for QuantizableMultiHeadAttention for PyTorch nn.transformer layers</li>
+<li class="">Support functional conv2d in model preparer</li>
+<li class="">Enable qat with multi gpu</li>
+<li class="">Optimize forward pass logic of PyTorch QAT 2.0</li>
+<li class="">Fix functional depthwise conv support on model preparer</li>
+<li class="">Fix bug in model validator to correctly identify functional ops in leaf module</li>
+<li class="">Support dynamic functional conv2d in model preparer</li>
+<li class="">Added updated default runtime config, also a per-channel one.</li>
+<li class="">Include residing module info in model validator</li>
+</ul>
+</li>
+<li class="">Keras<!-- -->
+<ul>
+<li class="">Support for Keras MultiHeadAttention Layer</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1220>1.22.0<a href=#1220 class=hash-link aria-label="Direct link to 1.22.0" title="Direct link to 1.22.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Support for simulation and QAT for PyTorch transformer models (including support for torch.nn mha and
+encoder layers)</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1210>1.21.0<a href=#1210 class=hash-link aria-label="Direct link to 1.21.0" title="Direct link to 1.21.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">PyTorch QuantAnalyzer - Visualize per-layer sensitivity and per-quantizer PDF histograms</li>
+<li class="">PyTorch QAT with Range Learning: Added support for Per Channel Quantization</li>
+<li class="">PyTorch: Enabled exporting of encodings for multi-output leaf module</li>
+</ul>
+</li>
+<li class="">TensorFlow<!-- -->
+<ul>
+<li class="">
+<ul>
+<li class="">New feature: TensorFlow AutoQuant - Automatically apply various AIMET post-training quantization techniques</li>
+</ul>
+</li>
+<li class="">Adaround: Added ability to use configuration file in API to adapt to a specific runtime target</li>
+<li class="">Adaround: Added Per-Channel Quantization support</li>
+<li class="">TensorFlow QuantSim: Added support for FP16 inference and QAT</li>
+<li class="">TensorFlow Per Channel Quantization<!-- -->
+<ul>
+<li class="">Fixed speed and accuracy issues</li>
+<li class="">Fixed zero accuracy for 16-bits per channel quantization</li>
+<li class="">Added support for DepthWise Conv2d Op</li>
+</ul>
+</li>
+<li class="">Multiple other bug fixes</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1200>1.20.0<a href=#1200 class=hash-link aria-label="Direct link to 1.20.0" title="Direct link to 1.20.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Propagated encodings for ONNX Ops that were expanded from a single PyTorch Op</li>
+</ul>
+</li>
+<li class="">TensorFlow<!-- -->
+<ul>
+<li class="">Upgraded AIMET to support TensorFlow version 2.4. AIMET remains compatible with TensorFlow
+version 1.15</li>
+</ul>
+</li>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Added Jupyter Notebooks for Examples</li>
+<li class="">Multiple bug fixes</li>
+<li class="">Removed version pinning of many dependent software packages</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1191>1.19.1<a href=#1191 class=hash-link aria-label="Direct link to 1.19.1" title="Direct link to 1.19.1" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added CLE support for Conv1d, ConvTranspose1d and Depthwise Separable Conv1d layers</li>
+<li class="">Added High-Bias Fold support for Conv1D layer</li>
+<li class="">Modified Elementwise Concat Op to support any number of tensors</li>
+<li class="">Minor dependency fixes</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1180>1.18.0<a href=#1180 class=hash-link aria-label="Direct link to 1.18.0" title="Direct link to 1.18.0" translate=no>​</a></h2>
+<ul>
+<li class="">Common<!-- -->
+<ul>
+<li class="">Multiple bug fixes</li>
+<li class="">Additional feature examples for PyTorch and TensorFlow</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1170>1.17.0<a href=#1170 class=hash-link aria-label="Direct link to 1.17.0" title="Direct link to 1.17.0" translate=no>​</a></h2>
+<ul>
+<li class="">TensorFlow<!-- -->
+<ul>
+<li class="">Add Adaround TF feature</li>
+</ul>
+</li>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added Examples for Torch quantization, and Channel Pruning & Spatial SVD compression</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1162>1.16.2<a href=#1162 class=hash-link aria-label="Direct link to 1.16.2" title="Direct link to 1.16.2" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added a new post-training quantization feature called AdaRound, which stands for AdaptiveRounding</li>
+<li class="">Quantization simulation and QAT now also support recurrent layers (RNN, LSTM, GRU)</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1161>1.16.1<a href=#1161 class=hash-link aria-label="Direct link to 1.16.1" title="Direct link to 1.16.1" translate=no>​</a></h2>
+<ul>
+<li class="">Added separate packages for CPU and GPU models. This allows users with CPU-only hosts to run AIMET.</li>
+<li class="">Added separate packages for PyTorch and TensorFlow. Reduces the number of dependencies that users would need to install.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1160>1.16.0<a href=#1160 class=hash-link aria-label="Direct link to 1.16.0" title="Direct link to 1.16.0" translate=no>​</a></h2>
+<ul>
+<li class="">Ported AIMET PyTorch to work with PyTorch ver 1.7.1 with CUDA 11.0</li>
+<li class="">AIMET PyTorch and AIMET TensorFlow are now available as separate packages</li>
+<li class="">Version of the AIMET PyTorch and AIMET TensorFlow packages for CPU-only machines are now available</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1130>1.13.0<a href=#1130 class=hash-link aria-label="Direct link to 1.13.0" title="Direct link to 1.13.0" translate=no>​</a></h2>
+<ul>
+<li class="">PyTorch<!-- -->
+<ul>
+<li class="">Added Adaptive Rounding feature (AdaRound) for PyTorch.</li>
+<li class="">Various bug fixes.</li>
+</ul>
+</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/qualcomm/aimet/tree/develop/Docs/docs/release_notes.mdx target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/aimet-pages/releases/243_docusaurus/apiref/torch/weightsvdparameters><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>WeightSvdParameters</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/aimet-pages/releases/243_docusaurus/glossary><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>Glossary</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#2430 class="table-of-contents__link toc-highlight">2.43.0</a><li><a href=#2420 class="table-of-contents__link toc-highlight">2.42.0</a><li><a href=#2410 class="table-of-contents__link toc-highlight">2.41.0</a><li><a href=#2400 class="table-of-contents__link toc-highlight">2.40.0</a><li><a href=#2390 class="table-of-contents__link toc-highlight">2.39.0</a><li><a href=#2380 class="table-of-contents__link toc-highlight">2.38.0</a><li><a href=#2370 class="table-of-contents__link toc-highlight">2.37.0</a><li><a href=#2360 class="table-of-contents__link toc-highlight">2.36.0</a><li><a href=#2351 class="table-of-contents__link toc-highlight">2.35.1</a><li><a href=#2350 class="table-of-contents__link toc-highlight">2.35.0</a><li><a href=#2340 class="table-of-contents__link toc-highlight">2.34.0</a><li><a href=#2330 class="table-of-contents__link toc-highlight">2.33.0</a><li><a href=#2321 class="table-of-contents__link toc-highlight">2.32.1</a><li><a href=#2320 class="table-of-contents__link toc-highlight">2.32.0</a><li><a href=#2310 class="table-of-contents__link toc-highlight">2.31.0</a><li><a href=#2300 class="table-of-contents__link toc-highlight">2.30.0</a><li><a href=#2290 class="table-of-contents__link toc-highlight">2.29.0</a><li><a href=#2280 class="table-of-contents__link toc-highlight">2.28.0</a><li><a href=#2270 class="table-of-contents__link toc-highlight">2.27.0</a><li><a href=#2260 class="table-of-contents__link toc-highlight">2.26.0</a><li><a href=#2251 class="table-of-contents__link toc-highlight">2.25.1</a><li><a href=#2250 class="table-of-contents__link toc-highlight">2.25.0</a><li><a href=#2240 class="table-of-contents__link toc-highlight">2.24.0</a><li><a href=#2230 class="table-of-contents__link toc-highlight">2.23.0</a><li><a href=#2220 class="table-of-contents__link toc-highlight">2.22.0</a><li><a href=#2210 class="table-of-contents__link toc-highlight">2.21.0</a><li><a href=#2200 class="table-of-contents__link toc-highlight">2.20.0</a><li><a href=#2190 class="table-of-contents__link toc-highlight">2.19.0</a><li><a href=#2180 class="table-of-contents__link toc-highlight">2.18.0</a><li><a href=#2170 class="table-of-contents__link toc-highlight">2.17.0</a><li><a href=#2160 class="table-of-contents__link toc-highlight">2.16.0</a><li><a href=#2150 class="table-of-contents__link toc-highlight">2.15.0</a><li><a href=#2140 class="table-of-contents__link toc-highlight">2.14.0</a><li><a href=#2130 class="table-of-contents__link toc-highlight">2.13.0</a><li><a href=#2120 class="table-of-contents__link toc-highlight">2.12.0</a><li><a href=#2110 class="table-of-contents__link toc-highlight">2.11.0</a><li><a href=#2100 class="table-of-contents__link toc-highlight">2.10.0</a><li><a href=#290 class="table-of-contents__link toc-highlight">2.9.0</a><li><a href=#280 class="table-of-contents__link toc-highlight">2.8.0</a><li><a href=#270 class="table-of-contents__link toc-highlight">2.7.0</a><li><a href=#260 class="table-of-contents__link toc-highlight">2.6.0</a><li><a href=#250 class="table-of-contents__link toc-highlight">2.5.0</a><li><a href=#240 class="table-of-contents__link toc-highlight">2.4.0</a><li><a href=#230 class="table-of-contents__link toc-highlight">2.3.0</a><li><a href=#220 class="table-of-contents__link toc-highlight">2.2.0</a><li><a href=#210 class="table-of-contents__link toc-highlight">2.1.0</a><li><a href=#200 class="table-of-contents__link toc-highlight">2.0.0</a><li><a href=#1351 class="table-of-contents__link toc-highlight">1.35.1</a><li><a href=#1350 class="table-of-contents__link toc-highlight">1.35.0</a><li><a href=#1340 class="table-of-contents__link toc-highlight">1.34.0</a><li><a href=#1335 class="table-of-contents__link toc-highlight">1.33.5</a><li><a href=#1330 class="table-of-contents__link toc-highlight">1.33.0</a><li><a href=#1320 class="table-of-contents__link toc-highlight">1.32.0</a><li><a href=#1310 class="table-of-contents__link toc-highlight">1.31.0</a><li><a href=#1300 class="table-of-contents__link toc-highlight">1.30.0</a><li><a href=#1290 class="table-of-contents__link toc-highlight">1.29.0</a><li><a href=#1280 class="table-of-contents__link toc-highlight">1.28.0</a><li><a href=#1270 class="table-of-contents__link toc-highlight">1.27.0</a><li><a href=#1260 class="table-of-contents__link toc-highlight">1.26.0</a><li><a href=#1250 class="table-of-contents__link toc-highlight">1.25.0</a><li><a href=#1240 class="table-of-contents__link toc-highlight">1.24.0</a><li><a href=#1230 class="table-of-contents__link toc-highlight">1.23.0</a><li><a href=#1222 class="table-of-contents__link toc-highlight">1.22.2</a><li><a href=#1221 class="table-of-contents__link toc-highlight">1.22.1</a><li><a href=#1220 class="table-of-contents__link toc-highlight">1.22.0</a><li><a href=#1210 class="table-of-contents__link toc-highlight">1.21.0</a><li><a href=#1200 class="table-of-contents__link toc-highlight">1.20.0</a><li><a href=#1191 class="table-of-contents__link toc-highlight">1.19.1</a><li><a href=#1180 class="table-of-contents__link toc-highlight">1.18.0</a><li><a href=#1170 class="table-of-contents__link toc-highlight">1.17.0</a><li><a href=#1162 class="table-of-contents__link toc-highlight">1.16.2</a><li><a href=#1161 class="table-of-contents__link toc-highlight">1.16.1</a><li><a href=#1160 class="table-of-contents__link toc-highlight">1.16.0</a><li><a href=#1130 class="table-of-contents__link toc-highlight">1.13.0</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class=footer__copyright>Copyright © 2026, Qualcomm Innovation Center, Inc.</div></div></div></footer></div></body>
