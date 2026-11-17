@@ -1,0 +1,1739 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aimet_onnx.llm_topology.topology &#8212; AI Model Efficiency Toolkit</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lumina.css?v=bc31efa2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/aimet-lumina.css?v=4747defc" />
+    <script defer="defer" src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script defer="defer" src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script defer="defer" src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer="defer" src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="../../../_static/lumina.js?v=3e122351"></script>
+    <link rel="icon" href="../../../_static/ai-hub-workbench-icon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+    
+    
+        <meta data-pagefind-meta="breadcrumb[content]"
+              content="Module code">
+    
+    
+    
+        
+        <meta name="description" content="AIMET">
+        
+        <meta name="theme-color" content="#2A2AEA">
+        <meta property="og:title" content="aimet_onnx.llm_topology.topology">
+        
+            <meta property="og:description" content="AIMET">
+        
+        
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="AI Model Efficiency Toolkit">
+        <meta property="og:locale" content="en_US">
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="aimet_onnx.llm_topology.topology">
+        
+            <meta name="twitter:description" content="AIMET">
+        
+        
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Module code", "item": "../../index.html"}, {"@type": "ListItem", "position": 2, "name": "aimet_onnx.llm_topology.topology", "item": "/"}]}</script>
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "aimet_onnx.llm_topology.topology", "author": {"@type": "Person", "name": "Qualcomm Innovation Center, Inc."}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET"}</script>
+        
+        
+    
+    <link rel="preload"
+          as="font"
+          type="font/woff2"
+          href="../../../_static/fonts/source-sans-3-regular-latin.woff2"
+          crossorigin>
+    
+    <script>
+(function() {
+  var stored = null;
+  try { stored = localStorage.getItem('lumina-theme'); } catch (e) {}
+  
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Sphinx gates the dark highlight stylesheet on the OS color scheme only;
+  // a stored override or dark_mode_default must rewrite its media query
+  // before first paint.
+  var pygmentsDark = document.getElementById('pygments_dark_css');
+  if (pygmentsDark) {
+    pygmentsDark.media = document.documentElement.getAttribute('data-theme') === 'dark' ? 'screen' : 'not all';
+  }
+})();
+    </script>
+    
+    <meta name="lumina-search-backend" content="sphinx">
+    <meta name="lumina-base-url" content="../../../">
+    
+    
+    
+    
+    
+    
+    
+        <style>
+            :root,[data-theme="light"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 65%,#202624);--lumina-accent-light:color-mix(in srgb,#2A2AEA 12%,var(--lumina-bg));}
+            [data-theme="dark"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 55%,#e9eeeb);--lumina-accent-light:color-mix(in srgb,#2A2AEA 15%,var(--lumina-bg));}
+            html:root,html[data-theme="dark"]{--sd-color-primary:color-mix(in srgb,#2A2AEA 85%,black);--sd-color-primary-highlight:color-mix(in srgb,#2A2AEA 70%,black);--sd-color-primary-text:#fff;--sd-color-primary-bg:color-mix(in srgb,#2A2AEA 12%,transparent);}
+        </style>
+    
+    
+    
+    
+
+
+  </head><body>
+
+
+
+
+
+    <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
+
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-lumina-border bg-lumina-bg/80 backdrop-blur-sm">
+
+    
+
+    <div class="lumina-header-inner mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
+        
+        <div class="flex items-center gap-3">
+            <a href="../../../index.html"
+               class="flex items-center gap-2 text-lumina-text no-underline hover:opacity-80 transition-opacity">
+                
+                    <img src="../../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-light h-7 w-auto">
+                    <img src="../../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-dark h-7 w-auto">
+                
+            </a>
+            
+                
+                <span class="flex flex-col leading-tight">
+                    <a href="../../../index.html"
+                       class="font-semibold text-base text-lumina-text no-underline hover:opacity-80 transition-opacity">AIMET</a>
+                    
+                        <a href="../../../versions.html"
+                           class="text-xs text-lumina-text-muted hover:text-lumina-accent no-underline"
+                           title="See other versions">v2.44.0</a>
+                    
+                </span>
+            
+
+            
+
+        </div>
+        
+        
+        
+        <div class="flex items-center gap-2">
+            
+            <button data-search-trigger
+                    class="flex items-center gap-2 rounded-lg border border-lumina-border bg-lumina-bg-secondary px-3 py-2 text-[0.8125rem] text-lumina-text-muted hover:border-lumina-accent transition-colors cursor-pointer lg:min-w-56"
+                    aria-label="Search documentation"
+                    aria-haspopup="dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+                <span class="hidden lg:inline flex-1 text-start">Search docs...</span>
+                <kbd data-search-shortcut
+                     class="hidden lg:inline rounded border border-lumina-border bg-lumina-bg px-1.5 py-0.5 text-[0.6875rem] font-[family-name:var(--lumina-font-mono)] tracking-[0.02em]">⌘K</kbd>
+            </button>
+            
+            <button data-theme-toggle
+                    x-data="themeToggle()"
+                    @click="cycle()"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-md text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors cursor-pointer"
+                    aria-label="Toggle color theme"
+                    title="Toggle color theme"
+                    :aria-label="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')"
+                    :title="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')">
+                
+                <svg x-show="mode === 'light'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-[-90deg] scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+                </svg>
+                
+                <svg x-show="mode === 'dark'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-90 scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                </svg>
+                
+                <svg x-show="mode === 'auto'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 scale-0"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+            </button>
+            
+            
+            
+                
+                    <a href="https://github.com/qualcomm/aimet"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Github"
+                       aria-label="Github (opens in new tab)">
+                        
+                            <svg class="h-5 w-5"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        
+                    </a>
+                
+            
+            
+            
+                <button data-sidebar-toggle
+                        class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors lg:hidden cursor-pointer"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="lumina-sidebar-drawer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            
+        </div>
+    </div>
+</header>
+
+    </div>
+    <div class="lumina-wrapper">
+        <aside id="lumina-sidebar">
+
+            <div x-data="sidebar()">
+    
+    <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-e border-lumina-border/45 bg-lumina-bg px-4 py-6 lg:flex">
+
+        
+
+
+        
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Main navigation"
+                 x-data="sidebarNav()">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../techniques/index.html">Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ptq_techniques/index.html">PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apiref/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external/index.html">External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+            </nav>
+        
+        
+            <div class="lumina-sidebar-footer">
+                Built with
+                <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                   target="_blank"
+                   rel="noopener">
+                    <svg class="lumina-sidebar-footer-icon"
+                         viewBox="0 0 32 32"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M16 3L28 27H4L16 3Z" stroke="currentColor" stroke-width="2.5" fill="none" />
+                        <path d="M16 10L8 27H16" fill="currentColor" opacity="0.15" />
+                        <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
+                    </svg>
+                Lumina</a>
+                <span class="lumina-sidebar-footer-version">v2.21.2</span>
+            </div>
+        
+    </div>
+    
+    <template x-teleport="body">
+        <div>
+            
+            <div x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="lumina-overlay-backdrop fixed inset-0 top-[var(--lumina-header-offset)] z-40 lg:hidden"
+                 @click="close()"></div>
+            
+            <div id="lumina-sidebar-drawer"
+                 x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-250"
+                 x-transition:enter-start="-translate-x-full rtl:translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full rtl:translate-x-full"
+                 @keydown.escape.window="close()"
+                 class="fixed inset-y-0 top-[var(--lumina-header-offset)] start-0 z-50 w-[min(280px,85vw)] overflow-y-auto border-e border-lumina-border bg-lumina-bg px-4 py-6 lg:hidden">
+
+                
+                
+
+                    
+
+
+                
+
+                
+                
+                
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Main navigation"
+                         x-data="sidebarNav()">
+                        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../techniques/index.html">Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ptq_techniques/index.html">PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apiref/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external/index.html">External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+                    </nav>
+                
+                
+                    <div class="lumina-sidebar-footer">
+                        <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                           target="_blank"
+                           rel="noopener">Lumina</a>
+                        <span class="lumina-sidebar-footer-version">v2.21.2</span>
+                    </div>
+                
+            </div>
+        </div>
+    </template>
+</div>
+
+        </aside>
+        <main id="lumina-content" role="main" data-pagefind-body>
+            
+            
+            <div class="lumina-content-toolbar"
+                 data-pagefind-ignore>
+                
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-lumina-text-muted"
+     style="scrollbar-width:none"
+     aria-label="Breadcrumb">
+    
+    
+        
+            
+            
+            <a href="../../index.html"
+               class="min-w-0 truncate hover:text-lumina-accent no-underline transition-colors">Module code</a>
+        
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 rtl:-scale-x-100" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    <span class="shrink-0 whitespace-nowrap text-lumina-text"
+          aria-current="page">aimet_onnx.llm_topology.topology</span>
+</nav>
+
+                    </div>
+                
+
+                <details class="lumina-page-actions"
+         x-data
+         @click.outside="$el.open = false"
+         @keydown.escape.stop="$el.open = false; $el.querySelector('summary').focus()">
+    <summary aria-label="Page actions" title="Page actions">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+    </summary>
+    <div class="lumina-page-action-list">
+        <button x-data="copyPage()"
+                @click="copy()"
+                type="button"
+                aria-label="Copy page as Markdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+            <span aria-live="polite"
+                  x-text="copied ? $t('Copied!') : $t('Copy as Markdown')">Copy as Markdown</span>
+        </button>
+        
+    </div>
+</details>
+
+            </div>
+            
+            <article class="lumina-article" x-data="headerLinks()">
+                
+                <div class="body">
+
+                    
+
+    <h1>Source code for aimet_onnx.llm_topology.topology</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+
+<span class="sd">"""LLM decoder-stack topology.</span>
+
+<span class="sd">Describes the structure of an ONNX decoder-stack model at two levels:</span>
+
+<span class="sd">* *block level* — where each decoder block starts/ends on the residual stream; and</span>
+<span class="sd">* *intra-block level* — the individual weighted projections</span>
+<span class="sd">  (q/k/v/o, gate/up/down) and the two dynamic (non-weighted) attention MatMuls</span>
+<span class="sd">  (Q·Kᵀ and softmax·V) inside each block, plus the model-level embed_tokens and</span>
+<span class="sd">  lm_head.</span>
+
+<span class="sd">:func:`analyze_llm_topology` is the entry point. It analyzes a ``model_type`` one</span>
+<span class="sd">of two ways:</span>
+
+<span class="sd">* *by active norms* (:func:`analyze_llm_topology_by_norm_count`, built on</span>
+<span class="sd">  :func:`get_llm_topology`) — infers blocks by counting active norms (from</span>
+<span class="sd">  :func:`get_decoder_block_boundaries`) and splits roles by :mod:`layer_roles`.</span>
+<span class="sd">  Used for the model types in :data:`ACTIVE_NORM_MODEL_TYPES`.</span>
+<span class="sd">* *by name* — finds every named layer by its HuggingFace module path (see</span>
+<span class="sd">  :mod:`hf_patterns`), derives the unnamed parts (residual tensors, dynamic</span>
+<span class="sd">  MatMuls) from the graph around them, and cross-checks the names against the</span>
+<span class="sd">  graph structure. Used for every other supported model type.</span>
+
+<span class="sd">Technique-agnostic: it describes a decoder stack without knowing about any</span>
+<span class="sd">specific quantization technique. Everything here works on the analysis IR (see</span>
+<span class="sd">:mod:`ir_analysis`) and reports results by ONNX name (see</span>
+<span class="sd">:mod:`topology_types`), so a topology needs no graph object to stay meaningful;</span>
+<span class="sd">techniques that must mutate raw ``NodeProto`` edges (e.g. SpinQuant R3) derive</span>
+<span class="sd">their insertion anchors from this topology separately.</span>
+
+<span class="sd">A consumer that goes on to *rewrite* the graph re-attaches an</span>
+<span class="sd">:class:`onnx_ir.Model` with :func:`~.ir_adapter.resolve_topology`, which hands</span>
+<span class="sd">back the same structure carrying ``onnx_ir.Node`` / ``onnx_ir.Value`` handles.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Pattern</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx_ir</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AimetLogger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.ir_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">static_tensor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelProto</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology</span><span class="w"> </span><span class="kn">import</span> <span class="n">ir_analysis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology.block_boundaries</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_decoder_block_boundaries_in_ir</span><span class="p">,</span>
+    <span class="n">headless_block_end</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology.hf_patterns</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BlockMatch</span><span class="p">,</span>
+    <span class="n">NamedLayerMatch</span><span class="p">,</span>
+    <span class="n">get_hf_model_patterns</span><span class="p">,</span>
+    <span class="n">match_named_layers</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology.layer_roles</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">LinearRole</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology.norm_detection</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ActiveNorm</span><span class="p">,</span>
+    <span class="n">get_active_norm</span><span class="p">,</span>
+    <span class="n">find_active_norms_in_ir</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology.topology_types</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AttentionBlockTopology</span><span class="p">,</span>
+    <span class="n">LinearGroup</span><span class="p">,</span>
+    <span class="n">LlmTopology</span><span class="p">,</span>
+    <span class="n">MambaBlockTopology</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">AimetLogger</span><span class="o">.</span><span class="n">get_area_logger</span><span class="p">(</span><span class="n">AimetLogger</span><span class="o">.</span><span class="n">LogAreas</span><span class="o">.</span><span class="n">LlmTopology</span><span class="p">)</span>
+
+
+<span class="c1"># KV-cache names vary across exporters. Matches patterns:</span>
+<span class="c1"># ``past_{key,value}_&lt;layer&gt;[_in]`` and ``past_{k,v}_&lt;layer&gt;[_in]`` inputs</span>
+<span class="c1"># ``past_{key,value}_&lt;layer&gt;[_out]`` and ``past_{k,v}_&lt;layer&gt;[_out]`` outputs</span>
+<span class="c1"># ``past_key_values.&lt;layer&gt;.{key,value}`` (HF input style)</span>
+<span class="c1"># ``present_{key,value}_&lt;layer&gt;`` or ``present.&lt;layer&gt;.{key,value}`` (HF outputs)</span>
+<span class="n">_PAST_KEY_INPUT_NAME_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">"^(?:past_(?:key|k)_\d+(?:_in)?|past_key_values\.\d+\.key)$"</span>
+<span class="p">)</span>
+<span class="n">_PAST_VALUE_INPUT_NAME_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">"^(?:past_(?:value|v)_\d+(?:_in)?|past_key_values\.\d+\.value)$"</span>
+<span class="p">)</span>
+<span class="n">_PAST_KEY_OUTPUT_NAME_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">"^(?:past_(?:key|k)_\d+(?:_out)?|present_key_\d+|present\.\d+\.key)$"</span>
+<span class="p">)</span>
+<span class="n">_PAST_VALUE_OUTPUT_NAME_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">"^(?:past_(?:value|v)_\d+(?:_out)?|present_value_\d+|present\.\d+\.value)$"</span>
+<span class="p">)</span>
+
+<span class="c1">#: HF ``model_type`` values that :func:`analyze_llm_topology` analyzes by active</span>
+<span class="c1">#: norms rather than by HuggingFace module name. A VLM is listed under its</span>
+<span class="c1">#: top-level ``model_type``; ``qwen3_vl_text`` is also accepted for its backbone.</span>
+<span class="n">ACTIVE_NORM_MODEL_TYPES</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"gemma3"</span><span class="p">,</span>
+        <span class="s2">"gemma3_text"</span><span class="p">,</span>
+        <span class="s2">"gemma4_text"</span><span class="p">,</span>
+        <span class="s2">"internvl_chat"</span><span class="p">,</span>
+        <span class="s2">"llama"</span><span class="p">,</span>
+        <span class="s2">"mistral"</span><span class="p">,</span>
+        <span class="s2">"phi3"</span><span class="p">,</span>
+        <span class="s2">"qwen2"</span><span class="p">,</span>
+        <span class="s2">"qwen2_5_vl"</span><span class="p">,</span>
+        <span class="s2">"qwen3"</span><span class="p">,</span>
+        <span class="s2">"qwen3_5"</span><span class="p">,</span>
+        <span class="s2">"qwen3_5_text"</span><span class="p">,</span>
+        <span class="s2">"qwen3_vl"</span><span class="p">,</span>
+        <span class="s2">"qwen3_vl_text"</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_llm_topology</span><span class="p">(</span>
+    <span class="n">ir_model</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span>
+    <span class="n">block_boundaries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
+    <span class="n">active_norms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ActiveNorm</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">active_norms_per_block</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">role_patterns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">LinearRole</span><span class="p">,</span> <span class="n">Pattern</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">topo_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LlmTopology</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Build the LLM topology from pre-computed block boundaries.</span>
+
+<span class="sd">    Per-block. Read groups are the weighted linears downstream of each active</span>
+<span class="sd">    norm; write groups are found by walking back from the residual output</span>
+<span class="sd">    tensor to the weighted linear(s) that feed it; the read groups are then</span>
+<span class="sd">    split into fine-grained roles by module name, and the dynamic attention</span>
+<span class="sd">    MatMuls are located by graph topology:</span>
+
+<span class="sd">    * ``qkv``             — ``downstream_linears`` of the first active norm in</span>
+<span class="sd">      the block (input norm), as a :class:`LinearGroup` split into</span>
+<span class="sd">      ``q_proj`` / ``k_proj`` / ``v_proj`` (or ``FUSED_QKV``) by</span>
+<span class="sd">      :func:`classify_linear_role`.</span>
+<span class="sd">    * ``o_proj``          — weighted linear(s) that write the attention residual</span>
+<span class="sd">      output (the post-attention norm input).</span>
+<span class="sd">    * ``gate_up``         — ``downstream_linears`` of the second active norm in</span>
+<span class="sd">      the block (post-attention norm), as a :class:`LinearGroup` split into</span>
+<span class="sd">      ``gate_proj`` / ``up_proj`` (or ``FUSED_GATE_UP``).</span>
+<span class="sd">    * ``down_proj``       — weighted linear(s) that write the block residual</span>
+<span class="sd">      output (the block-end tensor).</span>
+<span class="sd">    * ``qk_matmul`` / ``attn_v_matmul`` — the two dynamic (non-weighted)</span>
+<span class="sd">      attention MatMuls between the ``qkv`` group and ``o_proj`` (see</span>
+<span class="sd">      :func:`_find_attention_matmuls`).</span>
+
+<span class="sd">    Model-level roles:</span>
+
+<span class="sd">    * ``lm_head``         — downstream linears of active norms at or after the</span>
+<span class="sd">      last block boundary (outside all decoder blocks).</span>
+<span class="sd">    * ``embed_tokens``    — Gather ops with a static-weight input that appear</span>
+<span class="sd">      before the first block boundary.</span>
+
+<span class="sd">    :param ir_model: Analysis IR model from :func:`~.ir_analysis.build_analysis_ir`.</span>
+<span class="sd">    :param block_boundaries: List of ``(start_tensor, end_tensor)`` residual-stream</span>
+<span class="sd">        tensor names, as returned by :func:`get_decoder_block_boundaries`.</span>
+<span class="sd">    :param active_norms: Active norms in topological order. Recomputed via</span>
+<span class="sd">        :func:`find_active_norms_in_ir` when not supplied; pass a precomputed</span>
+<span class="sd">        value to avoid a redundant graph scan.</span>
+<span class="sd">    :param active_norms_per_block: Expected number of active norms per decoder</span>
+<span class="sd">        block. Must match the value used in :func:`get_decoder_block_boundaries`.</span>
+<span class="sd">        Defaults to 2 (Llama/Qwen2/Mistral/Phi family).</span>
+<span class="sd">    :param role_patterns: Optional override of the default module-name → role</span>
+<span class="sd">        table used to split the read groups (see :func:`classify_linear_role`).</span>
+<span class="sd">    :param topo_index: Precomputed node → topological index map.</span>
+<span class="sd">    :return: LlmTopology with block and backbone roles populated.</span>
+<span class="sd">        ``hidden_size`` and ``head_dim`` are left ``None`` — use</span>
+<span class="sd">        :func:`analyze_llm_topology` to also infer those.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">topo_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">topo_index</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">topological_index</span><span class="p">(</span><span class="n">ir_model</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">active_norms</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">active_norms</span> <span class="o">=</span> <span class="n">find_active_norms_in_ir</span><span class="p">(</span><span class="n">ir_model</span><span class="p">,</span> <span class="n">topo_index</span><span class="p">)</span>
+    <span class="n">boundary_topo</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">tensor_to_first_consumer_index</span><span class="p">(</span><span class="n">ir_model</span><span class="p">,</span> <span class="n">topo_index</span><span class="p">)</span>
+    <span class="n">node_by_output</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_by_output_tensor</span><span class="p">(</span><span class="n">ir_model</span><span class="p">)</span>
+    <span class="n">node_by_name</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_by_name</span><span class="p">(</span><span class="n">ir_model</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">LlmTopology</span><span class="p">(</span><span class="n">active_norms</span><span class="o">=</span><span class="n">active_norms</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">block_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">start_tensor</span><span class="p">,</span> <span class="n">end_tensor</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">block_boundaries</span><span class="p">):</span>
+        <span class="n">start_topo</span> <span class="o">=</span> <span class="n">boundary_topo</span><span class="p">[</span><span class="n">start_tensor</span><span class="p">]</span>
+        <span class="n">end_topo</span> <span class="o">=</span> <span class="n">boundary_topo</span><span class="p">[</span><span class="n">end_tensor</span><span class="p">]</span>
+
+        <span class="c1"># Active norms whose norm node falls in [start_topo, end_topo).</span>
+        <span class="c1"># index 0 = input_norm (pre-attention),</span>
+        <span class="c1"># index 1 = post_attn_norm (pre-MLP).</span>
+        <span class="n">block_active_norms</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">active_norm</span>
+            <span class="k">for</span> <span class="n">active_norm</span> <span class="ow">in</span> <span class="n">active_norms</span>
+            <span class="k">if</span> <span class="n">start_topo</span> <span class="o">&lt;=</span> <span class="n">active_norm</span><span class="o">.</span><span class="n">topo_index</span> <span class="o">&lt;</span> <span class="n">end_topo</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">block_active_norms</span><span class="p">)</span> <span class="o">!=</span> <span class="n">active_norms_per_block</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Block </span><span class="si">{</span><span class="n">block_idx</span><span class="si">}</span><span class="s2">: expected exactly </span><span class="si">{</span><span class="n">active_norms_per_block</span><span class="si">}</span><span class="s2"> active "</span>
+                <span class="sa">f</span><span class="s2">"norm(s) in topo range [</span><span class="si">{</span><span class="n">start_topo</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">end_topo</span><span class="si">}</span><span class="s2">), "</span>
+                <span class="sa">f</span><span class="s2">"found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">block_active_norms</span><span class="p">)</span><span class="si">}</span><span class="s2">. "</span>
+                <span class="sa">f</span><span class="s2">"Ensure active_norms_per_block=</span><span class="si">{</span><span class="n">active_norms_per_block</span><span class="si">}</span><span class="s2"> matches the "</span>
+                <span class="s2">"value used in get_decoder_block_boundaries."</span>
+            <span class="p">)</span>
+
+        <span class="n">input_norm</span> <span class="o">=</span> <span class="n">block_active_norms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">post_attn_norm</span> <span class="o">=</span> <span class="n">block_active_norms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">qkv</span> <span class="o">=</span> <span class="n">LinearGroup</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">input_norm</span><span class="o">.</span><span class="n">downstream_linears</span><span class="p">,</span> <span class="n">role_patterns</span><span class="p">)</span>
+        <span class="n">gate_up</span> <span class="o">=</span> <span class="n">LinearGroup</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">post_attn_norm</span><span class="o">.</span><span class="n">downstream_linears</span><span class="p">,</span> <span class="n">role_patterns</span><span class="p">)</span>
+
+        <span class="n">intermediate_tensor</span> <span class="o">=</span> <span class="n">post_attn_norm</span><span class="o">.</span><span class="n">input_tensor</span>
+        <span class="n">o_proj_candidates</span> <span class="o">=</span> <span class="n">_find_nearest_upstream_linears</span><span class="p">(</span>
+            <span class="n">intermediate_tensor</span><span class="p">,</span> <span class="n">start_tensor</span><span class="p">,</span> <span class="n">node_by_output</span><span class="p">,</span> <span class="n">topo_index</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">o_proj_candidates</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Block </span><span class="si">{</span><span class="n">block_idx</span><span class="si">}</span><span class="s2">: no attention residual writer (o_proj) found "</span>
+                <span class="sa">f</span><span class="s2">"for residual output '</span><span class="si">{</span><span class="n">intermediate_tensor</span><span class="si">}</span><span class="s2">'."</span>
+            <span class="p">)</span>
+
+        <span class="n">down_proj_candidates</span> <span class="o">=</span> <span class="n">_find_nearest_upstream_linears</span><span class="p">(</span>
+            <span class="n">end_tensor</span><span class="p">,</span> <span class="n">intermediate_tensor</span><span class="p">,</span> <span class="n">node_by_output</span><span class="p">,</span> <span class="n">topo_index</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">down_proj_candidates</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Block </span><span class="si">{</span><span class="n">block_idx</span><span class="si">}</span><span class="s2">: no MLP residual writer (down_proj) found "</span>
+                <span class="sa">f</span><span class="s2">"for residual output '</span><span class="si">{</span><span class="n">end_tensor</span><span class="si">}</span><span class="s2">'."</span>
+            <span class="p">)</span>
+
+        <span class="n">qk_matmul</span><span class="p">,</span> <span class="n">attn_v_matmul</span> <span class="o">=</span> <span class="n">_find_attention_matmuls</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">node_by_name</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">qkv</span><span class="o">.</span><span class="n">linears</span><span class="p">],</span>
+            <span class="n">o_proj_candidates</span><span class="p">,</span>
+            <span class="n">topo_index</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">block</span> <span class="o">=</span> <span class="n">AttentionBlockTopology</span><span class="p">(</span>
+            <span class="n">qkv</span><span class="o">=</span><span class="n">qkv</span><span class="p">,</span>
+            <span class="n">o_proj</span><span class="o">=</span><span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span><span class="n">o_proj_candidates</span><span class="p">),</span>
+            <span class="n">gate_up</span><span class="o">=</span><span class="n">gate_up</span><span class="p">,</span>
+            <span class="n">down_proj</span><span class="o">=</span><span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span><span class="n">down_proj_candidates</span><span class="p">),</span>
+            <span class="n">qk_matmul</span><span class="o">=</span><span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span><span class="n">qk_matmul</span><span class="p">),</span>
+            <span class="n">attn_v_matmul</span><span class="o">=</span><span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span><span class="n">attn_v_matmul</span><span class="p">),</span>
+            <span class="n">residual_input</span><span class="o">=</span><span class="n">start_tensor</span><span class="p">,</span>
+            <span class="n">residual_output</span><span class="o">=</span><span class="n">end_tensor</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">"Block </span><span class="si">%d</span><span class="s2">: q=</span><span class="si">%s</span><span class="s2"> k=</span><span class="si">%s</span><span class="s2"> v=</span><span class="si">%s</span><span class="s2"> (fused_qkv=</span><span class="si">%s</span><span class="s2">) o_proj=</span><span class="si">%s</span><span class="s2">  gate=</span><span class="si">%s</span><span class="s2"> up=</span><span class="si">%s</span><span class="s2"> "</span>
+            <span class="s2">"(fused_gate_up=</span><span class="si">%s</span><span class="s2">) down_proj=</span><span class="si">%s</span><span class="s2">  qk_matmul=</span><span class="si">%s</span><span class="s2"> attn_v_matmul=</span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">block_idx</span><span class="p">,</span>
+            <span class="n">qkv</span><span class="o">.</span><span class="n">role</span><span class="p">(</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">Q_PROJ</span><span class="p">),</span>
+            <span class="n">qkv</span><span class="o">.</span><span class="n">role</span><span class="p">(</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">K_PROJ</span><span class="p">),</span>
+            <span class="n">qkv</span><span class="o">.</span><span class="n">role</span><span class="p">(</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">V_PROJ</span><span class="p">),</span>
+            <span class="n">qkv</span><span class="o">.</span><span class="n">role</span><span class="p">(</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">FUSED_QKV</span><span class="p">),</span>
+            <span class="n">block</span><span class="o">.</span><span class="n">o_proj</span><span class="p">,</span>
+            <span class="n">gate_up</span><span class="o">.</span><span class="n">role</span><span class="p">(</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">GATE_PROJ</span><span class="p">),</span>
+            <span class="n">gate_up</span><span class="o">.</span><span class="n">role</span><span class="p">(</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">UP_PROJ</span><span class="p">),</span>
+            <span class="n">gate_up</span><span class="o">.</span><span class="n">role</span><span class="p">(</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">FUSED_GATE_UP</span><span class="p">),</span>
+            <span class="n">block</span><span class="o">.</span><span class="n">down_proj</span><span class="p">,</span>
+            <span class="n">block</span><span class="o">.</span><span class="n">qk_matmul</span><span class="p">,</span>
+            <span class="n">block</span><span class="o">.</span><span class="n">attn_v_matmul</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">block_role_counts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">qkv</span><span class="o">.</span><span class="n">linears</span><span class="p">),</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">o_proj</span><span class="p">),</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">gate_up</span><span class="o">.</span><span class="n">linears</span><span class="p">),</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">down_proj</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">blocks</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">block_role_counts</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">"Inconsistent role shapes across </span><span class="si">%d</span><span class="s2"> decoder blocks — downstream algorithms "</span>
+            <span class="s2">"may not apply correctly. Per-block shapes "</span>
+            <span class="s2">"(n_qkv, n_o_proj, n_gate_up, n_down_proj): </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">blocks</span><span class="p">),</span>
+            <span class="n">block_role_counts</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">last_end_topo</span> <span class="o">=</span> <span class="n">boundary_topo</span><span class="p">[</span><span class="n">block_boundaries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">lm_head</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">linear</span>
+        <span class="k">for</span> <span class="n">active_norm</span> <span class="ow">in</span> <span class="n">active_norms</span>
+        <span class="k">if</span> <span class="n">active_norm</span><span class="o">.</span><span class="n">topo_index</span> <span class="o">&gt;=</span> <span class="n">last_end_topo</span>
+        <span class="k">for</span> <span class="n">linear</span> <span class="ow">in</span> <span class="n">active_norm</span><span class="o">.</span><span class="n">downstream_linears</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">lm_head</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">"lm_head not detected: no active norm found after the last block boundary."</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"lm_head: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">lm_head</span><span class="p">)</span>
+
+    <span class="n">first_start_topo</span> <span class="o">=</span> <span class="n">boundary_topo</span><span class="p">[</span><span class="n">block_boundaries</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">embed_tokens</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">node</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span>
+            <span class="k">if</span> <span class="n">topo_index</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">first_start_topo</span>
+            <span class="ow">and</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">is_embedding_table_gather</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">embed_tokens</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">"Backbone: embed_tokens not detected, no Gather op with a static weight found before "</span>
+            <span class="s2">"the first block boundary. This is expected for VLM backbones exported with "</span>
+            <span class="s2">"use_inputs_embeds=True. Rotate embedding.pth separately."</span>
+        <span class="p">)</span>
+    <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"embed_tokens: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">embed_tokens</span><span class="p">)</span>
+
+    <span class="n">result</span><span class="o">.</span><span class="n">past_key_input_names</span> <span class="o">=</span> <span class="n">_collect_matching_names_in_order</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">_PAST_KEY_INPUT_NAME_PATTERN</span>
+    <span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">past_value_input_names</span> <span class="o">=</span> <span class="n">_collect_matching_names_in_order</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">_PAST_VALUE_INPUT_NAME_PATTERN</span>
+    <span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">past_key_output_names</span> <span class="o">=</span> <span class="n">_collect_matching_names_in_order</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">outputs</span><span class="p">,</span> <span class="n">_PAST_KEY_OUTPUT_NAME_PATTERN</span>
+    <span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">past_value_output_names</span> <span class="o">=</span> <span class="n">_collect_matching_names_in_order</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">outputs</span><span class="p">,</span> <span class="n">_PAST_VALUE_OUTPUT_NAME_PATTERN</span>
+    <span class="p">)</span>
+    <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"past_key inputs: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">past_key_input_names</span><span class="p">)</span>
+    <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"past_value inputs: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">past_value_input_names</span><span class="p">)</span>
+    <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"past_key outputs: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">past_key_output_names</span><span class="p">)</span>
+    <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"past_value outputs: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">past_value_output_names</span><span class="p">)</span>
+
+    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">"Backbone: </span><span class="si">%d</span><span class="s2"> block(s), embed_tokens=</span><span class="si">%s</span><span class="s2">, lm_head=</span><span class="si">%s</span><span class="s2">."</span><span class="p">,</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">blocks</span><span class="p">),</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">embed_tokens</span><span class="p">,</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">lm_head</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<div class="viewcode-block" id="analyze_llm_topology">
+<a class="viewcode-back" href="../../../ptq_techniques/spinquant.html#aimet_onnx.llm_topology.analyze_llm_topology">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">analyze_llm_topology</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">ModelProto</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ir_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LlmTopology</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Analyze ``model`` end-to-end and return a name-based :class:`LlmTopology`.</span>
+
+<span class="sd">    How the decoder blocks and their layers are found depends on ``model_type``:</span>
+
+<span class="sd">    * For :data:`ACTIVE_NORM_MODEL_TYPES`, by graph structure, as</span>
+<span class="sd">      :func:`analyze_llm_topology_by_norm_count` does with its defaults: every</span>
+<span class="sd">      active RMSNorm is detected, and the norms are grouped two per decoder block.</span>
+<span class="sd">    * For every other supported model type, by HuggingFace module name (see</span>
+<span class="sd">      :mod:`~.hf_patterns`): the per-block projections and norms,</span>
+<span class="sd">      ``embed_tokens``, the final norm and ``lm_head``. Blocks are the decoder</span>
+<span class="sd">      layers those names belong to. The remaining fields are derived from the</span>
+<span class="sd">      graph around the named layers:</span>
+
+<span class="sd">      * ``residual_input`` — the tensor entering the block's input norm;</span>
+<span class="sd">        ``residual_output`` — the next block's ``residual_input``, or for the last</span>
+<span class="sd">        block the tensor entering the final norm (the final residual ``Add``'s</span>
+<span class="sd">        output for a headless backbone).</span>
+<span class="sd">      * ``qk_matmul`` / ``attn_v_matmul`` — the dynamic MatMuls between the named</span>
+<span class="sd">        q/k/v and o_proj (best-effort: empty when attention is a fused op).</span>
+<span class="sd">      * KV-cache names, ``hidden_size`` and ``head_dim`` — as before.</span>
+
+<span class="sd">      The named layers are then cross-checked against the graph, so a name that</span>
+<span class="sd">      points at the wrong node is an error rather than a wrong topology: each</span>
+<span class="sd">      block's q/k/v (gate/up) must be exactly the weighted linears its input</span>
+<span class="sd">      (post-attention) norm feeds, o_proj and down_proj must be the linears</span>
+<span class="sd">      writing the residual stream, and the final norm must feed exactly lm_head.</span>
+
+<span class="sd">    :param model: ONNX ModelProto to analyze. May be a float export or a</span>
+<span class="sd">        ``QuantizationSimModel`` graph. Not mutated. A dynamo export must first</span>
+<span class="sd">        go through</span>
+<span class="sd">        :func:`~aimet_onnx.prepare_passes.fix_node_names_in_dynamo_exported_onnx.fix_node_names_pass`.</span>
+<span class="sd">    :param model_type: HuggingFace ``PretrainedConfig.model_type`` of the model,</span>
+<span class="sd">        e.g. ``"llama"``. For a VLM, that of its top-level config (e.g.</span>
+<span class="sd">        ``"qwen3_vl"``); the name tables of VLM backbones not analyzed by active</span>
+<span class="sd">        norms are keyed by the text config's instead (e.g. ``"qwen2_5_vl_text"``).</span>
+<span class="sd">    :param ir_model: Pre-built *analysis* IR for ``model`` — as returned by</span>
+<span class="sd">        :func:`~.ir_analysis.build_analysis_ir`, i.e. quantizer-stripped and</span>
+<span class="sd">        RMSNorm-fused. Built here when ``None``. Pass one only to avoid a second</span>
+<span class="sd">        ``from_proto`` of a large model when the caller already holds it; a</span>
+<span class="sd">        faithful (unfused) IR will not detect norms and must not be passed.</span>
+<span class="sd">    :return: LlmTopology with every field populated. ``head_dim`` is ``None``</span>
+<span class="sd">        when the export exposes no ``past_value`` graph input to derive it from.</span>
+<span class="sd">    :raises ValueError: If ``model_type`` is unsupported, if the layers cannot</span>
+<span class="sd">        be identified by name (:class:`~.hf_patterns.NamedLayerMatchError`), if</span>
+<span class="sd">        the named layers disagree with the graph, or if the decoder blocks cannot</span>
+<span class="sd">        be found by active norms.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">model_type</span> <span class="ow">in</span> <span class="n">ACTIVE_NORM_MODEL_TYPES</span><span class="p">:</span>
+        <span class="n">topology</span> <span class="o">=</span> <span class="n">analyze_llm_topology_by_norm_count</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ir_model</span><span class="o">=</span><span class="n">ir_model</span><span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="s2">"by active norms"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">topology</span> <span class="o">=</span> <span class="n">_analyze_llm_topology_by_name</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">ir_model</span><span class="o">=</span><span class="n">ir_model</span><span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="s2">"by name"</span>
+
+    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">"Backbone (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">): </span><span class="si">%d</span><span class="s2"> block(s), embed_tokens=</span><span class="si">%s</span><span class="s2">, lm_head=</span><span class="si">%s</span><span class="s2">."</span><span class="p">,</span>
+        <span class="n">model_type</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">,</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">topology</span><span class="o">.</span><span class="n">blocks</span><span class="p">),</span>
+        <span class="n">topology</span><span class="o">.</span><span class="n">embed_tokens</span><span class="p">,</span>
+        <span class="n">topology</span><span class="o">.</span><span class="n">lm_head</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">topology</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_analyze_llm_topology_by_name</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">ModelProto</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ir_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LlmTopology</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Analyze ``model`` by HuggingFace module name (see :func:`analyze_llm_topology`).</span>
+
+<span class="sd">    :raises ValueError: If ``model_type`` has no built-in name table, if the</span>
+<span class="sd">        layers cannot be identified by name, or if the named layers disagree with</span>
+<span class="sd">        the graph.</span>
+<span class="sd">    """</span>
+    <span class="n">patterns</span> <span class="o">=</span> <span class="n">get_hf_model_patterns</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ir_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ir_model</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">build_analysis_ir</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">topo_index</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">topological_index</span><span class="p">(</span><span class="n">ir_model</span><span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">match_named_layers</span><span class="p">(</span><span class="n">ir_model</span><span class="p">,</span> <span class="n">patterns</span><span class="p">)</span>
+    <span class="n">topology</span> <span class="o">=</span> <span class="n">_build_named_topology</span><span class="p">(</span><span class="n">ir_model</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">topo_index</span><span class="p">)</span>
+    <span class="n">topology</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">_infer_hidden_size</span><span class="p">(</span><span class="n">ir_model</span><span class="p">,</span> <span class="n">topology</span><span class="p">)</span>
+
+    <span class="c1"># head_dim requires a KV-cache 'past_value' graph input; tolerate its</span>
+    <span class="c1"># absence (prefill-only / R1-only flows do not need it).</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">topology</span><span class="o">.</span><span class="n">head_dim</span> <span class="o">=</span> <span class="n">_infer_head_dim</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">topology</span><span class="o">.</span><span class="n">head_dim</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">topology</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">analyze_llm_topology_by_norm_count</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">ModelProto</span><span class="p">,</span>
+    <span class="n">active_norms_per_block</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">expected_num_blocks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">role_patterns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">LinearRole</span><span class="p">,</span> <span class="n">Pattern</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ir_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LlmTopology</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Analyze ``model`` by active norms: decoder blocks by counting active norms.</span>
+
+<span class="sd">    Detect every active RMSNorm, group them ``active_norms_per_block`` at a time</span>
+<span class="sd">    into decoder blocks, split each block's linears into roles with the generic</span>
+<span class="sd">    :func:`~.layer_roles.classify_linear_role` table, and infer ``hidden_size`` /</span>
+<span class="sd">    ``head_dim``. Needs no ``model_type``, so it also runs on architectures</span>
+<span class="sd">    without a built-in name table. :func:`analyze_llm_topology` uses it, with the</span>
+<span class="sd">    defaults, for :data:`ACTIVE_NORM_MODEL_TYPES`.</span>
+
+<span class="sd">    :param model: ONNX ModelProto to analyze. Not mutated.</span>
+<span class="sd">    :param active_norms_per_block: Active norms per decoder block (see</span>
+<span class="sd">        :func:`~.block_boundaries.get_decoder_block_boundaries`). Defaults to 2.</span>
+<span class="sd">    :param expected_num_blocks: If given, validated against the detected count.</span>
+<span class="sd">    :param role_patterns: Optional module-name → role override (see</span>
+<span class="sd">        :func:`~.layer_roles.classify_linear_role`).</span>
+<span class="sd">    :param ir_model: Pre-built analysis IR for ``model``, as for</span>
+<span class="sd">        :func:`analyze_llm_topology`.</span>
+<span class="sd">    :return: LlmTopology with block/backbone roles, ``active_norms``,</span>
+<span class="sd">        ``hidden_size`` and ``head_dim`` populated. ``head_dim`` is ``None`` when</span>
+<span class="sd">        the export exposes no ``past_value`` graph input to derive it from.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">ir_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ir_model</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">build_analysis_ir</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">topo_index</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">topological_index</span><span class="p">(</span><span class="n">ir_model</span><span class="p">)</span>
+
+    <span class="n">active_norms</span> <span class="o">=</span> <span class="n">find_active_norms_in_ir</span><span class="p">(</span><span class="n">ir_model</span><span class="p">,</span> <span class="n">topo_index</span><span class="p">)</span>
+    <span class="n">boundaries</span> <span class="o">=</span> <span class="n">get_decoder_block_boundaries_in_ir</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="p">,</span>
+        <span class="n">active_norms</span><span class="o">=</span><span class="n">active_norms</span><span class="p">,</span>
+        <span class="n">expected_num_blocks</span><span class="o">=</span><span class="n">expected_num_blocks</span><span class="p">,</span>
+        <span class="n">active_norms_per_block</span><span class="o">=</span><span class="n">active_norms_per_block</span><span class="p">,</span>
+        <span class="n">topo_index</span><span class="o">=</span><span class="n">topo_index</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">topology</span> <span class="o">=</span> <span class="n">get_llm_topology</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="p">,</span>
+        <span class="n">boundaries</span><span class="p">,</span>
+        <span class="n">active_norms</span><span class="o">=</span><span class="n">active_norms</span><span class="p">,</span>
+        <span class="n">active_norms_per_block</span><span class="o">=</span><span class="n">active_norms_per_block</span><span class="p">,</span>
+        <span class="n">role_patterns</span><span class="o">=</span><span class="n">role_patterns</span><span class="p">,</span>
+        <span class="n">topo_index</span><span class="o">=</span><span class="n">topo_index</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">topology</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">_infer_hidden_size</span><span class="p">(</span><span class="n">ir_model</span><span class="p">,</span> <span class="n">topology</span><span class="p">)</span>
+
+    <span class="c1"># head_dim requires a KV-cache 'past_value' graph input; tolerate its</span>
+    <span class="c1"># absence (prefill-only / R1-only flows do not need it).</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">topology</span><span class="o">.</span><span class="n">head_dim</span> <span class="o">=</span> <span class="n">_infer_head_dim</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">topology</span><span class="o">.</span><span class="n">head_dim</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">topology</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_build_named_topology</span><span class="p">(</span>
+    <span class="n">ir_model</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span>
+    <span class="n">match</span><span class="p">:</span> <span class="n">NamedLayerMatch</span><span class="p">,</span>
+    <span class="n">topo_index</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LlmTopology</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Build an :class:`LlmTopology` from validated named layers.</span>
+
+<span class="sd">    :raises ValueError: Listing every place the named layers disagree with the</span>
+<span class="sd">        graph.</span>
+<span class="sd">    """</span>
+    <span class="n">node_by_name</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_by_name</span><span class="p">(</span><span class="n">ir_model</span><span class="p">)</span>
+    <span class="n">node_by_output</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_by_output_tensor</span><span class="p">(</span><span class="n">ir_model</span><span class="p">)</span>
+    <span class="n">problems</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">active_norm</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActiveNorm</span><span class="p">:</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">get_active_norm</span><span class="p">(</span><span class="n">node_by_name</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">topo_index</span><span class="p">)</span>
+        <span class="c1"># A gamma shared between norms (identical tensors de-duplicated by the</span>
+        <span class="c1"># exporter) is rejected rather than followed: SpinQuant's norm fusion resets</span>
+        <span class="c1"># each gamma to ones in place, so with one shared tensor the first reset</span>
+        <span class="c1"># would silently change every other norm. Trained models never share gammas.</span>
+        <span class="k">if</span> <span class="n">norm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Norm '</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">' has no static gamma (scale) input of its own. "</span>
+                <span class="s2">"Either the norm is not affine, or the exporter de-duplicated "</span>
+                <span class="s2">"identical gamma tensors (e.g. behind an Identity op), as happens "</span>
+                <span class="s2">"for an untrained model whose gammas are all 1.0."</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">norm</span>
+
+    <span class="n">input_norms</span> <span class="o">=</span> <span class="p">[</span><span class="n">active_norm</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">input_norm</span><span class="p">)</span> <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">match</span><span class="o">.</span><span class="n">blocks</span><span class="p">]</span>
+    <span class="c1"># None for a Mamba block, whose only norm is its input norm.</span>
+    <span class="n">post_attention_norms</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">active_norm</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">post_attention_norm</span><span class="p">)</span> <span class="k">if</span> <span class="n">block</span><span class="o">.</span><span class="n">post_attention_norm</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">match</span><span class="o">.</span><span class="n">blocks</span>
+    <span class="p">]</span>
+    <span class="n">final_norm</span> <span class="o">=</span> <span class="n">active_norm</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">final_norm</span><span class="p">)</span> <span class="k">if</span> <span class="n">match</span><span class="o">.</span><span class="n">final_norm</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="c1"># The last block ends where the final norm reads the residual stream, as every</span>
+    <span class="c1"># other block ends at the next one's input norm. A headless backbone's final</span>
+    <span class="c1"># norm feeds no linear and may be absent altogether, so there the last block</span>
+    <span class="c1"># ends on the final residual Add instead: SpinQuant un-rotates the stream by</span>
+    <span class="c1"># rewiring every consumer of that tensor, the backbone output included.</span>
+    <span class="n">residual_starts</span> <span class="o">=</span> <span class="p">[</span><span class="n">norm</span><span class="o">.</span><span class="n">input_tensor</span> <span class="k">for</span> <span class="n">norm</span> <span class="ow">in</span> <span class="n">input_norms</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">final_norm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">final_norm</span><span class="o">.</span><span class="n">downstream_linears</span><span class="p">:</span>
+        <span class="n">residual_starts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">final_norm</span><span class="o">.</span><span class="n">input_tensor</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">residual_starts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">headless_block_end</span><span class="p">(</span><span class="n">ir_model</span><span class="p">,</span> <span class="n">residual_starts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">topo_index</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">LlmTopology</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">blocks</span><span class="p">):</span>
+        <span class="n">input_norm</span><span class="p">,</span> <span class="n">post_attention_norm</span> <span class="o">=</span> <span class="n">input_norms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">post_attention_norms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Block </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> (layer </span><span class="si">{</span><span class="n">block</span><span class="o">.</span><span class="n">layer_id</span><span class="si">}</span><span class="s2">)"</span>
+
+        <span class="k">if</span> <span class="n">post_attention_norm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">mamba_block</span><span class="p">,</span> <span class="n">mamba_problems</span> <span class="o">=</span> <span class="n">_build_mamba_block</span><span class="p">(</span>
+                <span class="n">block</span><span class="p">,</span>
+                <span class="n">label</span><span class="p">,</span>
+                <span class="n">input_norm</span><span class="p">,</span>
+                <span class="n">residual_starts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="n">residual_starts</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">node_by_name</span><span class="p">,</span>
+                <span class="n">node_by_output</span><span class="p">,</span>
+                <span class="n">topo_index</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">problems</span> <span class="o">+=</span> <span class="n">mamba_problems</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mamba_block</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">qkv</span> <span class="o">=</span> <span class="n">_named_group</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">_QKV_ROLES</span><span class="p">,</span> <span class="n">topo_index</span><span class="p">,</span> <span class="n">node_by_name</span><span class="p">)</span>
+        <span class="n">gate_up</span> <span class="o">=</span> <span class="n">_named_group</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">_GATE_UP_ROLES</span><span class="p">,</span> <span class="n">topo_index</span><span class="p">,</span> <span class="n">node_by_name</span><span class="p">)</span>
+        <span class="n">problems</span> <span class="o">+=</span> <span class="n">_compare</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: q/k/v"</span><span class="p">,</span>
+            <span class="n">qkv</span><span class="o">.</span><span class="n">linears</span><span class="p">,</span>
+            <span class="s2">"input norm consumers"</span><span class="p">,</span>
+            <span class="n">input_norm</span><span class="o">.</span><span class="n">downstream_linears</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">problems</span> <span class="o">+=</span> <span class="n">_compare</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: gate/up"</span><span class="p">,</span>
+            <span class="n">gate_up</span><span class="o">.</span><span class="n">linears</span><span class="p">,</span>
+            <span class="s2">"post-attention norm consumers"</span><span class="p">,</span>
+            <span class="n">post_attention_norm</span><span class="o">.</span><span class="n">downstream_linears</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">o_proj</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">linears</span><span class="p">[</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">O_PROJ</span><span class="p">]</span>
+        <span class="n">down_proj</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">linears</span><span class="p">[</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">DOWN_PROJ</span><span class="p">]</span>
+        <span class="n">attn_writers</span> <span class="o">=</span> <span class="n">_find_nearest_upstream_linears</span><span class="p">(</span>
+            <span class="n">post_attention_norm</span><span class="o">.</span><span class="n">input_tensor</span><span class="p">,</span>
+            <span class="n">input_norm</span><span class="o">.</span><span class="n">input_tensor</span><span class="p">,</span>
+            <span class="n">node_by_output</span><span class="p">,</span>
+            <span class="n">topo_index</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">mlp_writers</span> <span class="o">=</span> <span class="n">_find_nearest_upstream_linears</span><span class="p">(</span>
+            <span class="n">residual_starts</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">post_attention_norm</span><span class="o">.</span><span class="n">input_tensor</span><span class="p">,</span>
+            <span class="n">node_by_output</span><span class="p">,</span>
+            <span class="n">topo_index</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">problems</span> <span class="o">+=</span> <span class="n">_compare</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: o_proj"</span><span class="p">,</span>
+            <span class="n">o_proj</span><span class="p">,</span>
+            <span class="s2">"attention residual writers"</span><span class="p">,</span>
+            <span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span><span class="n">attn_writers</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">problems</span> <span class="o">+=</span> <span class="n">_compare</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: down_proj"</span><span class="p">,</span>
+            <span class="n">down_proj</span><span class="p">,</span>
+            <span class="s2">"MLP residual writers"</span><span class="p">,</span>
+            <span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span><span class="n">mlp_writers</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="n">qk_matmul</span><span class="p">,</span> <span class="n">attn_v_matmul</span> <span class="o">=</span> <span class="n">_find_attention_matmuls</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">node_by_name</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">qkv</span><span class="o">.</span><span class="n">linears</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">node_by_name</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">o_proj</span><span class="p">],</span>
+            <span class="n">topo_index</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">qk_matmul</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">attn_v_matmul</span><span class="p">:</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="s2">"</span><span class="si">%s</span><span class="s2">: dynamic attention MatMuls not found (qk=</span><span class="si">%s</span><span class="s2">, attn_v=</span><span class="si">%s</span><span class="s2">); "</span>
+                <span class="s2">"attention may be a fused op."</span><span class="p">,</span>
+                <span class="n">label</span><span class="p">,</span>
+                <span class="n">qk_matmul</span><span class="p">,</span>
+                <span class="n">attn_v_matmul</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="n">result</span><span class="o">.</span><span class="n">blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">AttentionBlockTopology</span><span class="p">(</span>
+                <span class="n">qkv</span><span class="o">=</span><span class="n">qkv</span><span class="p">,</span>
+                <span class="n">o_proj</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">o_proj</span><span class="p">),</span>
+                <span class="n">gate_up</span><span class="o">=</span><span class="n">gate_up</span><span class="p">,</span>
+                <span class="n">down_proj</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">down_proj</span><span class="p">),</span>
+                <span class="n">qk_matmul</span><span class="o">=</span><span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span><span class="n">qk_matmul</span><span class="p">),</span>
+                <span class="n">attn_v_matmul</span><span class="o">=</span><span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span><span class="n">attn_v_matmul</span><span class="p">),</span>
+                <span class="n">residual_input</span><span class="o">=</span><span class="n">residual_starts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="n">residual_output</span><span class="o">=</span><span class="n">residual_starts</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">result</span><span class="o">.</span><span class="n">lm_head</span> <span class="o">=</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">lm_head</span><span class="p">]</span> <span class="k">if</span> <span class="n">match</span><span class="o">.</span><span class="n">lm_head</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">embed_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">embed_tokens</span><span class="p">]</span> <span class="k">if</span> <span class="n">match</span><span class="o">.</span><span class="n">embed_tokens</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">final_norm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">problems</span> <span class="o">+=</span> <span class="n">_compare</span><span class="p">(</span>
+            <span class="s2">"lm_head"</span><span class="p">,</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">lm_head</span><span class="p">,</span>
+            <span class="s2">"final norm consumers"</span><span class="p">,</span>
+            <span class="n">final_norm</span><span class="o">.</span><span class="n">downstream_linears</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">problems</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"The layers identified by name disagree with the graph structure:</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - </span><span class="si">{</span><span class="n">problem</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">problem</span> <span class="ow">in</span> <span class="n">problems</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Same membership rule as find_active_norms_in_ir: a norm is active iff it</span>
+    <span class="c1"># feeds a weighted linear, which leaves out a headless backbone's final norm.</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">active_norms</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="n">norm</span>
+            <span class="k">for</span> <span class="n">norm</span> <span class="ow">in</span> <span class="p">(</span><span class="o">*</span><span class="n">input_norms</span><span class="p">,</span> <span class="o">*</span><span class="n">post_attention_norms</span><span class="p">,</span> <span class="n">final_norm</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">norm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">norm</span><span class="o">.</span><span class="n">downstream_linears</span>
+        <span class="p">),</span>
+        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">norm</span><span class="p">:</span> <span class="n">norm</span><span class="o">.</span><span class="n">topo_index</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">result</span><span class="o">.</span><span class="n">past_key_input_names</span> <span class="o">=</span> <span class="n">_collect_matching_names_in_order</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">_PAST_KEY_INPUT_NAME_PATTERN</span>
+    <span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">past_value_input_names</span> <span class="o">=</span> <span class="n">_collect_matching_names_in_order</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">_PAST_VALUE_INPUT_NAME_PATTERN</span>
+    <span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">past_key_output_names</span> <span class="o">=</span> <span class="n">_collect_matching_names_in_order</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">outputs</span><span class="p">,</span> <span class="n">_PAST_KEY_OUTPUT_NAME_PATTERN</span>
+    <span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">past_value_output_names</span> <span class="o">=</span> <span class="n">_collect_matching_names_in_order</span><span class="p">(</span>
+        <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">outputs</span><span class="p">,</span> <span class="n">_PAST_VALUE_OUTPUT_NAME_PATTERN</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_build_mamba_block</span><span class="p">(</span>
+    <span class="n">block</span><span class="p">:</span> <span class="n">BlockMatch</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">input_norm</span><span class="p">:</span> <span class="n">ActiveNorm</span><span class="p">,</span>
+    <span class="n">residual_input</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">residual_output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">node_by_name</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span>
+    <span class="n">node_by_output</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span>
+    <span class="n">topo_index</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">MambaBlockTopology</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""Build one :attr:`~.topology_types.BlockKind.MAMBA` block and cross-check it against the graph.</span>
+
+<span class="sd">    A Mamba block reads the residual stream through its one norm into the mixer's</span>
+<span class="sd">    ``in_proj`` and writes it back through ``out_proj``, with the selective scan in</span>
+<span class="sd">    between. It has no attention, so no Q·Kᵀ / softmax·V MatMuls are searched for.</span>
+
+<span class="sd">    :return: The block, and every problem found.</span>
+<span class="sd">    """</span>
+    <span class="n">mixer</span> <span class="o">=</span> <span class="n">_named_group</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="p">(</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">MIXER_IN_PROJ</span><span class="p">,),</span> <span class="n">topo_index</span><span class="p">,</span> <span class="n">node_by_name</span><span class="p">)</span>
+    <span class="n">mixer_out_proj</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">linears</span><span class="p">[</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">MIXER_OUT_PROJ</span><span class="p">]</span>
+    <span class="n">writers</span> <span class="o">=</span> <span class="n">_find_nearest_upstream_linears</span><span class="p">(</span>
+        <span class="n">residual_output</span><span class="p">,</span> <span class="n">input_norm</span><span class="o">.</span><span class="n">input_tensor</span><span class="p">,</span> <span class="n">node_by_output</span><span class="p">,</span> <span class="n">topo_index</span>
+    <span class="p">)</span>
+    <span class="n">problems</span> <span class="o">=</span> <span class="n">_compare</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: mixer in_proj"</span><span class="p">,</span>
+        <span class="n">mixer</span><span class="o">.</span><span class="n">linears</span><span class="p">,</span>
+        <span class="s2">"norm consumers"</span><span class="p">,</span>
+        <span class="n">input_norm</span><span class="o">.</span><span class="n">downstream_linears</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">problems</span> <span class="o">+=</span> <span class="n">_compare</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: mixer out_proj"</span><span class="p">,</span>
+        <span class="n">mixer_out_proj</span><span class="p">,</span>
+        <span class="s2">"mixer residual writers"</span><span class="p">,</span>
+        <span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_names</span><span class="p">(</span><span class="n">writers</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">MambaBlockTopology</span><span class="p">(</span>
+            <span class="n">mixer</span><span class="o">=</span><span class="n">mixer</span><span class="p">,</span>
+            <span class="n">mixer_out_proj</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">mixer_out_proj</span><span class="p">),</span>
+            <span class="n">residual_input</span><span class="o">=</span><span class="n">residual_input</span><span class="p">,</span>
+            <span class="n">residual_output</span><span class="o">=</span><span class="n">residual_output</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">problems</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="c1">#: Roles of the attention read group, and of the MLP read group. A block has</span>
+<span class="c1">#: either the separate or the fused roles, as its architecture's table names.</span>
+<span class="n">_QKV_ROLES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">LinearRole</span><span class="o">.</span><span class="n">Q_PROJ</span><span class="p">,</span>
+    <span class="n">LinearRole</span><span class="o">.</span><span class="n">K_PROJ</span><span class="p">,</span>
+    <span class="n">LinearRole</span><span class="o">.</span><span class="n">V_PROJ</span><span class="p">,</span>
+    <span class="n">LinearRole</span><span class="o">.</span><span class="n">FUSED_QKV</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">_GATE_UP_ROLES</span> <span class="o">=</span> <span class="p">(</span><span class="n">LinearRole</span><span class="o">.</span><span class="n">GATE_PROJ</span><span class="p">,</span> <span class="n">LinearRole</span><span class="o">.</span><span class="n">UP_PROJ</span><span class="p">,</span> <span class="n">LinearRole</span><span class="o">.</span><span class="n">FUSED_GATE_UP</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_named_group</span><span class="p">(</span>
+    <span class="n">block</span><span class="p">:</span> <span class="n">BlockMatch</span><span class="p">,</span>
+    <span class="n">roles</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">LinearRole</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">topo_index</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+    <span class="n">node_by_name</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LinearGroup</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Build a read group from the named linears of ``roles``, in topological order."""</span>
+    <span class="n">by_role</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">LinearRole</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="n">role</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">LinearRole</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">roles</span><span class="p">:</span>
+        <span class="n">by_role</span><span class="p">[</span><span class="n">role</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">linears</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="p">[]))</span>
+    <span class="n">linears</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">roles</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">by_role</span><span class="p">[</span><span class="n">role</span><span class="p">]),</span>
+        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">name</span><span class="p">:</span> <span class="n">topo_index</span><span class="p">[</span><span class="n">node_by_name</span><span class="p">[</span><span class="n">name</span><span class="p">]],</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">LinearGroup</span><span class="p">(</span><span class="n">linears</span><span class="o">=</span><span class="n">linears</span><span class="p">,</span> <span class="n">by_role</span><span class="o">=</span><span class="n">by_role</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_compare</span><span class="p">(</span>
+    <span class="n">named_label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">named</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">graph_label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">from_graph</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Return a problem if the ``named`` nodes are not the ``from_graph`` nodes."""</span>
+    <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">named</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">from_graph</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">named_label</span><span class="si">}</span><span class="s2"> by name </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">named</span><span class="p">)</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="n">graph_label</span><span class="si">}</span><span class="s2"> in the graph "</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">from_graph</span><span class="p">)</span><span class="si">}</span><span class="s2">."</span>
+    <span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_collect_matching_names_in_order</span><span class="p">(</span>
+    <span class="n">values</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Value</span><span class="p">],</span> <span class="n">pattern</span><span class="p">:</span> <span class="n">Pattern</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Return names matching ``pattern`` in graph declaration order."""</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_attention_matmuls</span><span class="p">(</span>
+    <span class="n">qkv_linears</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span>
+    <span class="n">o_proj</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span>
+    <span class="n">topo_index</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""Return ``(qk_matmul_nodes, attn_v_matmul_nodes)`` for a decoder block.</span>
+
+<span class="sd">    Attention computes ``softmax(Q @ Kᵀ / scale) @ V``. Both MatMuls are</span>
+<span class="sd">    *dynamic* — both inputs are activations, so neither has a static weight.</span>
+<span class="sd">    Walking forward from the QKV projections toward O (not crossing ``o_proj``</span>
+<span class="sd">    or any other weighted linear), we collect every dynamic MatMul and every</span>
+<span class="sd">    Softmax. A dynamic MatMul that *feeds* a Softmax is Q·Kᵀ; one that</span>
+<span class="sd">    *consumes* a Softmax output is softmax·V.</span>
+
+<span class="sd">    Per-head split (SHA) exports emit one of each per head, so both lists may</span>
+<span class="sd">    hold multiple nodes. Returns empty lists when the pattern is absent (e.g. an</span>
+<span class="sd">    export that fuses attention into a single op with no explicit MatMuls) —</span>
+<span class="sd">    dynamic-MatMul identification is best-effort and not required by every</span>
+<span class="sd">    consumer.</span>
+
+<span class="sd">    :param qkv_linears: The block's Q/K/V projection nodes (walk start).</span>
+<span class="sd">    :param o_proj: The block's attention-output projection node(s) (walk fence).</span>
+<span class="sd">    :param topo_index: Node → topological index map, used to order the results.</span>
+<span class="sd">    :return: Two lists of dynamic MatMul nodes: Q·Kᵀ and softmax·V.</span>
+<span class="sd">    """</span>
+    <span class="n">o_proj_nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">o_proj</span><span class="p">)</span>
+    <span class="n">dynamic_matmuls</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="p">[</span><span class="n">successor</span> <span class="k">for</span> <span class="n">linear</span> <span class="ow">in</span> <span class="n">qkv_linears</span> <span class="k">for</span> <span class="n">successor</span> <span class="ow">in</span> <span class="n">linear</span><span class="o">.</span><span class="n">successors</span><span class="p">()]</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">visited</span> <span class="ow">or</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">o_proj_nodes</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="c1"># Do not cross other weighted linears — the attention path holds only</span>
+        <span class="c1"># dynamic MatMuls between the QKV projections and O.</span>
+        <span class="k">if</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">is_weighted_linear</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">is_dynamic_matmul</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+            <span class="n">dynamic_matmuls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">queue</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">successors</span><span class="p">())</span>
+
+    <span class="n">qk_matmul</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">dynamic_matmuls</span> <span class="k">if</span> <span class="n">_matmul_touches_softmax</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">forward</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+    <span class="n">attn_v_matmul</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">dynamic_matmuls</span> <span class="k">if</span> <span class="n">_matmul_touches_softmax</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">forward</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">ir_analysis</span><span class="o">.</span><span class="n">sorted_by_topology</span><span class="p">(</span><span class="n">qk_matmul</span><span class="p">,</span> <span class="n">topo_index</span><span class="p">),</span>
+        <span class="n">ir_analysis</span><span class="o">.</span><span class="n">sorted_by_topology</span><span class="p">(</span><span class="n">attn_v_matmul</span><span class="p">,</span> <span class="n">topo_index</span><span class="p">),</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_matmul_touches_softmax</span><span class="p">(</span><span class="n">matmul</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">forward</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return True if a Softmax is reachable from ``matmul`` in the given direction.</span>
+
+<span class="sd">    Walks ``forward`` (through consumers) or backward (through input producers)</span>
+<span class="sd">    from ``matmul``, stopping at the next MatMul boundary. A Softmax reached</span>
+<span class="sd">    before hitting another MatMul means ``matmul`` feeds (forward) or consumes</span>
+<span class="sd">    (backward) that Softmax — i.e. it is Q·Kᵀ or softmax·V respectively.</span>
+<span class="sd">    """</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">matmul</span><span class="o">.</span><span class="n">successors</span><span class="p">()</span> <span class="k">if</span> <span class="n">forward</span> <span class="k">else</span> <span class="n">matmul</span><span class="o">.</span><span class="n">predecessors</span><span class="p">())</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="ow">in</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">SOFTMAX_TYPES</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="c1"># Stop at any other MatMul so a head's Q·Kᵀ is not linked to the next</span>
+        <span class="c1"># head's Softmax through a shared downstream op.</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"MatMul"</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">queue</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">successors</span><span class="p">()</span> <span class="k">if</span> <span class="n">forward</span> <span class="k">else</span> <span class="n">node</span><span class="o">.</span><span class="n">predecessors</span><span class="p">())</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_nearest_upstream_linears</span><span class="p">(</span>
+    <span class="n">target_tensor</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">boundary_tensor</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">node_by_output</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span>
+    <span class="n">topo_index</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Nearest weighted linears feeding target_tensor, via a backward walk.</span>
+
+<span class="sd">    Walks backward from the node producing target_tensor and collects the first</span>
+<span class="sd">    weighted linear (MatMul/Gemm/Conv with a static weight) on each path,</span>
+<span class="sd">    stopping there; any other op type is crossed transparently.</span>
+
+<span class="sd">    NOTE: The walk is fenced at boundary_tensor's producer: that node and anything</span>
+<span class="sd">    earlier are skipped, so the walk does not cross into the previous block.</span>
+
+<span class="sd">    :param target_tensor: Tensor whose upstream linears are wanted (walk start).</span>
+<span class="sd">    :param boundary_tensor: Upstream edge; its producer and earlier nodes are the</span>
+<span class="sd">        lower fence.</span>
+<span class="sd">    :param node_by_output: Map of output tensor name -&gt; producing node.</span>
+<span class="sd">    :param topo_index: Map of node -&gt; topological index.</span>
+<span class="sd">    :return: The nearest weighted linear on each backward path, in topological order.</span>
+<span class="sd">    """</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">node_by_output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">target_tensor</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">fence_node</span> <span class="o">=</span> <span class="n">node_by_output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">boundary_tensor</span><span class="p">)</span>
+    <span class="n">lo</span> <span class="o">=</span> <span class="n">topo_index</span><span class="p">[</span><span class="n">fence_node</span><span class="p">]</span> <span class="k">if</span> <span class="n">fence_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">linears</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">topo_index</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">lo</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">is_weighted_linear</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+            <span class="n">linears</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">continue</span>  <span class="c1"># this linear shadows everything upstream of it</span>
+        <span class="n">queue</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">predecessors</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">sorted_by_topology</span><span class="p">(</span><span class="n">linears</span><span class="p">,</span> <span class="n">topo_index</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_infer_hidden_size</span><span class="p">(</span><span class="n">ir_model</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">role_map</span><span class="p">:</span> <span class="n">LlmTopology</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Infer the model hidden size from embed_tokens, lm_head, or q/k/v_proj weights.</span>
+
+<span class="sd">    Tries ``embed_tokens`` first (Gather table ``[vocab, hidden]``, last dim = hidden).</span>
+<span class="sd">    Falls back to ``lm_head``, then to each block's input read group, for</span>
+<span class="sd">    backbones exported with ``use_inputs_embeds=True`` that have no Gather op.</span>
+
+<span class="sd">    Takes the analysis IR rather than a ``ModelProto`` so the weight layout is</span>
+<span class="sd">    derived by the one implementation that already knows it,</span>
+<span class="sd">    :func:`~.ir_analysis.get_weight_value` — the topology itself only carries node</span>
+<span class="sd">    names. Shapes are read off the static tensor without materializing it; an</span>
+<span class="sd">    lm_head table can be hundreds of megabytes.</span>
+
+<span class="sd">    :param ir_model: Analysis IR model from :func:`~.ir_analysis.build_analysis_ir`.</span>
+<span class="sd">    :param role_map: Topology produced by :func:`get_llm_topology`.</span>
+<span class="sd">    :return: The hidden dimension size.</span>
+<span class="sd">    """</span>
+    <span class="n">node_by_name</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">node_by_name</span><span class="p">(</span><span class="n">ir_model</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">embed_name</span> <span class="ow">in</span> <span class="n">role_map</span><span class="o">.</span><span class="n">embed_tokens</span><span class="p">:</span>
+        <span class="c1"># Only the data input (a [vocab, hidden] table) yields hidden_size; other</span>
+        <span class="c1"># static inputs (e.g. axis attributes, indices) are not embedding tables.</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">node_by_name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">embed_name</span><span class="p">)</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">node</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Gemm transB=1 stores W [vocab, hidden] -&gt; hidden = shape[-1].</span>
+    <span class="c1"># MatMul stores W [hidden, vocab]        -&gt; hidden = shape[0].</span>
+    <span class="c1"># Conv 1x1 stores W [vocab, hidden, 1, 1] -&gt; hidden = shape[1].</span>
+    <span class="n">candidates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">role_map</span><span class="o">.</span><span class="n">lm_head</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">role_map</span><span class="o">.</span><span class="n">blocks</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">AttentionBlockTopology</span><span class="p">):</span>
+            <span class="n">candidates</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">qkv</span><span class="o">.</span><span class="n">linears</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">MambaBlockTopology</span><span class="p">):</span>
+            <span class="n">candidates</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">mixer</span><span class="o">.</span><span class="n">linears</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unsupported block topology: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">linear_name</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">node_by_name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">linear_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">weight</span><span class="p">,</span> <span class="n">is_transposed</span> <span class="o">=</span> <span class="n">ir_analysis</span><span class="o">.</span><span class="n">get_weight_value</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Conv"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># [out_ch, in_ch, *k]: in_ch = hidden</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">is_transposed</span> <span class="k">else</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="s2">"Cannot infer hidden_size: no embed_tokens, lm_head or block input projection static weight found in role_map"</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_infer_head_dim</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">ModelProto</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Infer per-head dimension from a ``past_value`` graph input's last axis.</span>
+
+<span class="sd">    HF/optimum LLM exports include ``past_value_*`` (or ``past_key_values.*.value``)</span>
+<span class="sd">    inputs whose final dimension is ``head_dim`` regardless of the surrounding</span>
+<span class="sd">    layout (``[B, num_kv_heads, past_seq, head_dim]`` or</span>
+<span class="sd">    ``[B, past_seq, num_kv_heads, head_dim]``). This avoids having to derive</span>
+<span class="sd">    ``head_dim`` from ``hidden_size / num_heads``, which is wrong for models</span>
+<span class="sd">    that decouple the two (e.g. Gemma3 fixes ``head_dim=256`` independent of</span>
+<span class="sd">    hidden size).</span>
+
+<span class="sd">    :param model: ONNX ModelProto whose graph inputs are scanned.</span>
+<span class="sd">    :return: ``head_dim`` read from the last dim of the first matching input.</span>
+<span class="sd">    :raises ValueError: If no ``past_value`` input exists, or if its last dim</span>
+<span class="sd">        is not a static positive integer.</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="n">inp</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">_PAST_VALUE_INPUT_NAME_PATTERN</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">inp</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">tensor_type</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">dim</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># Must be a statically-known positive int. Symbolic dims (dim_param set,</span>
+        <span class="c1"># or dim_value == 0) cannot be used to derive head_dim.</span>
+        <span class="k">if</span> <span class="n">last</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">"dim_value"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">last</span><span class="o">.</span><span class="n">dim_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">head_dim</span> <span class="o">=</span> <span class="n">last</span><span class="o">.</span><span class="n">dim_value</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">"Derived head_dim=</span><span class="si">%d</span><span class="s2"> from graph input '</span><span class="si">%s</span><span class="s2">' (last dim of shape </span><span class="si">%s</span><span class="s2">)."</span><span class="p">,</span>
+                <span class="n">head_dim</span><span class="p">,</span>
+                <span class="n">inp</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">dim_value</span> <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">"dim_value"</span><span class="p">)</span> <span class="k">else</span> <span class="n">d</span><span class="o">.</span><span class="n">dim_param</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">head_dim</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="s2">"Cannot infer head_dim: no graph input matching 'past_value' with a "</span>
+        <span class="s2">"static positive last dimension was found."</span>
+    <span class="p">)</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"ACTIVE_NORM_MODEL_TYPES"</span><span class="p">,</span>
+    <span class="s2">"analyze_llm_topology"</span><span class="p">,</span>
+    <span class="s2">"analyze_llm_topology_by_norm_count"</span><span class="p">,</span>
+    <span class="s2">"get_llm_topology"</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+
+
+                </div>
+            </article>
+            
+
+                <div data-pagefind-ignore>
+
+                    <footer class="mt-10 border-t border-lumina-border pt-6">
+    
+    
+    
+    
+    
+    
+</footer>
+
+                </div>
+
+
+            
+        </main>
+        
+            <aside id="lumina-toc">
+
+                
+
+            </aside>
+        
+    </div>
+
+    
+        <button id="lumina-back-to-top"
+                x-data="backToTop()"
+                x-show="visible"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                @click="scrollToTop()"
+                class="lumina-back-to-top z-40 hover:border-lumina-accent transition-colors"
+                aria-label="Back to top"
+                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></button>
+    
+
+    <dialog id="lumina-search-modal"
+        x-data="searchModal()"
+        @cancel.prevent="close()"
+        @keydown.escape.stop.prevent="close()"
+        @keydown.meta.k.window.prevent="toggle()"
+        @keydown.ctrl.k.window.prevent="toggle()"
+        @click.self="close()"
+        class="lumina-overlay-backdrop fixed inset-0 z-[100] m-0 h-full w-full max-h-none max-w-none border-0 p-0"
+        aria-modal="true"
+        aria-label="Search documentation">
+    
+    <div class="relative mx-auto mt-[5vh] flex max-h-[90dvh] w-[calc(100%-2rem)] max-w-xl flex-col sm:mt-[12vh] sm:max-h-[80dvh] cursor-auto rounded-xl border border-lumina-border bg-lumina-bg shadow-2xl">
+        
+        <div class="flex items-center border-b border-lumina-border px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lumina-text-muted" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+            <input type="search"
+                   x-ref="searchInput"
+                   x-model="query"
+                   @input.debounce.150ms="search()"
+                   @keydown.arrow-down.prevent="moveDown()"
+                   @keydown.arrow-up.prevent="moveUp()"
+                   @keydown.enter.prevent="goToSelected()"
+                   role="combobox"
+                   aria-autocomplete="list"
+                   aria-controls="lumina-search-results"
+                   :aria-expanded="results.length > 0"
+                   :aria-activedescendant="results.length > 0 ? 'lumina-search-result-' + selectedIndex : ''"
+                   class="w-full border-0 bg-transparent px-3 py-4 text-lumina-text placeholder-lumina-text-muted outline-none"
+                   aria-label="Search documentation"
+                   placeholder="Search docs..."
+                   autocomplete="off">
+            <kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1.5 py-0.5 text-xs text-lumina-text-muted">esc</kbd>
+        </div>
+        <template x-if="loaded && scopes.length > 1 && pagefind">
+            <div class="flex shrink-0 items-center gap-3 border-b border-lumina-border px-4 py-2">
+                <label for="lumina-search-scope"
+                       class="shrink-0 text-xs text-lumina-text-muted">Search in</label>
+                <select id="lumina-search-scope"
+                        x-model="scope"
+                        @change="search()"
+                        class="min-w-0 flex-1 rounded border border-lumina-border bg-lumina-bg px-2 py-2 text-sm text-lumina-text focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                    <option value="">All docs</option>
+                    <template x-for="name in scopes" :key="name">
+                        <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+        
+        <div class="min-h-0 overflow-y-auto p-2" :aria-busy="searching">
+            <template x-if="!loaded || searching">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <span x-text="loaded ? $t('Searching…') : $t('Loading search index…')"></span>
+                </p>
+            </template>
+            <template x-if="loaded && !searching && !error && query.trim().length > 0 && results.length === 0">
+                <div class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <p x-text="scope ? $t('No results in {scope}.', { scope }) : $t('No results found.')"></p>
+                    <template x-if="scope">
+                        <button type="button"
+                                @click="searchAll()"
+                                class="mt-2 rounded px-3 py-2 text-lumina-accent underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                            Search all docs
+                        </button>
+                    </template>
+                </div>
+            </template>
+            <template x-if="error">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted"
+                   x-text="error"></p>
+            </template>
+            <div id="lumina-search-results"
+                 role="listbox"
+                 aria-label="Search documentation">
+                <template x-for="(result, index) in results" :key="result.url">
+                    <a :id="'lumina-search-result-' + index"
+                       :href="result.url"
+                       role="option"
+                       :aria-selected="index === selectedIndex"
+                       data-search-result
+                       class="flex flex-col gap-1 rounded-lg px-3 py-2.5 no-underline transition-colors focus-visible:outline-2 focus-visible:outline-lumina-accent"
+                       :class="[index === selectedIndex ? 'bg-lumina-accent-light text-lumina-accent' : 'hover:bg-lumina-bg-secondary text-lumina-text', result.isHeading ? 'ms-4 border-s border-lumina-border' : 'mt-1']"
+                       @click="rememberQuery()"
+                       @mouseenter="selectedIndex = index"
+                       @focus="selectedIndex = index">
+                        <template x-if="result.breadcrumb">
+                            <span class="truncate text-xs text-lumina-text-muted"
+                                  x-text="result.breadcrumb"></span>
+                        </template>
+                        <span class="break-words text-sm"
+                              :class="result.isSymbol ? 'font-mono' : result.isHeading ? '' : 'font-semibold'"
+                              x-text="result.title"></span>
+                        <span x-show="result.excerpt"
+                              class="line-clamp-2 text-xs text-lumina-text-muted"
+                              x-html="result.excerpt"></span>
+                    </a>
+                </template>
+            </div>
+            <template x-if="loaded && !error && query.trim().length === 0">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">Type to search...</p>
+            </template>
+        </div>
+        
+        <div class="sr-only"
+             role="status"
+             x-text="searching ? $t('Searching…') : loaded && query.trim().length > 0 ? (scope ? $t('{count} links in {scope}', { count: results.length, scope }) : $t('{count} links across all docs', { count: results.length })) : ''">
+        </div>
+        
+        <div class="flex shrink-0 items-center gap-3 border-t border-lumina-border px-4 py-2.5 text-xs text-lumina-text-muted">
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↑↓</kbd> Navigate</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↵</kbd> Open</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">esc</kbd> Close</span>
+        </div>
+    </div>
+</dialog>
+
+    
+
+
+
+
+  </body>
+</html>

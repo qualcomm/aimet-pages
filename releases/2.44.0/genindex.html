@@ -1,0 +1,1612 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; AI Model Efficiency Toolkit</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="_static/lumina.css?v=bc31efa2" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="_static/aimet-lumina.css?v=4747defc" />
+    <script defer="defer" src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script defer="defer" src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script defer="defer" src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer="defer" src="_static/copybutton.js?v=f281be69"></script>
+    <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="_static/lumina.js?v=3e122351"></script>
+    <link rel="icon" href="_static/ai-hub-workbench-icon.png"/>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+
+    
+    
+    
+    
+        
+        <meta name="description" content="AIMET">
+        
+        <meta name="theme-color" content="#2A2AEA">
+        <meta property="og:title" content="AI Model Efficiency Toolkit">
+        
+            <meta property="og:description" content="AIMET">
+        
+        
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="AI Model Efficiency Toolkit">
+        <meta property="og:locale" content="en_US">
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="AI Model Efficiency Toolkit">
+        
+            <meta name="twitter:description" content="AIMET">
+        
+        
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "genindex", "item": "/"}]}</script>
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "genindex", "author": {"@type": "Person", "name": "Qualcomm Innovation Center, Inc."}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET"}</script>
+        
+        
+    
+    <link rel="preload"
+          as="font"
+          type="font/woff2"
+          href="_static/fonts/source-sans-3-regular-latin.woff2"
+          crossorigin>
+    
+    <script>
+(function() {
+  var stored = null;
+  try { stored = localStorage.getItem('lumina-theme'); } catch (e) {}
+  
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Sphinx gates the dark highlight stylesheet on the OS color scheme only;
+  // a stored override or dark_mode_default must rewrite its media query
+  // before first paint.
+  var pygmentsDark = document.getElementById('pygments_dark_css');
+  if (pygmentsDark) {
+    pygmentsDark.media = document.documentElement.getAttribute('data-theme') === 'dark' ? 'screen' : 'not all';
+  }
+})();
+    </script>
+    
+    <meta name="lumina-search-backend" content="sphinx">
+    <meta name="lumina-base-url" content="./">
+    
+    
+    
+    
+    
+    
+    
+        <style>
+            :root,[data-theme="light"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 65%,#202624);--lumina-accent-light:color-mix(in srgb,#2A2AEA 12%,var(--lumina-bg));}
+            [data-theme="dark"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 55%,#e9eeeb);--lumina-accent-light:color-mix(in srgb,#2A2AEA 15%,var(--lumina-bg));}
+            html:root,html[data-theme="dark"]{--sd-color-primary:color-mix(in srgb,#2A2AEA 85%,black);--sd-color-primary-highlight:color-mix(in srgb,#2A2AEA 70%,black);--sd-color-primary-text:#fff;--sd-color-primary-bg:color-mix(in srgb,#2A2AEA 12%,transparent);}
+        </style>
+    
+    
+    
+    
+
+
+  </head><body>
+
+
+
+
+
+    <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
+
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-lumina-border bg-lumina-bg/80 backdrop-blur-sm">
+
+    
+
+    <div class="lumina-header-inner mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
+        
+        <div class="flex items-center gap-3">
+            <a href="index.html"
+               class="flex items-center gap-2 text-lumina-text no-underline hover:opacity-80 transition-opacity">
+                
+                    <img src="_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-light h-7 w-auto">
+                    <img src="_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-dark h-7 w-auto">
+                
+            </a>
+            
+                
+                <span class="flex flex-col leading-tight">
+                    <a href="index.html"
+                       class="font-semibold text-base text-lumina-text no-underline hover:opacity-80 transition-opacity">AIMET</a>
+                    
+                        <a href="versions.html"
+                           class="text-xs text-lumina-text-muted hover:text-lumina-accent no-underline"
+                           title="See other versions">v2.44.0</a>
+                    
+                </span>
+            
+
+            
+
+        </div>
+        
+        
+        
+        <div class="flex items-center gap-2">
+            
+            <button data-search-trigger
+                    class="flex items-center gap-2 rounded-lg border border-lumina-border bg-lumina-bg-secondary px-3 py-2 text-[0.8125rem] text-lumina-text-muted hover:border-lumina-accent transition-colors cursor-pointer lg:min-w-56"
+                    aria-label="Search documentation"
+                    aria-haspopup="dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+                <span class="hidden lg:inline flex-1 text-start">Search docs...</span>
+                <kbd data-search-shortcut
+                     class="hidden lg:inline rounded border border-lumina-border bg-lumina-bg px-1.5 py-0.5 text-[0.6875rem] font-[family-name:var(--lumina-font-mono)] tracking-[0.02em]">⌘K</kbd>
+            </button>
+            
+            <button data-theme-toggle
+                    x-data="themeToggle()"
+                    @click="cycle()"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-md text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors cursor-pointer"
+                    aria-label="Toggle color theme"
+                    title="Toggle color theme"
+                    :aria-label="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')"
+                    :title="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')">
+                
+                <svg x-show="mode === 'light'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-[-90deg] scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+                </svg>
+                
+                <svg x-show="mode === 'dark'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-90 scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                </svg>
+                
+                <svg x-show="mode === 'auto'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 scale-0"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+            </button>
+            
+            
+            
+                
+                    <a href="https://github.com/qualcomm/aimet"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Github"
+                       aria-label="Github (opens in new tab)">
+                        
+                            <svg class="h-5 w-5"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        
+                    </a>
+                
+            
+            
+            
+                <button data-sidebar-toggle
+                        class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors lg:hidden cursor-pointer"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="lumina-sidebar-drawer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            
+        </div>
+    </div>
+</header>
+
+    </div>
+    <div class="lumina-wrapper">
+        <aside id="lumina-sidebar">
+
+            <div x-data="sidebar()">
+    
+    <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-e border-lumina-border/45 bg-lumina-bg px-4 py-6 lg:flex">
+
+        
+
+
+        
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Main navigation"
+                 x-data="sidebarNav()">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview/index.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="techniques/index.html">Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ptq_techniques/index.html">PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apiref/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external/index.html">External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            </nav>
+        
+        
+            <div class="lumina-sidebar-footer">
+                Built with
+                <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                   target="_blank"
+                   rel="noopener">
+                    <svg class="lumina-sidebar-footer-icon"
+                         viewBox="0 0 32 32"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M16 3L28 27H4L16 3Z" stroke="currentColor" stroke-width="2.5" fill="none" />
+                        <path d="M16 10L8 27H16" fill="currentColor" opacity="0.15" />
+                        <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
+                    </svg>
+                Lumina</a>
+                <span class="lumina-sidebar-footer-version">v2.21.2</span>
+            </div>
+        
+    </div>
+    
+    <template x-teleport="body">
+        <div>
+            
+            <div x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="lumina-overlay-backdrop fixed inset-0 top-[var(--lumina-header-offset)] z-40 lg:hidden"
+                 @click="close()"></div>
+            
+            <div id="lumina-sidebar-drawer"
+                 x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-250"
+                 x-transition:enter-start="-translate-x-full rtl:translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full rtl:translate-x-full"
+                 @keydown.escape.window="close()"
+                 class="fixed inset-y-0 top-[var(--lumina-header-offset)] start-0 z-50 w-[min(280px,85vw)] overflow-y-auto border-e border-lumina-border bg-lumina-bg px-4 py-6 lg:hidden">
+
+                
+                
+
+                    
+
+
+                
+
+                
+                
+                
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Main navigation"
+                         x-data="sidebarNav()">
+                        <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview/index.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="techniques/index.html">Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ptq_techniques/index.html">PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apiref/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external/index.html">External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+                    </nav>
+                
+                
+                    <div class="lumina-sidebar-footer">
+                        <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                           target="_blank"
+                           rel="noopener">Lumina</a>
+                        <span class="lumina-sidebar-footer-version">v2.21.2</span>
+                    </div>
+                
+            </div>
+        </div>
+    </template>
+</div>
+
+        </aside>
+        <main id="lumina-content" role="main" data-pagefind-body>
+            
+            
+            <div class="lumina-content-toolbar"
+                 data-pagefind-ignore>
+                
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-lumina-text-muted"
+     style="scrollbar-width:none"
+     aria-label="Breadcrumb">
+    
+        <a href="index.html"
+           class="whitespace-nowrap hover:text-lumina-accent no-underline transition-colors">AIMET</a>
+    
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 rtl:-scale-x-100" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    <span class="shrink-0 whitespace-nowrap text-lumina-text"
+          aria-current="page">Index</span>
+</nav>
+
+                    </div>
+                
+
+                <details class="lumina-page-actions"
+         x-data
+         @click.outside="$el.open = false"
+         @keydown.escape.stop="$el.open = false; $el.querySelector('summary').focus()">
+    <summary aria-label="Page actions" title="Page actions">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+    </summary>
+    <div class="lumina-page-action-list">
+        <button x-data="copyPage()"
+                @click="copy()"
+                type="button"
+                aria-label="Copy page as Markdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+            <span aria-live="polite"
+                  x-text="copied ? $t('Copied!') : $t('Copy as Markdown')">Copy as Markdown</span>
+        </button>
+        
+    </div>
+</details>
+
+            </div>
+            
+            <article class="lumina-article" x-data="headerLinks()">
+                
+                <div class="body">
+
+                    
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-Accelerator"><strong>Accelerator</strong></a>
+</li>
+      <li><a href="glossary.html#term-Accuracy"><strong>Accuracy</strong></a>
+</li>
+      <li><a href="glossary.html#term-Activation"><strong>Activation</strong></a>
+</li>
+      <li><a href="glossary.html#term-Activation-Quantization"><strong>Activation Quantization</strong></a>
+</li>
+      <li><a href="glossary.html#term-AdaRound"><strong>AdaRound</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/model_validator.html#aimet_torch.model_validator.model_validator.ModelValidator.add_check">add_check() (aimet_torch.model_validator.model_validator.ModelValidator static method)</a>
+</li>
+      <li><a href="glossary.html#term-AI-Model-Efficiency-Toolkit"><strong>AI Model Efficiency Toolkit</strong></a>
+</li>
+      <li><a href="glossary.html#term-AIMET"><strong>AIMET</strong></a>
+</li>
+      <li><a href="apiref/onnx/sensitivity.html#aimet_onnx.analysis.analyze_per_quantizer_sensitivity">analyze_per_quantizer_sensitivity() (in module aimet_onnx.analysis)</a>
+</li>
+      <li><a href="apiref/onnx/seq_mse.html#aimet_onnx.apply_seq_mse">apply_seq_mse() (in module aimet_onnx)</a>
+
+      <ul>
+        <li><a href="apiref/torch/seq_mse.html#aimet_torch.seq_mse.apply_seq_mse">(in module aimet_torch.seq_mse)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-Batch-Normalization"><strong>Batch Normalization</strong></a>
+</li>
+      <li><a href="glossary.html#term-Batch-Normalization-Folding-BN-Folding"><strong>Batch Normalization Folding (BN Folding)</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.bitwidth">bitwidth (aimet_torch.quantization.float.FloatQuantizeDequantize property)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QSpec.blockwise">blockwise() (aimet_onnx.QSpec class method)</a>
+</li>
+      <li><a href="glossary.html#term-BN"><strong>BN</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensorBase.html#aimet_torch.quantization.QuantizedTensorBase.clone">clone() (aimet_torch.quantization.QuantizedTensorBase method)</a>
+</li>
+      <li><a href="glossary.html#term-CNN"><strong>CNN</strong></a>
+</li>
+      <li><a href="glossary.html#term-Compression"><strong>Compression</strong></a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QuantizationSimModel.compute_encodings">compute_encodings() (aimet_onnx.QuantizationSimModel method)</a>
+
+      <ul>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.compute_encodings">(aimet_torch.nn.QuantizationMixin method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConv1d.html#aimet_torch.nn.QuantizedConv1d.compute_encodings">(aimet_torch.nn.QuantizedConv1d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConv2d.html#aimet_torch.nn.QuantizedConv2d.compute_encodings">(aimet_torch.nn.QuantizedConv2d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConv3d.html#aimet_torch.nn.QuantizedConv3d.compute_encodings">(aimet_torch.nn.QuantizedConv3d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConvTranspose1d.html#aimet_torch.nn.QuantizedConvTranspose1d.compute_encodings">(aimet_torch.nn.QuantizedConvTranspose1d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConvTranspose2d.html#aimet_torch.nn.QuantizedConvTranspose2d.compute_encodings">(aimet_torch.nn.QuantizedConvTranspose2d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConvTranspose3d.html#aimet_torch.nn.QuantizedConvTranspose3d.compute_encodings">(aimet_torch.nn.QuantizedConvTranspose3d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLinear.html#aimet_torch.nn.QuantizedLinear.compute_encodings">(aimet_torch.nn.QuantizedLinear method)</a>
+</li>
+        <li><a href="apiref/torch/quantization.html#aimet_torch.quantization.base.quantizer.QuantizerBase.compute_encodings">(aimet_torch.quantization.base.quantizer.QuantizerBase method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.compute_encodings">(aimet_torch.quantization.float.FloatQuantizeDequantize method)</a>
+</li>
+        <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.compute_encodings">(aimet_torch.QuantizationSimModel method)</a>
+</li>
+        <li><a href="apiref/onnx/quantsim.html#aimet_onnx.compute_encodings">(in module aimet_onnx)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-Convolutional-Layer"><strong>Convolutional Layer</strong></a>
+</li>
+      <li><a href="glossary.html#term-Convolutional-Neural-Network"><strong>Convolutional Neural Network</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.DequantizedTensor.html#aimet_torch.quantization.DequantizedTensor.dequantize">dequantize() (aimet_torch.quantization.DequantizedTensor method)</a>
+
+      <ul>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensor.html#aimet_torch.quantization.QuantizedTensor.dequantize">(aimet_torch.quantization.QuantizedTensor method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensorBase.html#aimet_torch.quantization.QuantizedTensorBase.dequantize">(aimet_torch.quantization.QuantizedTensorBase method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.affine.dequantize.html#aimet_torch.quantization.affine.dequantize">(in module aimet_torch.quantization.affine)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.DequantizedTensor.html#aimet_torch.quantization.DequantizedTensor">DequantizedTensor (class in aimet_torch.quantization)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensorBase.html#aimet_torch.quantization.QuantizedTensorBase.detach">detach() (aimet_torch.quantization.QuantizedTensorBase method)</a>
+</li>
+      <li><a href="glossary.html#term-Device"><strong>Device</strong></a>
+</li>
+      <li><a href="glossary.html#term-DLF"><strong>DLF</strong></a>
+</li>
+      <li><a href="glossary.html#term-Dynamic-Layer-Fusion"><strong>Dynamic Layer Fusion</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-Edge-device"><strong>Edge device</strong></a>
+</li>
+      <li><a href="glossary.html#term-Encoding"><strong>Encoding</strong></a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.encodings_to_onnx_qdq">encodings_to_onnx_qdq() (in module aimet_onnx)</a>
+</li>
+      <li><a href="apiref/onnx/cle.html#aimet_onnx.cross_layer_equalization.equalize_model">equalize_model() (in module aimet_onnx.cross_layer_equalization)</a>, <a href="ptq_techniques/cle.html#aimet_onnx.cross_layer_equalization.equalize_model">[1]</a>
+
+      <ul>
+        <li><a href="apiref/torch/cle.html#aimet_torch.cross_layer_equalization.equalize_model">(in module aimet_torch.cross_layer_equalization)</a>, <a href="ptq_techniques/cle.html#aimet_torch.cross_layer_equalization.equalize_model">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.exponent_bits">exponent_bits (aimet_torch.quantization.float.FloatQuantizeDequantize property)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QuantizationSimModel.export">export() (aimet_onnx.QuantizationSimModel method)</a>
+
+      <ul>
+        <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.export">(aimet_torch.QuantizationSimModel method)</a>
+</li>
+        <li><a href="apiref/torch/quantsim.html#aimet_torch.quantsim.QuantizationSimModelOnnxExporter.export">(aimet_torch.quantsim.QuantizationSimModelOnnxExporter method)</a>
+</li>
+        <li><a href="apiref/torch/onnx.html#aimet_torch.onnx.export">(in module aimet_torch.onnx)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize">FloatQuantizeDequantize (class in aimet_torch.quantization.float)</a>
+</li>
+      <li><a href="apiref/torch/bnf.html#aimet_torch.batch_norm_fold.fold_all_batch_norms">fold_all_batch_norms() (in module aimet_torch.batch_norm_fold)</a>, <a href="ptq_techniques/bnf.html#aimet_torch.batch_norm_fold.fold_all_batch_norms">[1]</a>
+</li>
+      <li><a href="apiref/onnx/bnf.html#aimet_onnx.batch_norm_fold.fold_all_batch_norms_to_weight">fold_all_batch_norms_to_weight() (in module aimet_onnx.batch_norm_fold)</a>, <a href="ptq_techniques/bnf.html#aimet_onnx.batch_norm_fold.fold_all_batch_norms_to_weight">[1]</a>
+</li>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.fold_param_quantizers">fold_param_quantizers() (aimet_torch.QuantizationSimModel method)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.forward">forward() (aimet_torch.nn.QuantizationMixin method)</a>
+
+      <ul>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCircularPad1d.html#aimet_torch.nn.QuantizedCircularPad1d.forward">(aimet_torch.nn.QuantizedCircularPad1d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCircularPad2d.html#aimet_torch.nn.QuantizedCircularPad2d.forward">(aimet_torch.nn.QuantizedCircularPad2d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCircularPad3d.html#aimet_torch.nn.QuantizedCircularPad3d.forward">(aimet_torch.nn.QuantizedCircularPad3d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConstantPad1d.html#aimet_torch.nn.QuantizedConstantPad1d.forward">(aimet_torch.nn.QuantizedConstantPad1d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConstantPad2d.html#aimet_torch.nn.QuantizedConstantPad2d.forward">(aimet_torch.nn.QuantizedConstantPad2d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConstantPad3d.html#aimet_torch.nn.QuantizedConstantPad3d.forward">(aimet_torch.nn.QuantizedConstantPad3d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedHardsigmoid.html#aimet_torch.nn.QuantizedHardsigmoid.forward">(aimet_torch.nn.QuantizedHardsigmoid method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedHardswish.html#aimet_torch.nn.QuantizedHardswish.forward">(aimet_torch.nn.QuantizedHardswish method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLinear.html#aimet_torch.nn.QuantizedLinear.forward">(aimet_torch.nn.QuantizedLinear method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReflectionPad1d.html#aimet_torch.nn.QuantizedReflectionPad1d.forward">(aimet_torch.nn.QuantizedReflectionPad1d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReflectionPad2d.html#aimet_torch.nn.QuantizedReflectionPad2d.forward">(aimet_torch.nn.QuantizedReflectionPad2d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReflectionPad3d.html#aimet_torch.nn.QuantizedReflectionPad3d.forward">(aimet_torch.nn.QuantizedReflectionPad3d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReplicationPad1d.html#aimet_torch.nn.QuantizedReplicationPad1d.forward">(aimet_torch.nn.QuantizedReplicationPad1d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReplicationPad2d.html#aimet_torch.nn.QuantizedReplicationPad2d.forward">(aimet_torch.nn.QuantizedReplicationPad2d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReplicationPad3d.html#aimet_torch.nn.QuantizedReplicationPad3d.forward">(aimet_torch.nn.QuantizedReplicationPad3d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedThreshold.html#aimet_torch.nn.QuantizedThreshold.forward">(aimet_torch.nn.QuantizedThreshold method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedTripletMarginWithDistanceLoss.html#aimet_torch.nn.QuantizedTripletMarginWithDistanceLoss.forward">(aimet_torch.nn.QuantizedTripletMarginWithDistanceLoss method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedUnflatten.html#aimet_torch.nn.QuantizedUnflatten.forward">(aimet_torch.nn.QuantizedUnflatten method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedZeroPad1d.html#aimet_torch.nn.QuantizedZeroPad1d.forward">(aimet_torch.nn.QuantizedZeroPad1d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedZeroPad2d.html#aimet_torch.nn.QuantizedZeroPad2d.forward">(aimet_torch.nn.QuantizedZeroPad2d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedZeroPad3d.html#aimet_torch.nn.QuantizedZeroPad3d.forward">(aimet_torch.nn.QuantizedZeroPad3d method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.affine.Quantize.html#aimet_torch.quantization.affine.Quantize.forward">(aimet_torch.quantization.affine.Quantize method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.affine.QuantizeDequantize.html#aimet_torch.quantization.affine.QuantizeDequantize.forward">(aimet_torch.quantization.affine.QuantizeDequantize method)</a>
+</li>
+        <li><a href="apiref/torch/quantization.html#aimet_torch.quantization.base.quantizer.QuantizerBase.forward">(aimet_torch.quantization.base.quantizer.QuantizerBase method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.forward">(aimet_torch.quantization.float.FloatQuantizeDequantize method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/seq_mse.html#aimet_torch.seq_mse.SeqMseParams.forward_fn">forward_fn() (aimet_torch.seq_mse.SeqMseParams method)</a>
+</li>
+      <li><a href="glossary.html#term-FP32"><strong>FP32</strong></a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.from_encodings">from_encodings() (aimet_torch.quantization.float.FloatQuantizeDequantize class method)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.from_module">from_module() (aimet_torch.nn.QuantizationMixin class method)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QuantizationSimModel.from_onnx_qdq">from_onnx_qdq() (aimet_onnx.QuantizationSimModel class method)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.common.defs.QuantScheme.from_str">from_str() (aimet_onnx.common.defs.QuantScheme class method)</a>
+
+      <ul>
+        <li><a href="apiref/torch/quantsim.html#aimet_torch.common.defs.QuantScheme.from_str">(aimet_torch.common.defs.QuantScheme class method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/onnx/layer_output_generation.html#aimet_onnx.layer_output_utils.LayerOutputUtil.generate_layer_outputs">generate_layer_outputs() (aimet_onnx.layer_output_utils.LayerOutputUtil method)</a>, <a href="techniques/analysis_tools/layer_output_generation.html#aimet_onnx.layer_output_utils.LayerOutputUtil.generate_layer_outputs">[1]</a>
+
+      <ul>
+        <li><a href="apiref/torch/layer_output_generation.html#aimet_torch.layer_output_utils.LayerOutputUtil.generate_layer_outputs">(aimet_torch.layer_output_utils.LayerOutputUtil method)</a>, <a href="techniques/analysis_tools/layer_output_generation.html#aimet_torch.layer_output_utils.LayerOutputUtil.generate_layer_outputs">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.get_backend.html#aimet_torch.quantization.get_backend">get_backend() (in module aimet_torch.quantization)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.get_default_kernel">get_default_kernel() (aimet_torch.nn.QuantizationMixin class method)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.get_encodings">get_encodings() (aimet_torch.quantization.float.FloatQuantizeDequantize method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.get_extra_state">get_extra_state() (aimet_torch.quantization.float.FloatQuantizeDequantize method)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.get_kernel">get_kernel() (aimet_torch.nn.QuantizationMixin method)</a>
+</li>
+      <li><a href="apiref/torch/seq_mse.html#aimet_torch.seq_mse.SeqMseParams.get_loss_fn">get_loss_fn() (aimet_torch.seq_mse.SeqMseParams method)</a>
+</li>
+      <li><a href="apiref/onnx/sensitivity.html#aimet_onnx.analysis.get_quantizer_op_names">get_quantizer_op_names() (in module aimet_onnx.analysis)</a>
+</li>
+      <li><a href="apiref/onnx/sensitivity.html#aimet_onnx.analysis.group_by_op_name">group_by_op_name() (in module aimet_onnx.analysis)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.ignore">ignore() (aimet_torch.nn.QuantizationMixin class method)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.ignore_unknown_modules">ignore_unknown_modules() (aimet_torch.nn.QuantizationMixin class method)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.implements">implements() (aimet_torch.nn.QuantizationMixin class method)</a>
+</li>
+      <li><a href="glossary.html#term-Inference"><strong>Inference</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.input_quantizers">input_quantizers (aimet_torch.nn.QuantizationMixin attribute)</a>
+</li>
+      <li><a href="glossary.html#term-INT8"><strong>INT8</strong></a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.is_bfloat16">is_bfloat16() (aimet_torch.quantization.float.FloatQuantizeDequantize method)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.is_float16">is_float16() (aimet_torch.quantization.float.FloatQuantizeDequantize method)</a>
+</li>
+      <li><a href="apiref/torch/quantization.html#aimet_torch.quantization.base.quantizer.QuantizerBase.is_initialized">is_initialized() (aimet_torch.quantization.base.quantizer.QuantizerBase method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-KL-Divergence"><strong>KL Divergence</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-Layer"><strong>Layer</strong></a>
+</li>
+      <li><a href="glossary.html#term-Layer-wise-quantization"><strong>Layer-wise quantization</strong></a>
+</li>
+      <li><a href="apiref/onnx/layer_output_generation.html#aimet_onnx.layer_output_utils.LayerOutputUtil">LayerOutputUtil (class in aimet_onnx.layer_output_utils)</a>, <a href="techniques/analysis_tools/layer_output_generation.html#aimet_onnx.layer_output_utils.LayerOutputUtil">[1]</a>
+
+      <ul>
+        <li><a href="apiref/torch/layer_output_generation.html#aimet_torch.layer_output_utils.LayerOutputUtil">(class in aimet_torch.layer_output_utils)</a>, <a href="techniques/analysis_tools/layer_output_generation.html#aimet_torch.layer_output_utils.LayerOutputUtil">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/onnx/sensitivity.html#aimet_onnx.analysis.load_sensitivity_results">load_sensitivity_results() (in module aimet_onnx.analysis)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.load_state_dict">load_state_dict() (aimet_torch.quantization.float.FloatQuantizeDequantize method)</a>
+</li>
+      <li><a href="glossary.html#term-LoRA-MobileNet"><strong>LoRA MobileNet</strong></a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QSpec.lpbq">lpbq() (aimet_onnx.QSpec class method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/onnx/sensitivity.html#aimet_onnx.analysis.make_topk_logit_psnr_metric">make_topk_logit_psnr_metric() (in module aimet_onnx.analysis)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.mantissa_bits">mantissa_bits (aimet_torch.quantization.float.FloatQuantizeDequantize property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-Model"><strong>Model</strong></a>
+</li>
+      <li><a href="apiref/torch/model_validator.html#aimet_torch.model_validator.model_validator.ModelValidator">ModelValidator (class in aimet_torch.model_validator.model_validator)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.named_qmodules">named_qmodules() (aimet_torch.QuantizationSimModel method)</a>
+</li>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.named_quantizer_parameters">named_quantizer_parameters() (aimet_torch.QuantizationSimModel method)</a>
+</li>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.named_quantizers">named_quantizers() (aimet_torch.QuantizationSimModel method)</a>
+</li>
+      <li><a href="apiref/torch/layer_output_generation.html#aimet_torch.layer_output_utils.NamingScheme">NamingScheme (class in aimet_torch.layer_output_utils)</a>, <a href="techniques/analysis_tools/layer_output_generation.html#aimet_torch.layer_output_utils.NamingScheme">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-Neural-Network-Compression-Framework"><strong>Neural Network Compression Framework</strong></a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensorBase.html#aimet_torch.quantization.QuantizedTensorBase.new_empty">new_empty() (aimet_torch.quantization.QuantizedTensorBase method)</a>
+</li>
+      <li><a href="glossary.html#term-NNCF"><strong>NNCF</strong></a>
+</li>
+      <li><a href="glossary.html#term-Node"><strong>Node</strong></a>
+</li>
+      <li><a href="glossary.html#term-Normalization"><strong>Normalization</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-ONNX"><strong>ONNX</strong></a>
+
+      <ul>
+        <li><a href="apiref/torch/layer_output_generation.html#aimet_torch.layer_output_utils.NamingScheme.ONNX">(aimet_torch.layer_output_utils.NamingScheme attribute)</a>, <a href="techniques/analysis_tools/layer_output_generation.html#aimet_torch.layer_output_utils.NamingScheme.ONNX">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.onnx">onnx (aimet_torch.QuantizationSimModel property)</a>
+</li>
+      <li><a href="glossary.html#term-Open-Neural-Network-Exchange"><strong>Open Neural Network Exchange</strong></a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.output_quantizers">output_quantizers (aimet_torch.nn.QuantizationMixin attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.param_quantizers">param_quantizers (aimet_torch.nn.QuantizationMixin attribute)</a>
+</li>
+      <li><a href="glossary.html#term-Per-channel-Quantization"><strong>Per-channel Quantization</strong></a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QSpec.per_channel">per_channel() (aimet_onnx.QSpec class method)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QSpec.per_tensor">per_tensor() (aimet_onnx.QSpec class method)</a>
+</li>
+      <li><a href="glossary.html#term-Post-Training-Quantization"><strong>Post-Training Quantization</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/model_preparer.html#aimet_torch.model_preparer.prepare_model">prepare_model() (in module aimet_torch.model_preparer)</a>
+</li>
+      <li><a href="glossary.html#term-Pruning"><strong>Pruning</strong></a>
+</li>
+      <li><a href="glossary.html#term-PTQ"><strong>PTQ</strong></a>
+</li>
+      <li><a href="glossary.html#term-PyTorch"><strong>PyTorch</strong></a>
+</li>
+      <li><a href="apiref/torch/layer_output_generation.html#aimet_torch.layer_output_utils.NamingScheme.PYTORCH">PYTORCH (aimet_torch.layer_output_utils.NamingScheme attribute)</a>, <a href="techniques/analysis_tools/layer_output_generation.html#aimet_torch.layer_output_utils.NamingScheme.PYTORCH">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-QAT"><strong>QAT</strong></a>
+</li>
+      <li><a href="glossary.html#term-QDQ"><strong>QDQ</strong></a>
+</li>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.qmodules">qmodules() (aimet_torch.QuantizationSimModel method)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QSpec">QSpec (class in aimet_onnx)</a>
+</li>
+      <li><a href="glossary.html#term-Qualcomm-Innovation-Center"><strong>Qualcomm Innovation Center</strong></a>
+</li>
+      <li><a href="glossary.html#term-Quantization"><strong>Quantization</strong></a>
+</li>
+      <li><a href="glossary.html#term-Quantization-Simulation"><strong>Quantization Simulation</strong></a>
+</li>
+      <li><a href="glossary.html#term-Quantization-Aware-Training"><strong>Quantization-Aware Training</strong></a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin">QuantizationMixin (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QuantizationSimModel">QuantizationSimModel (class in aimet_onnx)</a>
+
+      <ul>
+        <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel">(class in aimet_torch)</a>
+</li>
+      </ul></li>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.quantsim.QuantizationSimModelOnnxExporter">QuantizationSimModelOnnxExporter (class in aimet_torch.quantsim)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.affine.Quantize.html#aimet_torch.quantization.affine.Quantize">Quantize (class in aimet_torch.quantization.affine)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.DequantizedTensor.html#aimet_torch.quantization.DequantizedTensor.quantize">quantize() (aimet_torch.quantization.DequantizedTensor method)</a>
+
+      <ul>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensor.html#aimet_torch.quantization.QuantizedTensor.quantize">(aimet_torch.quantization.QuantizedTensor method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensorBase.html#aimet_torch.quantization.QuantizedTensorBase.quantize">(aimet_torch.quantization.QuantizedTensorBase method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.affine.quantize.html#aimet_torch.quantization.affine.quantize">(in module aimet_torch.quantization.affine)</a>
+</li>
+      </ul></li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.affine.quantize_dequantize.html#aimet_torch.quantization.affine.quantize_dequantize">quantize_dequantize() (in module aimet_torch.quantization.affine)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.DequantizedTensor.html#aimet_torch.quantization.DequantizedTensor.quantized_repr">quantized_repr() (aimet_torch.quantization.DequantizedTensor method)</a>
+
+      <ul>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensor.html#aimet_torch.quantization.QuantizedTensor.quantized_repr">(aimet_torch.quantization.QuantizedTensor method)</a>
+</li>
+        <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensorBase.html#aimet_torch.quantization.QuantizedTensorBase.quantized_repr">(aimet_torch.quantization.QuantizedTensorBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAdaptiveAvgPool1d.html#aimet_torch.nn.QuantizedAdaptiveAvgPool1d">QuantizedAdaptiveAvgPool1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAdaptiveAvgPool2d.html#aimet_torch.nn.QuantizedAdaptiveAvgPool2d">QuantizedAdaptiveAvgPool2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAdaptiveAvgPool3d.html#aimet_torch.nn.QuantizedAdaptiveAvgPool3d">QuantizedAdaptiveAvgPool3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAdaptiveMaxPool1d.html#aimet_torch.nn.QuantizedAdaptiveMaxPool1d">QuantizedAdaptiveMaxPool1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAdaptiveMaxPool2d.html#aimet_torch.nn.QuantizedAdaptiveMaxPool2d">QuantizedAdaptiveMaxPool2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAdaptiveMaxPool3d.html#aimet_torch.nn.QuantizedAdaptiveMaxPool3d">QuantizedAdaptiveMaxPool3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAlphaDropout.html#aimet_torch.nn.QuantizedAlphaDropout">QuantizedAlphaDropout (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAvgPool1d.html#aimet_torch.nn.QuantizedAvgPool1d">QuantizedAvgPool1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAvgPool2d.html#aimet_torch.nn.QuantizedAvgPool2d">QuantizedAvgPool2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedAvgPool3d.html#aimet_torch.nn.QuantizedAvgPool3d">QuantizedAvgPool3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedBatchNorm1d.html#aimet_torch.nn.QuantizedBatchNorm1d">QuantizedBatchNorm1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedBatchNorm2d.html#aimet_torch.nn.QuantizedBatchNorm2d">QuantizedBatchNorm2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedBatchNorm3d.html#aimet_torch.nn.QuantizedBatchNorm3d">QuantizedBatchNorm3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedBCELoss.html#aimet_torch.nn.QuantizedBCELoss">QuantizedBCELoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedBCEWithLogitsLoss.html#aimet_torch.nn.QuantizedBCEWithLogitsLoss">QuantizedBCEWithLogitsLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedBilinear.html#aimet_torch.nn.QuantizedBilinear">QuantizedBilinear (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCELU.html#aimet_torch.nn.QuantizedCELU">QuantizedCELU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedChannelShuffle.html#aimet_torch.nn.QuantizedChannelShuffle">QuantizedChannelShuffle (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCircularPad1d.html#aimet_torch.nn.QuantizedCircularPad1d">QuantizedCircularPad1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCircularPad2d.html#aimet_torch.nn.QuantizedCircularPad2d">QuantizedCircularPad2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCircularPad3d.html#aimet_torch.nn.QuantizedCircularPad3d">QuantizedCircularPad3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConstantPad1d.html#aimet_torch.nn.QuantizedConstantPad1d">QuantizedConstantPad1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConstantPad2d.html#aimet_torch.nn.QuantizedConstantPad2d">QuantizedConstantPad2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConstantPad3d.html#aimet_torch.nn.QuantizedConstantPad3d">QuantizedConstantPad3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConv1d.html#aimet_torch.nn.QuantizedConv1d">QuantizedConv1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConv2d.html#aimet_torch.nn.QuantizedConv2d">QuantizedConv2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConv3d.html#aimet_torch.nn.QuantizedConv3d">QuantizedConv3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConvTranspose1d.html#aimet_torch.nn.QuantizedConvTranspose1d">QuantizedConvTranspose1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConvTranspose2d.html#aimet_torch.nn.QuantizedConvTranspose2d">QuantizedConvTranspose2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedConvTranspose3d.html#aimet_torch.nn.QuantizedConvTranspose3d">QuantizedConvTranspose3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCosineEmbeddingLoss.html#aimet_torch.nn.QuantizedCosineEmbeddingLoss">QuantizedCosineEmbeddingLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCosineSimilarity.html#aimet_torch.nn.QuantizedCosineSimilarity">QuantizedCosineSimilarity (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCrossEntropyLoss.html#aimet_torch.nn.QuantizedCrossEntropyLoss">QuantizedCrossEntropyLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedCTCLoss.html#aimet_torch.nn.QuantizedCTCLoss">QuantizedCTCLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedDropout.html#aimet_torch.nn.QuantizedDropout">QuantizedDropout (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedDropout1d.html#aimet_torch.nn.QuantizedDropout1d">QuantizedDropout1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedDropout2d.html#aimet_torch.nn.QuantizedDropout2d">QuantizedDropout2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedDropout3d.html#aimet_torch.nn.QuantizedDropout3d">QuantizedDropout3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedELU.html#aimet_torch.nn.QuantizedELU">QuantizedELU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedEmbedding.html#aimet_torch.nn.QuantizedEmbedding">QuantizedEmbedding (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedEmbeddingBag.html#aimet_torch.nn.QuantizedEmbeddingBag">QuantizedEmbeddingBag (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.affine.QuantizeDequantize.html#aimet_torch.quantization.affine.QuantizeDequantize">QuantizeDequantize (class in aimet_torch.quantization.affine)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedFeatureAlphaDropout.html#aimet_torch.nn.QuantizedFeatureAlphaDropout">QuantizedFeatureAlphaDropout (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedFlatten.html#aimet_torch.nn.QuantizedFlatten">QuantizedFlatten (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedFold.html#aimet_torch.nn.QuantizedFold">QuantizedFold (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedFractionalMaxPool2d.html#aimet_torch.nn.QuantizedFractionalMaxPool2d">QuantizedFractionalMaxPool2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedFractionalMaxPool3d.html#aimet_torch.nn.QuantizedFractionalMaxPool3d">QuantizedFractionalMaxPool3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedGaussianNLLLoss.html#aimet_torch.nn.QuantizedGaussianNLLLoss">QuantizedGaussianNLLLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedGELU.html#aimet_torch.nn.QuantizedGELU">QuantizedGELU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedGLU.html#aimet_torch.nn.QuantizedGLU">QuantizedGLU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedGroupNorm.html#aimet_torch.nn.QuantizedGroupNorm">QuantizedGroupNorm (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedGRU.html#aimet_torch.nn.QuantizedGRU">QuantizedGRU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedGRUCell.html#aimet_torch.nn.QuantizedGRUCell">QuantizedGRUCell (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedHardshrink.html#aimet_torch.nn.QuantizedHardshrink">QuantizedHardshrink (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedHardsigmoid.html#aimet_torch.nn.QuantizedHardsigmoid">QuantizedHardsigmoid (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedHardswish.html#aimet_torch.nn.QuantizedHardswish">QuantizedHardswish (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedHardtanh.html#aimet_torch.nn.QuantizedHardtanh">QuantizedHardtanh (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedHingeEmbeddingLoss.html#aimet_torch.nn.QuantizedHingeEmbeddingLoss">QuantizedHingeEmbeddingLoss (class in aimet_torch.nn)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedHuberLoss.html#aimet_torch.nn.QuantizedHuberLoss">QuantizedHuberLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedInstanceNorm1d.html#aimet_torch.nn.QuantizedInstanceNorm1d">QuantizedInstanceNorm1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedInstanceNorm2d.html#aimet_torch.nn.QuantizedInstanceNorm2d">QuantizedInstanceNorm2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedInstanceNorm3d.html#aimet_torch.nn.QuantizedInstanceNorm3d">QuantizedInstanceNorm3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedKLDivLoss.html#aimet_torch.nn.QuantizedKLDivLoss">QuantizedKLDivLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedL1Loss.html#aimet_torch.nn.QuantizedL1Loss">QuantizedL1Loss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLayerNorm.html#aimet_torch.nn.QuantizedLayerNorm">QuantizedLayerNorm (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLeakyReLU.html#aimet_torch.nn.QuantizedLeakyReLU">QuantizedLeakyReLU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLinear.html#aimet_torch.nn.QuantizedLinear">QuantizedLinear (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLocalResponseNorm.html#aimet_torch.nn.QuantizedLocalResponseNorm">QuantizedLocalResponseNorm (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLogSigmoid.html#aimet_torch.nn.QuantizedLogSigmoid">QuantizedLogSigmoid (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLogSoftmax.html#aimet_torch.nn.QuantizedLogSoftmax">QuantizedLogSoftmax (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLPPool1d.html#aimet_torch.nn.QuantizedLPPool1d">QuantizedLPPool1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLPPool2d.html#aimet_torch.nn.QuantizedLPPool2d">QuantizedLPPool2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLSTM.html#aimet_torch.nn.QuantizedLSTM">QuantizedLSTM (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedLSTMCell.html#aimet_torch.nn.QuantizedLSTMCell">QuantizedLSTMCell (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMarginRankingLoss.html#aimet_torch.nn.QuantizedMarginRankingLoss">QuantizedMarginRankingLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMaxPool1d.html#aimet_torch.nn.QuantizedMaxPool1d">QuantizedMaxPool1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMaxPool2d.html#aimet_torch.nn.QuantizedMaxPool2d">QuantizedMaxPool2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMaxPool3d.html#aimet_torch.nn.QuantizedMaxPool3d">QuantizedMaxPool3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMaxUnpool1d.html#aimet_torch.nn.QuantizedMaxUnpool1d">QuantizedMaxUnpool1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMaxUnpool2d.html#aimet_torch.nn.QuantizedMaxUnpool2d">QuantizedMaxUnpool2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMaxUnpool3d.html#aimet_torch.nn.QuantizedMaxUnpool3d">QuantizedMaxUnpool3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMish.html#aimet_torch.nn.QuantizedMish">QuantizedMish (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMSELoss.html#aimet_torch.nn.QuantizedMSELoss">QuantizedMSELoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMultiLabelMarginLoss.html#aimet_torch.nn.QuantizedMultiLabelMarginLoss">QuantizedMultiLabelMarginLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMultiLabelSoftMarginLoss.html#aimet_torch.nn.QuantizedMultiLabelSoftMarginLoss">QuantizedMultiLabelSoftMarginLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedMultiMarginLoss.html#aimet_torch.nn.QuantizedMultiMarginLoss">QuantizedMultiMarginLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedNLLLoss.html#aimet_torch.nn.QuantizedNLLLoss">QuantizedNLLLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedNLLLoss2d.html#aimet_torch.nn.QuantizedNLLLoss2d">QuantizedNLLLoss2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedPairwiseDistance.html#aimet_torch.nn.QuantizedPairwiseDistance">QuantizedPairwiseDistance (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedPixelShuffle.html#aimet_torch.nn.QuantizedPixelShuffle">QuantizedPixelShuffle (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedPixelUnshuffle.html#aimet_torch.nn.QuantizedPixelUnshuffle">QuantizedPixelUnshuffle (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedPoissonNLLLoss.html#aimet_torch.nn.QuantizedPoissonNLLLoss">QuantizedPoissonNLLLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedPReLU.html#aimet_torch.nn.QuantizedPReLU">QuantizedPReLU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReflectionPad1d.html#aimet_torch.nn.QuantizedReflectionPad1d">QuantizedReflectionPad1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReflectionPad2d.html#aimet_torch.nn.QuantizedReflectionPad2d">QuantizedReflectionPad2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReflectionPad3d.html#aimet_torch.nn.QuantizedReflectionPad3d">QuantizedReflectionPad3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReLU.html#aimet_torch.nn.QuantizedReLU">QuantizedReLU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReLU6.html#aimet_torch.nn.QuantizedReLU6">QuantizedReLU6 (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReplicationPad1d.html#aimet_torch.nn.QuantizedReplicationPad1d">QuantizedReplicationPad1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReplicationPad2d.html#aimet_torch.nn.QuantizedReplicationPad2d">QuantizedReplicationPad2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedReplicationPad3d.html#aimet_torch.nn.QuantizedReplicationPad3d">QuantizedReplicationPad3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedRNN.html#aimet_torch.nn.QuantizedRNN">QuantizedRNN (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedRNNCell.html#aimet_torch.nn.QuantizedRNNCell">QuantizedRNNCell (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedRReLU.html#aimet_torch.nn.QuantizedRReLU">QuantizedRReLU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSELU.html#aimet_torch.nn.QuantizedSELU">QuantizedSELU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSigmoid.html#aimet_torch.nn.QuantizedSigmoid">QuantizedSigmoid (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSiLU.html#aimet_torch.nn.QuantizedSiLU">QuantizedSiLU (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSmoothL1Loss.html#aimet_torch.nn.QuantizedSmoothL1Loss">QuantizedSmoothL1Loss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSoftMarginLoss.html#aimet_torch.nn.QuantizedSoftMarginLoss">QuantizedSoftMarginLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSoftmax.html#aimet_torch.nn.QuantizedSoftmax">QuantizedSoftmax (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSoftmax2d.html#aimet_torch.nn.QuantizedSoftmax2d">QuantizedSoftmax2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSoftmin.html#aimet_torch.nn.QuantizedSoftmin">QuantizedSoftmin (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSoftplus.html#aimet_torch.nn.QuantizedSoftplus">QuantizedSoftplus (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSoftshrink.html#aimet_torch.nn.QuantizedSoftshrink">QuantizedSoftshrink (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedSoftsign.html#aimet_torch.nn.QuantizedSoftsign">QuantizedSoftsign (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedTanh.html#aimet_torch.nn.QuantizedTanh">QuantizedTanh (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedTanhshrink.html#aimet_torch.nn.QuantizedTanhshrink">QuantizedTanhshrink (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensor.html#aimet_torch.quantization.QuantizedTensor">QuantizedTensor (class in aimet_torch.quantization)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.QuantizedTensorBase.html#aimet_torch.quantization.QuantizedTensorBase">QuantizedTensorBase (class in aimet_torch.quantization)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedThreshold.html#aimet_torch.nn.QuantizedThreshold">QuantizedThreshold (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedTripletMarginLoss.html#aimet_torch.nn.QuantizedTripletMarginLoss">QuantizedTripletMarginLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedTripletMarginWithDistanceLoss.html#aimet_torch.nn.QuantizedTripletMarginWithDistanceLoss">QuantizedTripletMarginWithDistanceLoss (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedUnflatten.html#aimet_torch.nn.QuantizedUnflatten">QuantizedUnflatten (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedUnfold.html#aimet_torch.nn.QuantizedUnfold">QuantizedUnfold (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedUpsample.html#aimet_torch.nn.QuantizedUpsample">QuantizedUpsample (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedUpsamplingBilinear2d.html#aimet_torch.nn.QuantizedUpsamplingBilinear2d">QuantizedUpsamplingBilinear2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedUpsamplingNearest2d.html#aimet_torch.nn.QuantizedUpsamplingNearest2d">QuantizedUpsamplingNearest2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedZeroPad1d.html#aimet_torch.nn.QuantizedZeroPad1d">QuantizedZeroPad1d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedZeroPad2d.html#aimet_torch.nn.QuantizedZeroPad2d">QuantizedZeroPad2d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizedZeroPad3d.html#aimet_torch.nn.QuantizedZeroPad3d">QuantizedZeroPad3d (class in aimet_torch.nn)</a>
+</li>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.quantizer_parameters">quantizer_parameters() (aimet_torch.QuantizationSimModel method)</a>
+</li>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.quantizer_state_dict">quantizer_state_dict() (aimet_torch.QuantizationSimModel method)</a>
+</li>
+      <li><a href="apiref/torch/quantization.html#aimet_torch.quantization.base.quantizer.QuantizerBase">QuantizerBase (class in aimet_torch.quantization.base.quantizer)</a>
+</li>
+      <li><a href="apiref/torch/quantsim.html#aimet_torch.QuantizationSimModel.quantizers">quantizers() (aimet_torch.QuantizationSimModel method)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.common.defs.QuantScheme">QuantScheme (class in aimet_onnx.common.defs)</a>
+
+      <ul>
+        <li><a href="apiref/torch/quantsim.html#aimet_torch.common.defs.QuantScheme">(class in aimet_torch.common.defs)</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-QuantSim"><strong>QuantSim</strong></a>
+</li>
+      <li><a href="glossary.html#term-QUIC"><strong>QUIC</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/bn.html#aimet_torch.bn_reestimation.reestimate_bn_stats">reestimate_bn_stats() (in module aimet_torch.bn_reestimation)</a>, <a href="ptq_techniques/bn.html#aimet_torch.bn_reestimation.reestimate_bn_stats">[1]</a>
+</li>
+      <li><a href="apiref/torch/utils.html#aimet_torch.utils.remove_activation_quantizers">remove_activation_quantizers() (in module aimet_torch.utils)</a>
+</li>
+      <li><a href="apiref/torch/utils.html#aimet_torch.utils.remove_all_quantizers">remove_all_quantizers() (in module aimet_torch.utils)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/utils.html#aimet_torch.utils.remove_input_quantizers">remove_input_quantizers() (in module aimet_torch.utils)</a>
+</li>
+      <li><a href="apiref/torch/utils.html#aimet_torch.utils.remove_output_quantizers">remove_output_quantizers() (in module aimet_torch.utils)</a>
+</li>
+      <li><a href="apiref/torch/utils.html#aimet_torch.utils.remove_param_quantizers">remove_param_quantizers() (in module aimet_torch.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/onnx/sensitivity.html#aimet_onnx.analysis.save_sensitivity_plot">save_sensitivity_plot() (in module aimet_onnx.analysis)</a>
+</li>
+      <li><a href="apiref/onnx/sensitivity.html#aimet_onnx.analysis.save_sensitivity_results">save_sensitivity_results() (in module aimet_onnx.analysis)</a>
+</li>
+      <li><a href="apiref/onnx/sensitivity.html#aimet_onnx.analysis.SensitivityMetric.sensitivity_score">sensitivity_score() (aimet_onnx.analysis.SensitivityMetric method)</a>
+</li>
+      <li><a href="apiref/onnx/sensitivity.html#aimet_onnx.analysis.SensitivityMetric">SensitivityMetric (class in aimet_onnx.analysis)</a>
+</li>
+      <li><a href="apiref/torch/seq_mse.html#aimet_torch.seq_mse.SeqMseParams">SeqMseParams (class in aimet_torch.seq_mse)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.set_backend.html#aimet_torch.quantization.set_backend">set_backend() (in module aimet_torch.quantization)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.set_default_kernel">set_default_kernel() (aimet_torch.nn.QuantizationMixin class method)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.quantization.float.FloatQuantizeDequantize.html#aimet_torch.quantization.float.FloatQuantizeDequantize.set_extra_state">set_extra_state() (aimet_torch.quantization.float.FloatQuantizeDequantize method)</a>
+</li>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.set_kernel">set_kernel() (aimet_torch.nn.QuantizationMixin method)</a>
+</li>
+      <li><a href="apiref/onnx/lpbq.html#aimet_onnx.quantsim.set_lpbq_for_params">set_lpbq_for_params() (in module aimet_onnx.quantsim)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.quantsim.set_param_type">set_param_type() (in module aimet_onnx.quantsim)</a>
+</li>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QuantizationSimModel.set_tensor_precision">set_tensor_precision() (aimet_onnx.QuantizationSimModel method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-Target-Hardware-Accelerator"><strong>Target Hardware Accelerator</strong></a>
+</li>
+      <li><a href="glossary.html#term-Target-Runtime"><strong>Target Runtime</strong></a>
+</li>
+      <li><a href="glossary.html#term-TensorFlow"><strong>TensorFlow</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/onnx/quantsim.html#aimet_onnx.QuantizationSimModel.to_onnx_qdq">to_onnx_qdq() (aimet_onnx.QuantizationSimModel method)</a>
+</li>
+      <li><a href="glossary.html#term-TorchScript"><strong>TorchScript</strong></a>
+</li>
+      <li><a href="apiref/torch/layer_output_generation.html#aimet_torch.layer_output_utils.NamingScheme.TORCHSCRIPT">TORCHSCRIPT (aimet_torch.layer_output_utils.NamingScheme attribute)</a>, <a href="techniques/analysis_tools/layer_output_generation.html#aimet_torch.layer_output_utils.NamingScheme.TORCHSCRIPT">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/model_validator.html#aimet_torch.model_validator.model_validator.ModelValidator.validate_model">validate_model() (aimet_torch.model_validator.model_validator.ModelValidator static method)</a>
+</li>
+      <li><a href="glossary.html#term-Variant"><strong>Variant</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/onnx/interactive_visualization.html#aimet_onnx.analysis.visualize_stats">visualize_stats() (in module aimet_onnx.analysis)</a>, <a href="techniques/analysis_tools/interactive_visualization.html#aimet_onnx.analysis.visualize_stats">[1]</a>
+
+      <ul>
+        <li><a href="apiref/torch/interactive_visualization.html#aimet_torch.v2.visualization_tools.visualize_stats">(in module aimet_torch.v2.visualization_tools)</a>, <a href="techniques/analysis_tools/interactive_visualization.html#aimet_torch.v2.visualization_tools.visualize_stats">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-Weights"><strong>Weights</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apiref/torch/generated/aimet_torch.nn.QuantizationMixin.html#aimet_torch.nn.QuantizationMixin.wrap">wrap() (aimet_torch.nn.QuantizationMixin class method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+
+                </div>
+            </article>
+            
+
+                <div data-pagefind-ignore>
+
+                    <footer class="mt-10 border-t border-lumina-border pt-6">
+    
+    
+    
+    
+    
+    
+</footer>
+
+                </div>
+
+
+            
+        </main>
+        
+            <aside id="lumina-toc">
+
+                
+
+            </aside>
+        
+    </div>
+
+    
+        <button id="lumina-back-to-top"
+                x-data="backToTop()"
+                x-show="visible"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                @click="scrollToTop()"
+                class="lumina-back-to-top z-40 hover:border-lumina-accent transition-colors"
+                aria-label="Back to top"
+                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></button>
+    
+
+    <dialog id="lumina-search-modal"
+        x-data="searchModal()"
+        @cancel.prevent="close()"
+        @keydown.escape.stop.prevent="close()"
+        @keydown.meta.k.window.prevent="toggle()"
+        @keydown.ctrl.k.window.prevent="toggle()"
+        @click.self="close()"
+        class="lumina-overlay-backdrop fixed inset-0 z-[100] m-0 h-full w-full max-h-none max-w-none border-0 p-0"
+        aria-modal="true"
+        aria-label="Search documentation">
+    
+    <div class="relative mx-auto mt-[5vh] flex max-h-[90dvh] w-[calc(100%-2rem)] max-w-xl flex-col sm:mt-[12vh] sm:max-h-[80dvh] cursor-auto rounded-xl border border-lumina-border bg-lumina-bg shadow-2xl">
+        
+        <div class="flex items-center border-b border-lumina-border px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lumina-text-muted" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+            <input type="search"
+                   x-ref="searchInput"
+                   x-model="query"
+                   @input.debounce.150ms="search()"
+                   @keydown.arrow-down.prevent="moveDown()"
+                   @keydown.arrow-up.prevent="moveUp()"
+                   @keydown.enter.prevent="goToSelected()"
+                   role="combobox"
+                   aria-autocomplete="list"
+                   aria-controls="lumina-search-results"
+                   :aria-expanded="results.length > 0"
+                   :aria-activedescendant="results.length > 0 ? 'lumina-search-result-' + selectedIndex : ''"
+                   class="w-full border-0 bg-transparent px-3 py-4 text-lumina-text placeholder-lumina-text-muted outline-none"
+                   aria-label="Search documentation"
+                   placeholder="Search docs..."
+                   autocomplete="off">
+            <kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1.5 py-0.5 text-xs text-lumina-text-muted">esc</kbd>
+        </div>
+        <template x-if="loaded && scopes.length > 1 && pagefind">
+            <div class="flex shrink-0 items-center gap-3 border-b border-lumina-border px-4 py-2">
+                <label for="lumina-search-scope"
+                       class="shrink-0 text-xs text-lumina-text-muted">Search in</label>
+                <select id="lumina-search-scope"
+                        x-model="scope"
+                        @change="search()"
+                        class="min-w-0 flex-1 rounded border border-lumina-border bg-lumina-bg px-2 py-2 text-sm text-lumina-text focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                    <option value="">All docs</option>
+                    <template x-for="name in scopes" :key="name">
+                        <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+        
+        <div class="min-h-0 overflow-y-auto p-2" :aria-busy="searching">
+            <template x-if="!loaded || searching">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <span x-text="loaded ? $t('Searching…') : $t('Loading search index…')"></span>
+                </p>
+            </template>
+            <template x-if="loaded && !searching && !error && query.trim().length > 0 && results.length === 0">
+                <div class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <p x-text="scope ? $t('No results in {scope}.', { scope }) : $t('No results found.')"></p>
+                    <template x-if="scope">
+                        <button type="button"
+                                @click="searchAll()"
+                                class="mt-2 rounded px-3 py-2 text-lumina-accent underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                            Search all docs
+                        </button>
+                    </template>
+                </div>
+            </template>
+            <template x-if="error">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted"
+                   x-text="error"></p>
+            </template>
+            <div id="lumina-search-results"
+                 role="listbox"
+                 aria-label="Search documentation">
+                <template x-for="(result, index) in results" :key="result.url">
+                    <a :id="'lumina-search-result-' + index"
+                       :href="result.url"
+                       role="option"
+                       :aria-selected="index === selectedIndex"
+                       data-search-result
+                       class="flex flex-col gap-1 rounded-lg px-3 py-2.5 no-underline transition-colors focus-visible:outline-2 focus-visible:outline-lumina-accent"
+                       :class="[index === selectedIndex ? 'bg-lumina-accent-light text-lumina-accent' : 'hover:bg-lumina-bg-secondary text-lumina-text', result.isHeading ? 'ms-4 border-s border-lumina-border' : 'mt-1']"
+                       @click="rememberQuery()"
+                       @mouseenter="selectedIndex = index"
+                       @focus="selectedIndex = index">
+                        <template x-if="result.breadcrumb">
+                            <span class="truncate text-xs text-lumina-text-muted"
+                                  x-text="result.breadcrumb"></span>
+                        </template>
+                        <span class="break-words text-sm"
+                              :class="result.isSymbol ? 'font-mono' : result.isHeading ? '' : 'font-semibold'"
+                              x-text="result.title"></span>
+                        <span x-show="result.excerpt"
+                              class="line-clamp-2 text-xs text-lumina-text-muted"
+                              x-html="result.excerpt"></span>
+                    </a>
+                </template>
+            </div>
+            <template x-if="loaded && !error && query.trim().length === 0">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">Type to search...</p>
+            </template>
+        </div>
+        
+        <div class="sr-only"
+             role="status"
+             x-text="searching ? $t('Searching…') : loaded && query.trim().length > 0 ? (scope ? $t('{count} links in {scope}', { count: results.length, scope }) : $t('{count} links across all docs', { count: results.length })) : ''">
+        </div>
+        
+        <div class="flex shrink-0 items-center gap-3 border-t border-lumina-border px-4 py-2.5 text-xs text-lumina-text-muted">
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↑↓</kbd> Navigate</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↵</kbd> Open</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">esc</kbd> Close</span>
+        </div>
+    </div>
+</dialog>
+
+    
+
+
+
+
+  </body>
+</html>

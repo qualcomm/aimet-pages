@@ -1,0 +1,1093 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>aimet_onnx.analysis.sensitivity &#8212; AI Model Efficiency Toolkit</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../../_static/lumina.css?v=bc31efa2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../_static/aimet-lumina.css?v=4747defc" />
+    <script defer="defer" src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script defer="defer" src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script defer="defer" src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer="defer" src="../../_static/copybutton.js?v=f281be69"></script>
+    <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="../../_static/lumina.js?v=3e122351"></script>
+    <link rel="icon" href="../../_static/ai-hub-workbench-icon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    
+    
+    
+    
+        
+        <meta name="description" content="Sensitivity analysis measures how sensitive a calibrated QuantizationSimModel is to quantization at per-quantizer granularity, and drives mixed-precision decis…">
+        
+        <meta name="theme-color" content="#2A2AEA">
+        <meta property="og:title" content="aimet_onnx.analysis.sensitivity">
+        
+            <meta property="og:description" content="Sensitivity analysis measures how sensitive a calibrated QuantizationSimModel is to quantization at per-quantizer granularity, and drives mixed-precision decis…">
+        
+        
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="AI Model Efficiency Toolkit">
+        <meta property="og:locale" content="en_US">
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="aimet_onnx.analysis.sensitivity">
+        
+            <meta name="twitter:description" content="Sensitivity analysis measures how sensitive a calibrated QuantizationSimModel is to quantization at per-quantizer granularity, and drives mixed-precision decis…">
+        
+        
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "aimet_onnx.analysis.sensitivity", "item": "/"}]}</script>
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "aimet_onnx.analysis.sensitivity", "author": {"@type": "Person", "name": "Qualcomm Innovation Center, Inc."}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "Sensitivity analysis measures how sensitive a calibrated QuantizationSimModel is to quantization at per-quantizer granularity, and drives mixed-precision decis…"}</script>
+        
+        
+    
+    <link rel="preload"
+          as="font"
+          type="font/woff2"
+          href="../../_static/fonts/source-sans-3-regular-latin.woff2"
+          crossorigin>
+    
+    <script>
+(function() {
+  var stored = null;
+  try { stored = localStorage.getItem('lumina-theme'); } catch (e) {}
+  
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Sphinx gates the dark highlight stylesheet on the OS color scheme only;
+  // a stored override or dark_mode_default must rewrite its media query
+  // before first paint.
+  var pygmentsDark = document.getElementById('pygments_dark_css');
+  if (pygmentsDark) {
+    pygmentsDark.media = document.documentElement.getAttribute('data-theme') === 'dark' ? 'screen' : 'not all';
+  }
+})();
+    </script>
+    
+    <meta name="lumina-search-backend" content="sphinx">
+    <meta name="lumina-base-url" content="../../">
+    
+    
+    
+    
+        <script>document.documentElement.dataset.apiExpanded = "true";</script>
+    
+    
+    
+    
+        <style>
+            :root,[data-theme="light"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 65%,#202624);--lumina-accent-light:color-mix(in srgb,#2A2AEA 12%,var(--lumina-bg));}
+            [data-theme="dark"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 55%,#e9eeeb);--lumina-accent-light:color-mix(in srgb,#2A2AEA 15%,var(--lumina-bg));}
+            html:root,html[data-theme="dark"]{--sd-color-primary:color-mix(in srgb,#2A2AEA 85%,black);--sd-color-primary-highlight:color-mix(in srgb,#2A2AEA 70%,black);--sd-color-primary-text:#fff;--sd-color-primary-bg:color-mix(in srgb,#2A2AEA 12%,transparent);}
+        </style>
+    
+    
+    
+    
+
+
+  </head><body>
+
+
+
+
+
+    <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
+
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-lumina-border bg-lumina-bg/80 backdrop-blur-sm">
+
+    
+
+    <div class="lumina-header-inner mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
+        
+        <div class="flex items-center gap-3">
+            <a href="../../index.html"
+               class="flex items-center gap-2 text-lumina-text no-underline hover:opacity-80 transition-opacity">
+                
+                    <img src="../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-light h-7 w-auto">
+                    <img src="../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-dark h-7 w-auto">
+                
+            </a>
+            
+                
+                <span class="flex flex-col leading-tight">
+                    <a href="../../index.html"
+                       class="font-semibold text-base text-lumina-text no-underline hover:opacity-80 transition-opacity">AIMET</a>
+                    
+                        <a href="../../versions.html"
+                           class="text-xs text-lumina-text-muted hover:text-lumina-accent no-underline"
+                           title="See other versions">v2.44.0</a>
+                    
+                </span>
+            
+
+            
+
+        </div>
+        
+        
+        
+        <div class="flex items-center gap-2">
+            
+            <button data-search-trigger
+                    class="flex items-center gap-2 rounded-lg border border-lumina-border bg-lumina-bg-secondary px-3 py-2 text-[0.8125rem] text-lumina-text-muted hover:border-lumina-accent transition-colors cursor-pointer lg:min-w-56"
+                    aria-label="Search documentation"
+                    aria-haspopup="dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+                <span class="hidden lg:inline flex-1 text-start">Search docs...</span>
+                <kbd data-search-shortcut
+                     class="hidden lg:inline rounded border border-lumina-border bg-lumina-bg px-1.5 py-0.5 text-[0.6875rem] font-[family-name:var(--lumina-font-mono)] tracking-[0.02em]">⌘K</kbd>
+            </button>
+            
+            <button data-theme-toggle
+                    x-data="themeToggle()"
+                    @click="cycle()"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-md text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors cursor-pointer"
+                    aria-label="Toggle color theme"
+                    title="Toggle color theme"
+                    :aria-label="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')"
+                    :title="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')">
+                
+                <svg x-show="mode === 'light'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-[-90deg] scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+                </svg>
+                
+                <svg x-show="mode === 'dark'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-90 scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                </svg>
+                
+                <svg x-show="mode === 'auto'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 scale-0"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+            </button>
+            
+            
+            
+                
+                    <a href="https://github.com/qualcomm/aimet"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Github"
+                       aria-label="Github (opens in new tab)">
+                        
+                            <svg class="h-5 w-5"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        
+                    </a>
+                
+            
+            
+            
+                <button data-sidebar-toggle
+                        class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors lg:hidden cursor-pointer"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="lumina-sidebar-drawer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            
+        </div>
+    </div>
+</header>
+
+    </div>
+    <div class="lumina-wrapper">
+        <aside id="lumina-sidebar">
+
+            <div x-data="sidebar()">
+    
+    <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-e border-lumina-border/45 bg-lumina-bg px-4 py-6 lg:flex">
+
+        
+
+
+        
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Main navigation"
+                 x-data="sidebarNav()">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../techniques/index.html">Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ptq_techniques/index.html">PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external/index.html">External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+            </nav>
+        
+        
+            <div class="lumina-sidebar-footer">
+                Built with
+                <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                   target="_blank"
+                   rel="noopener">
+                    <svg class="lumina-sidebar-footer-icon"
+                         viewBox="0 0 32 32"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M16 3L28 27H4L16 3Z" stroke="currentColor" stroke-width="2.5" fill="none" />
+                        <path d="M16 10L8 27H16" fill="currentColor" opacity="0.15" />
+                        <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
+                    </svg>
+                Lumina</a>
+                <span class="lumina-sidebar-footer-version">v2.21.2</span>
+            </div>
+        
+    </div>
+    
+    <template x-teleport="body">
+        <div>
+            
+            <div x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="lumina-overlay-backdrop fixed inset-0 top-[var(--lumina-header-offset)] z-40 lg:hidden"
+                 @click="close()"></div>
+            
+            <div id="lumina-sidebar-drawer"
+                 x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-250"
+                 x-transition:enter-start="-translate-x-full rtl:translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full rtl:translate-x-full"
+                 @keydown.escape.window="close()"
+                 class="fixed inset-y-0 top-[var(--lumina-header-offset)] start-0 z-50 w-[min(280px,85vw)] overflow-y-auto border-e border-lumina-border bg-lumina-bg px-4 py-6 lg:hidden">
+
+                
+                
+
+                    
+
+
+                
+
+                
+                
+                
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Main navigation"
+                         x-data="sidebarNav()">
+                        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../techniques/index.html">Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ptq_techniques/index.html">PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external/index.html">External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+                    </nav>
+                
+                
+                    <div class="lumina-sidebar-footer">
+                        <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                           target="_blank"
+                           rel="noopener">Lumina</a>
+                        <span class="lumina-sidebar-footer-version">v2.21.2</span>
+                    </div>
+                
+            </div>
+        </div>
+    </template>
+</div>
+
+        </aside>
+        <main id="lumina-content" role="main" data-pagefind-body>
+            
+            
+            <div class="lumina-content-toolbar"
+                 data-pagefind-ignore>
+                
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-lumina-text-muted"
+     style="scrollbar-width:none"
+     aria-label="Breadcrumb">
+    
+        <a href="../../index.html"
+           class="whitespace-nowrap hover:text-lumina-accent no-underline transition-colors">AIMET</a>
+    
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 rtl:-scale-x-100" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    <span class="shrink-0 whitespace-nowrap text-lumina-text"
+          aria-current="page">aimet_onnx.analysis.sensitivity</span>
+</nav>
+
+                    </div>
+                
+
+                <details class="lumina-page-actions"
+         x-data
+         @click.outside="$el.open = false"
+         @keydown.escape.stop="$el.open = false; $el.querySelector('summary').focus()">
+    <summary aria-label="Page actions" title="Page actions">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+    </summary>
+    <div class="lumina-page-action-list">
+        <button x-data="copyPage()"
+                @click="copy()"
+                type="button"
+                aria-label="Copy page as Markdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+            <span aria-live="polite"
+                  x-text="copied ? $t('Copied!') : $t('Copy as Markdown')">Copy as Markdown</span>
+        </button>
+        
+    </div>
+</details>
+
+            </div>
+            
+                <details class="lumina-mobile-outline" data-pagefind-ignore>
+                    <summary>On this page <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+                    <nav aria-label="Page outline">
+                        <ul>
+<li><a class="reference internal" href="#">aimet_onnx.<wbr>analysis.<wbr>sensitivity</a><ul>
+<li><a class="reference internal" href="#metric">Metric</a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric"><code class="docutils literal notranslate"><span class="pre">SensitivityMetric</span></code></a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric.sensitivity_score"><code class="docutils literal notranslate"><span class="pre">SensitivityMetric.<wbr>sensitivity_score()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#aimet_onnx.analysis.make_topk_logit_psnr_metric"><code class="docutils literal notranslate"><span class="pre">make_topk_logit_psnr_metric()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#analysis">Analysis</a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.analyze_per_quantizer_sensitivity"><code class="docutils literal notranslate"><span class="pre">analyze_per_quantizer_sensitivity()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#naming">Naming</a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.get_quantizer_op_names"><code class="docutils literal notranslate"><span class="pre">get_quantizer_op_names()</span></code></a></li>
+<li><a class="reference internal" href="#aimet_onnx.analysis.group_by_op_name"><code class="docutils literal notranslate"><span class="pre">group_by_op_name()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#visualization-and-persistence">Visualization and persistence</a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.save_sensitivity_plot"><code class="docutils literal notranslate"><span class="pre">save_sensitivity_plot()</span></code></a></li>
+<li><a class="reference internal" href="#aimet_onnx.analysis.save_sensitivity_results"><code class="docutils literal notranslate"><span class="pre">save_sensitivity_results()</span></code></a></li>
+<li><a class="reference internal" href="#aimet_onnx.analysis.load_sensitivity_results"><code class="docutils literal notranslate"><span class="pre">load_sensitivity_results()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                    </nav>
+                </details>
+            
+            <article class="lumina-article" x-data="headerLinks()">
+                
+                <div class="body">
+
+                    
+
+    <section id="aimet-onnx-analysis-sensitivity">
+<span id="apiref-onnx-sensitivity"></span><h1 id="lumina-search-aimet-onnx-analysis-sensitivity">aimet_onnx.analysis.sensitivity<a class="headerlink" href="#aimet-onnx-analysis-sensitivity" title="Link to this heading">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature is under heavy development and API changes may occur without notice in future versions.</p>
+</div>
+<p>Sensitivity analysis measures how sensitive a calibrated
+<code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationSimModel</span></code> is to quantization at per-quantizer granularity,
+and drives mixed-precision decisions.</p>
+<p>The analysis takes a <code class="xref py py-class docutils literal notranslate"><span class="pre">SensitivityMetric</span></code> – a named evaluation function
+(<code class="docutils literal notranslate"><span class="pre">onnxruntime.InferenceSession</span> <span class="pre">-&gt;</span> <span class="pre">float</span></code>) plus ranking semantics – and
+returns a <code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">score}</span></code> dict ordered most-sensitive-first. That dict feeds
+directly into <code class="xref py py-func docutils literal notranslate"><span class="pre">aimet_onnx.lite_mp.flip_layers_to_higher_precision()</span></code> to raise
+the most sensitive units to a higher precision. To restrict the sweep to a
+subset (e.g. KV-cache tensors only), pass a <code class="docutils literal notranslate"><span class="pre">group_fn</span></code> that returns <code class="docutils literal notranslate"><span class="pre">None</span></code>
+for the quantizers to exclude.</p>
+<section id="metric">
+<h2 id="lumina-search-metric">Metric<a class="headerlink" href="#metric" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="aimet_onnx.analysis.SensitivityMetric">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aimet_onnx.analysis.</span></span><span class="sig-name descname"><span class="pre">SensitivityMetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">higher_is_worse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/analysis/sensitivity.html#SensitivityMetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aimet_onnx.analysis.SensitivityMetric" title="Link to this definition">¶</a></dt>
+<dd><p>A named evaluation function with ranking semantics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Human-readable metric name (used in logs and plots).</p></li>
+<li><p><strong>eval_fn</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">InferenceSession</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – Callable taking an <code class="docutils literal notranslate"><span class="pre">onnxruntime.InferenceSession</span></code> and
+returning a scalar score.</p></li>
+<li><p><strong>higher_is_worse</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code> (e.g. perplexity, KL divergence), a
+larger score means greater sensitivity. If <code class="docutils literal notranslate"><span class="pre">False</span></code> (e.g. PSNR,
+accuracy), a smaller score means greater sensitivity. Controls the
+ordering used when ranking units most-sensitive-first.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="aimet_onnx.analysis.SensitivityMetric.sensitivity_score">
+<span class="sig-name descname"><span class="pre">sensitivity_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/analysis/sensitivity.html#SensitivityMetric.sensitivity_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aimet_onnx.analysis.SensitivityMetric.sensitivity_score" title="Link to this definition">¶</a></dt>
+<dd><p>Map a raw score to a value where larger always means more sensitive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aimet_onnx.analysis.make_topk_logit_psnr_metric">
+<span class="sig-prename descclassname"><span class="pre">aimet_onnx.analysis.</span></span><span class="sig-name descname"><span class="pre">make_topk_logit_psnr_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp_session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logit_output_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/analysis/sensitivity.html#make_topk_logit_psnr_metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aimet_onnx.analysis.make_topk_logit_psnr_metric" title="Link to this definition">¶</a></dt>
+<dd><p>Build a top-k logit PSNR metric for LLM-style models.</p>
+<p>For each input sample, the reference (floating-point) logits are compared
+against the sim’s logits, restricted to the top-<code class="docutils literal notranslate"><span class="pre">k</span></code> vocabulary indices of
+the FP logits at each position. PSNR is computed over those slices,
+aggregated across all samples. Higher PSNR is better, so
+<code class="docutils literal notranslate"><span class="pre">higher_is_worse=False</span></code> – a drop in PSNR indicates greater sensitivity.</p>
+<p>The FP logits are captured once, up front, from <code class="docutils literal notranslate"><span class="pre">fp_session</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fp_session</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">InferenceSession</span></code></span>) – ORT inference session for the floating-point model.</p></li>
+<li><p><strong>inputs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]]</span>) – Iterable of input feed dicts (<code class="docutils literal notranslate"><span class="pre">{input_name:</span> <span class="pre">np.ndarray}</span></code>). bfloat16
+inputs are <code class="docutils literal notranslate"><span class="pre">ml_dtypes.bfloat16</span></code> arrays.</p></li>
+<li><p><strong>k</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of top FP vocabulary indices to compare per position.</p></li>
+<li><p><strong>logit_output_index</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Index of the logits tensor in the model outputs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric" title="aimet_onnx.analysis.sensitivity.SensitivityMetric"><code class="xref py py-class docutils literal notranslate"><span class="pre">SensitivityMetric</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric" title="aimet_onnx.analysis.SensitivityMetric"><code class="xref py py-class docutils literal notranslate"><span class="pre">SensitivityMetric</span></code></a> wrapping the top-k logit PSNR eval fn.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="analysis">
+<h2 id="lumina-search-analysis">Analysis<a class="headerlink" href="#analysis" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="aimet_onnx.analysis.analyze_per_quantizer_sensitivity">
+<span class="sig-prename descclassname"><span class="pre">aimet_onnx.analysis.</span></span><span class="sig-name descname"><span class="pre">analyze_per_quantizer_sensitivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/analysis/sensitivity.html#analyze_per_quantizer_sensitivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aimet_onnx.analysis.analyze_per_quantizer_sensitivity" title="Link to this definition">¶</a></dt>
+<dd><p>Analyze sensitivity by enabling one quantizer (or quantizer group) at a time.</p>
+<p>All quantizers are first disabled. Then, for each group, that group’s
+quantizers are enabled, the metric is evaluated on <code class="docutils literal notranslate"><span class="pre">sim.session</span></code>, and the
+group is disabled again. This isolates each unit’s contribution to
+quantization error at a finer granularity than the op-level
+<code class="xref py py-func docutils literal notranslate"><span class="pre">aimet_onnx.analyze_per_layer_sensitivity()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="quantsim.html#aimet_onnx.QuantizationSimModel" title="aimet_onnx.quantsim.QuantizationSimModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationSimModel</span></code></a></span>) – Calibrated QuantizationSimModel to analyze. Its quantizers’
+enabled state is restored on return.</p></li>
+<li><p><strong>metric</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric" title="aimet_onnx.analysis.sensitivity.SensitivityMetric"><code class="xref py py-class docutils literal notranslate"><span class="pre">SensitivityMetric</span></code></a></span>) – <a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric" title="aimet_onnx.analysis.SensitivityMetric"><code class="xref py py-class docutils literal notranslate"><span class="pre">SensitivityMetric</span></code></a> used to score each group.</p></li>
+<li><p><strong>group_fn</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]</span>) – <p>Optional callable mapping a quantizer name to a group key.
+Quantizers sharing a key are enabled together; a key of <code class="docutils literal notranslate"><span class="pre">None</span></code> skips
+that quantizer. If omitted, each currently-enabled quantizer is its own
+group (keyed by its own name). To restrict the sweep to a subset (e.g.
+KV-cache tensors), return <code class="docutils literal notranslate"><span class="pre">None</span></code> for the quantizers to exclude:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">analyze_per_quantizer_sensitivity</span><span class="p">(</span>
+    <span class="n">sim</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span>
+    <span class="n">group_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">name</span><span class="p">:</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">kv_names</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Pass <a class="reference internal" href="#aimet_onnx.analysis.group_by_op_name" title="aimet_onnx.analysis.group_by_op_name"><code class="xref py py-func docutils literal notranslate"><span class="pre">group_by_op_name()</span></code></a> to key the results by owning ONNX node
+name instead of by tensor name.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict mapping group key to its metric score, ordered
+most-sensitive-first per <code class="docutils literal notranslate"><span class="pre">metric</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>For op-level sensitivity, see
+<code class="xref py py-func docutils literal notranslate"><span class="pre">aimet_onnx.analyze_per_layer_sensitivity()</span></code>.</p>
+</section>
+<section id="naming">
+<h2 id="lumina-search-naming">Naming<a class="headerlink" href="#naming" title="Link to this heading">¶</a></h2>
+<p>Quantizers are keyed by tensor name, which for exported models is often opaque
+(a torch <code class="docutils literal notranslate"><span class="pre">Linear</span></code> weight becomes an initializer named <code class="docutils literal notranslate"><span class="pre">onnx::MatMul_9772</span></code>).
+These helpers resolve the owning ONNX node name – e.g.
+<code class="docutils literal notranslate"><span class="pre">/model/layers.0/self_attn/q_proj/MatMul</span></code> – so results read in terms of the
+model’s structure and are keyed the way
+<code class="xref py py-func docutils literal notranslate"><span class="pre">aimet_onnx.lite_mp.flip_layers_to_higher_precision()</span></code> expects.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="aimet_onnx.analysis.get_quantizer_op_names">
+<span class="sig-prename descclassname"><span class="pre">aimet_onnx.analysis.</span></span><span class="sig-name descname"><span class="pre">get_quantizer_op_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/analysis/sensitivity.html#get_quantizer_op_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aimet_onnx.analysis.get_quantizer_op_names" title="Link to this definition">¶</a></dt>
+<dd><p>Map each quantizer name to the name of the ONNX node that owns it.</p>
+<p>Quantizers are keyed by tensor name, which for exported models is frequently
+unreadable (<code class="docutils literal notranslate"><span class="pre">onnx::MatMul_9772</span></code>), while the node the tensor belongs to
+usually carries the module path it came from
+(<code class="docutils literal notranslate"><span class="pre">/model/layers.0/self_attn/q_proj/MatMul</span></code>). This resolves the latter for
+every quantizer in <code class="docutils literal notranslate"><span class="pre">sim</span></code>, mirroring the ownership rules of
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">QuantizationSimModel.get_op_quantizers()</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a parameter tensor belongs to the node it parameterizes;</p></li>
+<li><p>an activation tensor belongs to the node that produces it;</p></li>
+<li><p>a tensor with no producer (e.g. a graph input) belongs to the node
+that consumes it.</p></li>
+</ul>
+</div></blockquote>
+<p>The returned names are connected-graph op names – the same keys accepted by
+<code class="xref py py-func docutils literal notranslate"><span class="pre">aimet_onnx.lite_mp.flip_layers_to_higher_precision()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="quantsim.html#aimet_onnx.QuantizationSimModel" title="aimet_onnx.quantsim.QuantizationSimModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationSimModel</span></code></a></span>) – QuantizationSimModel to inspect.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">{quantizer_name:</span> <span class="pre">op_name}</span></code>. Quantizers that belong to no op
+(rare) are absent from the mapping.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aimet_onnx.analysis.group_by_op_name">
+<span class="sig-prename descclassname"><span class="pre">aimet_onnx.analysis.</span></span><span class="sig-name descname"><span class="pre">group_by_op_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/analysis/sensitivity.html#group_by_op_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aimet_onnx.analysis.group_by_op_name" title="Link to this definition">¶</a></dt>
+<dd><p>Build a <code class="docutils literal notranslate"><span class="pre">group_fn</span></code> that keys sensitivity scores by owning ONNX node name.</p>
+<p>Pass the result as the <code class="docutils literal notranslate"><span class="pre">group_fn</span></code> of
+<a class="reference internal" href="#aimet_onnx.analysis.analyze_per_quantizer_sensitivity" title="aimet_onnx.analysis.analyze_per_quantizer_sensitivity"><code class="xref py py-func docutils literal notranslate"><span class="pre">analyze_per_quantizer_sensitivity()</span></code></a> to get readable, node-named results
+instead of raw tensor names:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">analyze_per_quantizer_sensitivity</span><span class="p">(</span>
+    <span class="n">sim</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">group_fn</span><span class="o">=</span><span class="n">group_by_op_name</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">flip_layers_to_higher_precision</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">percent_to_flip</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Quantizers that share an owning node are swept together as one group, so the
+result is per-node rather than per-quantizer wherever a node has more than
+one enabled quantizer (e.g. both a weight and an output quantizer).
+Quantizers with no owning node are skipped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="quantsim.html#aimet_onnx.QuantizationSimModel" title="aimet_onnx.quantsim.QuantizationSimModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationSimModel</span></code></a></span>) – QuantizationSimModel to be analyzed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable mapping a quantizer name to its owning op name, or
+<code class="docutils literal notranslate"><span class="pre">None</span></code> if it has none.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="visualization-and-persistence">
+<h2 id="lumina-search-visualization-and-persistence">Visualization and persistence<a class="headerlink" href="#visualization-and-persistence" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">score}</span></code> dict returned by the analysis functions can be rendered as
+an interactive HTML chart or serialized to / from JSON.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="aimet_onnx.analysis.save_sensitivity_plot">
+<span class="sig-prename descclassname"><span class="pre">aimet_onnx.analysis.</span></span><span class="sig-name descname"><span class="pre">save_sensitivity_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./sensitivity_plot.html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highlight_patterns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">details</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">details_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Details'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/analysis/sensitivity_plot.html#save_sensitivity_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aimet_onnx.analysis.save_sensitivity_plot" title="Link to this definition">¶</a></dt>
+<dd><p>Render an interactive sensitivity chart and save it as standalone HTML.</p>
+<p>Points are plotted along the x-axis in the order of <code class="docutils literal notranslate"><span class="pre">scores</span></code> (so passing a
+dict in topological/layer order plots them that way); the y-axis is the
+metric score. The sensitivity rank (most-sensitive-first) is still shown in
+the hover tooltip and table. Interactive features:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A numeric threshold input; entries scoring below it are listed in a
+table and a guide line is drawn.</p></li>
+<li><p>Toggle buttons (one per <code class="docutils literal notranslate"><span class="pre">highlight_patterns</span></code> entry) that highlight
+points whose name contains the pattern and add them to the table.</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scores</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – <code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">score}</span></code> dict from an analysis function. Iteration
+order of this dict sets the x-axis order of the plotted points.</p></li>
+<li><p><strong>metric</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric" title="aimet_onnx.analysis.sensitivity.SensitivityMetric"><code class="xref py py-class docutils literal notranslate"><span class="pre">SensitivityMetric</span></code></a></span>) – The <a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric" title="aimet_onnx.analysis.SensitivityMetric"><code class="xref py py-class docutils literal notranslate"><span class="pre">SensitivityMetric</span></code></a> used to produce <code class="docutils literal notranslate"><span class="pre">scores</span></code>.</p></li>
+<li><p><strong>save_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Output HTML path (must end with <code class="docutils literal notranslate"><span class="pre">.html</span></code>).</p></li>
+<li><p><strong>highlight_patterns</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span>) – Name substrings for the highlight toggles. If
+omitted, defaults to common transformer projection weight names.</p></li>
+<li><p><strong>details</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span>) – Optional <code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">detail}</span></code> dict. When given, the detail
+string is shown as an extra hover row and table column, letting the plot
+carry a secondary identifier – e.g. plot by ONNX node name (see
+<a class="reference internal" href="#aimet_onnx.analysis.get_quantizer_op_names" title="aimet_onnx.analysis.get_quantizer_op_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">aimet_onnx.analysis.get_quantizer_op_names()</span></code></a>) while still showing
+the underlying quantizer tensor name. Names absent from the dict get an
+empty cell.</p></li>
+<li><p><strong>details_label</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Column and tooltip label used for <code class="docutils literal notranslate"><span class="pre">details</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aimet_onnx.analysis.save_sensitivity_results">
+<span class="sig-prename descclassname"><span class="pre">aimet_onnx.analysis.</span></span><span class="sig-name descname"><span class="pre">save_sensitivity_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./sensitivity_results.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">details</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/analysis/sensitivity_plot.html#save_sensitivity_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aimet_onnx.analysis.save_sensitivity_results" title="Link to this definition">¶</a></dt>
+<dd><p>Save sensitivity <code class="docutils literal notranslate"><span class="pre">scores</span></code> to JSON, preserving their order.</p>
+<p><code class="docutils literal notranslate"><span class="pre">scores</span></code> from the analysis functions is already ranked most-sensitive-first;
+that order is preserved in the <code class="docutils literal notranslate"><span class="pre">ranking</span></code> list. Inverse of
+<a class="reference internal" href="#aimet_onnx.analysis.load_sensitivity_results" title="aimet_onnx.analysis.load_sensitivity_results"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_sensitivity_results()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scores</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – <code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">score}</span></code> dict from an analysis function.</p></li>
+<li><p><strong>save_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Output JSON path.</p></li>
+<li><p><strong>details</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span>) – Optional <code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">detail}</span></code> dict; a matching entry is written
+alongside each ranking entry as <code class="docutils literal notranslate"><span class="pre">&quot;detail&quot;</span></code>. Use it to record what a
+name stands for, e.g. the quantizer tensor names behind a node name (see
+<a class="reference internal" href="#aimet_onnx.analysis.get_quantizer_op_names" title="aimet_onnx.analysis.get_quantizer_op_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">aimet_onnx.analysis.get_quantizer_op_names()</span></code></a>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aimet_onnx.analysis.load_sensitivity_results">
+<span class="sig-prename descclassname"><span class="pre">aimet_onnx.analysis.</span></span><span class="sig-name descname"><span class="pre">load_sensitivity_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/analysis/sensitivity_plot.html#load_sensitivity_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aimet_onnx.analysis.load_sensitivity_results" title="Link to this definition">¶</a></dt>
+<dd><p>Load a sensitivity JSON written by <a class="reference internal" href="#aimet_onnx.analysis.save_sensitivity_results" title="aimet_onnx.analysis.save_sensitivity_results"><code class="xref py py-func docutils literal notranslate"><span class="pre">save_sensitivity_results()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Path to the JSON file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">score}</span></code> dict, preserving the file’s ranked order.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+
+
+                </div>
+            </article>
+            
+
+                <div data-pagefind-ignore>
+
+                    <footer class="mt-10 border-t border-lumina-border pt-6">
+    
+    
+    
+    
+    
+    
+</footer>
+
+                </div>
+
+
+            
+        </main>
+        
+            <aside id="lumina-toc">
+
+                
+    <div class="lumina-toc-container sticky top-[var(--lumina-header-offset)] hidden h-[calc(100vh-var(--lumina-header-offset))] w-[220px] shrink-0 py-6 pe-4 xl:block">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-lumina-text-muted">On this page</p>
+        <div class="lumina-toc-scroll">
+            
+            <nav class="lumina-toc-nav"
+                 aria-label="Table of contents"
+                 x-data="scrollspy()">
+                <ul>
+<li><a class="reference internal" href="#">aimet_onnx.<wbr>analysis.<wbr>sensitivity</a><ul>
+<li><a class="reference internal" href="#metric">Metric</a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric"><code class="docutils literal notranslate"><span class="pre">SensitivityMetric</span></code></a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.SensitivityMetric.sensitivity_score"><code class="docutils literal notranslate"><span class="pre">SensitivityMetric.<wbr>sensitivity_score()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#aimet_onnx.analysis.make_topk_logit_psnr_metric"><code class="docutils literal notranslate"><span class="pre">make_topk_logit_psnr_metric()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#analysis">Analysis</a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.analyze_per_quantizer_sensitivity"><code class="docutils literal notranslate"><span class="pre">analyze_per_quantizer_sensitivity()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#naming">Naming</a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.get_quantizer_op_names"><code class="docutils literal notranslate"><span class="pre">get_quantizer_op_names()</span></code></a></li>
+<li><a class="reference internal" href="#aimet_onnx.analysis.group_by_op_name"><code class="docutils literal notranslate"><span class="pre">group_by_op_name()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#visualization-and-persistence">Visualization and persistence</a><ul>
+<li><a class="reference internal" href="#aimet_onnx.analysis.save_sensitivity_plot"><code class="docutils literal notranslate"><span class="pre">save_sensitivity_plot()</span></code></a></li>
+<li><a class="reference internal" href="#aimet_onnx.analysis.save_sensitivity_results"><code class="docutils literal notranslate"><span class="pre">save_sensitivity_results()</span></code></a></li>
+<li><a class="reference internal" href="#aimet_onnx.analysis.load_sensitivity_results"><code class="docutils literal notranslate"><span class="pre">load_sensitivity_results()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+
+
+            </aside>
+        
+    </div>
+
+    
+        <button id="lumina-back-to-top"
+                x-data="backToTop()"
+                x-show="visible"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                @click="scrollToTop()"
+                class="lumina-back-to-top z-40 hover:border-lumina-accent transition-colors"
+                aria-label="Back to top"
+                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></button>
+    
+
+    <dialog id="lumina-search-modal"
+        x-data="searchModal()"
+        @cancel.prevent="close()"
+        @keydown.escape.stop.prevent="close()"
+        @keydown.meta.k.window.prevent="toggle()"
+        @keydown.ctrl.k.window.prevent="toggle()"
+        @click.self="close()"
+        class="lumina-overlay-backdrop fixed inset-0 z-[100] m-0 h-full w-full max-h-none max-w-none border-0 p-0"
+        aria-modal="true"
+        aria-label="Search documentation">
+    
+    <div class="relative mx-auto mt-[5vh] flex max-h-[90dvh] w-[calc(100%-2rem)] max-w-xl flex-col sm:mt-[12vh] sm:max-h-[80dvh] cursor-auto rounded-xl border border-lumina-border bg-lumina-bg shadow-2xl">
+        
+        <div class="flex items-center border-b border-lumina-border px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lumina-text-muted" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+            <input type="search"
+                   x-ref="searchInput"
+                   x-model="query"
+                   @input.debounce.150ms="search()"
+                   @keydown.arrow-down.prevent="moveDown()"
+                   @keydown.arrow-up.prevent="moveUp()"
+                   @keydown.enter.prevent="goToSelected()"
+                   role="combobox"
+                   aria-autocomplete="list"
+                   aria-controls="lumina-search-results"
+                   :aria-expanded="results.length > 0"
+                   :aria-activedescendant="results.length > 0 ? 'lumina-search-result-' + selectedIndex : ''"
+                   class="w-full border-0 bg-transparent px-3 py-4 text-lumina-text placeholder-lumina-text-muted outline-none"
+                   aria-label="Search documentation"
+                   placeholder="Search docs..."
+                   autocomplete="off">
+            <kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1.5 py-0.5 text-xs text-lumina-text-muted">esc</kbd>
+        </div>
+        <template x-if="loaded && scopes.length > 1 && pagefind">
+            <div class="flex shrink-0 items-center gap-3 border-b border-lumina-border px-4 py-2">
+                <label for="lumina-search-scope"
+                       class="shrink-0 text-xs text-lumina-text-muted">Search in</label>
+                <select id="lumina-search-scope"
+                        x-model="scope"
+                        @change="search()"
+                        class="min-w-0 flex-1 rounded border border-lumina-border bg-lumina-bg px-2 py-2 text-sm text-lumina-text focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                    <option value="">All docs</option>
+                    <template x-for="name in scopes" :key="name">
+                        <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+        
+        <div class="min-h-0 overflow-y-auto p-2" :aria-busy="searching">
+            <template x-if="!loaded || searching">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <span x-text="loaded ? $t('Searching…') : $t('Loading search index…')"></span>
+                </p>
+            </template>
+            <template x-if="loaded && !searching && !error && query.trim().length > 0 && results.length === 0">
+                <div class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <p x-text="scope ? $t('No results in {scope}.', { scope }) : $t('No results found.')"></p>
+                    <template x-if="scope">
+                        <button type="button"
+                                @click="searchAll()"
+                                class="mt-2 rounded px-3 py-2 text-lumina-accent underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                            Search all docs
+                        </button>
+                    </template>
+                </div>
+            </template>
+            <template x-if="error">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted"
+                   x-text="error"></p>
+            </template>
+            <div id="lumina-search-results"
+                 role="listbox"
+                 aria-label="Search documentation">
+                <template x-for="(result, index) in results" :key="result.url">
+                    <a :id="'lumina-search-result-' + index"
+                       :href="result.url"
+                       role="option"
+                       :aria-selected="index === selectedIndex"
+                       data-search-result
+                       class="flex flex-col gap-1 rounded-lg px-3 py-2.5 no-underline transition-colors focus-visible:outline-2 focus-visible:outline-lumina-accent"
+                       :class="[index === selectedIndex ? 'bg-lumina-accent-light text-lumina-accent' : 'hover:bg-lumina-bg-secondary text-lumina-text', result.isHeading ? 'ms-4 border-s border-lumina-border' : 'mt-1']"
+                       @click="rememberQuery()"
+                       @mouseenter="selectedIndex = index"
+                       @focus="selectedIndex = index">
+                        <template x-if="result.breadcrumb">
+                            <span class="truncate text-xs text-lumina-text-muted"
+                                  x-text="result.breadcrumb"></span>
+                        </template>
+                        <span class="break-words text-sm"
+                              :class="result.isSymbol ? 'font-mono' : result.isHeading ? '' : 'font-semibold'"
+                              x-text="result.title"></span>
+                        <span x-show="result.excerpt"
+                              class="line-clamp-2 text-xs text-lumina-text-muted"
+                              x-html="result.excerpt"></span>
+                    </a>
+                </template>
+            </div>
+            <template x-if="loaded && !error && query.trim().length === 0">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">Type to search...</p>
+            </template>
+        </div>
+        
+        <div class="sr-only"
+             role="status"
+             x-text="searching ? $t('Searching…') : loaded && query.trim().length > 0 ? (scope ? $t('{count} links in {scope}', { count: results.length, scope }) : $t('{count} links across all docs', { count: results.length })) : ''">
+        </div>
+        
+        <div class="flex shrink-0 items-center gap-3 border-t border-lumina-border px-4 py-2.5 text-xs text-lumina-text-muted">
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↑↓</kbd> Navigate</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↵</kbd> Open</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">esc</kbd> Close</span>
+        </div>
+    </div>
+</dialog>
+
+    
+
+
+
+
+  </body>
+</html>
