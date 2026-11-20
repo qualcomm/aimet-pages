@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>SpinQuant &#8212; AI Model Efficiency Toolkit</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=ed8a8c84" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5175e31d" />
     <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=bc31efa2" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
-    <link rel="stylesheet" type="text/css" href="../_static/aimet-lumina.css?v=4747defc" />
+    <link rel="stylesheet" type="text/css" href="../_static/aimet-lumina.css?v=b1a32206" />
     <script defer="defer" src="../_static/documentation_options.js?v=5929fcd5"></script>
     <script defer="defer" src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script defer="defer" src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
@@ -63,7 +63,7 @@
             <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Post Training Quantization Techniques", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "SpinQuant", "item": "/"}]}</script>
         
         
-            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "SpinQuant", "author": {"@type": "Person", "name": "Qualcomm Innovation Center, Inc."}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "SpinQuant (arXiv:2405.16406) is a post-training quantization technique that reduces activation outliers by inserting orthogonal Hadamard rotations at key point…"}</script>
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "SpinQuant", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "SpinQuant (arXiv:2405.16406) is a post-training quantization technique that reduces activation outliers by inserting orthogonal Hadamard rotations at key point…"}</script>
         
         
     
@@ -116,7 +116,7 @@
     
 
 
-  </head><body>
+  </head><body data-aimet-section="ptq">
 
 
 
@@ -258,6 +258,37 @@
                         
                     </a>
                 
+                    <a href="https://qualcomm-ai-hub.slack.com/archives/C08JKBE0UHY"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Slack"
+                       aria-label="Slack (opens in new tab)">
+                        
+                            
+                            <svg class="h-5 w-5" viewBox="0 0 127 127" aria-hidden="true">
+                                <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A" />
+                                <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0" />
+                                <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D" />
+                                <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://workbench.aihub.qualcomm.com/docs/hub/quantize_examples.html"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Workbench"
+                       aria-label="Workbench (opens in new tab)">
+                        
+                            <img src="../_static/ai-hub-workbench-icon.png"
+                                 alt=""
+                                 class="h-5 w-5 rounded-sm"
+                                 aria-hidden="true">
+                        
+                    </a>
+                
             
             
             
@@ -287,26 +318,40 @@
                  aria-label="Main navigation"
                  x-data="sidebarNav()">
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Overview</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../overview/install/quick-start.html">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../overview/install/index.html">Install</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantsim.html">Quantization Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../techniques/index.html">Techniques</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../techniques/ptq.html">Post Training Quantization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../techniques/qat.html">Quantization Aware Training</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../techniques/blockwise.html">Blockwise Quantization</a></li>
@@ -338,27 +383,32 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">PTQ Techniques</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="adaround.html">Adaptive rounding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="seq_mse.html">Sequential MSE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bnf.html">Batch norm folding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cle.html">Cross-layer equalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="adascale.html">AdaScale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="omniquant.html">OmniQuant</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">SpinQuant</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../apiref/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../external/index.html">External Resources</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
 <li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
 </ul>
 
             </nav>
@@ -422,26 +472,40 @@
                          aria-label="Main navigation"
                          x-data="sidebarNav()">
                         <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Overview</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../overview/install/quick-start.html">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../overview/install/index.html">Install</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantsim.html">Quantization Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../techniques/index.html">Techniques</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../techniques/ptq.html">Post Training Quantization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../techniques/qat.html">Quantization Aware Training</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../techniques/blockwise.html">Blockwise Quantization</a></li>
@@ -473,27 +537,32 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">PTQ Techniques</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="adaround.html">Adaptive rounding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="seq_mse.html">Sequential MSE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bnf.html">Batch norm folding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cle.html">Cross-layer equalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="adascale.html">AdaScale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="omniquant.html">OmniQuant</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">SpinQuant</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../apiref/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../external/index.html">External Resources</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
 <li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
 </ul>
 
                     </nav>
@@ -616,8 +685,8 @@ V and O projections to reduce outliers in the attention output. Disabled by defa
 linear-attention blocks (e.g. Qwen3.5).</p></li>
 </ul>
 <p>The ONNX <code class="docutils literal notranslate"><span class="pre">apply_spinquant</span></code> API exposes these as boolean flags <code class="docutils literal notranslate"><span class="pre">enable_r1</span></code> and <code class="docutils literal notranslate"><span class="pre">enable_r2</span></code>.</p>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Supported architectures</span><a class="headerlink" href="#id3" title="Link to this table">¶</a></caption>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Supported architectures</span><a class="headerlink" href="#id1" title="Link to this table">¶</a></caption>
 <colgroup>
 <col style="width: 42.9%" />
 <col style="width: 28.6%" />
@@ -669,7 +738,7 @@ See the <a class="reference internal" href="../release_notes.html#rn-index"><spa
 <p>To use SpinQuant, you need:</p>
 <ul class="simple">
 <li><p>A pre-trained model loaded from HuggingFace.</p></li>
-<li><p><strong>ONNX only</strong>: the model must be exported to ONNX — <a class="reference internal" href="#step-2">Step 2</a> handles this.</p></li>
+<li><p><strong>ONNX only</strong>: the model must be exported to ONNX — <a class="reference internal" href="#spinquant-step-2"><span class="std std-ref">Step 2</span></a> handles this.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -683,7 +752,7 @@ or
 <section id="procedure">
 <h3 id="lumina-search-procedure">Procedure<a class="headerlink" href="#procedure" title="Link to this heading">¶</a></h3>
 <section id="step-1-load-model">
-<span id="step-1"></span><h4 id="lumina-search-step-1-load-model">Step 1: Load model<a class="headerlink" href="#step-1-load-model" title="Link to this heading">¶</a></h4>
+<span id="spinquant-step-1"></span><h4 id="lumina-search-step-1-load-model">Step 1: Load model<a class="headerlink" href="#step-1-load-model" title="Link to this heading">¶</a></h4>
 <p>Load the HuggingFace model and wrap it with <code class="docutils literal notranslate"><span class="pre">ONNXExportableModuleWithCache</span></code> to enable JIT tracing
 with a static graph.</p>
 <div class="sd-tab-set docutils">
@@ -730,13 +799,13 @@ ONNX</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 </div>
 </section>
 <section id="step-2-create-quantizationsimmodel">
-<span id="step-2"></span><h4 id="lumina-search-step-2-create-quantizationsimmodel">Step 2: Create QuantizationSimModel<a class="headerlink" href="#step-2-create-quantizationsimmodel" title="Link to this heading">¶</a></h4>
+<span id="spinquant-step-2"></span><h4 id="lumina-search-step-2-create-quantizationsimmodel">Step 2: Create QuantizationSimModel<a class="headerlink" href="#step-2-create-quantizationsimmodel" title="Link to this heading">¶</a></h4>
 <p>Create a <a class="reference internal" href="../tutorials/quantsim.html#quantsim-index"><span class="std std-ref">QuantizationSimModel</span></a> with the desired quantization configuration.</p>
 <p><strong>ONNX only</strong>: this step instead exports the model to ONNX and analyzes its decoder-stack structure
-with <a class="reference internal" href="../apiref/onnx/spinquant.html#apiref-onnx-spinquant"><span class="std std-ref">analyze_llm_topology</span></a>. The sim is created in <a class="reference internal" href="#step-3">Step 3</a>, <em>after</em>
+with <a class="reference internal" href="../apiref/onnx/spinquant.html#apiref-onnx-spinquant"><span class="std std-ref">analyze_llm_topology</span></a>. The sim is created in <a class="reference internal" href="#spinquant-step-3"><span class="std std-ref">Step 3</span></a>, <em>after</em>
 the rotation, because ONNX SpinQuant rewrites the float graph and R3 inserts new ops that only a sim
 built on the rotated graph can wrap in quantizers. A topology describes the model, not the sim, so
-derive it once here; <a class="reference internal" href="#step-3">Step 3</a> hands it to SpinQuant, which uses it to place every rotation.</p>
+derive it once here; <a class="reference internal" href="#spinquant-step-3"><span class="std std-ref">Step 3</span></a> hands it to SpinQuant, which uses it to place every rotation.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
 <label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="platform" data-sync-id="torch" for="sd-tab-item-2">
@@ -815,7 +884,7 @@ ONNX</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 </div>
 </section>
 <section id="step-3-apply-spinquant">
-<span id="step-3"></span><h4 id="lumina-search-step-3-apply-spinquant">Step 3: Apply SpinQuant<a class="headerlink" href="#step-3-apply-spinquant" title="Link to this heading">¶</a></h4>
+<span id="spinquant-step-3"></span><h4 id="lumina-search-step-3-apply-spinquant">Step 3: Apply SpinQuant<a class="headerlink" href="#step-3-apply-spinquant" title="Link to this heading">¶</a></h4>
 <p>Apply SpinQuant to the model. This fuses RMSNorm scale weights into downstream linear layers and
 applies the R1 Hadamard rotation to all weight matrices in-place.</p>
 <div class="admonition important">
@@ -828,7 +897,7 @@ below rotates the float model and then builds the sim on the rotated graph.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>ONNX only</strong>: SpinQuant is told where each rotation goes, rather than finding out itself. Pass
-the <code class="docutils literal notranslate"><span class="pre">LlmTopology</span></code> analyzed in <a class="reference internal" href="#step-2">Step 2</a> as <code class="docutils literal notranslate"><span class="pre">topology</span></code> — locating model structure belongs to
+the <code class="docutils literal notranslate"><span class="pre">LlmTopology</span></code> analyzed in <a class="reference internal" href="#spinquant-step-2"><span class="std std-ref">Step 2</span></a> as <code class="docutils literal notranslate"><span class="pre">topology</span></code> — locating model structure belongs to
 AIMET’s topology analysis, and SpinQuant only rotates what it reports. The argument is optional
 today: omitting it analyzes the topology internally and warns. Passing it is the recommended
 usage, and may become required in a future release.</p>
@@ -947,6 +1016,59 @@ ONNX</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
 <label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="platform" data-sync-id="torch" for="sd-tab-item-8">
 PyTorch</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">aimet_torch.spinquant.</span></span><span class="sig-name descname"><span class="pre">apply_spinquant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_r1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_r2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Apply SpinQuant rotation transforms to a transformer-based language model.</p>
+<p>SpinQuant applies orthogonal Hadamard rotations to model weights to reduce
+quantization error. This method modifies the model in-place by:</p>
+<ol class="arabic simple">
+<li><p>Fusing RMS normalization layers into subsequent linear layers</p></li>
+<li><p>Applying R1 Hadamard rotations to embeddings, attention, and MLP layers</p></li>
+<li><p>Applying R2 per-head Hadamard rotations to the attention value/output path</p></li>
+<li><p>Merging all transforms into the weight matrices</p></li>
+</ol>
+<dl class="simple">
+<dt>Supported architectures:</dt><dd><ul class="simple">
+<li><p>LLaMA</p></li>
+<li><p>Qwen2, Qwen3</p></li>
+<li><p>Phi3</p></li>
+<li><p>Qwen2.5-VL (Vision-Language Model)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></span>) – A HuggingFace transformer model (e.g., LlamaForCausalLM,
+Qwen2ForCausalLM). The model must have untied embed_tokens and lm_head
+weights.</p></li>
+<li><p><strong>enable_r1</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If True, apply the R1 (residual-stream) rotation. Defaults to True.</p></li>
+<li><p><strong>enable_r2</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If True, apply the R2 (per-head value/output) rotation. Defaults
+to False. Only supported on backbones with separated Q/K/V projections; not
+supported on fused-QKV (e.g. Phi3) or linear-attention blocks. R2 is applied to
+the language backbone only (not visual encoders).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If embed_tokens and lm_head weights are tied.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForCausalLM</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.spinquant</span><span class="w"> </span><span class="kn">import</span> <span class="n">apply_spinquant</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">"meta-llama/Llama-3.2-1B-Instruct"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Untie embedding and lm_head weights if they are tied</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">old_weight</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">weight</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">old_weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">old_weight</span><span class="o">.</span><span class="n">device</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">requires_grad</span><span class="o">=</span><span class="n">old_weight</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">apply_spinquant</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">enable_r1</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">enable_r2</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">aimet-torch</span></code>’s <code class="docutils literal notranslate"><span class="pre">apply_spinquant</span></code> infers the model’s decoder structure
@@ -1132,7 +1254,7 @@ be found by active norms.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>embed_tokens</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Names of the token-embedding <a href="#id1"><span class="problematic" id="id2">``</span></a>Gather``(s) that produce
+<li><p><strong>embed_tokens</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Names of the token-embedding <code class="docutils literal notranslate"><span class="pre">Gather</span></code> node(s) that produce
 the initial residual-stream activations.</p></li>
 <li><p><strong>lm_head</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Names of the vocabulary-projection linear(s) downstream of
 the final norm.</p></li>
