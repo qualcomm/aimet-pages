@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 
 <html lang="en" data-content_root="./">
@@ -8,13 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>AIMET Documentation &#8212; AI Model Efficiency Toolkit</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=ed8a8c84" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=5175e31d" />
     <link rel="stylesheet" type="text/css" href="_static/lumina.css?v=bc31efa2" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=6a604523" />
-    <link rel="stylesheet" type="text/css" href="_static/aimet-lumina.css?v=4747defc" />
+    <link rel="stylesheet" type="text/css" href="_static/aimet-lumina.css?v=b1a32206" />
     <script defer="defer" src="_static/documentation_options.js?v=5929fcd5"></script>
     <script defer="defer" src="_static/doctools.js?v=fd6eb6e6"></script>
     <script defer="defer" src="_static/sphinx_highlight.js?v=6ffebe34"></script>
@@ -22,6 +24,7 @@
     <script defer="defer" src="_static/copybutton.js?v=f281be69"></script>
     <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="_static/design-tabs.js?v=fcb327ea"></script>
     <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="_static/aimet-landing.js?v=b6b57cbe"></script>
     <script defer="defer" src="_static/lumina.js?v=3e122351"></script>
     <link rel="icon" href="_static/ai-hub-workbench-icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,12 +36,12 @@
     
     
         
-        <meta name="description" content="The AI Model Efficiency Toolkit (AIMET) is a software toolkit for quantizing trained ML models.">
+        <meta name="description" content="AIMET quantizes trained ONNX and PyTorch models to reduce compute load and memory footprint on edge devices, with minimal accuracy loss.">
         
         <meta name="theme-color" content="#2A2AEA">
         <meta property="og:title" content="AIMET Documentation">
         
-            <meta property="og:description" content="The AI Model Efficiency Toolkit (AIMET) is a software toolkit for quantizing trained ML models.">
+            <meta property="og:description" content="AIMET quantizes trained ONNX and PyTorch models to reduce compute load and memory footprint on edge devices, with minimal accuracy loss.">
         
         
         <meta property="og:type" content="website">
@@ -48,7 +51,7 @@
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="AIMET Documentation">
         
-            <meta name="twitter:description" content="The AI Model Efficiency Toolkit (AIMET) is a software toolkit for quantizing trained ML models.">
+            <meta name="twitter:description" content="AIMET quantizes trained ONNX and PyTorch models to reduce compute load and memory footprint on edge devices, with minimal accuracy loss.">
         
         
         
@@ -113,6 +116,7 @@
 
     <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
 
+    
     <div id="lumina-header">
 
         <header class="fixed top-0 left-0 right-0 z-50 border-b border-lumina-border bg-lumina-bg/80 backdrop-blur-sm">
@@ -247,453 +251,196 @@
                         
                     </a>
                 
+                    <a href="https://qualcomm-ai-hub.slack.com/archives/C08JKBE0UHY"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Slack"
+                       aria-label="Slack (opens in new tab)">
+                        
+                            
+                            <svg class="h-5 w-5" viewBox="0 0 127 127" aria-hidden="true">
+                                <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A" />
+                                <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0" />
+                                <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D" />
+                                <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://workbench.aihub.qualcomm.com/docs/hub/quantize_examples.html"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Workbench"
+                       aria-label="Workbench (opens in new tab)">
+                        
+                            <img src="_static/ai-hub-workbench-icon.png"
+                                 alt=""
+                                 class="h-5 w-5 rounded-sm"
+                                 aria-hidden="true">
+                        
+                    </a>
+                
             
             
-            
-                <button data-sidebar-toggle
-                        class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors lg:hidden cursor-pointer"
-                        aria-label="Toggle navigation"
-                        aria-expanded="false"
-                        aria-controls="lumina-sidebar-drawer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
             
         </div>
     </div>
 </header>
 
     </div>
-    <div class="lumina-wrapper">
-        <aside id="lumina-sidebar">
-
-            <div x-data="sidebar()">
     
-    <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-e border-lumina-border/45 bg-lumina-bg px-4 py-6 lg:flex">
-
-        
-
-
-        
-            <nav class="lumina-sidebar-nav"
-                 aria-label="Main navigation"
-                 x-data="sidebarNav()">
-                <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview/index.html">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview/install/quick-start.html">Quick Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/install/index.html">Install</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_workflow.html">Quantization Workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/debugging_guidelines.html">Debugging Guide</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="techniques/index.html">Techniques</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="techniques/ptq.html">Post Training Quantization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/qat.html">Quantization Aware Training</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/blockwise.html">Blockwise Quantization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/mixed_precision/index.html">Mixed precision</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/analysis_tools/index.html">Analysis tools</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/compression/index.html">Compression</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/visualization_compression.html">Visualization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/weight_svd.html">Weight SVD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/spatial_svd.html">Spatial SVD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/channel_pruning.html">Channel pruning</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="techniques/compression/winnowing.html">Winnowing</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ptq_techniques/index.html">PTQ Techniques</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/adaround.html">Adaptive rounding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/seq_mse.html">Sequential MSE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/bnf.html">Batch norm folding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/cle.html">Cross-layer equalization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/adascale.html">AdaScale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/bn.html">Batch norm re-estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/omniquant.html">OmniQuant</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/spinquant.html">SpinQuant</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="apiref/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="external/index.html">External Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
-<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
-<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
-<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-</ul>
-
-            </nav>
-        
-        
-            <div class="lumina-sidebar-footer">
-                Built with
-                <a href="https://github.com/r4sky0/sphinx-lumina-theme"
-                   target="_blank"
-                   rel="noopener">
-                    <svg class="lumina-sidebar-footer-icon"
-                         viewBox="0 0 32 32"
-                         fill="none"
-                         aria-hidden="true">
-                        <path d="M16 3L28 27H4L16 3Z" stroke="currentColor" stroke-width="2.5" fill="none" />
-                        <path d="M16 10L8 27H16" fill="currentColor" opacity="0.15" />
-                        <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
-                    </svg>
-                Lumina</a>
-                <span class="lumina-sidebar-footer-version">v2.21.2</span>
-            </div>
-        
-    </div>
-    
-    <template x-teleport="body">
-        <div>
+    <main id="lumina-content"
+          class="lumina-landing-content"
+          role="main"
+          data-pagefind-body>
+        <article class="lumina-article">
             
-            <div x-show="mobileOpen"
-                 x-transition:enter="transition ease-out duration-200"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:enter-end="opacity-100"
-                 x-transition:leave="transition ease-in duration-150"
-                 x-transition:leave-start="opacity-100"
-                 x-transition:leave-end="opacity-0"
-                 class="lumina-overlay-backdrop fixed inset-0 top-[var(--lumina-header-offset)] z-40 lg:hidden"
-                 @click="close()"></div>
-            
-            <div id="lumina-sidebar-drawer"
-                 x-show="mobileOpen"
-                 x-transition:enter="transition ease-out duration-250"
-                 x-transition:enter-start="-translate-x-full rtl:translate-x-full"
-                 x-transition:enter-end="translate-x-0"
-                 x-transition:leave="transition ease-in duration-200"
-                 x-transition:leave-start="translate-x-0"
-                 x-transition:leave-end="-translate-x-full rtl:translate-x-full"
-                 @keydown.escape.window="close()"
-                 class="fixed inset-y-0 top-[var(--lumina-header-offset)] start-0 z-50 w-[min(280px,85vw)] overflow-y-auto border-e border-lumina-border bg-lumina-bg px-4 py-6 lg:hidden">
+            <div class="body">
 
-                
                 
 
                     
-
-
-                
-
-                
-                
-                
-                    <nav class="lumina-sidebar-nav"
-                         aria-label="Main navigation"
-                         x-data="sidebarNav()">
-                        <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview/index.html">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview/install/quick-start.html">Quick Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/install/index.html">Install</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_workflow.html">Quantization Workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/quantsim.html">Quantization Simulation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks.html">Example Notebooks</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/debugging_guidelines.html">Debugging Guide</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="techniques/index.html">Techniques</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="techniques/ptq.html">Post Training Quantization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/qat.html">Quantization Aware Training</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/blockwise.html">Blockwise Quantization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/mixed_precision/index.html">Mixed precision</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/analysis_tools/index.html">Analysis tools</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="techniques/compression/index.html">Compression</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/visualization_compression.html">Visualization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/weight_svd.html">Weight SVD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/spatial_svd.html">Spatial SVD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="techniques/compression/channel_pruning.html">Channel pruning</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="techniques/compression/winnowing.html">Winnowing</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ptq_techniques/index.html">PTQ Techniques</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/adaround.html">Adaptive rounding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/seq_mse.html">Sequential MSE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/bnf.html">Batch norm folding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/cle.html">Cross-layer equalization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/adascale.html">AdaScale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/bn.html">Batch norm re-estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/omniquant.html">OmniQuant</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ptq_techniques/spinquant.html">SpinQuant</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="apiref/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="external/index.html">External Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
-<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
-<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
-<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-</ul>
-
-                    </nav>
-                
-                
-                    <div class="lumina-sidebar-footer">
-                        <a href="https://github.com/r4sky0/sphinx-lumina-theme"
-                           target="_blank"
-                           rel="noopener">Lumina</a>
-                        <span class="lumina-sidebar-footer-version">v2.21.2</span>
-                    </div>
-                
-            </div>
-        </div>
-    </template>
-</div>
-
-        </aside>
-        <main id="lumina-content" role="main" data-pagefind-body>
-            
-            
-            <div class="lumina-content-toolbar is-bare"
-                 data-pagefind-ignore>
-                
-
-                <details class="lumina-page-actions"
-         x-data
-         @click.outside="$el.open = false"
-         @keydown.escape.stop="$el.open = false; $el.querySelector('summary').focus()">
-    <summary aria-label="Page actions" title="Page actions">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
-    </summary>
-    <div class="lumina-page-action-list">
-        <button x-data="copyPage()"
-                @click="copy()"
-                type="button"
-                aria-label="Copy page as Markdown">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
-            <span aria-live="polite"
-                  x-text="copied ? $t('Copied!') : $t('Copy as Markdown')">Copy as Markdown</span>
-        </button>
-        
-    </div>
-</details>
-
-            </div>
-            
-                <details class="lumina-mobile-outline" data-pagefind-ignore>
-                    <summary>On this page <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
-                    <nav aria-label="Page outline">
-                        <ul>
-<li><a class="reference internal" href="#">AIMET Documentation</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#tutorials">Tutorials</a></li>
-<li><a class="reference internal" href="#example-notebooks">Example Notebooks</a></li>
-<li><a class="reference internal" href="#techniques">Techniques</a></li>
-<li><a class="reference internal" href="#post-training-quantization-techniques">Post Training Quantization Techniques</a></li>
-<li><a class="reference internal" href="#api-reference">API Reference</a></li>
-<li><a class="reference internal" href="#release-notes">Release Notes</a></li>
-<li><a class="reference internal" href="#glossary">Glossary</a></li>
-</ul>
-</li>
-</ul>
-
-                    </nav>
-                </details>
-            
-            <article class="lumina-article" x-data="headerLinks()">
-                
-                <div class="body">
-
                     
-
-    <section id="aimet-documentation">
-<span id="top-index"></span><h1 id="lumina-search-aimet-documentation">AIMET Documentation<a class="headerlink" href="#aimet-documentation" title="Link to this heading">¶</a></h1>
+                        <section id="quantize-trained-models-keep-the-accuracy">
+<span id="top-index"></span><h1 id="lumina-search-quantize-trained-models-keep-the-accuracy">Quantize trained models. <span class="aimet-accent">Keep the accuracy.</span><a class="headerlink" href="#quantize-trained-models-keep-the-accuracy" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p>The AI Model Efficiency Toolkit (AIMET) is a software toolkit for quantizing trained ML models.</p>
-<p>AIMET improves the runtime performance of deep learning models by reducing compute load and memory footprint.</p>
-<p>Models quantized with AIMET facilitate its deployment on edge devices like mobile phones or laptops by reducing memory footprint</p>
-<p>AIMET employs post-training and fine-tuning techniques to minimize accuracy loss during quantization and compression.</p>
-<p>AIMET supports models from the ONNX and PyTorch frameworks.</p>
-<section id="overview">
-<h2 id="lumina-search-overview">Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<p>Summary of what is AI Model Efficiency Toolkit (AIMET) and how you can use it, see the <a class="reference internal" href="overview/index.html"><span class="doc">Overview</span></a>.</p>
-<p>To quickly install and begin using AIMET, see the <a class="reference internal" href="overview/install/quick-start.html"><span class="doc">Quick Start Guide</span></a>.</p>
-</section>
-<section id="tutorials">
-<h2 id="lumina-search-tutorials">Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">¶</a></h2>
-<p>Check curated tutorials to get started with quantization workflows and other techniques with AIMET, see the <a class="reference internal" href="tutorials/index.html"><span class="doc">Tutorials</span></a>.</p>
-</section>
-<section id="example-notebooks">
-<h2 id="lumina-search-example-notebooks">Example Notebooks<a class="headerlink" href="#example-notebooks" title="Link to this heading">¶</a></h2>
-<p>To view end-to-end examples of model quantization and compression, and to download the examples in Jupyter notebook format, see the <a class="reference internal" href="tutorials/notebooks.html"><span class="doc">Example Notebooks</span></a> page.</p>
-</section>
-<section id="techniques">
-<h2 id="lumina-search-techniques">Techniques<a class="headerlink" href="#techniques" title="Link to this heading">¶</a></h2>
-<p>For a high-level explanation of how to use AIMET to optimize a model, see the <a class="reference internal" href="techniques/index.html"><span class="doc">Quantization User Guide</span></a>.</p>
-</section>
-<section id="post-training-quantization-techniques">
-<h2 id="lumina-search-post-training-quantization-techniques">Post Training Quantization Techniques<a class="headerlink" href="#post-training-quantization-techniques" title="Link to this heading">¶</a></h2>
-<p>For instructions on applying individual AIMET PTQ techniques, see the <a class="reference internal" href="ptq_techniques/index.html"><span class="doc">PTQ Techniques</span></a>.</p>
-</section>
-<section id="api-reference">
-<h2 id="lumina-search-api-reference">API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h2>
-<p>For a detailed look at the AIMET API, see the <a class="reference internal" href="apiref/index.html"><span class="doc">API Reference</span></a>.</p>
-</section>
-<section id="release-notes">
-<h2 id="lumina-search-release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h2>
-<p>For information about new features in this release, see the <a class="reference internal" href="release_notes.html"><span class="doc">Release Notes</span></a>.</p>
-</section>
-<section id="glossary">
-<h2 id="lumina-search-glossary">Glossary<a class="headerlink" href="#glossary" title="Link to this heading">¶</a></h2>
-<p>See the <a class="reference internal" href="glossary.html"><span class="doc">glossary</span></a> for explanations of terms and acronyms used on this website.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
+<div class="aimet-hero docutils container">
+<div class="aimet-hero-text docutils container">
+<p class="aimet-eyebrow">AI Model Efficiency Toolkit · v2.44.0</p>
+<p class="aimet-lead">AIMET reduces compute load and memory footprint so deep learning models run faster on
+edge devices like phones and laptops. Post-training and fine-tuning techniques keep
+accuracy loss to a minimum.</p>
+<div class="aimet-ctas docutils container">
+<p><a class="reference internal" href="overview/install/quick-start.html"><span class="doc">Quick start</span></a>
+<a class="reference internal" href="overview/index.html"><span class="doc">What is AIMET?</span></a></p>
 </div>
-<p>AI Model Efficiency Toolkit is a product of Qualcomm Innovation Center, Inc.</p>
-<p>Qualcomm® AI Engine Direct SDK is a product of Qualcomm Technologies, Inc. and/or its subsidiaries.</p>
+<div class="aimet-frameworks docutils container">
+<p>Works with <code class="docutils literal notranslate"><span class="pre">ONNX</span></code> <code class="docutils literal notranslate"><span class="pre">PyTorch</span></code></p>
+</div>
+</div>
+<figure class="aimet-quant-viz" aria-label="Animation: 160 MobileNetV2 weights snapping from floating point onto a 16-level int4 quantization grid">
+  <div class="aimet-viz-top">
+    <span>layer <b>features.15.conv.0.0</b> · ch 301</span>
+    <span class="aimet-viz-state" data-aimet-viz="state">fp32</span>
+  </div>
+  <canvas></canvas>
+  <div class="aimet-viz-bottom">
+    <span>bitwidth <b data-aimet-viz="bw">32</b></span>
+    <span>levels <b data-aimet-viz="levels">&mdash;</b></span>
+    <span>scale <b data-aimet-viz="scale">&mdash;</b></span>
+    <span>offset <b data-aimet-viz="offset">&mdash;</b></span>
+  </div>
+</figure></div>
+<div class="aimet-docs-head docutils container">
+<p class="rubric">Documentation</p>
+<p>Supports models from the ONNX and PyTorch frameworks.</p>
+</div>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 aimet-cards docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-3 sd-row-cols-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Overview</div>
+<p class="sd-card-text aimet-tag">Start</p>
+<p class="sd-card-text">What AIMET is and how you can use it.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="overview/index.html"><span class="doc">What is AIMET?</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Quick Start Guide</div>
+<p class="sd-card-text aimet-tag">Start</p>
+<p class="sd-card-text">Install AIMET and quantize your first model.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="overview/install/quick-start.html"><span class="doc">Quick Start</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Tutorials</div>
+<p class="sd-card-text aimet-tag">Learn</p>
+<p class="sd-card-text">Curated walkthroughs of quantization workflows and other techniques.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="tutorials/index.html"><span class="doc">Tutorials</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Example Notebooks</div>
+<p class="sd-card-text aimet-tag">Learn</p>
+<p class="sd-card-text">End-to-end quantization and compression examples, downloadable as Jupyter notebooks.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="tutorials/notebooks.html"><span class="doc">Example Notebooks</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Quantization User Guide</div>
+<p class="sd-card-text aimet-tag">Apply</p>
+<p class="sd-card-text">A high-level explanation of how to use AIMET to optimize a model.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="techniques/index.html"><span class="doc">Techniques</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+PTQ Techniques</div>
+<p class="sd-card-text aimet-tag">Apply</p>
+<p class="sd-card-text">How to apply each post-training quantization technique.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="ptq_techniques/index.html"><span class="doc">Post Training Quantization Techniques</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+API Reference</div>
+<p class="sd-card-text aimet-tag">Reference</p>
+<p class="sd-card-text">A detailed look at the AIMET API.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="apiref/index.html"><span class="doc">AIMET API</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Release Notes</div>
+<p class="sd-card-text aimet-tag">Reference</p>
+<p class="sd-card-text">New features and fixes in this release.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="release_notes.html"><span class="doc">Release notes</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Glossary</div>
+<p class="sd-card-text aimet-tag">Reference</p>
+<p class="sd-card-text">Terms and acronyms used on this site.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="glossary.html"><span class="doc">Glossary</span></a></div>
+</div>
+</div>
+</div>
 </section>
-</section>
 
-
-
-
-                </div>
-            </article>
-            
-
-                <div data-pagefind-ignore>
-
-                    <footer class="mt-10 border-t border-lumina-border pt-6">
-    
-    
-        <nav class="flex justify-between gap-4 mb-8"
-             aria-label="Page navigation">
-            
-                <div class="flex-1"></div>
-            
-            
-                <a href="overview/index.html"
-                   class="group flex flex-col items-end gap-1 rounded-lg border border-lumina-border p-4 no-underline hover:border-lumina-accent hover:bg-lumina-bg-secondary active:bg-lumina-accent-light transition-colors duration-150 flex-1">
-                    <span class="text-xs text-lumina-text-muted">Next</span>
-                    <span class="text-sm font-medium text-lumina-text group-hover:text-lumina-accent transition-colors">What is AIMET? <span class="inline-block rtl:-scale-x-100">→</span></span>
-                </a>
-            
-        </nav>
-    
-    
-    
-    
-    
-</footer>
-
-                </div>
-
-
-            
-        </main>
-        
-            <aside id="lumina-toc">
+                    
 
                 
-    <div class="lumina-toc-container sticky top-[var(--lumina-header-offset)] hidden h-[calc(100vh-var(--lumina-header-offset))] w-[220px] shrink-0 py-6 pe-4 xl:block">
-        <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-lumina-text-muted">On this page</p>
-        <div class="lumina-toc-scroll">
-            
-            <nav class="lumina-toc-nav"
-                 aria-label="Table of contents"
-                 x-data="scrollspy()">
-                <ul>
-<li><a class="reference internal" href="#">AIMET Documentation</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#tutorials">Tutorials</a></li>
-<li><a class="reference internal" href="#example-notebooks">Example Notebooks</a></li>
-<li><a class="reference internal" href="#techniques">Techniques</a></li>
-<li><a class="reference internal" href="#post-training-quantization-techniques">Post Training Quantization Techniques</a></li>
-<li><a class="reference internal" href="#api-reference">API Reference</a></li>
-<li><a class="reference internal" href="#release-notes">Release Notes</a></li>
-<li><a class="reference internal" href="#glossary">Glossary</a></li>
-</ul>
-</li>
-</ul>
 
-            </nav>
-        </div>
-    </div>
-
-
-            </aside>
-        
-    </div>
-
-    
-        <button id="lumina-back-to-top"
-                x-data="backToTop()"
-                x-show="visible"
-                x-cloak
-                x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 translate-y-2"
-                x-transition:enter-end="opacity-100 translate-y-0"
-                x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100 translate-y-0"
-                x-transition:leave-end="opacity-0 translate-y-2"
-                @click="scrollToTop()"
-                class="lumina-back-to-top z-40 hover:border-lumina-accent transition-colors"
-                aria-label="Back to top"
-                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></button>
-    
+            </div>
+        </article>
+    </main>
 
     <dialog id="lumina-search-modal"
         x-data="searchModal()"
@@ -810,8 +557,6 @@
         </div>
     </div>
 </dialog>
-
-    
 
 
 
