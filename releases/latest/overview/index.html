@@ -1,0 +1,1233 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>What is AIMET? &#8212; AI Model Efficiency Toolkit</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=ed8a8c84" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5175e31d" />
+    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=bc31efa2" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../_static/aimet-lumina.css?v=b1a32206" />
+    <script defer="defer" src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script defer="defer" src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script defer="defer" src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer="defer" src="../_static/copybutton.js?v=f281be69"></script>
+    <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="../_static/lumina.js?v=3e122351"></script>
+    <link rel="icon" href="../_static/ai-hub-workbench-icon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quick Start" href="install/quick-start.html" />
+    <link rel="prev" title="Quantize trained models. Keep the accuracy." href="../index.html" />
+
+    
+        <meta data-pagefind-filter="section[content]"
+              content="What is AIMET?">
+    
+    
+    
+    
+        
+        <meta name="description" content="AIMET (AI Model Efficiency Toolkit) is an open-source Python library that quantizes trained PyTorch and ONNX models so they run faster and use less memory and…">
+        
+        <meta name="theme-color" content="#2A2AEA">
+        <meta property="og:title" content="What is AIMET?">
+        
+            <meta property="og:description" content="AIMET (AI Model Efficiency Toolkit) is an open-source Python library that quantizes trained PyTorch and ONNX models so they run faster and use less memory and…">
+        
+        
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="AI Model Efficiency Toolkit">
+        <meta property="og:locale" content="en_US">
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="What is AIMET?">
+        
+            <meta name="twitter:description" content="AIMET (AI Model Efficiency Toolkit) is an open-source Python library that quantizes trained PyTorch and ONNX models so they run faster and use less memory and…">
+        
+        
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "What is AIMET?", "item": "/"}]}</script>
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "What is AIMET?", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET (AI Model Efficiency Toolkit) is an open-source Python library that quantizes trained PyTorch and ONNX models so they run faster and use less memory and…"}</script>
+        
+        
+    
+    <link rel="preload"
+          as="font"
+          type="font/woff2"
+          href="../_static/fonts/source-sans-3-regular-latin.woff2"
+          crossorigin>
+    
+    <script>
+(function() {
+  var stored = null;
+  try { stored = localStorage.getItem('lumina-theme'); } catch (e) {}
+  
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Sphinx gates the dark highlight stylesheet on the OS color scheme only;
+  // a stored override or dark_mode_default must rewrite its media query
+  // before first paint.
+  var pygmentsDark = document.getElementById('pygments_dark_css');
+  if (pygmentsDark) {
+    pygmentsDark.media = document.documentElement.getAttribute('data-theme') === 'dark' ? 'screen' : 'not all';
+  }
+})();
+    </script>
+    
+    <meta name="lumina-search-backend" content="sphinx">
+    <meta name="lumina-base-url" content="../">
+    
+    
+    
+    
+    
+    
+    
+        <style>
+            :root,[data-theme="light"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 65%,#202624);--lumina-accent-light:color-mix(in srgb,#2A2AEA 12%,var(--lumina-bg));}
+            [data-theme="dark"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 55%,#e9eeeb);--lumina-accent-light:color-mix(in srgb,#2A2AEA 15%,var(--lumina-bg));}
+            html:root,html[data-theme="dark"]{--sd-color-primary:color-mix(in srgb,#2A2AEA 85%,black);--sd-color-primary-highlight:color-mix(in srgb,#2A2AEA 70%,black);--sd-color-primary-text:#fff;--sd-color-primary-bg:color-mix(in srgb,#2A2AEA 12%,transparent);}
+        </style>
+    
+    
+    
+    
+
+
+  <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/overview/index.html" />
+</head><body data-aimet-section="overview">
+
+
+
+
+
+    <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
+
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-lumina-border bg-lumina-bg/80 backdrop-blur-sm">
+
+    
+
+    <div class="lumina-header-inner mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
+        
+        <div class="flex items-center gap-3">
+            <a href="../index.html"
+               class="flex items-center gap-2 text-lumina-text no-underline hover:opacity-80 transition-opacity">
+                
+                    <img src="../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-light h-7 w-auto">
+                    <img src="../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-dark h-7 w-auto">
+                
+            </a>
+            
+                
+                <span class="flex flex-col leading-tight">
+                    <a href="../index.html"
+                       class="font-semibold text-base text-lumina-text no-underline hover:opacity-80 transition-opacity">AIMET</a>
+                    
+                        <a href="../versions.html"
+                           class="text-xs text-lumina-text-muted hover:text-lumina-accent no-underline"
+                           title="See other versions">v2.44.0</a>
+                    
+                </span>
+            
+
+            
+
+        </div>
+        
+        
+        
+        <div class="flex items-center gap-2">
+            
+            <button data-search-trigger
+                    class="flex items-center gap-2 rounded-lg border border-lumina-border bg-lumina-bg-secondary px-3 py-2 text-[0.8125rem] text-lumina-text-muted hover:border-lumina-accent transition-colors cursor-pointer lg:min-w-56"
+                    aria-label="Search documentation"
+                    aria-haspopup="dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+                <span class="hidden lg:inline flex-1 text-start">Search docs...</span>
+                <kbd data-search-shortcut
+                     class="hidden lg:inline rounded border border-lumina-border bg-lumina-bg px-1.5 py-0.5 text-[0.6875rem] font-[family-name:var(--lumina-font-mono)] tracking-[0.02em]">⌘K</kbd>
+            </button>
+            
+            <button data-theme-toggle
+                    x-data="themeToggle()"
+                    @click="cycle()"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-md text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors cursor-pointer"
+                    aria-label="Toggle color theme"
+                    title="Toggle color theme"
+                    :aria-label="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')"
+                    :title="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')">
+                
+                <svg x-show="mode === 'light'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-[-90deg] scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+                </svg>
+                
+                <svg x-show="mode === 'dark'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-90 scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                </svg>
+                
+                <svg x-show="mode === 'auto'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 scale-0"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+            </button>
+            
+            
+            
+                
+                    <a href="https://github.com/qualcomm/aimet"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Github"
+                       aria-label="Github (opens in new tab)">
+                        
+                            <svg class="h-5 w-5"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://qualcomm-ai-hub.slack.com/archives/C08JKBE0UHY"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Slack"
+                       aria-label="Slack (opens in new tab)">
+                        
+                            
+                            <svg class="h-5 w-5" viewBox="0 0 127 127" aria-hidden="true">
+                                <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A" />
+                                <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0" />
+                                <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D" />
+                                <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://workbench.aihub.qualcomm.com/docs/hub/quantize_examples.html"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Workbench"
+                       aria-label="Workbench (opens in new tab)">
+                        
+                            <img src="../_static/ai-hub-workbench-icon.png"
+                                 alt=""
+                                 class="h-5 w-5 rounded-sm"
+                                 aria-hidden="true">
+                        
+                    </a>
+                
+            
+            
+            
+                <button data-sidebar-toggle
+                        class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors lg:hidden cursor-pointer"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="lumina-sidebar-drawer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            
+        </div>
+    </div>
+</header>
+
+    </div>
+    <div class="lumina-wrapper">
+        <aside id="lumina-sidebar">
+
+            <div x-data="sidebar()">
+    
+    <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-e border-lumina-border/45 bg-lumina-bg px-4 py-6 lg:flex">
+
+        
+
+
+        
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Main navigation"
+                 x-data="sidebarNav()">
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+            </nav>
+        
+        
+            <div class="lumina-sidebar-footer">
+                Built with
+                <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                   target="_blank"
+                   rel="noopener">
+                    <svg class="lumina-sidebar-footer-icon"
+                         viewBox="0 0 32 32"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M16 3L28 27H4L16 3Z" stroke="currentColor" stroke-width="2.5" fill="none" />
+                        <path d="M16 10L8 27H16" fill="currentColor" opacity="0.15" />
+                        <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
+                    </svg>
+                Lumina</a>
+                <span class="lumina-sidebar-footer-version">v2.21.2</span>
+            </div>
+        
+    </div>
+    
+    <template x-teleport="body">
+        <div>
+            
+            <div x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="lumina-overlay-backdrop fixed inset-0 top-[var(--lumina-header-offset)] z-40 lg:hidden"
+                 @click="close()"></div>
+            
+            <div id="lumina-sidebar-drawer"
+                 x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-250"
+                 x-transition:enter-start="-translate-x-full rtl:translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full rtl:translate-x-full"
+                 @keydown.escape.window="close()"
+                 class="fixed inset-y-0 top-[var(--lumina-header-offset)] start-0 z-50 w-[min(280px,85vw)] overflow-y-auto border-e border-lumina-border bg-lumina-bg px-4 py-6 lg:hidden">
+
+                
+                
+
+                    
+
+
+                
+
+                
+                
+                
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Main navigation"
+                         x-data="sidebarNav()">
+                        <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+                    </nav>
+                
+                
+                    <div class="lumina-sidebar-footer">
+                        <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                           target="_blank"
+                           rel="noopener">Lumina</a>
+                        <span class="lumina-sidebar-footer-version">v2.21.2</span>
+                    </div>
+                
+            </div>
+        </div>
+    </template>
+</div>
+
+        </aside>
+        <main id="lumina-content" role="main" data-pagefind-body>
+            
+            
+            <div class="lumina-content-toolbar"
+                 data-pagefind-ignore>
+                
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-lumina-text-muted"
+     style="scrollbar-width:none"
+     aria-label="Breadcrumb">
+    
+        <a href="../index.html"
+           class="whitespace-nowrap hover:text-lumina-accent no-underline transition-colors">AIMET</a>
+    
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 rtl:-scale-x-100" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    <span class="shrink-0 whitespace-nowrap text-lumina-text"
+          aria-current="page">What is AIMET?</span>
+</nav>
+
+                    </div>
+                
+
+                <details class="lumina-page-actions"
+         x-data
+         @click.outside="$el.open = false"
+         @keydown.escape.stop="$el.open = false; $el.querySelector('summary').focus()">
+    <summary aria-label="Page actions" title="Page actions">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+    </summary>
+    <div class="lumina-page-action-list">
+        <button x-data="copyPage()"
+                @click="copy()"
+                type="button"
+                aria-label="Copy page as Markdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+            <span aria-live="polite"
+                  x-text="copied ? $t('Copied!') : $t('Copy as Markdown')">Copy as Markdown</span>
+        </button>
+        
+    </div>
+</details>
+
+            </div>
+            
+                <details class="lumina-mobile-outline" data-pagefind-ignore>
+                    <summary>On this page <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+                    <nav aria-label="Page outline">
+                        <ul>
+<li><a class="reference internal" href="#">What is AIMET?</a><ul>
+<li><a class="reference internal" href="#why-quantize">Why quantize?</a></li>
+<li><a class="reference internal" href="#how-aimet-works">How AIMET works</a></li>
+<li><a class="reference internal" href="#what-you-can-do-with-aimet">What you can do with AIMET</a></li>
+<li><a class="reference internal" href="#choose-a-package">Choose a package</a></li>
+<li><a class="reference internal" href="#supported-platforms">Supported platforms</a></li>
+<li><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+</ul>
+
+                    </nav>
+                </details>
+            
+            <article class="lumina-article" x-data="headerLinks()">
+                
+                <div class="body">
+
+                    
+
+    <section id="what-is-aimet">
+<span id="intro-to-aimet"></span><h1 id="lumina-search-what-is-aimet">What is AIMET?<a class="headerlink" href="#what-is-aimet" title="Link to this heading">¶</a></h1>
+<p>AIMET (AI Model Efficiency Toolkit) is an open-source Python library that <strong>quantizes trained
+PyTorch and ONNX models</strong> so they run faster and use less memory and power on edge devices such as
+phones, laptops, and cars, while keeping accuracy as close as possible to the original model.</p>
+<svg xmlns="http://www.w3.org/2000/svg" class="aimet-hw" viewBox="0 0 715 177" role="img" aria-labelledby="aimet-hw-title aimet-hw-desc" data-lumina-zoom="">
+  <title id="aimet-hw-title">How AIMET works</title>
+  <desc id="aimet-hw-desc">A trained PyTorch or ONNX model goes through the AI Model Efficiency Toolkit and comes out
+    as a smaller quantized model, which is deployed to devices such as cars, phones and IoT devices.</desc>
+  <!--
+    Inlined into the page (`.. raw:: html` with `:file:`) rather than referenced with `.. image::`, so the colors read the
+    aimet-hw color tokens in _static/aimet-lumina.css and follow the light/dark toggle. The fallback values are the
+    light palette, used when the file is opened on its own. Every selector is scoped to .aimet-hw because an inline
+    SVG's <style> applies to the whole page.
+  -->
+  <style>
+    .aimet-hw { width: 100%; height: auto; display: block; margin-block: 1.75rem;
+      font-family: var(--lumina-font-sans, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif); }
+    .aimet-hw .hw-edges line { stroke: var(--aimet-hw-edge, #c3cbda); stroke-width: 0.8; }
+    .aimet-hw .hw-n1 { fill: var(--aimet-hw-blue, #3555df); }
+    .aimet-hw .hw-n2 { fill: var(--aimet-hw-teal, #4ca3b6); }
+    .aimet-hw .hw-n3 { fill: var(--aimet-hw-slate, #4c5a76); }
+    .aimet-hw .hw-n4 { fill: var(--aimet-hw-gray, #aebad0); }
+    .aimet-hw .hw-arrow { stroke: var(--aimet-hw-blue, #3555df); stroke-width: 1.2; fill: none; }
+    .aimet-hw .hw-arrow-head { fill: var(--aimet-hw-blue, #3555df); }
+    .aimet-hw .hw-title { fill: var(--aimet-hw-blue, #3555df); font-weight: 700; font-size: 14px; }
+    .aimet-hw .hw-sub { fill: var(--aimet-hw-text, #2b3140); font-size: 8px; }
+    .aimet-hw .hw-box { fill: var(--aimet-hw-box, #3555df); }
+    .aimet-hw .hw-box-text { fill: #ffffff; font-size: 12.5px; font-weight: 500; }
+    .aimet-hw .hw-on-blue { fill: #ffffff; }
+    .aimet-hw .hw-on-blue-stroke { stroke: #ffffff; fill: none; }
+  </style>
+  <defs>
+    <marker id="hw-head" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto">
+      <path class="hw-arrow-head" d="M0,0.5 L6,3 L0,5.5 z"/>
+    </marker>
+  </defs>
+
+<!-- Trained -->
+<text class="hw-title" x="30" y="33">Trained</text>
+<text class="hw-sub" x="30" y="47">AI model</text>
+<g class="hw-edges"><line x1="37" y1="83" x2="80" y2="72.5"/><line x1="37" y1="83" x2="80" y2="94.5"/><line x1="37" y1="83" x2="80" y2="116.5"/><line x1="37" y1="83" x2="80" y2="138"/><line x1="37" y1="105" x2="80" y2="72.5"/><line x1="37" y1="105" x2="80" y2="94.5"/><line x1="37" y1="105" x2="80" y2="116.5"/><line x1="37" y1="105" x2="80" y2="138"/><line x1="37" y1="127.5" x2="80" y2="72.5"/><line x1="37" y1="127.5" x2="80" y2="94.5"/><line x1="37" y1="127.5" x2="80" y2="116.5"/><line x1="37" y1="127.5" x2="80" y2="138"/><line x1="80" y1="72.5" x2="121.5" y2="72.5"/><line x1="80" y1="72.5" x2="121.5" y2="94.5"/><line x1="80" y1="72.5" x2="121.5" y2="116.5"/><line x1="80" y1="72.5" x2="121.5" y2="138"/><line x1="80" y1="94.5" x2="121.5" y2="72.5"/><line x1="80" y1="94.5" x2="121.5" y2="94.5"/><line x1="80" y1="94.5" x2="121.5" y2="116.5"/><line x1="80" y1="94.5" x2="121.5" y2="138"/><line x1="80" y1="116.5" x2="121.5" y2="72.5"/><line x1="80" y1="116.5" x2="121.5" y2="94.5"/><line x1="80" y1="116.5" x2="121.5" y2="116.5"/><line x1="80" y1="116.5" x2="121.5" y2="138"/><line x1="80" y1="138" x2="121.5" y2="72.5"/><line x1="80" y1="138" x2="121.5" y2="94.5"/><line x1="80" y1="138" x2="121.5" y2="116.5"/><line x1="80" y1="138" x2="121.5" y2="138"/><line x1="121.5" y1="72.5" x2="164" y2="94.5"/><line x1="121.5" y1="72.5" x2="164" y2="116.5"/><line x1="121.5" y1="94.5" x2="164" y2="94.5"/><line x1="121.5" y1="94.5" x2="164" y2="116.5"/><line x1="121.5" y1="116.5" x2="164" y2="94.5"/><line x1="121.5" y1="116.5" x2="164" y2="116.5"/><line x1="121.5" y1="138" x2="164" y2="94.5"/><line x1="121.5" y1="138" x2="164" y2="116.5"/></g>
+<circle class="hw-n1" cx="37" cy="83" r="8.2"/><circle class="hw-n1" cx="37" cy="105" r="8.2"/><circle class="hw-n1" cx="37" cy="127.5" r="8.2"/><circle class="hw-n2" cx="80" cy="72.5" r="8.2"/><circle class="hw-n2" cx="80" cy="94.5" r="8.2"/><circle class="hw-n2" cx="80" cy="116.5" r="8.2"/><circle class="hw-n2" cx="80" cy="138" r="8.2"/><circle class="hw-n3" cx="121.5" cy="72.5" r="8.2"/><circle class="hw-n3" cx="121.5" cy="94.5" r="8.2"/><circle class="hw-n3" cx="121.5" cy="116.5" r="8.2"/><circle class="hw-n3" cx="121.5" cy="138" r="8.2"/><circle class="hw-n4" cx="164" cy="94.5" r="8.2"/><circle class="hw-n4" cx="164" cy="116.5" r="8.2"/>
+<text class="hw-sub" x="86" y="163" text-anchor="middle">PyTorch or ONNX</text>
+
+<line class="hw-arrow" x1="197" y1="103.5" x2="230" y2="103.5" marker-end="url(#hw-head)"/>
+
+<!-- AIMET box -->
+<rect class="hw-box" x="248" y="72" width="161" height="63" rx="8"/>
+<text class="hw-box-text" x="328.5" y="99" text-anchor="middle">AI Model Efficiency</text>
+<text class="hw-box-text" x="328.5" y="116" text-anchor="middle">Toolkit</text>
+
+<line class="hw-arrow" x1="439" y1="103.5" x2="477" y2="103.5" marker-end="url(#hw-head)"/>
+
+<!-- Quantized -->
+<text class="hw-title" x="494" y="33">Quantized</text>
+<text class="hw-sub" x="494" y="47">AI model</text>
+<g class="hw-edges"><line x1="499" y1="93" x2="526" y2="99.5"/><line x1="499" y1="93" x2="526" y2="114"/><line x1="499" y1="107" x2="526" y2="99.5"/><line x1="499" y1="107" x2="526" y2="114"/><line x1="499" y1="121.5" x2="526" y2="99.5"/><line x1="499" y1="121.5" x2="526" y2="114"/><line x1="526" y1="99.5" x2="553" y2="86"/><line x1="526" y1="99.5" x2="553" y2="100"/><line x1="526" y1="99.5" x2="553" y2="128"/><line x1="526" y1="114" x2="553" y2="86"/><line x1="526" y1="114" x2="553" y2="100"/><line x1="526" y1="114" x2="553" y2="128"/><line x1="553" y1="86" x2="580" y2="100"/><line x1="553" y1="86" x2="580" y2="114"/><line x1="553" y1="100" x2="580" y2="100"/><line x1="553" y1="100" x2="580" y2="114"/><line x1="553" y1="128" x2="580" y2="100"/><line x1="553" y1="128" x2="580" y2="114"/></g>
+<circle class="hw-n1" cx="499" cy="93" r="5.3"/><circle class="hw-n1" cx="499" cy="107" r="5.3"/><circle class="hw-n1" cx="499" cy="121.5" r="5.3"/><circle class="hw-n2" cx="526" cy="99.5" r="5.3"/><circle class="hw-n2" cx="526" cy="114" r="5.3"/><circle class="hw-n3" cx="553" cy="86" r="5.3"/><circle class="hw-n3" cx="553" cy="100" r="5.3"/><circle class="hw-n3" cx="553" cy="128" r="5.3"/><circle class="hw-n4" cx="580" cy="100" r="5.3"/><circle class="hw-n4" cx="580" cy="114" r="5.3"/>
+
+<!-- Fan-out arrows -->
+<line class="hw-arrow" x1="597" y1="105" x2="636" y2="105" marker-end="url(#hw-head)"/>
+<path class="hw-arrow" d="M618,69 V145"/>
+<line class="hw-arrow" x1="617.4" y1="69" x2="636" y2="69" marker-end="url(#hw-head)"/>
+<line class="hw-arrow" x1="617.4" y1="145" x2="636" y2="145" marker-end="url(#hw-head)"/>
+
+<!-- Deployed -->
+<text class="hw-title" x="617" y="33">Deployed</text>
+<text class="hw-sub" x="617" y="47">AI model</text>
+
+<!-- Car -->
+<path class="hw-n1" d="M642.5,71.5 C642.5,68.8 644,67.2 647,66.8 L651.5,64.6 C654,63.4 658,63.2 661,64.2 L665.5,66.4 C668.5,67 670.5,68.4 670.5,70.8 L670.5,72.6 L642.5,72.6 Z"/>
+<circle class="hw-n1" cx="647.5" cy="72.6" r="2.6"/><circle class="hw-n1" cx="665.5" cy="72.6" r="2.6"/>
+<circle class="hw-on-blue" cx="647.5" cy="72.6" r="1.1"/><circle class="hw-on-blue" cx="665.5" cy="72.6" r="1.1"/>
+
+<!-- Phone -->
+<g fill="none" stroke="var(--aimet-hw-ring, #c9d3f6)" stroke-width="0.8" stroke-opacity="0.7">
+  <path d="M656.5,93.2 a3,3 0 0 1 3,3"/><path d="M656.5,91 a5.2,5.2 0 0 1 5.2,5.2"/>
+</g>
+<rect x="645" y="96.5" width="12" height="22" rx="1.4" fill="var(--aimet-hw-blue, #3555df)"/>
+<rect x="646.2" y="98" width="9.6" height="18.2" rx="0.6" fill="var(--aimet-hw-screen, #7b95f0)"/>
+<rect x="649.5" y="117" width="3" height="0.6" rx="0.3" class="hw-on-blue"/>
+
+<!-- IoT cluster -->
+<circle cx="658" cy="145" r="10.5" fill="none" stroke="var(--aimet-hw-ring, #c9d3f6)" stroke-width="0.8" stroke-opacity="0.7"/>
+<circle class="hw-n1" cx="648.5" cy="139.5" r="5.6"/>
+<circle class="hw-n1" cx="667.5" cy="140" r="5.6"/>
+<circle class="hw-n1" cx="657.5" cy="152.5" r="5.6"/>
+<path class="hw-on-blue" d="M646.5,138.4 h1.2 l2,-1.7 v5.6 l-2,-1.7 h-1.2 z"/>
+<rect class="hw-on-blue-stroke" x="665.3" y="138.3" width="4.4" height="3.4" rx="0.6" stroke-width="0.7"/>
+<circle class="hw-on-blue" cx="667.5" cy="140" r="0.9"/>
+<g class="hw-on-blue"><rect x="655.2" y="152.6" width="1.1" height="2" /><rect x="657" y="151.2" width="1.1" height="3.4"/><rect x="658.8" y="150.2" width="1.1" height="4.4"/></g>
+</svg>
+<p>You give AIMET a trained floating-point model and a small amount of representative data. AIMET
+gives you back a quantized model, ready to compile and run on target hardware.</p>
+<section id="why-quantize">
+<h2 id="lumina-search-why-quantize">Why quantize?<a class="headerlink" href="#why-quantize" title="Link to this heading">¶</a></h2>
+<p>Trained models usually store weights and compute activations in 32-bit floating point. Quantization
+represents them with fewer bits, for example 8-bit or 16-bit integers. Compared to 32-bit floating point,
+8-bit weights take a quarter of the memory, and integer math runs faster and uses less
+power on hardware accelerators.</p>
+<p>The cost is accuracy. Each value is rounded to a coarser grid, and that rounding error accumulates
+through the network. AIMET lets you <strong>measure that loss before you deploy</strong> and provides techniques
+to <strong>recover it</strong>, so you can choose the lowest precision your accuracy target allows.</p>
+</section>
+<section id="how-aimet-works">
+<h2 id="lumina-search-how-aimet-works">How AIMET works<a class="headerlink" href="#how-aimet-works" title="Link to this heading">¶</a></h2>
+<svg xmlns="http://www.w3.org/2000/svg" class="aimet-flow" viewBox="0 0 840 312" role="img" aria-labelledby="aimet-flow-title aimet-flow-desc" data-lumina-zoom="">
+  <title id="aimet-flow-title">How AIMET fits into a deployment workflow</title>
+  <desc id="aimet-flow-desc">A trained PyTorch or ONNX model goes into AIMET. AIMET simulates quantization, you evaluate the
+    simulated model's accuracy, and if it is below target you apply improvement techniques (post-training quantization,
+    mixed precision, quantization-aware training) and evaluate again. Once accuracy meets the target, AIMET exports an
+    ONNX model with encodings, or an ONNX QDQ model, which you deploy with Qualcomm AI Hub, QAIRT, or ONNX Runtime.</desc>
+  <!--
+    This file is inlined into the page (`.. raw:: html` with `:file:`) rather than referenced with
+    `.. image::`, so the colors below can read the aimet-dia color tokens in _static/aimet-lumina.css and follow
+    the light/dark toggle. The fallback values are the light palette, used when the file is opened on its own.
+    Every selector and id is prefixed (aimet-flow, af-) because an inline SVG shares the page's CSS and ids.
+  -->
+  <style>
+    .aimet-flow { width: 100%; height: auto; display: block; margin-block: 1.75rem;
+      font-family: var(--lumina-font-sans, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif);
+      --af-1: var(--aimet-dia-1, #2323c4); --af-2: var(--aimet-dia-2, #0f766e); --af-3: var(--aimet-dia-3, #6d28d9);
+      --af-card: var(--aimet-dia-card, #fcfcfd); --af-io: var(--aimet-dia-io, #f3f4f8);
+      --af-edge: var(--aimet-dia-edge, #dde1ea); --af-ink: var(--aimet-dia-ink, #1e2230);
+      --af-muted: var(--aimet-dia-ink-muted, #586075); --af-panel: var(--aimet-dia-panel, #e8e8fb);
+      --af-panel-edge: var(--aimet-dia-panel-edge, #a9a9f5); --af-brand: var(--aimet-blue, #2a2aea); }
+    .aimet-flow .af-c1 { --af-c: var(--af-1); }
+    .aimet-flow .af-c2 { --af-c: var(--af-2); }
+    .aimet-flow .af-c3 { --af-c: var(--af-3); }
+    .aimet-flow .af-ink { --af-c: var(--af-muted); }
+
+    .aimet-flow .af-panel { fill: var(--af-panel); stroke: var(--af-panel-edge); stroke-width: 1.25; }
+    .aimet-flow .af-brand-pill { fill: var(--af-brand); }
+    .aimet-flow .af-brand { fill: #ffffff; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; }
+    .aimet-flow .af-panel-sub { fill: var(--af-muted); font-size: 12.5px; }
+
+    .aimet-flow .af-card { fill: var(--af-card); stroke: var(--af-edge); stroke-width: 1; }
+    .aimet-flow .af-card.af-io { fill: var(--af-io); }
+    .aimet-flow .af-card.af-c2, .aimet-flow .af-card.af-c3 {
+      stroke: color-mix(in srgb, var(--af-c) 45%, transparent); stroke-width: 1.25; }
+    .aimet-flow .af-shadow-color { flood-color: #1e2230; flood-opacity: 0.08; }
+
+    .aimet-flow .af-title { fill: var(--af-ink); font-size: 15.5px; font-weight: 600; }
+    .aimet-flow .af-title.af-center { font-size: 14.5px; }
+    .aimet-flow .af-sub { fill: var(--af-muted); font-size: 12.5px; }
+    .aimet-flow .af-note { fill: var(--af-c); font-size: 12px; font-weight: 600; }
+
+    .aimet-flow .af-badge { fill: color-mix(in srgb, var(--af-c) 14%, var(--af-card)); }
+    .aimet-flow .af-badge-num { fill: var(--af-c); font-size: 12.5px; font-weight: 700; }
+    .aimet-flow .af-chip { fill: color-mix(in srgb, var(--af-c) 11%, var(--af-card));
+      stroke: color-mix(in srgb, var(--af-c) 30%, transparent); stroke-width: 1; }
+    .aimet-flow .af-chip-text { fill: var(--af-c); font-size: 12px; font-weight: 600; }
+    .aimet-flow .af-icon { fill: none; stroke: var(--af-c); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .aimet-flow .af-icon .af-icon-faint { stroke-dasharray: 2 2.5; opacity: 0.45; }
+    .aimet-flow .af-icon .af-icon-dot { fill: var(--af-c); stroke: none; }
+    .aimet-flow .af-icon .af-icon-knob { fill: var(--af-card); }
+
+    .aimet-flow .af-net-edges line { stroke: var(--af-edge); stroke-width: 0.9; }
+    .aimet-flow .af-net-1 { fill: var(--af-1); }
+    .aimet-flow .af-net-2 { fill: var(--af-2); }
+    .aimet-flow .af-net-3 { fill: var(--af-muted); }
+
+    .aimet-flow .af-target { fill: var(--af-card); stroke: var(--af-edge); stroke-width: 1; }
+    .aimet-flow .af-target-text { fill: var(--af-ink); font-size: 12px; font-weight: 500; }
+
+    .aimet-flow .af-arrow { stroke: var(--af-muted); stroke-width: 1.5; fill: none; }
+    .aimet-flow .af-arrow.af-ok { stroke: var(--af-3); }
+    .aimet-flow .af-arrow-head { fill: var(--af-muted); }
+    .aimet-flow .af-ok-head-fill { fill: var(--af-3); }
+    .aimet-flow .af-loop { stroke: var(--af-2); stroke-width: 1.5; fill: none; }
+    .aimet-flow .af-loop-head-fill { fill: var(--af-2); }
+  </style>
+  <defs>
+    <filter id="af-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow class="af-shadow-color" dx="0" dy="1.5" stdDeviation="2"/>
+    </filter>
+    <marker id="af-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="af-arrow-head" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+    <marker id="af-ok-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="af-ok-head-fill" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+    <marker id="af-loop-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="af-loop-head-fill" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+  </defs>
+
+  <rect class="af-card af-io" x="1" y="58" width="118" height="116" rx="12" filter="url(#af-shadow)"/>
+  <g class="af-net-edges"><line x1="43" y1="79" x2="60" y2="74.5"/><line x1="43" y1="79" x2="60" y2="83.5"/><line x1="43" y1="79" x2="60" y2="92.5"/><line x1="43" y1="79" x2="60" y2="101.5"/><line x1="43" y1="88" x2="60" y2="74.5"/><line x1="43" y1="88" x2="60" y2="83.5"/><line x1="43" y1="88" x2="60" y2="92.5"/><line x1="43" y1="88" x2="60" y2="101.5"/><line x1="43" y1="97" x2="60" y2="74.5"/><line x1="43" y1="97" x2="60" y2="83.5"/><line x1="43" y1="97" x2="60" y2="92.5"/><line x1="43" y1="97" x2="60" y2="101.5"/><line x1="60" y1="74.5" x2="77" y2="83.5"/><line x1="60" y1="74.5" x2="77" y2="92.5"/><line x1="60" y1="83.5" x2="77" y2="83.5"/><line x1="60" y1="83.5" x2="77" y2="92.5"/><line x1="60" y1="92.5" x2="77" y2="83.5"/><line x1="60" y1="92.5" x2="77" y2="92.5"/><line x1="60" y1="101.5" x2="77" y2="83.5"/><line x1="60" y1="101.5" x2="77" y2="92.5"/></g><circle class="af-net-1" cx="43" cy="79" r="3.6"/><circle class="af-net-1" cx="43" cy="88" r="3.6"/><circle class="af-net-1" cx="43" cy="97" r="3.6"/><circle class="af-net-2" cx="60" cy="74.5" r="3.6"/><circle class="af-net-2" cx="60" cy="83.5" r="3.6"/><circle class="af-net-2" cx="60" cy="92.5" r="3.6"/><circle class="af-net-2" cx="60" cy="101.5" r="3.6"/><circle class="af-net-3" cx="77" cy="83.5" r="3.6"/><circle class="af-net-3" cx="77" cy="92.5" r="3.6"/>
+  <text class="af-title af-center" x="60" y="134" text-anchor="middle">Trained model</text>
+  <text class="af-sub" x="60" y="154" text-anchor="middle">PyTorch or ONNX</text>
+  <path class="af-arrow" d="M121,118.0 L139,118.0" marker-end="url(#af-head)"/>
+  <rect class="af-panel" x="142" y="6" width="548" height="300" rx="18"/>
+  <rect class="af-brand-pill" x="160" y="22" width="68" height="24" rx="12"/>
+  <text class="af-brand" x="194" y="38.5" text-anchor="middle">AIMET</text>
+  <text class="af-panel-sub" x="240" y="38.5">Simulate, measure and recover accuracy before you deploy</text>
+  <rect class="af-card " x="160" y="74" width="158" height="88" rx="12" filter="url(#af-shadow)"/>
+  <circle class="af-badge af-c1" cx="184" cy="100" r="11"/><text class="af-badge-num af-c1" x="184" y="104.5" text-anchor="middle">1</text>
+  <text class="af-title" x="203" y="105">Simulate</text>
+  <g class="af-icon af-c1" transform="translate(286,91)"><path class="af-icon-faint" d="M0,16 L16,0"/><path d="M0,15 H4 V11 H8 V7 H12 V3 H16"/></g>
+  <text class="af-sub" x="176" y="130">Insert quantizers,</text>
+  <text class="af-sub" x="176" y="148">calibrate encodings</text>
+  <path class="af-arrow" d="M319,118.0 L335,118.0" marker-end="url(#af-head)"/>
+  <rect class="af-card " x="338" y="74" width="156" height="88" rx="12" filter="url(#af-shadow)"/>
+  <circle class="af-badge af-c1" cx="362" cy="100" r="11"/><text class="af-badge-num af-c1" x="362" y="104.5" text-anchor="middle">2</text>
+  <text class="af-title" x="381" y="105">Evaluate</text>
+  <g class="af-icon af-c1" transform="translate(462,91)"><path d="M1,14 A7.5,7.5 0 0 1 16,14"/><path d="M8.5,14 L12.5,7.5"/><circle class="af-icon-dot" cx="8.5" cy="14" r="1.4"/></g>
+  <text class="af-sub" x="354" y="130">Measure accuracy</text>
+  <text class="af-sub" x="354" y="148">of the simulation</text>
+  <path class="af-arrow af-ok" d="M495,118.0 L513,118.0" marker-end="url(#af-ok-head)"/>
+  <text class="af-note af-c3" x="504" y="64" text-anchor="middle">target met</text>
+  <rect class="af-card af-c3" x="516" y="74" width="158" height="88" rx="12" filter="url(#af-shadow)"/>
+  <circle class="af-badge af-c3" cx="540" cy="100" r="11"/><text class="af-badge-num af-c3" x="540" y="104.5" text-anchor="middle">4</text>
+  <text class="af-title" x="559" y="105">Export</text>
+  <g class="af-icon af-c3" transform="translate(642,91)"><path d="M2,7 V15.5 H15 V7"/><path d="M8.5,1 V10.5"/><path d="M5.2,4.2 L8.5,1 L11.8,4.2"/></g>
+  <text class="af-sub" x="532" y="130">ONNX + encodings,</text>
+  <text class="af-sub" x="532" y="148">or ONNX QDQ</text>
+  <path class="af-loop" d="M400,163 L400,205" marker-end="url(#af-loop-head)"/>
+  <path class="af-loop" d="M432,205 L432,165" marker-end="url(#af-loop-head)"/>
+  <rect class="af-chip af-c2" x="300" y="173" width="92" height="22" rx="11.0"/><text class="af-chip-text af-c2" x="346.0" y="188.0" text-anchor="middle">below target</text>
+  <rect class="af-chip af-c2" x="440" y="173" width="84" height="22" rx="11.0"/><text class="af-chip-text af-c2" x="482.0" y="188.0" text-anchor="middle">re-evaluate</text>
+  <rect class="af-card af-c2" x="260" y="208" width="312" height="84" rx="12" filter="url(#af-shadow)"/>
+  <circle class="af-badge af-c2" cx="284" cy="234" r="11"/><text class="af-badge-num af-c2" x="284" y="238.5" text-anchor="middle">3</text>
+  <text class="af-title" x="303" y="239">Improve</text>
+  <g class="af-icon af-c2" transform="translate(540,225)"><path d="M0,4 H16 M0,12 H16"/><circle class="af-icon-knob" cx="5" cy="4" r="2.3"/><circle class="af-icon-knob" cx="11" cy="12" r="2.3"/></g>
+  <rect class="af-chip af-c2" x="276" y="256" width="108" height="22" rx="11.0"/><text class="af-chip-text af-c2" x="330.0" y="271.0" text-anchor="middle">PTQ techniques</text>
+  <rect class="af-chip af-c2" x="392" y="256" width="112" height="22" rx="11.0"/><text class="af-chip-text af-c2" x="448.0" y="271.0" text-anchor="middle">Mixed precision</text>
+  <rect class="af-chip af-c2" x="512" y="256" width="44" height="22" rx="11.0"/><text class="af-chip-text af-c2" x="534.0" y="271.0" text-anchor="middle">QAT</text>
+  <path class="af-arrow" d="M691,118.0 L707,118.0" marker-end="url(#af-head)"/>
+  <rect class="af-card af-io" x="710" y="44" width="129" height="142" rx="12" filter="url(#af-shadow)"/>
+  <g class="af-icon af-ink" transform="translate(724,59)"><rect x="1" y="1" width="14" height="14" rx="3"/><path d="M5,1 V-2 M11,1 V-2 M5,15 V18 M11,15 V18 M1,5 H-2 M1,11 H-2 M15,5 H18 M15,11 H18"/></g>
+  <text class="af-title" x="750" y="72">Deploy</text>
+  <rect class="af-target" x="720" y="88" width="109" height="24" rx="7"/>
+  <text class="af-target-text" x="774.5" y="104" text-anchor="middle">Qualcomm AI Hub</text>
+  <rect class="af-target" x="720" y="118" width="109" height="24" rx="7"/>
+  <text class="af-target-text" x="774.5" y="134" text-anchor="middle">QAIRT</text>
+  <rect class="af-target" x="720" y="148" width="109" height="24" rx="7"/>
+  <text class="af-target-text" x="774.5" y="164" text-anchor="middle">ONNX Runtime</text>
+</svg>
+<ol class="arabic simple">
+<li><p><strong>Simulate.</strong> AIMET wraps your model in a <a class="reference internal" href="../tutorials/quantsim.html#quantsim-index"><span class="std std-ref">quantization simulation</span></a>
+(<code class="docutils literal notranslate"><span class="pre">QuantizationSimModel</span></code>) that inserts quantizers on weights and activations. A short
+calibration pass over representative data, typically 500 to 1,000 samples, computes the
+quantization parameters (<em>encodings</em>).</p></li>
+<li><p><strong>Evaluate.</strong> The simulated model runs on your CPU or GPU and behaves like the quantized model will
+on device. Run your existing evaluation pipeline on it to see the accuracy at the chosen precision.</p></li>
+<li><p><strong>Improve.</strong> If accuracy falls short, apply AIMET’s techniques, then evaluate again:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../ptq_techniques/index.html#featureguide-index"><span class="std std-ref">Post-training quantization (PTQ) techniques</span></a> adjust weights and
+encodings using calibration data only, with no training. Examples include AdaRound,
+SeqMSE, and AdaScale.</p></li>
+<li><p><a class="reference internal" href="../techniques/mixed_precision/index.html#featureguide-mp-index"><span class="std std-ref">Mixed precision</span></a> keeps the few layers that are sensitive to
+quantization at higher precision and quantizes the rest more aggressively.</p></li>
+<li><p><a class="reference internal" href="../techniques/qat.html#techniques-qat"><span class="std std-ref">Quantization-aware training (QAT)</span></a> fine-tunes the model with
+quantization in the loop. Use it when PTQ and mixed precision are not enough.</p></li>
+</ul>
+</li>
+<li><p><strong>Export.</strong> AIMET exports the result as an ONNX model plus an encodings file, or as a single
+<a class="reference internal" href="../techniques/onnx_qdq.html#techniques-onnx-qdq"><span class="std std-ref">ONNX QDQ model</span></a> with <code class="docutils literal notranslate"><span class="pre">QuantizeLinear</span></code> and <code class="docutils literal notranslate"><span class="pre">DequantizeLinear</span></code>
+nodes in the graph.</p></li>
+</ol>
+<p>You then <a class="reference internal" href="../tutorials/on_target_inference.html#opt-guide-on-target-inference"><span class="std std-ref">deploy the exported model</span></a> with <a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm® AI Hub</a>,
+the Qualcomm® AI Runtime (QAIRT) SDK, or <a class="reference external" href="https://onnxruntime.ai/">ONNX Runtime</a>.</p>
+<p>For a step-by-step guide to picking precisions and techniques, see the
+<a class="reference internal" href="../tutorials/quantization_workflow.html#tutorials-quantization-workflow"><span class="std std-ref">quantization workflow</span></a>.</p>
+</section>
+<section id="what-you-can-do-with-aimet">
+<h2 id="lumina-search-what-you-can-do-with-aimet">What you can do with AIMET<a class="headerlink" href="#what-you-can-do-with-aimet" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Capability</p></th>
+<th class="head"><p>What it gives you</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../tutorials/quantsim.html#quantsim-index"><span class="std std-ref">Quantization simulation</span></a></p></td>
+<td><p>Accuracy of the quantized model at any weight/activation precision (for example W8A8,
+W8A16, W4A16), measured on your own hardware before deployment.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../techniques/ptq.html#techniques-ptq"><span class="std std-ref">Post-training quantization</span></a></p></td>
+<td><p>Calibration plus accuracy-recovery techniques such as <a class="reference internal" href="../ptq_techniques/adaround.html#ptq-adaround"><span class="std std-ref">AdaRound</span></a>,
+<a class="reference internal" href="../ptq_techniques/seq_mse.html#ptq-seq-mse"><span class="std std-ref">SeqMSE</span></a>, <a class="reference internal" href="../ptq_techniques/adascale.html#ptq-adascale"><span class="std std-ref">AdaScale</span></a>, and
+<a class="reference internal" href="../ptq_techniques/spinquant.html#ptq-spinquant"><span class="std std-ref">SpinQuant</span></a>, using unlabeled data and no training.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../techniques/mixed_precision/index.html#featureguide-mp-index"><span class="std std-ref">Mixed precision</span></a></p></td>
+<td><p>Per-layer precision chosen automatically (<a class="reference internal" href="../techniques/mixed_precision/litemp.html#featureguide-litemp"><span class="std std-ref">Lite-MP</span></a>,
+<a class="reference internal" href="../techniques/mixed_precision/amp.html#featureguide-amp"><span class="std std-ref">AMP</span></a>) or by hand, to balance accuracy and latency.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../techniques/lpbq.html#techniques-lpbq"><span class="std std-ref">Blockwise quantization</span></a></p></td>
+<td><p>Low-Power Blockwise Quantization (LPBQ) for 4-bit weights, used by large language models.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../techniques/analysis_tools/index.html#techniques-analysis-tools"><span class="std std-ref">Analysis tools</span></a></p></td>
+<td><p>Per-layer sensitivity reports that show which layers lose the most accuracy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../techniques/qat.html#techniques-qat"><span class="std std-ref">Quantization-aware training</span></a></p></td>
+<td><p>Training with quantization in the loop, for models that need it (<code class="docutils literal notranslate"><span class="pre">aimet-torch</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../tutorials/quantization_recipe.html#quantization-genai-recipe"><span class="std std-ref">LLM quantization recipes</span></a></p></td>
+<td><p>Tested end-to-end recipes for popular large language models, with accuracy results.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="choose-a-package">
+<h2 id="lumina-search-choose-a-package">Choose a package<a class="headerlink" href="#choose-a-package" title="Link to this heading">¶</a></h2>
+<p>AIMET ships as two Python packages. Each one takes a model in its own framework’s format.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">aimet-onnx</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">aimet-torch</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>Input model</p></th>
+<td><p>ONNX model (<code class="docutils literal notranslate"><span class="pre">onnx.ModelProto</span></code>)</p></td>
+<td><p>PyTorch model (<code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Best for</p></th>
+<td><p>Post-training quantization and fast experiments</p></td>
+<td><p>Quantization-aware training, or staying in PyTorch</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Unique features</p></th>
+<td><p>Lite mixed precision, ONNX QDQ conversion of existing encodings</p></td>
+<td><p>QAT, OmniQuant, batch norm re-estimation, model compression</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Install</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">aimet-onnx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">aimet-torch</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Start with</strong> <code class="docutils literal notranslate"><span class="pre">aimet-onnx</span></code>. It has the fastest turnaround for calibration, mixed precision,
+and PTQ techniques. For a PyTorch model, export it to ONNX with <code class="docutils literal notranslate"><span class="pre">torch.onnx.export</span></code> first.
+Move to <code class="docutils literal notranslate"><span class="pre">aimet-torch</span></code> for QAT only if PTQ and mixed precision don’t meet your accuracy
+target.</p>
+</div>
+</section>
+<section id="supported-platforms">
+<h2 id="lumina-search-supported-platforms">Supported platforms<a class="headerlink" href="#supported-platforms" title="Link to this heading">¶</a></h2>
+<p>AIMET runs on Linux, Windows, and macOS with Python 3.10 or later (tested through 3.13). NVIDIA
+GPUs are optional and speed up calibration and optimization. Support varies by package and
+architecture; see <a class="reference internal" href="install/index.html#install-index"><span class="std std-ref">Installation</span></a> for the full matrix.</p>
+</section>
+<section id="next-steps">
+<h2 id="lumina-search-next-steps">Next steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="install/quick-start.html#install-quick-start"><span class="std std-ref">Quick start</span></a>: install AIMET and quantize your first model.</p></li>
+<li><p><a class="reference internal" href="../tutorials/quantization_workflow.html#tutorials-quantization-workflow"><span class="std std-ref">Quantization workflow</span></a>: a recommended path from first
+simulation to a deployable model.</p></li>
+<li><p><a class="reference internal" href="../tutorials/notebooks.html#examples-notebooks-index"><span class="std std-ref">Example notebooks</span></a>: end-to-end examples you can run.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+
+
+                </div>
+            </article>
+            
+
+                <div data-pagefind-ignore>
+
+                    <footer class="mt-10 border-t border-lumina-border pt-6">
+    
+    
+        <nav class="flex justify-between gap-4 mb-8"
+             aria-label="Page navigation">
+            
+                <a href="../index.html"
+                   class="group flex flex-col items-start gap-1 rounded-lg border border-lumina-border p-4 no-underline hover:border-lumina-accent hover:bg-lumina-bg-secondary active:bg-lumina-accent-light transition-colors duration-150 flex-1">
+                    <span class="text-xs text-lumina-text-muted">Previous</span>
+                    <span class="text-sm font-medium text-lumina-text group-hover:text-lumina-accent transition-colors"><span class="inline-block rtl:-scale-x-100">←</span> Quantize trained models. <span class="aimet-accent">Keep the accuracy.</span></span>
+                </a>
+            
+            
+                <a href="install/quick-start.html"
+                   class="group flex flex-col items-end gap-1 rounded-lg border border-lumina-border p-4 no-underline hover:border-lumina-accent hover:bg-lumina-bg-secondary active:bg-lumina-accent-light transition-colors duration-150 flex-1">
+                    <span class="text-xs text-lumina-text-muted">Next</span>
+                    <span class="text-sm font-medium text-lumina-text group-hover:text-lumina-accent transition-colors">Quick Start <span class="inline-block rtl:-scale-x-100">→</span></span>
+                </a>
+            
+        </nav>
+    
+    
+    
+    
+    
+</footer>
+
+                </div>
+
+
+            
+        </main>
+        
+            <aside id="lumina-toc">
+
+                
+    <div class="lumina-toc-container sticky top-[var(--lumina-header-offset)] hidden h-[calc(100vh-var(--lumina-header-offset))] w-[220px] shrink-0 py-6 pe-4 xl:block">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-lumina-text-muted">On this page</p>
+        <div class="lumina-toc-scroll">
+            
+            <nav class="lumina-toc-nav"
+                 aria-label="Table of contents"
+                 x-data="scrollspy()">
+                <ul>
+<li><a class="reference internal" href="#">What is AIMET?</a><ul>
+<li><a class="reference internal" href="#why-quantize">Why quantize?</a></li>
+<li><a class="reference internal" href="#how-aimet-works">How AIMET works</a></li>
+<li><a class="reference internal" href="#what-you-can-do-with-aimet">What you can do with AIMET</a></li>
+<li><a class="reference internal" href="#choose-a-package">Choose a package</a></li>
+<li><a class="reference internal" href="#supported-platforms">Supported platforms</a></li>
+<li><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+
+
+            </aside>
+        
+    </div>
+
+    
+        <button id="lumina-back-to-top"
+                x-data="backToTop()"
+                x-show="visible"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                @click="scrollToTop()"
+                class="lumina-back-to-top z-40 hover:border-lumina-accent transition-colors"
+                aria-label="Back to top"
+                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></button>
+    
+
+    <dialog id="lumina-search-modal"
+        x-data="searchModal()"
+        @cancel.prevent="close()"
+        @keydown.escape.stop.prevent="close()"
+        @keydown.meta.k.window.prevent="toggle()"
+        @keydown.ctrl.k.window.prevent="toggle()"
+        @click.self="close()"
+        class="lumina-overlay-backdrop fixed inset-0 z-[100] m-0 h-full w-full max-h-none max-w-none border-0 p-0"
+        aria-modal="true"
+        aria-label="Search documentation">
+    
+    <div class="relative mx-auto mt-[5vh] flex max-h-[90dvh] w-[calc(100%-2rem)] max-w-xl flex-col sm:mt-[12vh] sm:max-h-[80dvh] cursor-auto rounded-xl border border-lumina-border bg-lumina-bg shadow-2xl">
+        
+        <div class="flex items-center border-b border-lumina-border px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lumina-text-muted" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+            <input type="search"
+                   x-ref="searchInput"
+                   x-model="query"
+                   @input.debounce.150ms="search()"
+                   @keydown.arrow-down.prevent="moveDown()"
+                   @keydown.arrow-up.prevent="moveUp()"
+                   @keydown.enter.prevent="goToSelected()"
+                   role="combobox"
+                   aria-autocomplete="list"
+                   aria-controls="lumina-search-results"
+                   :aria-expanded="results.length > 0"
+                   :aria-activedescendant="results.length > 0 ? 'lumina-search-result-' + selectedIndex : ''"
+                   class="w-full border-0 bg-transparent px-3 py-4 text-lumina-text placeholder-lumina-text-muted outline-none"
+                   aria-label="Search documentation"
+                   placeholder="Search docs..."
+                   autocomplete="off">
+            <kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1.5 py-0.5 text-xs text-lumina-text-muted">esc</kbd>
+        </div>
+        <template x-if="loaded && scopes.length > 1 && pagefind">
+            <div class="flex shrink-0 items-center gap-3 border-b border-lumina-border px-4 py-2">
+                <label for="lumina-search-scope"
+                       class="shrink-0 text-xs text-lumina-text-muted">Search in</label>
+                <select id="lumina-search-scope"
+                        x-model="scope"
+                        @change="search()"
+                        class="min-w-0 flex-1 rounded border border-lumina-border bg-lumina-bg px-2 py-2 text-sm text-lumina-text focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                    <option value="">All docs</option>
+                    <template x-for="name in scopes" :key="name">
+                        <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+        
+        <div class="min-h-0 overflow-y-auto p-2" :aria-busy="searching">
+            <template x-if="!loaded || searching">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <span x-text="loaded ? $t('Searching…') : $t('Loading search index…')"></span>
+                </p>
+            </template>
+            <template x-if="loaded && !searching && !error && query.trim().length > 0 && results.length === 0">
+                <div class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <p x-text="scope ? $t('No results in {scope}.', { scope }) : $t('No results found.')"></p>
+                    <template x-if="scope">
+                        <button type="button"
+                                @click="searchAll()"
+                                class="mt-2 rounded px-3 py-2 text-lumina-accent underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                            Search all docs
+                        </button>
+                    </template>
+                </div>
+            </template>
+            <template x-if="error">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted"
+                   x-text="error"></p>
+            </template>
+            <div id="lumina-search-results"
+                 role="listbox"
+                 aria-label="Search documentation">
+                <template x-for="(result, index) in results" :key="result.url">
+                    <a :id="'lumina-search-result-' + index"
+                       :href="result.url"
+                       role="option"
+                       :aria-selected="index === selectedIndex"
+                       data-search-result
+                       class="flex flex-col gap-1 rounded-lg px-3 py-2.5 no-underline transition-colors focus-visible:outline-2 focus-visible:outline-lumina-accent"
+                       :class="[index === selectedIndex ? 'bg-lumina-accent-light text-lumina-accent' : 'hover:bg-lumina-bg-secondary text-lumina-text', result.isHeading ? 'ms-4 border-s border-lumina-border' : 'mt-1']"
+                       @click="rememberQuery()"
+                       @mouseenter="selectedIndex = index"
+                       @focus="selectedIndex = index">
+                        <template x-if="result.breadcrumb">
+                            <span class="truncate text-xs text-lumina-text-muted"
+                                  x-text="result.breadcrumb"></span>
+                        </template>
+                        <span class="break-words text-sm"
+                              :class="result.isSymbol ? 'font-mono' : result.isHeading ? '' : 'font-semibold'"
+                              x-text="result.title"></span>
+                        <span x-show="result.excerpt"
+                              class="line-clamp-2 text-xs text-lumina-text-muted"
+                              x-html="result.excerpt"></span>
+                    </a>
+                </template>
+            </div>
+            <template x-if="loaded && !error && query.trim().length === 0">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">Type to search...</p>
+            </template>
+        </div>
+        
+        <div class="sr-only"
+             role="status"
+             x-text="searching ? $t('Searching…') : loaded && query.trim().length > 0 ? (scope ? $t('{count} links in {scope}', { count: results.length, scope }) : $t('{count} links across all docs', { count: results.length })) : ''">
+        </div>
+        
+        <div class="flex shrink-0 items-center gap-3 border-t border-lumina-border px-4 py-2.5 text-xs text-lumina-text-muted">
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↑↓</kbd> Navigate</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↵</kbd> Open</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">esc</kbd> Close</span>
+        </div>
+    </div>
+</dialog>
+
+    
+
+
+
+
+  </body>
+</html>

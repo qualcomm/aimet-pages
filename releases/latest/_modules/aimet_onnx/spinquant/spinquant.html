@@ -1,0 +1,1116 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aimet_onnx.spinquant.spinquant &#8212; AI Model Efficiency Toolkit</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=ed8a8c84" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../../_static/pygments_dark.css?v=5175e31d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lumina.css?v=bc31efa2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/aimet-lumina.css?v=b1a32206" />
+    <script defer="defer" src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script defer="defer" src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script defer="defer" src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer="defer" src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="../../../_static/lumina.js?v=3e122351"></script>
+    <link rel="icon" href="../../../_static/ai-hub-workbench-icon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+    
+    
+        <meta data-pagefind-meta="breadcrumb[content]"
+              content="Module code">
+    
+    
+    
+        
+        <meta name="description" content="AIMET">
+        
+        <meta name="theme-color" content="#2A2AEA">
+        <meta property="og:title" content="aimet_onnx.spinquant.spinquant">
+        
+            <meta property="og:description" content="AIMET">
+        
+        
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="AI Model Efficiency Toolkit">
+        <meta property="og:locale" content="en_US">
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="aimet_onnx.spinquant.spinquant">
+        
+            <meta name="twitter:description" content="AIMET">
+        
+        
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Module code", "item": "../../index.html"}, {"@type": "ListItem", "position": 2, "name": "aimet_onnx.spinquant.spinquant", "item": "/"}]}</script>
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "aimet_onnx.spinquant.spinquant", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET"}</script>
+        
+        
+    
+    <link rel="preload"
+          as="font"
+          type="font/woff2"
+          href="../../../_static/fonts/source-sans-3-regular-latin.woff2"
+          crossorigin>
+    
+    <script>
+(function() {
+  var stored = null;
+  try { stored = localStorage.getItem('lumina-theme'); } catch (e) {}
+  
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Sphinx gates the dark highlight stylesheet on the OS color scheme only;
+  // a stored override or dark_mode_default must rewrite its media query
+  // before first paint.
+  var pygmentsDark = document.getElementById('pygments_dark_css');
+  if (pygmentsDark) {
+    pygmentsDark.media = document.documentElement.getAttribute('data-theme') === 'dark' ? 'screen' : 'not all';
+  }
+})();
+    </script>
+    
+    <meta name="lumina-search-backend" content="sphinx">
+    <meta name="lumina-base-url" content="../../../">
+    
+    
+    
+    
+    
+    
+    
+        <style>
+            :root,[data-theme="light"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 65%,#202624);--lumina-accent-light:color-mix(in srgb,#2A2AEA 12%,var(--lumina-bg));}
+            [data-theme="dark"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 55%,#e9eeeb);--lumina-accent-light:color-mix(in srgb,#2A2AEA 15%,var(--lumina-bg));}
+            html:root,html[data-theme="dark"]{--sd-color-primary:color-mix(in srgb,#2A2AEA 85%,black);--sd-color-primary-highlight:color-mix(in srgb,#2A2AEA 70%,black);--sd-color-primary-text:#fff;--sd-color-primary-bg:color-mix(in srgb,#2A2AEA 12%,transparent);}
+        </style>
+    
+    
+    
+    
+
+
+  <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/spinquant/spinquant.html" />
+</head><body>
+
+
+
+
+
+    <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
+
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-lumina-border bg-lumina-bg/80 backdrop-blur-sm">
+
+    
+
+    <div class="lumina-header-inner mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
+        
+        <div class="flex items-center gap-3">
+            <a href="../../../index.html"
+               class="flex items-center gap-2 text-lumina-text no-underline hover:opacity-80 transition-opacity">
+                
+                    <img src="../../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-light h-7 w-auto">
+                    <img src="../../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-dark h-7 w-auto">
+                
+            </a>
+            
+                
+                <span class="flex flex-col leading-tight">
+                    <a href="../../../index.html"
+                       class="font-semibold text-base text-lumina-text no-underline hover:opacity-80 transition-opacity">AIMET</a>
+                    
+                        <a href="../../../versions.html"
+                           class="text-xs text-lumina-text-muted hover:text-lumina-accent no-underline"
+                           title="See other versions">v2.44.0</a>
+                    
+                </span>
+            
+
+            
+
+        </div>
+        
+        
+        
+        <div class="flex items-center gap-2">
+            
+            <button data-search-trigger
+                    class="flex items-center gap-2 rounded-lg border border-lumina-border bg-lumina-bg-secondary px-3 py-2 text-[0.8125rem] text-lumina-text-muted hover:border-lumina-accent transition-colors cursor-pointer lg:min-w-56"
+                    aria-label="Search documentation"
+                    aria-haspopup="dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+                <span class="hidden lg:inline flex-1 text-start">Search docs...</span>
+                <kbd data-search-shortcut
+                     class="hidden lg:inline rounded border border-lumina-border bg-lumina-bg px-1.5 py-0.5 text-[0.6875rem] font-[family-name:var(--lumina-font-mono)] tracking-[0.02em]">⌘K</kbd>
+            </button>
+            
+            <button data-theme-toggle
+                    x-data="themeToggle()"
+                    @click="cycle()"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-md text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors cursor-pointer"
+                    aria-label="Toggle color theme"
+                    title="Toggle color theme"
+                    :aria-label="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')"
+                    :title="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')">
+                
+                <svg x-show="mode === 'light'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-[-90deg] scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+                </svg>
+                
+                <svg x-show="mode === 'dark'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-90 scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                </svg>
+                
+                <svg x-show="mode === 'auto'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 scale-0"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+            </button>
+            
+            
+            
+                
+                    <a href="https://github.com/qualcomm/aimet"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Github"
+                       aria-label="Github (opens in new tab)">
+                        
+                            <svg class="h-5 w-5"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://qualcomm-ai-hub.slack.com/archives/C08JKBE0UHY"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Slack"
+                       aria-label="Slack (opens in new tab)">
+                        
+                            
+                            <svg class="h-5 w-5" viewBox="0 0 127 127" aria-hidden="true">
+                                <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A" />
+                                <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0" />
+                                <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D" />
+                                <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://workbench.aihub.qualcomm.com/docs/hub/quantize_examples.html"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Workbench"
+                       aria-label="Workbench (opens in new tab)">
+                        
+                            <img src="../../../_static/ai-hub-workbench-icon.png"
+                                 alt=""
+                                 class="h-5 w-5 rounded-sm"
+                                 aria-hidden="true">
+                        
+                    </a>
+                
+            
+            
+            
+                <button data-sidebar-toggle
+                        class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors lg:hidden cursor-pointer"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="lumina-sidebar-drawer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            
+        </div>
+    </div>
+</header>
+
+    </div>
+    <div class="lumina-wrapper">
+        <aside id="lumina-sidebar">
+
+            <div x-data="sidebar()">
+    
+    <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-e border-lumina-border/45 bg-lumina-bg px-4 py-6 lg:flex">
+
+        
+
+
+        
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Main navigation"
+                 x-data="sidebarNav()">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+            </nav>
+        
+        
+            <div class="lumina-sidebar-footer">
+                Built with
+                <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                   target="_blank"
+                   rel="noopener">
+                    <svg class="lumina-sidebar-footer-icon"
+                         viewBox="0 0 32 32"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M16 3L28 27H4L16 3Z" stroke="currentColor" stroke-width="2.5" fill="none" />
+                        <path d="M16 10L8 27H16" fill="currentColor" opacity="0.15" />
+                        <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
+                    </svg>
+                Lumina</a>
+                <span class="lumina-sidebar-footer-version">v2.21.2</span>
+            </div>
+        
+    </div>
+    
+    <template x-teleport="body">
+        <div>
+            
+            <div x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="lumina-overlay-backdrop fixed inset-0 top-[var(--lumina-header-offset)] z-40 lg:hidden"
+                 @click="close()"></div>
+            
+            <div id="lumina-sidebar-drawer"
+                 x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-250"
+                 x-transition:enter-start="-translate-x-full rtl:translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full rtl:translate-x-full"
+                 @keydown.escape.window="close()"
+                 class="fixed inset-y-0 top-[var(--lumina-header-offset)] start-0 z-50 w-[min(280px,85vw)] overflow-y-auto border-e border-lumina-border bg-lumina-bg px-4 py-6 lg:hidden">
+
+                
+                
+
+                    
+
+
+                
+
+                
+                
+                
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Main navigation"
+                         x-data="sidebarNav()">
+                        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+                    </nav>
+                
+                
+                    <div class="lumina-sidebar-footer">
+                        <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                           target="_blank"
+                           rel="noopener">Lumina</a>
+                        <span class="lumina-sidebar-footer-version">v2.21.2</span>
+                    </div>
+                
+            </div>
+        </div>
+    </template>
+</div>
+
+        </aside>
+        <main id="lumina-content" role="main" data-pagefind-body>
+            
+            
+            <div class="lumina-content-toolbar"
+                 data-pagefind-ignore>
+                
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-lumina-text-muted"
+     style="scrollbar-width:none"
+     aria-label="Breadcrumb">
+    
+    
+        
+            
+            
+            <a href="../../index.html"
+               class="min-w-0 truncate hover:text-lumina-accent no-underline transition-colors">Module code</a>
+        
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 rtl:-scale-x-100" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    <span class="shrink-0 whitespace-nowrap text-lumina-text"
+          aria-current="page">aimet_onnx.spinquant.spinquant</span>
+</nav>
+
+                    </div>
+                
+
+                <details class="lumina-page-actions"
+         x-data
+         @click.outside="$el.open = false"
+         @keydown.escape.stop="$el.open = false; $el.querySelector('summary').focus()">
+    <summary aria-label="Page actions" title="Page actions">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+    </summary>
+    <div class="lumina-page-action-list">
+        <button x-data="copyPage()"
+                @click="copy()"
+                type="button"
+                aria-label="Copy page as Markdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+            <span aria-live="polite"
+                  x-text="copied ? $t('Copied!') : $t('Copy as Markdown')">Copy as Markdown</span>
+        </button>
+        
+    </div>
+</details>
+
+            </div>
+            
+            <article class="lumina-article" x-data="headerLinks()">
+                
+                <div class="body">
+
+                    
+
+    <h1>Source code for aimet_onnx.spinquant.spinquant</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+
+<span class="sd">"""Top-level SpinQuant API for ONNX QuantizationSimModel.</span>
+
+<span class="sd">This module is the entry-point orchestrator. It takes the decoder-stack topology</span>
+<span class="sd">from its caller, builds a :class:`SpinquantContext`, then runs the rotation</span>
+<span class="sd">passes selected by the caller via boolean flags (``enable_r1`` / ``enable_r2``).</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx_ir</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AimetLogger</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology.ir_adapter</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve_topology</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology.ir_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_analysis_ir</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology.topology</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">analyze_llm_topology_by_norm_count</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.llm_topology.topology_types</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BlockKind</span><span class="p">,</span>
+    <span class="n">LlmTopology</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.spinquant.model_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">find_merger_linear2</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.spinquant.passes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">R1RotationPass</span><span class="p">,</span>
+    <span class="n">R2RotationPass</span><span class="p">,</span>
+    <span class="n">R3RotationPass</span><span class="p">,</span>
+    <span class="n">RotationPass</span><span class="p">,</span>
+    <span class="n">SpinquantContext</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">AimetLogger</span><span class="o">.</span><span class="n">get_area_logger</span><span class="p">(</span><span class="n">AimetLogger</span><span class="o">.</span><span class="n">LogAreas</span><span class="o">.</span><span class="n">SpinQuant</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="apply_spinquant">
+<a class="viewcode-back" href="../../../ptq_techniques/spinquant.html#aimet_onnx.spinquant.apply_spinquant">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_spinquant</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">,</span>
+    <span class="n">visual_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">embedding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">enable_r1</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">enable_r2</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">enable_r3</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">topology</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LlmTopology</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Apply SpinQuant rotation transforms to an ONNX transformer model.</span>
+
+<span class="sd">    SpinQuant applies orthogonal Hadamard rotations to model weights to reduce</span>
+<span class="sd">    quantization error. This function modifies the ONNX model(s) in-place by:</span>
+
+<span class="sd">    1. Reading the backbone's decoder-stack structure (block boundaries, role map,</span>
+<span class="sd">       hidden size) off ``topology``, and analyzing the optional visual encoder</span>
+<span class="sd">       (PatchMerger output projection).</span>
+<span class="sd">    2. Validating every selected rotation pass against the analysis.</span>
+<span class="sd">    3. Applying every selected pass in order (R1 before R2 before R3).</span>
+<span class="sd">    4. Serializing the result back onto the caller's ``ModelProto``\\ s.</span>
+
+<span class="sd">    The rotations are performed on an ``onnx_ir`` copy of the graph and written</span>
+<span class="sd">    back only once every pass has succeeded, so a failure part-way through leaves</span>
+<span class="sd">    the caller's model untouched rather than half-rotated. (The ``embedding``</span>
+<span class="sd">    tensor is the exception: it is a ``torch.Tensor`` rotated in place.)</span>
+
+<span class="sd">    Must be called on the float ONNX model BEFORE creating a</span>
+<span class="sd">    ``QuantizationSimModel``. The rotation modifies float weight initializers</span>
+<span class="sd">    (R1 / R2) and may insert new nodes (R3); build the sim on the rotated graph</span>
+<span class="sd">    and run ``compute_encodings`` afterward so quantizer scales are calibrated on</span>
+<span class="sd">    the rotated weights.</span>
+
+<span class="sd">    Supported architectures:</span>
+<span class="sd">        - LLaMA, Qwen2, Qwen3, Phi3 (backbone only)</span>
+<span class="sd">        - Qwen2.5-VL, Qwen3-VL (backbone + visual)</span>
+
+<span class="sd">    :param model: backbone.onnx ModelProto. Mutated in-place.</span>
+<span class="sd">    :param visual_model: Optional visual.onnx ModelProto (VLM only). Mutated in-place.</span>
+<span class="sd">    :param embedding: Optional ``torch.Tensor`` of shape ``[vocab, hidden]`` loaded</span>
+<span class="sd">        from ``embedding.pth`` (VLM only). Rotated in-place with R_L.</span>
+<span class="sd">    :param enable_r1: If ``True`` (default), apply the R1 (residual-stream) rotation.</span>
+<span class="sd">    :param enable_r2: If ``True``, apply the R2 (per-head) rotation. Defaults to ``False``.</span>
+<span class="sd">        Not supported on architectures with fused QKV projections (e.g. Phi3).</span>
+<span class="sd">    :param enable_r3: If ``True``, apply the R3 online Hadamard rotation on Q and K</span>
+<span class="sd">        paths into each block's QK^T MatMul. Defaults to ``False``. Inserts new</span>
+<span class="sd">        ``MatMul`` nodes into the ONNX graph (does not mutate existing weights).</span>
+<span class="sd">        MHA only — not supported on fused QKV or per-head split exports. The K-side</span>
+<span class="sd">        rotation is placed upstream of the past-key ``Concat`` so K values entering</span>
+<span class="sd">        the KV cache are already rotated; the model's ``present_key`` output then</span>
+<span class="sd">        carries rotated K (cache convention is self-consistent across steps).</span>
+<span class="sd">    :param topology: Decoder-stack topology of ``model``, from</span>
+<span class="sd">        :func:`~aimet_onnx.llm_topology.analyze_llm_topology`.</span>
+<span class="sd">        Every rotation is placed by it — which linears read from and write to the</span>
+<span class="sd">        residual stream (R1), which are the V/O projections (R2), which are the Q/K edges</span>
+<span class="sd">        into QKᵀ (R3) — because discovering model structure belongs to ``llm_topology``,</span>
+<span class="sd">        not to SpinQuant.</span>
+<span class="sd">        Analyze the same ``model`` this call rotates.</span>
+<span class="sd">        Passing it explicitly is also the only way to override the analysis: this function</span>
+<span class="sd">        would otherwise analyze with ``active_norms_per_block=2`` and the default role</span>
+<span class="sd">        patterns, which no argument here can change.</span>
+<span class="sd">        Optional today: when omitted the topology is analyzed internally from ``model`` and</span>
+<span class="sd">        a warning is raised. Passing it explicitly is recommended, and may become required</span>
+<span class="sd">        in a future release.</span>
+<span class="sd">    :raises ValueError: If no rotation is enabled, if block detection or role</span>
+<span class="sd">        classification fails, if ``topology`` does not describe ``model``, or if any</span>
+<span class="sd">        expected weight is missing / has the wrong shape.</span>
+
+<span class="sd">    Example (LLM)::</span>
+
+<span class="sd">        topology = analyze_llm_topology(model, model_type="llama")</span>
+<span class="sd">        apply_spinquant(model, topology=topology)</span>
+<span class="sd">        sim = QuantizationSimModel(model)   # built on the rotated graph</span>
+<span class="sd">        sim.compute_encodings(calibration_data)</span>
+
+<span class="sd">    Example (VLM)::</span>
+
+<span class="sd">        embedding = torch.load("embedding.pth")   # torch.Tensor [vocab, hidden]</span>
+<span class="sd">        topology = analyze_llm_topology(backbone_model, model_type="qwen2_5_vl")</span>
+<span class="sd">        apply_spinquant(</span>
+<span class="sd">            backbone_model,</span>
+<span class="sd">            visual_model=visual_model,</span>
+<span class="sd">            embedding=embedding,</span>
+<span class="sd">            topology=topology,</span>
+<span class="sd">        )</span>
+<span class="sd">        torch.save(embedding, "embedding.pth")    # overwrite with rotated weights</span>
+<span class="sd">        backbone_sim = QuantizationSimModel(backbone_model)</span>
+<span class="sd">        visual_sim = QuantizationSimModel(visual_model)</span>
+<span class="sd">        backbone_sim.compute_encodings(backbone_calibration_data)</span>
+<span class="sd">        visual_sim.compute_encodings(visual_calibration_data)</span>
+<span class="sd">    """</span>
+    <span class="n">rotations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">RotationPass</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">enable_r1</span><span class="p">:</span>
+        <span class="n">rotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R1RotationPass</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">enable_r2</span><span class="p">:</span>
+        <span class="n">rotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R2RotationPass</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">enable_r3</span><span class="p">:</span>
+        <span class="n">rotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R3RotationPass</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">rotations</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"apply_spinquant requires at least one rotation enabled "</span>
+            <span class="s2">"(set enable_r1=True and/or enable_r2=True and/or enable_r3=True)."</span>
+        <span class="p">)</span>
+
+    <span class="n">ctx</span> <span class="o">=</span> <span class="n">_build_context</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">visual_model</span><span class="p">,</span> <span class="n">embedding</span><span class="p">,</span> <span class="n">topology</span><span class="p">)</span>
+
+    <span class="c1"># Validate every pass before mutating anything: a bad config must not</span>
+    <span class="c1"># leave the model half-rotated.</span>
+    <span class="k">for</span> <span class="n">rotation</span> <span class="ow">in</span> <span class="n">rotations</span><span class="p">:</span>
+        <span class="n">rotation</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">rotation</span> <span class="ow">in</span> <span class="n">rotations</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Applying </span><span class="si">%s</span><span class="s2"> rotation pass."</span><span class="p">,</span> <span class="n">rotation</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">rotation</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+
+    <span class="c1"># The passes rewrote the IR; serialize it back onto the caller's proto(s).</span>
+    <span class="c1"># Doing this only once every pass has succeeded is what makes a mid-flight</span>
+    <span class="c1"># failure leave the caller's model untouched rather than half-rotated.</span>
+    <span class="n">_write_back</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">backbone_ir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">visual_model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_write_back</span><span class="p">(</span><span class="n">visual_model</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">visual_ir</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_build_context</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">,</span>
+    <span class="n">visual_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">],</span>
+    <span class="n">embedding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span>
+    <span class="n">name_topology</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LlmTopology</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpinquantContext</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Build the context shared across passes from the caller's topology.</span>
+
+<span class="sd">    Builds two IRs for the backbone — the faithful one the passes mutate, and the</span>
+<span class="sd">    quantizer-stripped / RMSNorm-fused analysis one the norm checks run on — and</span>
+<span class="sd">    resolves the topology onto the faithful one. See :class:`SpinquantContext` on</span>
+<span class="sd">    why the two cannot be the same object.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">name_topology</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># TODO: if 'topology' is ever made required, delete this branch along with</span>
+        <span class="c1"># the analyze_llm_topology_by_norm_count import.</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">"apply_spinquant() was called without 'topology', so the decoder-stack "</span>
+            <span class="s2">"structure is being analyzed internally. Prefer building it with "</span>
+            <span class="s2">"aimet_onnx.llm_topology.analyze_llm_topology(model, model_type) "</span>
+            <span class="s2">"and passing topology=...; this argument may become required in a future release."</span><span class="p">,</span>
+            <span class="ne">UserWarning</span><span class="p">,</span>
+            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_validate_topology</span><span class="p">(</span><span class="n">name_topology</span><span class="p">)</span>
+
+    <span class="c1"># A faithful copy of the caller's graph: not sorted, not stripped, not fused,</span>
+    <span class="c1"># so what we hand back differs from what we were given only where a rotation</span>
+    <span class="c1"># actually changed something.</span>
+    <span class="n">backbone_ir</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1"># Needed whether or not the caller supplied a topology: R1's post-writing-norm</span>
+    <span class="c1"># check reads the fused view, which the faithful IR cannot provide.</span>
+    <span class="n">analysis_ir</span> <span class="o">=</span> <span class="n">build_analysis_ir</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">name_topology</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Derives block boundaries, per-block roles, active norms, hidden_size and</span>
+        <span class="c1"># head_dim in one pass. head_dim is only needed by R2/R3; it is left None</span>
+        <span class="c1"># when the export has no KV-cache 'past_value' input, and those passes raise</span>
+        <span class="c1"># a targeted error when they actually need it.</span>
+        <span class="n">name_topology</span> <span class="o">=</span> <span class="n">analyze_llm_topology_by_norm_count</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ir_model</span><span class="o">=</span><span class="n">analysis_ir</span><span class="p">)</span>
+
+    <span class="c1"># Raises if any name is absent from the graph — a topology built from another</span>
+    <span class="c1"># model is caught here, before any pass has mutated anything.</span>
+    <span class="n">topology</span> <span class="o">=</span> <span class="n">resolve_topology</span><span class="p">(</span><span class="n">name_topology</span><span class="p">,</span> <span class="n">backbone_ir</span><span class="p">)</span>
+
+    <span class="n">visual_ir</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">visual_merger_linear2</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">visual_model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">visual_ir</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">visual_model</span><span class="p">)</span>
+        <span class="n">visual_merger_linear2</span> <span class="o">=</span> <span class="n">find_merger_linear2</span><span class="p">(</span><span class="n">visual_ir</span><span class="p">)</span>
+
+    <span class="n">_check_embedding_consistency</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">SpinquantContext</span><span class="p">(</span>
+        <span class="n">backbone_ir</span><span class="o">=</span><span class="n">backbone_ir</span><span class="p">,</span>
+        <span class="n">backbone_analysis_ir</span><span class="o">=</span><span class="n">analysis_ir</span><span class="p">,</span>
+        <span class="n">backbone_topology</span><span class="o">=</span><span class="n">topology</span><span class="p">,</span>
+        <span class="n">backbone_active_norms</span><span class="o">=</span><span class="n">topology</span><span class="o">.</span><span class="n">active_norms</span><span class="p">,</span>
+        <span class="n">backbone_hidden_size</span><span class="o">=</span><span class="n">topology</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span>
+        <span class="n">backbone_head_dim</span><span class="o">=</span><span class="n">topology</span><span class="o">.</span><span class="n">head_dim</span><span class="p">,</span>
+        <span class="n">visual_ir</span><span class="o">=</span><span class="n">visual_ir</span><span class="p">,</span>
+        <span class="n">visual_merger_linear2</span><span class="o">=</span><span class="n">visual_merger_linear2</span><span class="p">,</span>
+        <span class="n">embedding</span><span class="o">=</span><span class="n">embedding</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_validate_topology</span><span class="p">(</span><span class="n">topology</span><span class="p">:</span> <span class="n">LlmTopology</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Reject a topology that cannot place SpinQuant's rotations.</span>
+
+<span class="sd">    Only the fields every enabled pass needs before it can even start are checked</span>
+<span class="sd">    here; per-pass pre-conditions stay in the passes' own ``validate``. Whether the</span>
+<span class="sd">    names in the topology actually exist in the graph is answered separately, by</span>
+<span class="sd">    :func:`~.ir_adapter.resolve_topology`.</span>
+
+<span class="sd">    :param topology: Topology supplied by the caller.</span>
+<span class="sd">    :raises ValueError: If the topology has no decoder blocks, no ``hidden_size``,</span>
+<span class="sd">        or no ``active_norms``.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">topology</span><span class="o">.</span><span class="n">blocks</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"topology contains no decoder blocks, so there is nothing for SpinQuant to "</span>
+            <span class="s2">"rotate. Verify that analyze_llm_topology() was run on the model "</span>
+            <span class="s2">"being rotated."</span>
+        <span class="p">)</span>
+
+    <span class="c1"># The passes read only the attention/MLP fields, which a Mamba block leaves</span>
+    <span class="c1"># empty: rotating around them would silently skip its mixer projections.</span>
+    <span class="n">mamba</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">topology</span><span class="o">.</span><span class="n">blocks</span><span class="p">)</span> <span class="k">if</span> <span class="n">block</span><span class="o">.</span><span class="n">kind</span> <span class="ow">is</span> <span class="n">BlockKind</span><span class="o">.</span><span class="n">MAMBA</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="n">mamba</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"topology has Mamba blocks </span><span class="si">{</span><span class="n">mamba</span><span class="si">}</span><span class="s2">, which SpinQuant does not support yet."</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">topology</span><span class="o">.</span><span class="n">hidden_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"topology.hidden_size is None, so R1 has no residual-stream dimension to build "</span>
+            <span class="s2">"its Hadamard at. analyze_llm_topology() fills this in; a hand-built "</span>
+            <span class="s2">"topology must set it to the model's hidden size."</span>
+        <span class="p">)</span>
+
+    <span class="c1"># An empty list would not fail: norm fusion would quietly fuse nothing, and R1</span>
+    <span class="c1"># would then rotate around un-absorbed RMSNorm scales — a numerically wrong model</span>
+    <span class="c1"># rather than an error. Refuse it here.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">topology</span><span class="o">.</span><span class="n">active_norms</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"topology.active_norms is empty, so R1 has no RMSNorm scales to absorb into "</span>
+            <span class="s2">"the linears it rotates. Rotating without that fusion silently changes the "</span>
+            <span class="s2">"model's outputs, so it is refused. analyze_llm_topology() populates "</span>
+            <span class="s2">"this field."</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_write_back</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">,</span> <span class="n">ir_model</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Serialize ``ir_model`` onto ``model`` in place.</span>
+
+<span class="sd">    Every model the caller handed us is written back, whether or not the enabled</span>
+<span class="sd">    passes touched it. Tracking which IRs were mutated would save a serialization</span>
+<span class="sd">    in the rare configuration that passes a visual encoder without enabling R1,</span>
+<span class="sd">    at the cost of silently dropping rotations the day a pass forgets to report</span>
+<span class="sd">    one — an unnecessary round trip is the cheaper mistake.</span>
+<span class="sd">    """</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(</span><span class="n">ir_model</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_check_embedding_consistency</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">embedding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Reject inconsistent (embedding, embed_tokens) combinations.</span>
+
+<span class="sd">    A backbone with embed_tokens must not receive an external embedding: R1 is</span>
+<span class="sd">    already absorbed by the Gather weight, so the tensor would be rotated twice.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">embedding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">topology</span><span class="o">.</span><span class="n">embed_tokens</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"embedding was provided but backbone contains embed_tokens op(s). "</span>
+            <span class="s2">"Pass embedding only for VLM backbones exported with use_inputs_embeds=True "</span>
+            <span class="s2">"(i.e. backbone has no Gather op for token embeddings)."</span>
+        <span class="p">)</span>
+</pre></div>
+
+
+
+                </div>
+            </article>
+            
+
+                <div data-pagefind-ignore>
+
+                    <footer class="mt-10 border-t border-lumina-border pt-6">
+    
+    
+    
+    
+    
+    
+</footer>
+
+                </div>
+
+
+            
+        </main>
+        
+            <aside id="lumina-toc">
+
+                
+
+            </aside>
+        
+    </div>
+
+    
+        <button id="lumina-back-to-top"
+                x-data="backToTop()"
+                x-show="visible"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                @click="scrollToTop()"
+                class="lumina-back-to-top z-40 hover:border-lumina-accent transition-colors"
+                aria-label="Back to top"
+                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></button>
+    
+
+    <dialog id="lumina-search-modal"
+        x-data="searchModal()"
+        @cancel.prevent="close()"
+        @keydown.escape.stop.prevent="close()"
+        @keydown.meta.k.window.prevent="toggle()"
+        @keydown.ctrl.k.window.prevent="toggle()"
+        @click.self="close()"
+        class="lumina-overlay-backdrop fixed inset-0 z-[100] m-0 h-full w-full max-h-none max-w-none border-0 p-0"
+        aria-modal="true"
+        aria-label="Search documentation">
+    
+    <div class="relative mx-auto mt-[5vh] flex max-h-[90dvh] w-[calc(100%-2rem)] max-w-xl flex-col sm:mt-[12vh] sm:max-h-[80dvh] cursor-auto rounded-xl border border-lumina-border bg-lumina-bg shadow-2xl">
+        
+        <div class="flex items-center border-b border-lumina-border px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lumina-text-muted" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+            <input type="search"
+                   x-ref="searchInput"
+                   x-model="query"
+                   @input.debounce.150ms="search()"
+                   @keydown.arrow-down.prevent="moveDown()"
+                   @keydown.arrow-up.prevent="moveUp()"
+                   @keydown.enter.prevent="goToSelected()"
+                   role="combobox"
+                   aria-autocomplete="list"
+                   aria-controls="lumina-search-results"
+                   :aria-expanded="results.length > 0"
+                   :aria-activedescendant="results.length > 0 ? 'lumina-search-result-' + selectedIndex : ''"
+                   class="w-full border-0 bg-transparent px-3 py-4 text-lumina-text placeholder-lumina-text-muted outline-none"
+                   aria-label="Search documentation"
+                   placeholder="Search docs..."
+                   autocomplete="off">
+            <kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1.5 py-0.5 text-xs text-lumina-text-muted">esc</kbd>
+        </div>
+        <template x-if="loaded && scopes.length > 1 && pagefind">
+            <div class="flex shrink-0 items-center gap-3 border-b border-lumina-border px-4 py-2">
+                <label for="lumina-search-scope"
+                       class="shrink-0 text-xs text-lumina-text-muted">Search in</label>
+                <select id="lumina-search-scope"
+                        x-model="scope"
+                        @change="search()"
+                        class="min-w-0 flex-1 rounded border border-lumina-border bg-lumina-bg px-2 py-2 text-sm text-lumina-text focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                    <option value="">All docs</option>
+                    <template x-for="name in scopes" :key="name">
+                        <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+        
+        <div class="min-h-0 overflow-y-auto p-2" :aria-busy="searching">
+            <template x-if="!loaded || searching">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <span x-text="loaded ? $t('Searching…') : $t('Loading search index…')"></span>
+                </p>
+            </template>
+            <template x-if="loaded && !searching && !error && query.trim().length > 0 && results.length === 0">
+                <div class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <p x-text="scope ? $t('No results in {scope}.', { scope }) : $t('No results found.')"></p>
+                    <template x-if="scope">
+                        <button type="button"
+                                @click="searchAll()"
+                                class="mt-2 rounded px-3 py-2 text-lumina-accent underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                            Search all docs
+                        </button>
+                    </template>
+                </div>
+            </template>
+            <template x-if="error">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted"
+                   x-text="error"></p>
+            </template>
+            <div id="lumina-search-results"
+                 role="listbox"
+                 aria-label="Search documentation">
+                <template x-for="(result, index) in results" :key="result.url">
+                    <a :id="'lumina-search-result-' + index"
+                       :href="result.url"
+                       role="option"
+                       :aria-selected="index === selectedIndex"
+                       data-search-result
+                       class="flex flex-col gap-1 rounded-lg px-3 py-2.5 no-underline transition-colors focus-visible:outline-2 focus-visible:outline-lumina-accent"
+                       :class="[index === selectedIndex ? 'bg-lumina-accent-light text-lumina-accent' : 'hover:bg-lumina-bg-secondary text-lumina-text', result.isHeading ? 'ms-4 border-s border-lumina-border' : 'mt-1']"
+                       @click="rememberQuery()"
+                       @mouseenter="selectedIndex = index"
+                       @focus="selectedIndex = index">
+                        <template x-if="result.breadcrumb">
+                            <span class="truncate text-xs text-lumina-text-muted"
+                                  x-text="result.breadcrumb"></span>
+                        </template>
+                        <span class="break-words text-sm"
+                              :class="result.isSymbol ? 'font-mono' : result.isHeading ? '' : 'font-semibold'"
+                              x-text="result.title"></span>
+                        <span x-show="result.excerpt"
+                              class="line-clamp-2 text-xs text-lumina-text-muted"
+                              x-html="result.excerpt"></span>
+                    </a>
+                </template>
+            </div>
+            <template x-if="loaded && !error && query.trim().length === 0">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">Type to search...</p>
+            </template>
+        </div>
+        
+        <div class="sr-only"
+             role="status"
+             x-text="searching ? $t('Searching…') : loaded && query.trim().length > 0 ? (scope ? $t('{count} links in {scope}', { count: results.length, scope }) : $t('{count} links across all docs', { count: results.length })) : ''">
+        </div>
+        
+        <div class="flex shrink-0 items-center gap-3 border-t border-lumina-border px-4 py-2.5 text-xs text-lumina-text-muted">
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↑↓</kbd> Navigate</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↵</kbd> Open</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">esc</kbd> Close</span>
+        </div>
+    </div>
+</dialog>
+
+    
+
+
+
+
+  </body>
+</html>
