@@ -1,0 +1,5 @@
+# Generated Sphinx output; its source is scanned in the aimet repo. Scanning it here only
+# produces false positives (e.g. missing-integrity on every <link rel="canonical">) and
+# pushes the SARIF past code scanning's 25,000-result limit.
+releases/
+AimetDocs/
