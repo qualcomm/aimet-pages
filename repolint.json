@@ -137,6 +137,7 @@
       "rule": {
         "type": "file-starts-with",
         "options": {
+          "succeed-on-non-existent": true,
           "globsAll": [
             "**/*.py",
             "**/*.js",
