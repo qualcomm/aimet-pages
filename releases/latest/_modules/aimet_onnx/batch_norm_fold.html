@@ -1,0 +1,1504 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aimet_onnx.batch_norm_fold &#8212; AI Model Efficiency Toolkit</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ed8a8c84" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../_static/pygments_dark.css?v=5175e31d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/lumina.css?v=bc31efa2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../_static/aimet-lumina.css?v=b1a32206" />
+    <script defer="defer" src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script defer="defer" src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script defer="defer" src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer="defer" src="../../_static/copybutton.js?v=f281be69"></script>
+    <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="../../_static/lumina.js?v=3e122351"></script>
+    <link rel="icon" href="../../_static/ai-hub-workbench-icon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    
+    
+        <meta data-pagefind-meta="breadcrumb[content]"
+              content="Module code">
+    
+    
+    
+        
+        <meta name="description" content="AIMET">
+        
+        <meta name="theme-color" content="#2A2AEA">
+        <meta property="og:title" content="aimet_onnx.batch_norm_fold">
+        
+            <meta property="og:description" content="AIMET">
+        
+        
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="AI Model Efficiency Toolkit">
+        <meta property="og:locale" content="en_US">
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="aimet_onnx.batch_norm_fold">
+        
+            <meta name="twitter:description" content="AIMET">
+        
+        
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Module code", "item": "../index.html"}, {"@type": "ListItem", "position": 2, "name": "aimet_onnx.batch_norm_fold", "item": "/"}]}</script>
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "aimet_onnx.batch_norm_fold", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET"}</script>
+        
+        
+    
+    <link rel="preload"
+          as="font"
+          type="font/woff2"
+          href="../../_static/fonts/source-sans-3-regular-latin.woff2"
+          crossorigin>
+    
+    <script>
+(function() {
+  var stored = null;
+  try { stored = localStorage.getItem('lumina-theme'); } catch (e) {}
+  
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Sphinx gates the dark highlight stylesheet on the OS color scheme only;
+  // a stored override or dark_mode_default must rewrite its media query
+  // before first paint.
+  var pygmentsDark = document.getElementById('pygments_dark_css');
+  if (pygmentsDark) {
+    pygmentsDark.media = document.documentElement.getAttribute('data-theme') === 'dark' ? 'screen' : 'not all';
+  }
+})();
+    </script>
+    
+    <meta name="lumina-search-backend" content="sphinx">
+    <meta name="lumina-base-url" content="../../">
+    
+    
+    
+    
+    
+    
+    
+        <style>
+            :root,[data-theme="light"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 65%,#202624);--lumina-accent-light:color-mix(in srgb,#2A2AEA 12%,var(--lumina-bg));}
+            [data-theme="dark"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 55%,#e9eeeb);--lumina-accent-light:color-mix(in srgb,#2A2AEA 15%,var(--lumina-bg));}
+            html:root,html[data-theme="dark"]{--sd-color-primary:color-mix(in srgb,#2A2AEA 85%,black);--sd-color-primary-highlight:color-mix(in srgb,#2A2AEA 70%,black);--sd-color-primary-text:#fff;--sd-color-primary-bg:color-mix(in srgb,#2A2AEA 12%,transparent);}
+        </style>
+    
+    
+    
+    
+
+
+  <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/batch_norm_fold.html" />
+</head><body>
+
+
+
+
+
+    <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
+
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-lumina-border bg-lumina-bg/80 backdrop-blur-sm">
+
+    
+
+    <div class="lumina-header-inner mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
+        
+        <div class="flex items-center gap-3">
+            <a href="../../index.html"
+               class="flex items-center gap-2 text-lumina-text no-underline hover:opacity-80 transition-opacity">
+                
+                    <img src="../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-light h-7 w-auto">
+                    <img src="../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-dark h-7 w-auto">
+                
+            </a>
+            
+                
+                <span class="flex flex-col leading-tight">
+                    <a href="../../index.html"
+                       class="font-semibold text-base text-lumina-text no-underline hover:opacity-80 transition-opacity">AIMET</a>
+                    
+                        <a href="../../versions.html"
+                           class="text-xs text-lumina-text-muted hover:text-lumina-accent no-underline"
+                           title="See other versions">v2.44.0</a>
+                    
+                </span>
+            
+
+            
+
+        </div>
+        
+        
+        
+        <div class="flex items-center gap-2">
+            
+            <button data-search-trigger
+                    class="flex items-center gap-2 rounded-lg border border-lumina-border bg-lumina-bg-secondary px-3 py-2 text-[0.8125rem] text-lumina-text-muted hover:border-lumina-accent transition-colors cursor-pointer lg:min-w-56"
+                    aria-label="Search documentation"
+                    aria-haspopup="dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+                <span class="hidden lg:inline flex-1 text-start">Search docs...</span>
+                <kbd data-search-shortcut
+                     class="hidden lg:inline rounded border border-lumina-border bg-lumina-bg px-1.5 py-0.5 text-[0.6875rem] font-[family-name:var(--lumina-font-mono)] tracking-[0.02em]">⌘K</kbd>
+            </button>
+            
+            <button data-theme-toggle
+                    x-data="themeToggle()"
+                    @click="cycle()"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-md text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors cursor-pointer"
+                    aria-label="Toggle color theme"
+                    title="Toggle color theme"
+                    :aria-label="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')"
+                    :title="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')">
+                
+                <svg x-show="mode === 'light'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-[-90deg] scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+                </svg>
+                
+                <svg x-show="mode === 'dark'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-90 scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                </svg>
+                
+                <svg x-show="mode === 'auto'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 scale-0"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+            </button>
+            
+            
+            
+                
+                    <a href="https://github.com/qualcomm/aimet"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Github"
+                       aria-label="Github (opens in new tab)">
+                        
+                            <svg class="h-5 w-5"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://qualcomm-ai-hub.slack.com/archives/C08JKBE0UHY"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Slack"
+                       aria-label="Slack (opens in new tab)">
+                        
+                            
+                            <svg class="h-5 w-5" viewBox="0 0 127 127" aria-hidden="true">
+                                <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A" />
+                                <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0" />
+                                <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D" />
+                                <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://workbench.aihub.qualcomm.com/docs/hub/quantize_examples.html"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Workbench"
+                       aria-label="Workbench (opens in new tab)">
+                        
+                            <img src="../../_static/ai-hub-workbench-icon.png"
+                                 alt=""
+                                 class="h-5 w-5 rounded-sm"
+                                 aria-hidden="true">
+                        
+                    </a>
+                
+            
+            
+            
+                <button data-sidebar-toggle
+                        class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors lg:hidden cursor-pointer"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="lumina-sidebar-drawer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            
+        </div>
+    </div>
+</header>
+
+    </div>
+    <div class="lumina-wrapper">
+        <aside id="lumina-sidebar">
+
+            <div x-data="sidebar()">
+    
+    <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-e border-lumina-border/45 bg-lumina-bg px-4 py-6 lg:flex">
+
+        
+
+
+        
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Main navigation"
+                 x-data="sidebarNav()">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+            </nav>
+        
+        
+            <div class="lumina-sidebar-footer">
+                Built with
+                <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                   target="_blank"
+                   rel="noopener">
+                    <svg class="lumina-sidebar-footer-icon"
+                         viewBox="0 0 32 32"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M16 3L28 27H4L16 3Z" stroke="currentColor" stroke-width="2.5" fill="none" />
+                        <path d="M16 10L8 27H16" fill="currentColor" opacity="0.15" />
+                        <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
+                    </svg>
+                Lumina</a>
+                <span class="lumina-sidebar-footer-version">v2.21.2</span>
+            </div>
+        
+    </div>
+    
+    <template x-teleport="body">
+        <div>
+            
+            <div x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="lumina-overlay-backdrop fixed inset-0 top-[var(--lumina-header-offset)] z-40 lg:hidden"
+                 @click="close()"></div>
+            
+            <div id="lumina-sidebar-drawer"
+                 x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-250"
+                 x-transition:enter-start="-translate-x-full rtl:translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full rtl:translate-x-full"
+                 @keydown.escape.window="close()"
+                 class="fixed inset-y-0 top-[var(--lumina-header-offset)] start-0 z-50 w-[min(280px,85vw)] overflow-y-auto border-e border-lumina-border bg-lumina-bg px-4 py-6 lg:hidden">
+
+                
+                
+
+                    
+
+
+                
+
+                
+                
+                
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Main navigation"
+                         x-data="sidebarNav()">
+                        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+                    </nav>
+                
+                
+                    <div class="lumina-sidebar-footer">
+                        <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                           target="_blank"
+                           rel="noopener">Lumina</a>
+                        <span class="lumina-sidebar-footer-version">v2.21.2</span>
+                    </div>
+                
+            </div>
+        </div>
+    </template>
+</div>
+
+        </aside>
+        <main id="lumina-content" role="main" data-pagefind-body>
+            
+            
+            <div class="lumina-content-toolbar"
+                 data-pagefind-ignore>
+                
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-lumina-text-muted"
+     style="scrollbar-width:none"
+     aria-label="Breadcrumb">
+    
+    
+        
+            
+            
+            <a href="../index.html"
+               class="min-w-0 truncate hover:text-lumina-accent no-underline transition-colors">Module code</a>
+        
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 rtl:-scale-x-100" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    <span class="shrink-0 whitespace-nowrap text-lumina-text"
+          aria-current="page">aimet_onnx.batch_norm_fold</span>
+</nav>
+
+                    </div>
+                
+
+                <details class="lumina-page-actions"
+         x-data
+         @click.outside="$el.open = false"
+         @keydown.escape.stop="$el.open = false; $el.querySelector('summary').focus()">
+    <summary aria-label="Page actions" title="Page actions">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+    </summary>
+    <div class="lumina-page-action-list">
+        <button x-data="copyPage()"
+                @click="copy()"
+                type="button"
+                aria-label="Copy page as Markdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+            <span aria-live="polite"
+                  x-text="copied ? $t('Copied!') : $t('Copy as Markdown')">Copy as Markdown</span>
+        </button>
+        
+    </div>
+</details>
+
+            </div>
+            
+            <article class="lumina-article" x-data="headerLinks()">
+                
+                <div class="body">
+
+                    
+
+    <h1>Source code for aimet_onnx.batch_norm_fold</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+
+
+<span class="sd">"""ONNX Code to fold batch-norm layers"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx_ir</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx_ir.passes.common</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">onnxruntime.quantization.onnx_quantizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">ONNXModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">packaging</span><span class="w"> </span><span class="kn">import</span> <span class="n">version</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.batch_norm_fold</span><span class="w"> </span><span class="kn">import</span> <span class="n">batch_norm_fold</span><span class="p">,</span> <span class="n">ConvBnPatternHandler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.graph_pattern_matcher</span><span class="w"> </span><span class="kn">import</span> <span class="n">PatternType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.graph_searcher</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphSearcher</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.connected_graph.connectedgraph_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_ordered_ops</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AimetLogger</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.meta.connectedgraph</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConnectedGraph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.meta.connectedgraph</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">WEIGHT_INDEX</span><span class="p">,</span>
+    <span class="n">BIAS_INDEX</span><span class="p">,</span>
+    <span class="n">RUNNING_MEAN_INDEX</span><span class="p">,</span>
+    <span class="n">RUNNING_VAR_INDEX</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.meta.operations</span><span class="w"> </span><span class="kn">import</span> <span class="n">Op</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.ir_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_constant_value</span><span class="p">,</span>
+    <span class="n">set_static_tensor</span><span class="p">,</span>
+    <span class="n">static_tensor</span><span class="p">,</span>
+    <span class="n">unique_name</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_shared_param_names</span>
+
+<span class="c1"># pylint: disable=no-name-in-module, ungrouped-imports</span>
+<span class="k">if</span> <span class="n">version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">onnx</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">"1.14.0"</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">onnx</span><span class="w"> </span><span class="kn">import</span> <span class="n">NodeProto</span><span class="p">,</span> <span class="n">ModelProto</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">onnx.onnx_pb</span><span class="w"> </span><span class="kn">import</span> <span class="n">NodeProto</span><span class="p">,</span> <span class="n">ModelProto</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">AimetLogger</span><span class="o">.</span><span class="n">get_area_logger</span><span class="p">(</span><span class="n">AimetLogger</span><span class="o">.</span><span class="n">LogAreas</span><span class="o">.</span><span class="n">BatchNormFolding</span><span class="p">)</span>
+
+<span class="n">ConvType</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Conv"</span><span class="p">,</span> <span class="s2">"ConvTranspose"</span><span class="p">]</span>
+<span class="n">LinearType</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Gemm"</span><span class="p">,</span> <span class="s2">"MatMul"</span><span class="p">]</span>
+<span class="n">BatchNormType</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"BatchNormalization"</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_has_shared_weight</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Op</span><span class="p">,</span> <span class="n">shared_weight_names</span><span class="p">:</span> <span class="nb">set</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Check if a Conv/Linear node's weight tensor is shared with other nodes.</span>
+
+<span class="sd">    :param node: Conv/Linear node to check</span>
+<span class="sd">    :param shared_weight_names: Set of weight names that are shared</span>
+<span class="sd">    :return: True if the node's weight is shared</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">shared_weight_names</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BNLayer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Captures beta and gamma parameter for BatchNorm layers to be used during High Bias absorption"""</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bn_layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn_layer</span> <span class="o">=</span> <span class="n">bn_layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_conv_bn_pairs</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">:</span> <span class="n">ConnectedGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Uses searcher to find preceding and next bn layers for a conv/linear layer</span>
+<span class="sd">    :param connected_graph: ConnectedGraph object.</span>
+<span class="sd">    :return: dictionary of conv/linear Op with associated bn op / activation info</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># initialize all patterns to be matched and associated call back functions</span>
+    <span class="n">patterns_with_callbacks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">layer_select_handler</span> <span class="o">=</span> <span class="n">ConvBnPatternHandler</span><span class="p">()</span>
+    <span class="n">preceding_linear_op_types</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Flatten"</span><span class="p">,</span> <span class="s2">"Reshape"</span><span class="p">]</span>
+
+    <span class="c1"># Linear layer combinations</span>
+    <span class="k">for</span> <span class="n">linear_op</span> <span class="ow">in</span> <span class="n">LinearType</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">preceding_linear_op_type</span> <span class="ow">in</span> <span class="n">preceding_linear_op_types</span><span class="p">:</span>
+            <span class="c1"># BN -&gt; Linear</span>
+            <span class="n">patterns_with_callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">PatternType</span><span class="p">(</span>
+                    <span class="n">pattern</span><span class="o">=</span><span class="p">[</span><span class="s2">"BatchNormalization"</span><span class="p">,</span> <span class="n">preceding_linear_op_type</span><span class="p">,</span> <span class="n">linear_op</span><span class="p">],</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">layer_select_handler</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">op_type</span> <span class="ow">in</span> <span class="n">ConvType</span> <span class="o">+</span> <span class="n">LinearType</span><span class="p">:</span>
+        <span class="n">patterns_with_callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">PatternType</span><span class="p">(</span>
+                <span class="n">pattern</span><span class="o">=</span><span class="p">[</span><span class="s2">"BatchNormalization"</span><span class="p">,</span> <span class="n">op_type</span><span class="p">],</span> <span class="n">action</span><span class="o">=</span><span class="n">layer_select_handler</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">patterns_with_callbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">PatternType</span><span class="p">(</span>
+                <span class="n">pattern</span><span class="o">=</span><span class="p">[</span><span class="n">op_type</span><span class="p">,</span> <span class="s2">"BatchNormalization"</span><span class="p">],</span> <span class="n">action</span><span class="o">=</span><span class="n">layer_select_handler</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># create graph searcher instance with connected graph and patterns to search</span>
+    <span class="n">graph_searcher</span> <span class="o">=</span> <span class="n">GraphSearcher</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">,</span> <span class="n">patterns_with_callbacks</span><span class="p">)</span>
+
+    <span class="c1"># get all conv/linear and bn info</span>
+    <span class="n">graph_searcher</span><span class="o">.</span><span class="n">find_all_patterns_in_graph_apply_actions</span><span class="p">()</span>
+    <span class="n">convs_bn_activation_dict</span> <span class="o">=</span> <span class="n">layer_select_handler</span><span class="o">.</span><span class="n">get_conv_linear_bn_info_dict</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">convs_bn_activation_dict</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_zip_nodes</span><span class="p">(</span>
+    <span class="n">proto_graph</span><span class="p">:</span> <span class="n">onnx</span><span class="o">.</span><span class="n">GraphProto</span><span class="p">,</span> <span class="n">ir_graph</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Graph</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">NodeProto</span><span class="p">,</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Pair every node of ``proto_graph`` with the node at the same position in ``ir_graph``,</span>
+<span class="sd">    including nodes in subgraphs. The two graphs must have the same structure, e.g. one was</span>
+<span class="sd">    converted from the other with ``onnx_ir.from_proto`` or ``onnx_ir.to_proto``.</span>
+
+<span class="sd">    Node names are not used, because ONNX allows them to be empty or repeated.</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="n">proto_node</span><span class="p">,</span> <span class="n">ir_node</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">proto_graph</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">ir_graph</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">proto_node</span><span class="p">,</span> <span class="n">ir_node</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">proto_node</span><span class="o">.</span><span class="n">attribute</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">onnx</span><span class="o">.</span><span class="n">AttributeProto</span><span class="o">.</span><span class="n">GRAPH</span><span class="p">:</span>
+                <span class="k">yield from</span> <span class="n">_zip_nodes</span><span class="p">(</span><span class="n">attr</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">ir_node</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">attr</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">as_graph</span><span class="p">())</span>
+            <span class="k">elif</span> <span class="n">attr</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">onnx</span><span class="o">.</span><span class="n">AttributeProto</span><span class="o">.</span><span class="n">GRAPHS</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">proto_subgraph</span><span class="p">,</span> <span class="n">ir_subgraph</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                    <span class="n">attr</span><span class="o">.</span><span class="n">graphs</span><span class="p">,</span> <span class="n">ir_node</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">attr</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">as_graphs</span><span class="p">(),</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span>
+                <span class="p">):</span>
+                    <span class="k">yield from</span> <span class="n">_zip_nodes</span><span class="p">(</span><span class="n">proto_subgraph</span><span class="p">,</span> <span class="n">ir_subgraph</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_proto_nodes_from_ir_id</span><span class="p">(</span>
+    <span class="n">proto</span><span class="p">:</span> <span class="n">ModelProto</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">NodeProto</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Map ``id()`` of each node in ``model`` to the matching NodeProto in ``proto``."""</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nb">id</span><span class="p">(</span><span class="n">ir_node</span><span class="p">):</span> <span class="n">proto_node</span>
+        <span class="k">for</span> <span class="n">proto_node</span><span class="p">,</span> <span class="n">ir_node</span> <span class="ow">in</span> <span class="n">_zip_nodes</span><span class="p">(</span><span class="n">proto</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+    <span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_all_batch_norms_to_fold</span><span class="p">(</span>
+    <span class="n">connected_graph</span><span class="p">:</span> <span class="n">ConnectedGraph</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">]]</span>
+<span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Find all possible batch norm layers that can be folded. Returns a list of pairs such that (bn, layer)</span>
+<span class="sd">    means bn will be forward-folded into layer and (layer, bn) means bn will be backward-folded into layer</span>
+<span class="sd">    :param connected_graph: connected graph model to search</span>
+<span class="sd">    :return: A list of (layer, bn) pairs and a list of (bn, layer) pairs,</span>
+<span class="sd">             where `bn` can be folded into to `layer`.</span>
+<span class="sd">    """</span>
+    <span class="n">conv_linear_bn_activation_info_dict</span> <span class="o">=</span> <span class="n">_find_conv_bn_pairs</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">)</span>
+    <span class="c1"># To mark BN's already picked for backward folding</span>
+    <span class="n">bn_picked_for_folding</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="c1"># Find weights that are shared between multiple Conv/Linear nodes</span>
+    <span class="n">shared_weight_names</span> <span class="o">=</span> <span class="n">find_shared_param_names</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">)</span>
+
+    <span class="n">ordered_conv_fc_nodes</span> <span class="o">=</span> <span class="n">get_ordered_conv_linears</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">)</span>
+
+    <span class="n">conv_bn_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Backward fold is given priority over Forward fold</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ordered_conv_fc_nodes</span><span class="p">:</span>
+        <span class="c1"># Filter out combinations that are not supported</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">conv_linear_bn_activation_info_dict</span><span class="p">:</span>
+            <span class="n">bn_info</span> <span class="o">=</span> <span class="n">conv_linear_bn_activation_info_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">bn_info</span><span class="o">.</span><span class="n">output_bn</span> <span class="ow">and</span> <span class="n">bn_info</span><span class="o">.</span><span class="n">output_bn</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bn_picked_for_folding</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">_has_shared_weight</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">shared_weight_names</span><span class="p">):</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                        <span class="s2">"...... skipping fold due to shared weights </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">bn_info</span><span class="o">.</span><span class="n">output_bn</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="n">_has_static_params</span><span class="p">(</span>
+                    <span class="n">bn_info</span><span class="o">.</span><span class="n">output_bn</span><span class="o">.</span><span class="n">get_module</span><span class="p">()</span>
+                <span class="p">)</span> <span class="ow">and</span> <span class="n">is_valid_bn_fold</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get_module</span><span class="p">(),</span> <span class="kc">True</span><span class="p">):</span>
+                    <span class="n">conv_bn_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get_module</span><span class="p">(),</span> <span class="n">bn_info</span><span class="o">.</span><span class="n">output_bn</span><span class="o">.</span><span class="n">get_module</span><span class="p">())</span>
+                    <span class="p">)</span>
+                    <span class="n">bn_picked_for_folding</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bn_info</span><span class="o">.</span><span class="n">output_bn</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                        <span class="s2">"...... invalid combination to fold </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">bn_info</span><span class="o">.</span><span class="n">output_bn</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+                    <span class="p">)</span>
+
+    <span class="n">bn_conv_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ordered_conv_fc_nodes</span><span class="p">:</span>
+        <span class="c1"># Filter out combinations that are not supported</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">conv_linear_bn_activation_info_dict</span><span class="p">:</span>
+            <span class="n">bn_info</span> <span class="o">=</span> <span class="n">conv_linear_bn_activation_info_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">bn_info</span><span class="o">.</span><span class="n">input_bn</span> <span class="ow">and</span> <span class="n">bn_info</span><span class="o">.</span><span class="n">input_bn</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bn_picked_for_folding</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">_has_shared_weight</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">shared_weight_names</span><span class="p">):</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                        <span class="s2">"...... skipping fold due to shared weights </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">bn_info</span><span class="o">.</span><span class="n">input_bn</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="n">_has_static_params</span><span class="p">(</span>
+                    <span class="n">bn_info</span><span class="o">.</span><span class="n">input_bn</span><span class="o">.</span><span class="n">get_module</span><span class="p">()</span>
+                <span class="p">)</span> <span class="ow">and</span> <span class="n">is_valid_bn_fold</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get_module</span><span class="p">(),</span> <span class="kc">False</span><span class="p">):</span>
+                    <span class="n">bn_conv_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="p">(</span><span class="n">bn_info</span><span class="o">.</span><span class="n">input_bn</span><span class="o">.</span><span class="n">get_module</span><span class="p">(),</span> <span class="n">node</span><span class="o">.</span><span class="n">get_module</span><span class="p">())</span>
+                    <span class="p">)</span>
+                    <span class="n">bn_picked_for_folding</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bn_info</span><span class="o">.</span><span class="n">input_bn</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                        <span class="s2">"...... invalid combination to fold </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">bn_info</span><span class="o">.</span><span class="n">input_bn</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+                    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">conv_bn_pairs</span><span class="p">,</span> <span class="n">bn_conv_pairs</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_ordered_conv_linears</span><span class="p">(</span><span class="n">conn_graph</span><span class="p">:</span> <span class="n">ConnectedGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Op</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    helper to select a list of candidate layers for BatchNorm folding</span>
+<span class="sd">    :param conn_graph: connected graph to search</span>
+<span class="sd">    :return: List of conv/linear layers</span>
+<span class="sd">    """</span>
+    <span class="c1"># get ordered operations list from the connected graph</span>
+    <span class="n">list_of_ordered_ops</span> <span class="o">=</span> <span class="n">get_ordered_ops</span><span class="p">(</span><span class="n">conn_graph</span><span class="o">.</span><span class="n">starting_ops</span><span class="p">)</span>
+
+    <span class="c1"># look for conv/linear layers</span>
+    <span class="n">ordered_convs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">list_of_ordered_ops</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="n">ConvType</span> <span class="o">+</span> <span class="n">LinearType</span><span class="p">:</span>
+            <span class="n">ordered_convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ordered_convs</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_constant_input</span><span class="p">(</span>
+    <span class="n">node</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Value</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Retrieves the static value feeding ``node.inputs[index]``, either directly or through</span>
+<span class="sd">    a single Transpose.</span>
+<span class="sd">    :param node: The node to find the input for</span>
+<span class="sd">    :param index: The index of the desired input within node.inputs</span>
+<span class="sd">    :return: Tuple containing the static value (or None) and a bool specifying whether the value is</span>
+<span class="sd">             transposed before entering the node</span>
+<span class="sd">    """</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">if</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">constant</span> <span class="o">=</span> <span class="n">get_constant_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">constant</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">constant</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="n">producer</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">producer</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">producer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">producer</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Transpose"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_constant_value</span><span class="p">(</span><span class="n">producer</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_has_static_params</span><span class="p">(</span><span class="n">bn</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return True if gamma, beta, mean and variance of ``bn`` are all static."""</span>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">get_constant_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">bn</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">is_valid_bn_fold</span><span class="p">(</span><span class="n">conv_linear</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">fold_backward</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Determine if a given layer can successfully absorb a BatchNorm given the layer type and parameters</span>
+<span class="sd">    :param conv_linear: The Conv/Linear layer to fold a BatchNorm into.</span>
+<span class="sd">    :param fold_backward: True if BatchNorm comes after Conv/Linear layer</span>
+<span class="sd">    :return: True if a BatchNorm layer can be folded without causing output error.</span>
+<span class="sd">    """</span>
+    <span class="c1"># The weight and bias must be static to absorb the BN. This also rules out dynamic MatMuls</span>
+    <span class="n">weight</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_get_constant_input</span><span class="p">(</span><span class="n">conv_linear</span><span class="p">,</span> <span class="n">WEIGHT_INDEX</span><span class="p">)</span>
+    <span class="n">bias</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">conv_linear</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">BIAS_INDEX</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">conv_linear</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">BIAS_INDEX</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="n">bias</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">get_constant_value</span><span class="p">(</span><span class="n">bias</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">fold_backward</span><span class="p">:</span>
+        <span class="c1"># Cannot fold BN -&gt; Conv with padding. AIMET does not support forward folding to grouped or DW Conv</span>
+        <span class="k">if</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Conv"</span><span class="p">:</span>
+            <span class="n">pads</span> <span class="o">=</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get_ints</span><span class="p">(</span><span class="s2">"pads"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pads</span><span class="p">:</span>
+                <span class="n">valid</span> <span class="o">&amp;=</span> <span class="nb">all</span><span class="p">(</span><span class="n">item</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">pads</span><span class="p">)</span>
+            <span class="n">valid</span> <span class="o">&amp;=</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">"group"</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># AIMET does not support forward folding to ConvTranspose</span>
+        <span class="k">elif</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"ConvTranspose"</span><span class="p">:</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># AIMET does not support backwards folding to grouped ConvTranspose</span>
+        <span class="k">if</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"ConvTranspose"</span><span class="p">:</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">"group"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">valid</span> <span class="o">&amp;=</span> <span class="n">group</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">get_input_output_channels</span><span class="p">(</span><span class="n">conv_linear</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">valid</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_input_output_channel_axes</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Conv"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"ConvTranspose"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Gemm"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">"transB"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_input_output_channels</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Find the input and output channels of a given layer.</span>
+<span class="sd">    :param node: The node to find the input/output channels of</span>
+<span class="sd">    :return: Tuple of (num channels in, num channels out)</span>
+<span class="sd">    """</span>
+    <span class="n">weight_shape</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">get_constant_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">WEIGHT_INDEX</span><span class="p">]))</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">in_axis</span><span class="p">,</span> <span class="n">out_axis</span> <span class="o">=</span> <span class="n">_get_input_output_channel_axes</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="c1"># If group atttribute does not exist in the node,then default is 1</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">"group"</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Conv"</span><span class="p">:</span>
+        <span class="n">num_in_channels</span> <span class="o">=</span> <span class="n">weight_shape</span><span class="p">[</span><span class="n">in_axis</span><span class="p">]</span> <span class="o">*</span> <span class="n">groups</span>
+        <span class="n">num_out_channels</span> <span class="o">=</span> <span class="n">weight_shape</span><span class="p">[</span><span class="n">out_axis</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"ConvTranspose"</span><span class="p">:</span>
+        <span class="n">num_in_channels</span> <span class="o">=</span> <span class="n">weight_shape</span><span class="p">[</span><span class="n">in_axis</span><span class="p">]</span>
+        <span class="n">num_out_channels</span> <span class="o">=</span> <span class="n">weight_shape</span><span class="p">[</span><span class="n">out_axis</span><span class="p">]</span> <span class="o">*</span> <span class="n">groups</span>
+    <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Gemm"</span><span class="p">:</span>
+        <span class="n">num_out_channels</span> <span class="o">=</span> <span class="n">weight_shape</span><span class="p">[</span><span class="n">out_axis</span><span class="p">]</span>
+        <span class="n">num_in_channels</span> <span class="o">=</span> <span class="n">weight_shape</span><span class="p">[</span><span class="n">in_axis</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">num_out_channels</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">num_in_channels</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">num_in_channels</span><span class="p">,</span> <span class="n">num_out_channels</span>
+
+
+<div class="viewcode-block" id="fold_all_batch_norms_to_weight">
+<a class="viewcode-back" href="../../ptq_techniques/bnf.html#aimet_onnx.batch_norm_fold.fold_all_batch_norms_to_weight">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fold_all_batch_norms_to_weight</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">ModelProto</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">List</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fold all possible batch_norm layers in a model into the weight of the corresponding conv layers.</span>
+<span class="sd">    The model is modified in place.</span>
+
+<span class="sd">    :param model: onnx Model to perform BN fold on</span>
+<span class="sd">    :return: A list of pairs of layers [(Conv/Linear, BN layer that got folded)]</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ONNXModel</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span>
+    <span class="n">connected_graph</span> <span class="o">=</span> <span class="n">ConnectedGraph</span><span class="p">(</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_has_batchnorm_ops</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">conv_bns</span><span class="p">,</span> <span class="n">bn_convs</span> <span class="o">=</span> <span class="n">_fold_all_batch_norms_to_weight</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">)</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(</span><span class="n">connected_graph</span><span class="o">.</span><span class="n">model</span><span class="p">))</span>
+    <span class="c1"># CopyFrom replaces every NodeProto, so return the matching nodes of the new proto</span>
+    <span class="n">proto_nodes</span> <span class="o">=</span> <span class="n">_proto_nodes_from_ir_id</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">connected_graph</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">[(</span><span class="n">proto_nodes</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">conv</span><span class="p">)],</span> <span class="n">bn_layer</span><span class="p">)</span> <span class="k">for</span> <span class="n">conv</span><span class="p">,</span> <span class="n">bn_layer</span> <span class="ow">in</span> <span class="n">conv_bns</span><span class="p">],</span>
+        <span class="p">[(</span><span class="n">proto_nodes</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">conv</span><span class="p">)],</span> <span class="n">bn_layer</span><span class="p">)</span> <span class="k">for</span> <span class="n">conv</span><span class="p">,</span> <span class="n">bn_layer</span> <span class="ow">in</span> <span class="n">bn_convs</span><span class="p">],</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_has_batchnorm_ops</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">:</span> <span class="n">ConnectedGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">any</span><span class="p">(</span>
+        <span class="n">op</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="n">BatchNormType</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">connected_graph</span><span class="o">.</span><span class="n">get_all_ops</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fold_all_batch_norms_to_weight</span><span class="p">(</span>
+    <span class="n">connected_graph</span><span class="p">:</span> <span class="n">ConnectedGraph</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">List</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fold all possible batch_norm layers in ``connected_graph.model`` into the weight of the</span>
+<span class="sd">    corresponding conv layers, in place</span>
+
+<span class="sd">    :param connected_graph: ConnectedGraph of the model to perform BN fold on</span>
+<span class="sd">    :return: A list of pairs of layers [(Conv/Linear, BN layer that got folded)]</span>
+<span class="sd">    """</span>
+    <span class="n">conv_bn_pairs</span><span class="p">,</span> <span class="n">bn_conv_pairs</span> <span class="o">=</span> <span class="n">find_all_batch_norms_to_fold</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">)</span>
+    <span class="n">conv_bns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">bn_convs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">conv</span><span class="p">,</span> <span class="n">bn</span> <span class="ow">in</span> <span class="n">conv_bn_pairs</span><span class="p">:</span>
+        <span class="n">conv_bns</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">conv</span><span class="p">,</span> <span class="n">_fold_to_weight</span><span class="p">(</span><span class="n">conv</span><span class="p">,</span> <span class="n">bn</span><span class="p">,</span> <span class="kc">True</span><span class="p">)))</span>
+        <span class="n">_remove_batchnorm</span><span class="p">(</span><span class="n">bn</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">bn</span><span class="p">,</span> <span class="n">conv</span> <span class="ow">in</span> <span class="n">bn_conv_pairs</span><span class="p">:</span>
+        <span class="n">bn_convs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">conv</span><span class="p">,</span> <span class="n">_fold_to_weight</span><span class="p">(</span><span class="n">conv</span><span class="p">,</span> <span class="n">bn</span><span class="p">,</span> <span class="kc">False</span><span class="p">)))</span>
+        <span class="n">_remove_batchnorm</span><span class="p">(</span><span class="n">bn</span><span class="p">)</span>
+
+    <span class="n">_update_standalone_batchnorm_ops</span><span class="p">(</span><span class="n">connected_graph</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">conv_bns</span><span class="p">,</span> <span class="n">bn_convs</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fold_to_weight</span><span class="p">(</span>
+    <span class="n">conv_linear</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">bn</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">fold_backward</span><span class="p">:</span> <span class="nb">bool</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BNLayer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fold BatchNorm into the weight and bias of the given layer.</span>
+
+<span class="sd">    :param conv_linear: Conv or linear layer to fold BN into.</span>
+<span class="sd">    :param bn: BatchNorm to fold.</span>
+<span class="sd">    :param fold_backward: True if the BatchNorm comes after the Conv</span>
+<span class="sd">    """</span>
+    <span class="c1"># Must convert MatMul layers to Gemm to allow bias</span>
+    <span class="k">if</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"MatMul"</span><span class="p">:</span>
+        <span class="n">_matmul_to_gemm</span><span class="p">(</span><span class="n">conv_linear</span><span class="p">)</span>
+
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">get_constant_value</span><span class="p">(</span><span class="n">conv_linear</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">WEIGHT_INDEX</span><span class="p">])</span>
+    <span class="n">bias</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">get_constant_value</span><span class="p">(</span><span class="n">conv_linear</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">BIAS_INDEX</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">conv_linear</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">BIAS_INDEX</span>
+        <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">)</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">"group"</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span>
+    <span class="n">trans_b</span> <span class="o">=</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">"transB"</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">num_out_channels</span> <span class="o">=</span> <span class="n">get_input_output_channels</span><span class="p">(</span><span class="n">conv_linear</span><span class="p">)</span>
+
+    <span class="n">weight_np</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">weight_shape</span><span class="p">,</span> <span class="n">weight_dtype</span> <span class="o">=</span> <span class="n">weight_np</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">weight_np</span><span class="o">.</span><span class="n">dtype</span>
+
+    <span class="c1"># If layer doesn't have bias, create a bias initializer and add it to the model</span>
+    <span class="k">if</span> <span class="n">bias</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bias</span> <span class="o">=</span> <span class="n">_add_zero_bias</span><span class="p">(</span><span class="n">conv_linear</span><span class="p">,</span> <span class="n">num_out_channels</span><span class="p">,</span> <span class="n">weight_dtype</span><span class="p">)</span>
+
+    <span class="n">weight_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">weight_np</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">weight_np</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+    <span class="n">bias_np</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">bias</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">bias_dtype</span> <span class="o">=</span> <span class="n">bias_np</span><span class="o">.</span><span class="n">dtype</span>
+
+    <span class="c1"># Transpose weights to C, N, H, W from N, C, H, W since axis are flipped for transposed conv</span>
+    <span class="c1"># However depthwise conv layers are always N, 1, H, W whether transposed-conv or not, so no need to transpose</span>
+    <span class="k">if</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"ConvTranspose"</span> <span class="ow">and</span> <span class="n">groups</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">weight_np</span> <span class="o">=</span> <span class="n">weight_np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># Gemm layers may or may not need to have weights transposed depending on value of transB attribute</span>
+    <span class="k">elif</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">op_type</span> <span class="ow">in</span> <span class="n">LinearType</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">trans_b</span><span class="p">:</span>
+        <span class="n">weight_np</span> <span class="o">=</span> <span class="n">weight_np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">gamma_np</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">get_constant_value</span><span class="p">(</span><span class="n">bn</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">WEIGHT_INDEX</span><span class="p">]))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">beta_np</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">get_constant_value</span><span class="p">(</span><span class="n">bn</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">BIAS_INDEX</span><span class="p">]))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">mu_np</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">get_constant_value</span><span class="p">(</span><span class="n">bn</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">RUNNING_MEAN_INDEX</span><span class="p">]))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">running_var_np</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span>
+        <span class="n">get_constant_value</span><span class="p">(</span><span class="n">bn</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">RUNNING_VAR_INDEX</span><span class="p">])</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">bn</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">"epsilon"</span><span class="p">)</span> <span class="ow">or</span> <span class="mf">1e-5</span>
+    <span class="n">sigma_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">running_var_np</span> <span class="o">+</span> <span class="n">epsilon</span><span class="p">)</span>
+
+    <span class="c1"># In the case of BatchNorm2d -&gt; Flatten -&gt; Gemm, must resize the BN parameters to the Gemm input feature length</span>
+    <span class="n">channels</span> <span class="o">=</span> <span class="n">weight_np</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">fold_backward</span> <span class="k">else</span> <span class="n">weight_np</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">gamma_np</span> <span class="o">=</span> <span class="n">gamma_np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">channels</span> <span class="o">/</span> <span class="n">gamma_np</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">beta_np</span> <span class="o">=</span> <span class="n">beta_np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">channels</span> <span class="o">/</span> <span class="n">beta_np</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">mu_np</span> <span class="o">=</span> <span class="n">mu_np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">channels</span> <span class="o">/</span> <span class="n">mu_np</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">sigma_np</span> <span class="o">=</span> <span class="n">sigma_np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">channels</span> <span class="o">/</span> <span class="n">sigma_np</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+    <span class="n">weight_np</span><span class="p">,</span> <span class="n">bias_np</span> <span class="o">=</span> <span class="n">batch_norm_fold</span><span class="p">(</span>
+        <span class="n">weight_np</span><span class="p">,</span> <span class="n">bias_np</span><span class="p">,</span> <span class="n">gamma_np</span><span class="p">,</span> <span class="n">beta_np</span><span class="p">,</span> <span class="n">mu_np</span><span class="p">,</span> <span class="n">sigma_np</span><span class="p">,</span> <span class="n">fold_backward</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Transpose weight back to original configuration</span>
+    <span class="k">if</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"ConvTranspose"</span> <span class="ow">and</span> <span class="n">groups</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">weight_np</span> <span class="o">=</span> <span class="n">weight_np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">conv_linear</span><span class="o">.</span><span class="n">op_type</span> <span class="ow">in</span> <span class="n">LinearType</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">trans_b</span><span class="p">:</span>
+        <span class="n">weight_np</span> <span class="o">=</span> <span class="n">weight_np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">set_static_tensor</span><span class="p">(</span>
+        <span class="n">weight</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">weight_np</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">weight_dtype</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">weight_shape</span><span class="p">)),</span>
+    <span class="p">)</span>
+    <span class="n">set_static_tensor</span><span class="p">(</span><span class="n">bias</span><span class="p">,</span> <span class="n">bias_np</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">bias_dtype</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">BNLayer</span><span class="p">(</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">serde</span><span class="o">.</span><span class="n">serialize_node</span><span class="p">(</span><span class="n">bn</span><span class="p">),</span> <span class="n">gamma_np</span><span class="p">,</span> <span class="n">beta_np</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_add_zero_bias</span><span class="p">(</span>
+    <span class="n">node</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Value</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Feed ``node`` a zero bias initializer named ``&lt;node name&gt;.bias`` and return it."""</span>
+    <span class="n">existing</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">create_value_mapping</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">))</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">unique_name</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">".bias"</span><span class="p">,</span> <span class="n">existing</span><span class="p">)</span>
+    <span class="n">bias</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">val</span><span class="p">(</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">const_value</span><span class="o">=</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_channels</span><span class="p">,</span> <span class="n">dtype</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">register_initializer</span><span class="p">(</span><span class="n">bias</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">BIAS_INDEX</span><span class="p">:</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">resize_inputs</span><span class="p">(</span><span class="n">BIAS_INDEX</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">replace_input_with</span><span class="p">(</span><span class="n">BIAS_INDEX</span><span class="p">,</span> <span class="n">bias</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bias</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_matmul_to_gemm</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Convert MatMul node to Gemm and initialize bias to zeros</span>
+
+<span class="sd">    :param node: MatMul node to convert to Gemm</span>
+<span class="sd">    """</span>
+    <span class="k">assert</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"MatMul"</span>
+
+    <span class="n">weight</span><span class="p">,</span> <span class="n">transposed</span> <span class="o">=</span> <span class="n">_get_constant_input</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">WEIGHT_INDEX</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">transposed</span><span class="p">:</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">static_tensor</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">weight</span><span class="o">.</span><span class="n">const_value</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">weight</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">weight</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">replace_input_with</span><span class="p">(</span><span class="n">WEIGHT_INDEX</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">=</span> <span class="s2">"Gemm"</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"MatMul"</span><span class="p">,</span> <span class="s2">"Gemm"</span><span class="p">)</span>
+    <span class="c1"># Create bias vector for Gemm operation</span>
+    <span class="n">tensor</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
+    <span class="n">_add_zero_bias</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tensor</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_remove_batchnorm</span><span class="p">(</span><span class="n">bn</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Remove ``bn`` from its graph, feeding its consumers the BN's input instead, along with</span>
+<span class="sd">    the initializers no other node uses.</span>
+
+<span class="sd">    :param bn: BatchNorm node to remove</span>
+<span class="sd">    """</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">bn</span><span class="o">.</span><span class="n">graph</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="n">bn</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bn</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bn</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">is_graph_output</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="n">producer</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Cannot remove BatchNormalization '</span><span class="si">{</span><span class="n">bn</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">': its output '</span><span class="si">{</span><span class="n">output</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">' is a "</span>
+                <span class="sa">f</span><span class="s2">"graph output, but its input '</span><span class="si">{</span><span class="n">source</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">' is not produced by any node"</span>
+            <span class="p">)</span>
+        <span class="c1"># The graph output keeps its name, type and shape</span>
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="n">type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">source</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">type</span>
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">source</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="n">output</span><span class="o">.</span><span class="n">replace_all_uses_with</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">replace_graph_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">bn</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">param</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">param</span><span class="o">.</span><span class="n">is_initializer</span><span class="p">()</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">param</span><span class="o">.</span><span class="n">uses</span><span class="p">()</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">param</span><span class="o">.</span><span class="n">is_graph_input</span><span class="p">()</span>
+        <span class="p">):</span>
+            <span class="n">param</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_resolve_const_input</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Value</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Resolve a BN parameter input to the root constant Value, propagating through Identity nodes."""</span>
+    <span class="k">if</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">get_const_tensor</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="n">producer</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">producer</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">producer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">producer</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Identity"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_resolve_const_input</span><span class="p">(</span><span class="n">producer</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_batchnorm_param_consumers</span><span class="p">(</span>
+    <span class="n">ir_model</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Get a mapping of root constant Value names to the set of BN nodes that consume them.</span>
+
+<span class="sd">    :param ir_model: The ONNX IR model to analyze</span>
+<span class="sd">    :return: A dictionary mapping parameter names to sets of consuming BN nodes</span>
+<span class="sd">    """</span>
+    <span class="n">consumer_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">all_nodes</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">BatchNormType</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">_resolve_const_input</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">consumer_dict</span><span class="p">[</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">consumer_dict</span>
+
+
+<span class="c1"># pylint: disable=too-many-locals</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_update_standalone_batchnorm_ops</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Update weight and bias of standalone batchnorm ops in the model.</span>
+<span class="sd">    :param model: onnx_ir Model for which batchnorm parameters are to be updated, in place.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="ow">in</span> <span class="n">BatchNormType</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="n">tensor_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">create_value_mapping</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">param_to_consumers</span> <span class="o">=</span> <span class="n">_get_batchnorm_param_consumers</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">all_nodes</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="ow">in</span> <span class="n">BatchNormType</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">_resolve_const_input</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+            <span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                <span class="k">continue</span>  <span class="c1"># Cannot update if any initializer is missing</span>
+
+            <span class="n">eps_attr</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"epsilon"</span><span class="p">)</span>
+            <span class="n">epsilon</span> <span class="o">=</span> <span class="n">eps_attr</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">eps_attr</span> <span class="k">else</span> <span class="mf">1e-5</span>
+
+            <span class="n">tensor_w</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">get_const_tensor</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="n">tensor_b</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">get_const_tensor</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="n">tensor_rm</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">get_const_tensor</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="n">tensor_rv</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">get_const_tensor</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="c1"># numpy promotes bfloat16 math to float32; the updated parameters must keep</span>
+            <span class="c1"># their original dtypes.</span>
+            <span class="n">dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">dtype</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">(</span><span class="n">tensor_w</span><span class="p">,</span> <span class="n">tensor_b</span><span class="p">,</span> <span class="n">tensor_rm</span><span class="p">,</span> <span class="n">tensor_rv</span><span class="p">)]</span>
+
+            <span class="c1"># update values</span>
+            <span class="n">inv_sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reciprocal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tensor_rv</span> <span class="o">+</span> <span class="n">epsilon</span><span class="p">))</span>
+            <span class="n">tensor_w</span> <span class="o">=</span> <span class="n">tensor_w</span> <span class="o">*</span> <span class="n">inv_sigma</span>
+            <span class="n">tensor_b</span> <span class="o">=</span> <span class="n">tensor_b</span> <span class="o">-</span> <span class="n">tensor_rm</span> <span class="o">*</span> <span class="n">tensor_w</span>
+            <span class="n">tensor_rm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">tensor_w</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">tensor_w</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="n">tensor_rv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tensor_w</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">tensor_w</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="n">tensor_w</span><span class="p">,</span> <span class="n">tensor_b</span><span class="p">,</span> <span class="n">tensor_rm</span><span class="p">,</span> <span class="n">tensor_rv</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">t</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">((</span><span class="n">tensor_w</span><span class="p">,</span> <span class="n">tensor_b</span><span class="p">,</span> <span class="n">tensor_rm</span><span class="p">,</span> <span class="n">tensor_rv</span><span class="p">),</span> <span class="n">dtypes</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">"epsilon"</span><span class="p">]</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">convert_attribute</span><span class="p">(</span>
+                <span class="s2">"epsilon"</span><span class="p">,</span> <span class="mf">0.0</span>
+            <span class="p">)</span>
+
+            <span class="n">new_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">tensor_w</span><span class="p">,</span> <span class="n">tensor_b</span><span class="p">,</span> <span class="n">tensor_rm</span><span class="p">,</span> <span class="n">tensor_rv</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">param_val</span><span class="p">,</span> <span class="n">new_array</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">new_data</span><span class="p">)):</span>
+                <span class="n">param_to_consumers</span><span class="p">[</span><span class="n">param_val</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                <span class="n">is_shared</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_to_consumers</span><span class="p">[</span><span class="n">param_val</span><span class="o">.</span><span class="n">name</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                <span class="n">is_indirect</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">param_val</span>
+
+                <span class="k">if</span> <span class="n">is_shared</span> <span class="ow">or</span> <span class="n">is_indirect</span> <span class="ow">or</span> <span class="n">param_val</span><span class="o">.</span><span class="n">const_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># Insert new initializer for the updated parameter</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="n">unique_name</span><span class="p">(</span><span class="n">param_val</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">tensor_names</span><span class="p">)</span>
+                    <span class="n">tensor_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">new_val</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">val</span><span class="p">(</span>
+                        <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                        <span class="n">const_value</span><span class="o">=</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">new_array</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">),</span>
+                    <span class="p">)</span>
+                    <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">register_initializer</span><span class="p">(</span><span class="n">new_val</span><span class="p">)</span>
+                    <span class="n">node</span><span class="o">.</span><span class="n">replace_input_with</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">new_val</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Update the existing intializer in place</span>
+                    <span class="n">param_val</span><span class="o">.</span><span class="n">const_value</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+                        <span class="n">new_array</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">param_val</span><span class="o">.</span><span class="n">name</span>
+                    <span class="p">)</span>
+
+    <span class="n">onnx_ir</span><span class="o">.</span><span class="n">passes</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">RemoveUnusedNodesPass</span><span class="p">()</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_has_unfolded_batchnorms</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">ModelProto</span><span class="p">,</span> <span class="n">connected_graph</span><span class="p">:</span> <span class="n">ConnectedGraph</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Check if the model has any BatchNormalization layers that can be folded.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model: onnx Model to check for foldable BatchNormalization layers.</span>
+<span class="sd">        connected_graph: ConnectedGraph object. If None, it will be created from the model.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        True if there are foldable BatchNormalization layers, False otherwise.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">connected_graph</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">connected_graph</span> <span class="o">=</span> <span class="n">ConnectedGraph</span><span class="p">(</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_has_batchnorm_ops</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">conv_bn_pairs</span><span class="p">,</span> <span class="n">bn_conv_pairs</span> <span class="o">=</span> <span class="n">find_all_batch_norms_to_fold</span><span class="p">(</span><span class="n">connected_graph</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">conv_bn_pairs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">bn_conv_pairs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="c1"># Note: Remaining batchnorms should have running stats folded into beta/gamma parameters</span>
+    <span class="k">return</span> <span class="n">_has_batchnorms_with_fusable_running_stats</span><span class="p">(</span><span class="n">connected_graph</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_has_batchnorms_with_fusable_running_stats</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">BatchNormType</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_constant_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+
+        <span class="c1"># If any of the parameters is missing, stats are not fusable</span>
+        <span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">tensor_rm</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">tensor_rv</span> <span class="o">=</span> <span class="n">static_tensor</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">tensor_rm</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">tensor_rv</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+
+
+
+                </div>
+            </article>
+            
+
+                <div data-pagefind-ignore>
+
+                    <footer class="mt-10 border-t border-lumina-border pt-6">
+    
+    
+    
+    
+    
+    
+</footer>
+
+                </div>
+
+
+            
+        </main>
+        
+            <aside id="lumina-toc">
+
+                
+
+            </aside>
+        
+    </div>
+
+    
+        <button id="lumina-back-to-top"
+                x-data="backToTop()"
+                x-show="visible"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                @click="scrollToTop()"
+                class="lumina-back-to-top z-40 hover:border-lumina-accent transition-colors"
+                aria-label="Back to top"
+                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></button>
+    
+
+    <dialog id="lumina-search-modal"
+        x-data="searchModal()"
+        @cancel.prevent="close()"
+        @keydown.escape.stop.prevent="close()"
+        @keydown.meta.k.window.prevent="toggle()"
+        @keydown.ctrl.k.window.prevent="toggle()"
+        @click.self="close()"
+        class="lumina-overlay-backdrop fixed inset-0 z-[100] m-0 h-full w-full max-h-none max-w-none border-0 p-0"
+        aria-modal="true"
+        aria-label="Search documentation">
+    
+    <div class="relative mx-auto mt-[5vh] flex max-h-[90dvh] w-[calc(100%-2rem)] max-w-xl flex-col sm:mt-[12vh] sm:max-h-[80dvh] cursor-auto rounded-xl border border-lumina-border bg-lumina-bg shadow-2xl">
+        
+        <div class="flex items-center border-b border-lumina-border px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lumina-text-muted" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+            <input type="search"
+                   x-ref="searchInput"
+                   x-model="query"
+                   @input.debounce.150ms="search()"
+                   @keydown.arrow-down.prevent="moveDown()"
+                   @keydown.arrow-up.prevent="moveUp()"
+                   @keydown.enter.prevent="goToSelected()"
+                   role="combobox"
+                   aria-autocomplete="list"
+                   aria-controls="lumina-search-results"
+                   :aria-expanded="results.length > 0"
+                   :aria-activedescendant="results.length > 0 ? 'lumina-search-result-' + selectedIndex : ''"
+                   class="w-full border-0 bg-transparent px-3 py-4 text-lumina-text placeholder-lumina-text-muted outline-none"
+                   aria-label="Search documentation"
+                   placeholder="Search docs..."
+                   autocomplete="off">
+            <kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1.5 py-0.5 text-xs text-lumina-text-muted">esc</kbd>
+        </div>
+        <template x-if="loaded && scopes.length > 1 && pagefind">
+            <div class="flex shrink-0 items-center gap-3 border-b border-lumina-border px-4 py-2">
+                <label for="lumina-search-scope"
+                       class="shrink-0 text-xs text-lumina-text-muted">Search in</label>
+                <select id="lumina-search-scope"
+                        x-model="scope"
+                        @change="search()"
+                        class="min-w-0 flex-1 rounded border border-lumina-border bg-lumina-bg px-2 py-2 text-sm text-lumina-text focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                    <option value="">All docs</option>
+                    <template x-for="name in scopes" :key="name">
+                        <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+        
+        <div class="min-h-0 overflow-y-auto p-2" :aria-busy="searching">
+            <template x-if="!loaded || searching">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <span x-text="loaded ? $t('Searching…') : $t('Loading search index…')"></span>
+                </p>
+            </template>
+            <template x-if="loaded && !searching && !error && query.trim().length > 0 && results.length === 0">
+                <div class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <p x-text="scope ? $t('No results in {scope}.', { scope }) : $t('No results found.')"></p>
+                    <template x-if="scope">
+                        <button type="button"
+                                @click="searchAll()"
+                                class="mt-2 rounded px-3 py-2 text-lumina-accent underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                            Search all docs
+                        </button>
+                    </template>
+                </div>
+            </template>
+            <template x-if="error">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted"
+                   x-text="error"></p>
+            </template>
+            <div id="lumina-search-results"
+                 role="listbox"
+                 aria-label="Search documentation">
+                <template x-for="(result, index) in results" :key="result.url">
+                    <a :id="'lumina-search-result-' + index"
+                       :href="result.url"
+                       role="option"
+                       :aria-selected="index === selectedIndex"
+                       data-search-result
+                       class="flex flex-col gap-1 rounded-lg px-3 py-2.5 no-underline transition-colors focus-visible:outline-2 focus-visible:outline-lumina-accent"
+                       :class="[index === selectedIndex ? 'bg-lumina-accent-light text-lumina-accent' : 'hover:bg-lumina-bg-secondary text-lumina-text', result.isHeading ? 'ms-4 border-s border-lumina-border' : 'mt-1']"
+                       @click="rememberQuery()"
+                       @mouseenter="selectedIndex = index"
+                       @focus="selectedIndex = index">
+                        <template x-if="result.breadcrumb">
+                            <span class="truncate text-xs text-lumina-text-muted"
+                                  x-text="result.breadcrumb"></span>
+                        </template>
+                        <span class="break-words text-sm"
+                              :class="result.isSymbol ? 'font-mono' : result.isHeading ? '' : 'font-semibold'"
+                              x-text="result.title"></span>
+                        <span x-show="result.excerpt"
+                              class="line-clamp-2 text-xs text-lumina-text-muted"
+                              x-html="result.excerpt"></span>
+                    </a>
+                </template>
+            </div>
+            <template x-if="loaded && !error && query.trim().length === 0">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">Type to search...</p>
+            </template>
+        </div>
+        
+        <div class="sr-only"
+             role="status"
+             x-text="searching ? $t('Searching…') : loaded && query.trim().length > 0 ? (scope ? $t('{count} links in {scope}', { count: results.length, scope }) : $t('{count} links across all docs', { count: results.length })) : ''">
+        </div>
+        
+        <div class="flex shrink-0 items-center gap-3 border-t border-lumina-border px-4 py-2.5 text-xs text-lumina-text-muted">
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↑↓</kbd> Navigate</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↵</kbd> Open</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">esc</kbd> Close</span>
+        </div>
+    </div>
+</dialog>
+
+    
+
+
+
+
+  </body>
+</html>

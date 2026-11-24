@@ -1,0 +1,1642 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Automatic mixed precision &#8212; AI Model Efficiency Toolkit</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ed8a8c84" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../_static/pygments_dark.css?v=5175e31d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/lumina.css?v=bc31efa2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../_static/aimet-lumina.css?v=b1a32206" />
+    <script defer="defer" src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script defer="defer" src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script defer="defer" src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer="defer" src="../../_static/copybutton.js?v=f281be69"></script>
+    <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script defer="defer" src="../../_static/lumina.js?v=3e122351"></script>
+    <link rel="icon" href="../../_static/ai-hub-workbench-icon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Analysis tools" href="../analysis_tools/index.html" />
+    <link rel="prev" title="Manual mixed precision" href="mmp.html" />
+
+    
+        <meta data-pagefind-filter="section[content]"
+              content="Techniques">
+    
+    
+        <meta data-pagefind-meta="breadcrumb[content]"
+              content="Techniques › Mixed precision">
+    
+    
+    
+        
+        <meta name="description" content="Automatic mixed precision (AMP) helps choose per-layer integer bit widths to retain model accuracy on fixed-point runtimes like Qualcomm® AI Engine Direct.">
+        
+        <meta name="theme-color" content="#2A2AEA">
+        <meta property="og:title" content="Automatic mixed precision">
+        
+            <meta property="og:description" content="Automatic mixed precision (AMP) helps choose per-layer integer bit widths to retain model accuracy on fixed-point runtimes like Qualcomm® AI Engine Direct.">
+        
+        
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="AI Model Efficiency Toolkit">
+        <meta property="og:locale" content="en_US">
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="Automatic mixed precision">
+        
+            <meta name="twitter:description" content="Automatic mixed precision (AMP) helps choose per-layer integer bit widths to retain model accuracy on fixed-point runtimes like Qualcomm® AI Engine Direct.">
+        
+        
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Techniques", "item": "../index.html"}, {"@type": "ListItem", "position": 2, "name": "Mixed precision", "item": "index.html"}, {"@type": "ListItem", "position": 3, "name": "Automatic mixed precision", "item": "/"}]}</script>
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Automatic mixed precision", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "Automatic mixed precision (AMP) helps choose per-layer integer bit widths to retain model accuracy on fixed-point runtimes like Qualcomm® AI Engine Direct."}</script>
+        
+        
+    
+    <link rel="preload"
+          as="font"
+          type="font/woff2"
+          href="../../_static/fonts/source-sans-3-regular-latin.woff2"
+          crossorigin>
+    
+    <script>
+(function() {
+  var stored = null;
+  try { stored = localStorage.getItem('lumina-theme'); } catch (e) {}
+  
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Sphinx gates the dark highlight stylesheet on the OS color scheme only;
+  // a stored override or dark_mode_default must rewrite its media query
+  // before first paint.
+  var pygmentsDark = document.getElementById('pygments_dark_css');
+  if (pygmentsDark) {
+    pygmentsDark.media = document.documentElement.getAttribute('data-theme') === 'dark' ? 'screen' : 'not all';
+  }
+})();
+    </script>
+    
+    <meta name="lumina-search-backend" content="sphinx">
+    <meta name="lumina-base-url" content="../../">
+    
+    
+    
+    
+    
+    
+    
+        <style>
+            :root,[data-theme="light"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 65%,#202624);--lumina-accent-light:color-mix(in srgb,#2A2AEA 12%,var(--lumina-bg));}
+            [data-theme="dark"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 55%,#e9eeeb);--lumina-accent-light:color-mix(in srgb,#2A2AEA 15%,var(--lumina-bg));}
+            html:root,html[data-theme="dark"]{--sd-color-primary:color-mix(in srgb,#2A2AEA 85%,black);--sd-color-primary-highlight:color-mix(in srgb,#2A2AEA 70%,black);--sd-color-primary-text:#fff;--sd-color-primary-bg:color-mix(in srgb,#2A2AEA 12%,transparent);}
+        </style>
+    
+    
+    
+    
+
+
+  <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/techniques/mixed_precision/amp.html" />
+</head><body data-aimet-section="techniques">
+
+
+
+
+
+    <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
+
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-lumina-border bg-lumina-bg/80 backdrop-blur-sm">
+
+    
+
+    <div class="lumina-header-inner mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
+        
+        <div class="flex items-center gap-3">
+            <a href="../../index.html"
+               class="flex items-center gap-2 text-lumina-text no-underline hover:opacity-80 transition-opacity">
+                
+                    <img src="../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-light h-7 w-auto">
+                    <img src="../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-dark h-7 w-auto">
+                
+            </a>
+            
+                
+                <span class="flex flex-col leading-tight">
+                    <a href="../../index.html"
+                       class="font-semibold text-base text-lumina-text no-underline hover:opacity-80 transition-opacity">AIMET</a>
+                    
+                        <a href="../../versions.html"
+                           class="text-xs text-lumina-text-muted hover:text-lumina-accent no-underline"
+                           title="See other versions">v2.44.0</a>
+                    
+                </span>
+            
+
+            
+
+        </div>
+        
+        
+        
+        <div class="flex items-center gap-2">
+            
+            <button data-search-trigger
+                    class="flex items-center gap-2 rounded-lg border border-lumina-border bg-lumina-bg-secondary px-3 py-2 text-[0.8125rem] text-lumina-text-muted hover:border-lumina-accent transition-colors cursor-pointer lg:min-w-56"
+                    aria-label="Search documentation"
+                    aria-haspopup="dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+                <span class="hidden lg:inline flex-1 text-start">Search docs...</span>
+                <kbd data-search-shortcut
+                     class="hidden lg:inline rounded border border-lumina-border bg-lumina-bg px-1.5 py-0.5 text-[0.6875rem] font-[family-name:var(--lumina-font-mono)] tracking-[0.02em]">⌘K</kbd>
+            </button>
+            
+            <button data-theme-toggle
+                    x-data="themeToggle()"
+                    @click="cycle()"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-md text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors cursor-pointer"
+                    aria-label="Toggle color theme"
+                    title="Toggle color theme"
+                    :aria-label="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')"
+                    :title="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')">
+                
+                <svg x-show="mode === 'light'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-[-90deg] scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+                </svg>
+                
+                <svg x-show="mode === 'dark'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-90 scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                </svg>
+                
+                <svg x-show="mode === 'auto'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 scale-0"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+            </button>
+            
+            
+            
+                
+                    <a href="https://github.com/qualcomm/aimet"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Github"
+                       aria-label="Github (opens in new tab)">
+                        
+                            <svg class="h-5 w-5"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://qualcomm-ai-hub.slack.com/archives/C08JKBE0UHY"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Slack"
+                       aria-label="Slack (opens in new tab)">
+                        
+                            
+                            <svg class="h-5 w-5" viewBox="0 0 127 127" aria-hidden="true">
+                                <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A" />
+                                <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0" />
+                                <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D" />
+                                <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://workbench.aihub.qualcomm.com/docs/hub/quantize_examples.html"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Workbench"
+                       aria-label="Workbench (opens in new tab)">
+                        
+                            <img src="../../_static/ai-hub-workbench-icon.png"
+                                 alt=""
+                                 class="h-5 w-5 rounded-sm"
+                                 aria-hidden="true">
+                        
+                    </a>
+                
+            
+            
+            
+                <button data-sidebar-toggle
+                        class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors lg:hidden cursor-pointer"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="lumina-sidebar-drawer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            
+        </div>
+    </div>
+</header>
+
+    </div>
+    <div class="lumina-wrapper">
+        <aside id="lumina-sidebar">
+
+            <div x-data="sidebar()">
+    
+    <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-e border-lumina-border/45 bg-lumina-bg px-4 py-6 lg:flex">
+
+        
+
+
+        
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Main navigation"
+                 x-data="sidebarNav()">
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Mixed precision</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+            </nav>
+        
+        
+            <div class="lumina-sidebar-footer">
+                Built with
+                <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                   target="_blank"
+                   rel="noopener">
+                    <svg class="lumina-sidebar-footer-icon"
+                         viewBox="0 0 32 32"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M16 3L28 27H4L16 3Z" stroke="currentColor" stroke-width="2.5" fill="none" />
+                        <path d="M16 10L8 27H16" fill="currentColor" opacity="0.15" />
+                        <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
+                    </svg>
+                Lumina</a>
+                <span class="lumina-sidebar-footer-version">v2.21.2</span>
+            </div>
+        
+    </div>
+    
+    <template x-teleport="body">
+        <div>
+            
+            <div x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="lumina-overlay-backdrop fixed inset-0 top-[var(--lumina-header-offset)] z-40 lg:hidden"
+                 @click="close()"></div>
+            
+            <div id="lumina-sidebar-drawer"
+                 x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-250"
+                 x-transition:enter-start="-translate-x-full rtl:translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full rtl:translate-x-full"
+                 @keydown.escape.window="close()"
+                 class="fixed inset-y-0 top-[var(--lumina-header-offset)] start-0 z-50 w-[min(280px,85vw)] overflow-y-auto border-e border-lumina-border bg-lumina-bg px-4 py-6 lg:hidden">
+
+                
+                
+
+                    
+
+
+                
+
+                
+                
+                
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Main navigation"
+                         x-data="sidebarNav()">
+                        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Mixed precision</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+                    </nav>
+                
+                
+                    <div class="lumina-sidebar-footer">
+                        <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                           target="_blank"
+                           rel="noopener">Lumina</a>
+                        <span class="lumina-sidebar-footer-version">v2.21.2</span>
+                    </div>
+                
+            </div>
+        </div>
+    </template>
+</div>
+
+        </aside>
+        <main id="lumina-content" role="main" data-pagefind-body>
+            
+            
+            <div class="lumina-content-toolbar"
+                 data-pagefind-ignore>
+                
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-lumina-text-muted"
+     style="scrollbar-width:none"
+     aria-label="Breadcrumb">
+    
+    
+        
+            
+            
+            <a href="../index.html"
+               class="shrink-0 whitespace-nowrap hover:text-lumina-accent no-underline transition-colors">Techniques</a>
+        
+            
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 rtl:-scale-x-100" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+            
+            
+            <a href="index.html"
+               class="min-w-0 truncate hover:text-lumina-accent no-underline transition-colors">Mixed precision</a>
+        
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 rtl:-scale-x-100" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    <span class="shrink-0 whitespace-nowrap text-lumina-text"
+          aria-current="page">Automatic mixed precision</span>
+</nav>
+
+                    </div>
+                
+
+                <details class="lumina-page-actions"
+         x-data
+         @click.outside="$el.open = false"
+         @keydown.escape.stop="$el.open = false; $el.querySelector('summary').focus()">
+    <summary aria-label="Page actions" title="Page actions">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+    </summary>
+    <div class="lumina-page-action-list">
+        <button x-data="copyPage()"
+                @click="copy()"
+                type="button"
+                aria-label="Copy page as Markdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+            <span aria-live="polite"
+                  x-text="copied ? $t('Copied!') : $t('Copy as Markdown')">Copy as Markdown</span>
+        </button>
+        
+    </div>
+</details>
+
+            </div>
+            
+                <details class="lumina-mobile-outline" data-pagefind-ignore>
+                    <summary>On this page <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+                    <nav aria-label="Page outline">
+                        <ul>
+<li><a class="reference internal" href="#">Automatic mixed precision</a><ul>
+<li><a class="reference internal" href="#context">Context</a><ul>
+<li><a class="reference internal" href="#mixed-precision-algorithm">Mixed Precision Algorithm</a><ul>
+<li><a class="reference internal" href="#phase-0-find-quantizer-groups">Phase 0: Find quantizer groups</a></li>
+<li><a class="reference internal" href="#phase-1-perform-sensitivity-analysis">Phase 1: Perform sensitivity analysis</a></li>
+<li><a class="reference internal" href="#phase-2-create-a-pareto-front-list">Phase 2: Create a Pareto-front list</a></li>
+<li><a class="reference internal" href="#phase-3-reduce-convert-overhead">Phase 3: Reduce Convert overhead</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#workflow">Workflow</a><ul>
+<li><a class="reference internal" href="#procedure">Procedure</a><ul>
+<li><a class="reference internal" href="#step-1">Step 1</a></li>
+<li><a class="reference internal" href="#step-2">Step 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+</ul>
+
+                    </nav>
+                </details>
+            
+            <article class="lumina-article" x-data="headerLinks()">
+                
+                <div class="body">
+
+                    
+
+    <section id="automatic-mixed-precision">
+<span id="featureguide-amp"></span><h1 id="lumina-search-automatic-mixed-precision">Automatic mixed precision<a class="headerlink" href="#automatic-mixed-precision" title="Link to this heading">¶</a></h1>
+<p>Automatic mixed precision (AMP) helps choose per-layer integer bit widths to retain model accuracy on
+fixed-point runtimes like <a class="reference external" href="https://www.qualcomm.com/developer/software/qualcomm-ai-engine-direct-sdk">Qualcomm® AI Engine Direct</a>.</p>
+<p>For example, consider a model that is not meeting an accuracy target when run in INT8.
+AMP finds a minimal set of layers that need to run on higher precision, INT16 for example, to achieve the target accuracy.</p>
+<p>Choosing a higher precision for some layers involves a trade-off between performance (inferences per second)
+and better accuracy. The AMP feature generates a Pareto curve you can use to help decide the right operating point for this tradeoff.</p>
+<section id="context">
+<h2 id="lumina-search-context">Context<a class="headerlink" href="#context" title="Link to this heading">¶</a></h2>
+<p>To perform AMP, you need a PyTorch, TensorFlow, or ONNX model. You use the model to create a
+Quantization Simulation (QuantSim) model <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationSimModel</span></code>. This QuantSim model, along with an
+allowable accuracy drop, is passed to the API.</p>
+<p>The API function changes the QuantSim model in-place with different bit-width quantizers. You can export or evaluate this QuantSim model to calculate a quantization accuracy.</p>
+<a class="reference internal image-reference" href="../../_images/automatic_mixed_precision_1.png"><img alt="../../_images/automatic_mixed_precision_1.png" src="../../_images/automatic_mixed_precision_1.png" style="width: 900px;" />
+</a>
+<section id="mixed-precision-algorithm">
+<h3 id="lumina-search-mixed-precision-algorithm">Mixed Precision Algorithm<a class="headerlink" href="#mixed-precision-algorithm" title="Link to this heading">¶</a></h3>
+<p>The algorithm involves four phases as shown in the following image.</p>
+<a class="reference internal image-reference" href="../../_images/automatic_mixed_precision_2.png"><img alt="../../_images/automatic_mixed_precision_2.png" src="../../_images/automatic_mixed_precision_2.png" style="width: 700px;" />
+</a>
+<section id="phase-0-find-quantizer-groups">
+<h4 id="lumina-search-phase-0-find-quantizer-groups">Phase 0: Find quantizer groups<a class="headerlink" href="#phase-0-find-quantizer-groups" title="Link to this heading">¶</a></h4>
+<p><em>Quantizer group</em> is a set of quantizers whose configurations are interdependent on one another in a practical setup.
+For example, the input and weight quantizer of a Convolution layer will be grouped as a quantizer group because only certain combinations such as W8A8, W8A16, W16A16, etc. make sense in practice.
+Grouping quantizers helps reduce the search space over which the mixed precision algorithm operates.
+It also ensures that the search occurs only over the valid bit-width settings for parameters and activations.</p>
+<a class="reference internal image-reference" href="../../_images/automatic_mixed_precision_3.png"><img alt="../../_images/automatic_mixed_precision_3.png" src="../../_images/automatic_mixed_precision_3.png" style="width: 900px;" />
+</a>
+</section>
+<section id="phase-1-perform-sensitivity-analysis">
+<h4 id="lumina-search-phase-1-perform-sensitivity-analysis">Phase 1: Perform sensitivity analysis<a class="headerlink" href="#phase-1-perform-sensitivity-analysis" title="Link to this heading">¶</a></h4>
+<p>The algorithm performs a per-quantizer group sensitivity analysis.
+This identifies how sensitive the model is to lower quantization bit width for particular quantizer groups.
+The sensitivity analysis creates and caches an accuracy list that is used in following phases by the algorithm.</p>
+<p>Following is an an accuracy list generated using sensitivity analysis:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/accuracy_list.png"><img alt="../../_images/accuracy_list.png" src="../../_images/accuracy_list.png" style="width: 900px;" />
+</a>
+</div></blockquote>
+</section>
+<section id="phase-2-create-a-pareto-front-list">
+<h4 id="lumina-search-phase-2-create-a-pareto-front-list">Phase 2: Create a Pareto-front list<a class="headerlink" href="#phase-2-create-a-pareto-front-list" title="Link to this heading">¶</a></h4>
+<p>A Pareto curve or Pareto front describes the tradeoff between accuracy and bit-ops targets.
+The AMP algorithm generates a Pareto curve showing, for each quantizer group changed:</p>
+<ul class="simple">
+<li><p>Bitwidth: The bit width to which the quantizer group was changed</p></li>
+<li><p>Accuracy: The accuracy of the model</p></li>
+<li><p>Relative bit-ops: The bit-ops relative to starting</p></li>
+</ul>
+<p>An example of a Pareto list:</p>
+<a class="reference internal image-reference" href="../../_images/pareto.png"><img alt="../../_images/pareto.png" src="../../_images/pareto.png" style="width: 900px;" />
+</a>
+<p>Bit-ops are computed as:</p>
+<p><span class="math notranslate nohighlight">\(Bitops = Mac(op) * Bitwidth(parameter) * Bitwidth(Activation)\)</span></p>
+<p>The Pareto list can be used for plotting a Pareto curve. A plot of the Pareto curve is generated using Bokeh and saved in the results directory.</p>
+<a class="reference internal image-reference" href="../../_images/pareto_curve.png"><img alt="../../_images/pareto_curve.png" src="../../_images/pareto_curve.png" style="width: 900px;" />
+</a>
+<p>You can pass two different evaluation callbacks for phase 1 and phase 2.</p>
+<p>Since phase 1 measures sensitivity of each quantizer group, it can use a smaller representative dataset for evaluation, or even use an indirect measure such as SQNR that correlates with the direct evaluation metric but can be computed faster.</p>
+<p>We recommend that you use the complete dataset for evaluation in phase 2.</p>
+</section>
+<section id="phase-3-reduce-convert-overhead">
+<h4 id="lumina-search-phase-3-reduce-convert-overhead">Phase 3: Reduce Convert overhead<a class="headerlink" href="#phase-3-reduce-convert-overhead" title="Link to this heading">¶</a></h4>
+<p>The <a class="reference external" href="https://docs.qualcomm.com/bundle/publicresource/topics/80-63442-50/MasterOpDef.html#convert">Convert</a> operation is a <a class="reference external" href="https://www.qualcomm.com/developer/software/qualcomm-ai-engine-direct-sdk">Qualcomm® AI Engine Direct</a> runtime operation used to convert a quantized tensor from one precision to another.
+It is typically inserted between two consecutive operations that operate at different bit-widths.
+Because Convert operation incurs a significant runtime penalty, minimizing its usage is important for performance optimization.</p>
+<p>Phase 3 aims to improve the overall runtime (latency) by reducing the number of Convert operations in the model.
+This algorithm achieves this by strategically promoting operations from lower to higher precision, thereby minimizing the need for Convert operations between layers operating at different bit-widths.
+Since the operations are always moved from lower to higher precision, this process preserves model accuracy.
+The Phase 3 algorithm produces mixed-precision solutions for a range of <em>alpha</em> values (0.0, 0.2, 0.4, 0.6, 0.8, 1.0), where <em>alpha</em> represents the fraction of total Convert operations retained in the mixed-precision profile.</p>
+</section>
+</section>
+<section id="use-cases">
+<h3 id="lumina-search-use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>1: Choosing a very high accuracy drop (equivalent to setting allowed_accuracy_drop to None)</dt><dd><p>AIMET enables a user to save intermediate states for computation of the Pareto list. Computing a Pareto list corresponding to an accuracy drop of None generates the complete profile of model accuracy vs. bit-ops. You can thus visualize the Pareto curve plot and choose an optimal point for accuracy. The algorithm can be re-run with the new accuracy drop to get a sim model with the required accuracy.</p>
+</dd>
+<dt>2: Choosing a lower accuracy drop and then continuing to compute a Pareto list</dt><dd><p>Use this option if more accuracy drop is acceptable. Passing <cite>clean_start=False</cite> causes the Pareto list to start computation from the point where it left off.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In both use cases, <cite>choose_mixed_precision</cite> will exit early without exploring Pareto curve if the desired accuracy is either already achieved or deemed unattainable.
+For example, given W8A8 and W16A16 as candidates, mixed precision algorithm will exit early if one of the following is true:</p>
+<ul class="simple">
+<li><p>Setting all layers to W8A8 yields higher accuracy than the desired accuracy</p></li>
+<li><p>Setting all layers to W16A16 yields lower accuracy than the desired accuracy</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="workflow">
+<h2 id="lumina-search-workflow">Workflow<a class="headerlink" href="#workflow" title="Link to this heading">¶</a></h2>
+<section id="procedure">
+<h3 id="lumina-search-procedure">Procedure<a class="headerlink" href="#procedure" title="Link to this heading">¶</a></h3>
+<section id="step-1">
+<h4 id="lumina-search-step-1">Step 1<a class="headerlink" href="#step-1" title="Link to this heading">¶</a></h4>
+<p>Setting up the model.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="platform" data-sync-id="torch" for="sd-tab-item-0">
+PyTorch</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
+<p><strong>Import packages</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torchvision</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.batch_norm_fold</span><span class="w"> </span><span class="kn">import</span> <span class="n">fold_all_batch_norms</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_common.defs</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantizationDataType</span><span class="p">,</span> <span class="n">CallbackFunc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.mixed_precision</span><span class="w"> </span><span class="kn">import</span> <span class="n">choose_mixed_precision</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.quantsim</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantizationSimModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.amp.mixed_precision_algo</span><span class="w"> </span><span class="kn">import</span> <span class="n">GreedyMixedPrecisionAlgo</span>
+</pre></div>
+</div>
+<p><strong>Load the model, define forward_pass and evaluation callbacks</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># General setup that can be changed as needed</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s2">"cuda:0"</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">"cpu"</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">mobilenet_v2</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">PATH_TO_IMAGENET</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">ImageNet</span><span class="p">(</span><span class="n">PATH_TO_IMAGENET</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">"train"</span><span class="p">)</span>
+<span class="n">data_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+
+<span class="n">dummy_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">fold_all_batch_norms</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dummy_input</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Callback function to pass calibration data through the model</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">forward_pass</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">batches</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">batch</span><span class="p">,</span> <span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
+            <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">batch</span> <span class="o">&gt;=</span> <span class="n">batches</span><span class="p">:</span>
+                <span class="k">break</span>
+
+<span class="c1"># Basic ImageNet evaluation function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">correct</span> <span class="o">+=</span> <span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">correct</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">accuracy</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="platform" data-sync-id="onnx" for="sd-tab-item-1">
+ONNX</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
+<p><strong>Import packages</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnxsim</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torchvision</span><span class="w"> </span><span class="kn">import</span> <span class="n">transforms</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torchvision.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">MobileNet_V2_Weights</span><span class="p">,</span> <span class="n">mobilenet_v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">aimet_onnx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.defs</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.quantsim</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantizationSimModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_common.defs</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantizationDataType</span><span class="p">,</span> <span class="n">CallbackFunc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.mixed_precision</span><span class="w"> </span><span class="kn">import</span> <span class="n">choose_mixed_precision</span>
+</pre></div>
+</div>
+<p><strong>Instantiate a PyTorch model, convert to an ONNX graph, define forward_pass and evaluation callbacks</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pt_model</span> <span class="o">=</span> <span class="n">mobilenet_v2</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">MobileNet_V2_Weights</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span>
+<span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>
+<span class="n">dummy_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+
+<span class="c1"># Modify file_path as you wish, we are using temporary directory for now</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'/tmp'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'mobilenet_v2.onnx'</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">onnx</span><span class="o">.</span><span class="n">export</span><span class="p">(</span>
+    <span class="n">pt_model</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">dummy_input</span><span class="p">,),</span>
+    <span class="n">file_path</span><span class="p">,</span>
+    <span class="n">input_names</span><span class="o">=</span><span class="p">[</span><span class="s1">'input'</span><span class="p">],</span>
+    <span class="n">output_names</span><span class="o">=</span><span class="p">[</span><span class="s1">'output'</span><span class="p">],</span>
+    <span class="n">dynamic_axes</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">'input'</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">'batch_size'</span><span class="p">},</span>
+        <span class="s1">'output'</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">'batch_size'</span><span class="p">},</span>
+    <span class="p">},</span>
+    <span class="n">dynamo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Load exported ONNX model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">onnx</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="c1"># End of loading the model</span>
+
+<span class="c1"># Prepare model with onnx-simplifier</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">model</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">onnxsim</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'ONNX Simplifier failed. Proceeding with unsimplified model'</span><span class="p">)</span>
+<span class="c1"># End of prepare model</span>
+
+<span class="c1"># Set up dataloader</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
+    <span class="s1">'ILSVRC/imagenet-1k'</span><span class="p">,</span>
+    <span class="n">split</span><span class="o">=</span><span class="s1">'validation'</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomDataLoader</span><span class="p">(</span><span class="n">DataLoader</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">iterations</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">unlabeled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_iteration</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unlabeled</span> <span class="o">=</span> <span class="n">unlabeled</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_iteration</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_iteration</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterations</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_iteration</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_current_iteration</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">batch_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unlabeled</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">batch_data</span><span class="p">[</span><span class="s1">'image'</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">batch_data</span><span class="p">[</span><span class="s1">'image'</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">batch_data</span><span class="p">[</span><span class="s1">'label'</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+
+
+<span class="n">preprocess</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">CenterCrop</span><span class="p">(</span><span class="mi">224</span><span class="p">),</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span> <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">]),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">transforms</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+    <span class="n">examples</span><span class="p">[</span><span class="s1">'image'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">preprocess</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">))</span> <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">[</span><span class="s1">'image'</span><span class="p">]</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">examples</span>
+
+
+<span class="n">dataset</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">transforms</span><span class="p">)</span>
+
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">NUM_CALIBRATION_SAMPLES</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">NUM_EVAL_SAMPLES</span> <span class="o">=</span> <span class="mi">50000</span>
+<span class="n">unlabeled_data_loader</span> <span class="o">=</span> <span class="n">CustomDataLoader</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="p">,</span> <span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">NUM_CALIBRATION_SAMPLES</span> <span class="o">/</span> <span class="n">BATCH_SIZE</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">eval_data_loader</span> <span class="o">=</span> <span class="n">CustomDataLoader</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="p">,</span> <span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">NUM_EVAL_SAMPLES</span> <span class="o">/</span> <span class="n">BATCH_SIZE</span><span class="p">),</span> <span class="n">unlabeled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="c1"># End of setting up dataloader</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">forward_pass</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="n">input_name</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">for</span> <span class="n">inputs</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">unlabeled_data_loader</span><span class="p">):</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="n">input_name</span><span class="p">:</span> <span class="n">inputs</span><span class="p">})</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="n">correct_predictions</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">total_samples</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">eval_data_loader</span><span class="p">):</span>
+        <span class="n">input_name</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">pred_probs</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="n">input_name</span><span class="p">:</span> <span class="n">inputs</span><span class="p">})</span>
+        <span class="n">pred_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pred_probs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">correct_predictions</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pred_labels</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="n">total_samples</span> <span class="o">+=</span> <span class="n">labels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">correct_predictions</span> <span class="o">/</span> <span class="n">total_samples</span>
+    <span class="k">return</span> <span class="n">accuracy</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2">
+<h4 id="lumina-search-step-2">Step 2<a class="headerlink" href="#step-2" title="Link to this heading">¶</a></h4>
+<p>Quantizing the model.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="platform" data-sync-id="torch" for="sd-tab-item-2">
+PyTorch</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
+<p><strong>Quantization with mixed precision</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">default_bitwidth</span> <span class="o">=</span> <span class="mi">16</span>
+
+<span class="c1"># ((activation bitwidth, activation data type), (param bitwidth, param data type))</span>
+<span class="n">candidates</span> <span class="o">=</span> <span class="p">[((</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">)),</span>
+             <span class="p">((</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">)),</span>
+             <span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">))]</span>
+<span class="c1"># Allowed accuracy drop in absolute value</span>
+<span class="n">allowed_accuracy_drop</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Implies 50% drop</span>
+
+<span class="n">eval_callback_for_phase_1</span> <span class="o">=</span> <span class="n">CallbackFunc</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">func_callback_args</span><span class="o">=</span><span class="n">data_loader</span><span class="p">)</span>
+<span class="n">eval_callback_for_phase_2</span> <span class="o">=</span> <span class="n">CallbackFunc</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">func_callback_args</span><span class="o">=</span><span class="n">data_loader</span><span class="p">)</span>
+
+<span class="n">calibration_batches</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">forward_pass_call_back</span> <span class="o">=</span> <span class="n">CallbackFunc</span><span class="p">(</span><span class="n">forward_pass</span><span class="p">,</span> <span class="n">func_callback_args</span><span class="o">=</span><span class="n">calibration_batches</span><span class="p">)</span>
+
+<span class="c1"># Create quant sim</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">QuantizationSimModel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>
+                           <span class="n">default_param_bw</span><span class="o">=</span><span class="n">default_bitwidth</span><span class="p">,</span>
+                           <span class="n">default_output_bw</span><span class="o">=</span><span class="n">default_bitwidth</span><span class="p">,</span>
+                           <span class="n">dummy_input</span><span class="o">=</span><span class="n">dummy_input</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">compute_encodings</span><span class="p">(</span><span class="n">forward_pass</span><span class="p">,</span> <span class="n">forward_pass_callback_args</span><span class="o">=</span><span class="n">calibration_batches</span><span class="p">)</span>
+
+<span class="c1"># Enable phase-3 (optional)</span>
+<span class="n">GreedyMixedPrecisionAlgo</span><span class="o">.</span><span class="n">ENABLE_CONVERT_OP_REDUCTION</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Call the mixed precision algo with clean start = True i.e. new accuracy list and pareto list will be generated</span>
+<span class="c1"># If set to False then pareto front list and accuracy list will be loaded from the provided directory path</span>
+<span class="c1"># A allowed_accuracy_drop can be specified to export the final model with reference to the pareto list</span>
+<span class="n">pareto_front_list</span> <span class="o">=</span> <span class="n">choose_mixed_precision</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">dummy_input</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">eval_callback_for_phase_1</span><span class="p">,</span>
+                                           <span class="n">eval_callback_for_phase_2</span><span class="p">,</span> <span class="n">allowed_accuracy_drop</span><span class="p">,</span> <span class="n">results_dir</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span>
+                                           <span class="n">clean_start</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">forward_pass_callback</span><span class="o">=</span><span class="n">forward_pass_call_back</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pareto_front_list</span><span class="p">)</span>
+
+<span class="c1"># Set clean_start to False to start from an existing cache</span>
+<span class="c1"># Set allowed_accuracy_drop to 0.9 to export the 90% drop point in pareto list</span>
+<span class="n">allowed_accuracy_drop</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">pareto_front_list</span> <span class="o">=</span> <span class="n">choose_mixed_precision</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">dummy_input</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">eval_callback_for_phase_1</span><span class="p">,</span>
+                                           <span class="n">eval_callback_for_phase_2</span><span class="p">,</span> <span class="n">allowed_accuracy_drop</span><span class="p">,</span> <span class="n">results_dir</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span>
+                                           <span class="n">clean_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">forward_pass_callback</span><span class="o">=</span><span class="n">forward_pass_call_back</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pareto_front_list</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="s2">"./data"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">allowed_accuracy_drop</span><span class="p">),</span> <span class="n">dummy_input</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="platform" data-sync-id="onnx" for="sd-tab-item-3">
+ONNX</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
+<p><strong>Quantization with mixed precision</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define parameters to pass to mixed precision algo</span>
+
+<span class="c1"># ((activation bitwidth, activation data type), (param bitwidth, param data type))</span>
+<span class="n">candidates</span> <span class="o">=</span> <span class="p">[((</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">)),</span>
+             <span class="p">((</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">)),</span>
+             <span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">))]</span>
+<span class="c1"># Allowed accuracy drop in absolute value</span>
+<span class="n">allowed_accuracy_drop</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Implies 50% drop</span>
+
+<span class="n">eval_callback_for_phase_1</span> <span class="o">=</span> <span class="n">CallbackFunc</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">func_callback_args</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">eval_callback_for_phase_2</span> <span class="o">=</span> <span class="n">CallbackFunc</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">func_callback_args</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">forward_pass_callback</span> <span class="o">=</span> <span class="n">CallbackFunc</span><span class="p">(</span><span class="n">forward_pass</span><span class="p">,</span> <span class="n">func_callback_args</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Create quant sim</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">QuantizationSimModel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">param_type</span><span class="o">=</span><span class="n">aimet_onnx</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="n">activation_type</span><span class="o">=</span><span class="n">aimet_onnx</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">compute_encodings</span><span class="p">(</span><span class="n">forward_pass</span><span class="p">,</span> <span class="n">forward_pass_callback_args</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Call the mixed precision algo with clean start = True i.e. new accuracy list and pareto list will be generated</span>
+<span class="c1"># If set to False then pareto front list and accuracy list will be loaded from the provided directory path</span>
+<span class="c1"># A allowed_accuracy_drop can be specified to export the final model with reference to the pareto list</span>
+<span class="n">pareto_front_list</span> <span class="o">=</span> <span class="n">choose_mixed_precision</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">eval_callback_for_phase_1</span><span class="p">,</span>
+                                           <span class="n">eval_callback_for_phase_2</span><span class="p">,</span> <span class="n">allowed_accuracy_drop</span><span class="p">,</span> <span class="n">results_dir</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span>
+                                           <span class="n">clean_start</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">forward_pass_callback</span><span class="o">=</span><span class="n">forward_pass_callback</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pareto_front_list</span><span class="p">)</span>
+
+<span class="c1"># Set clean_start to False to start from an existing cache</span>
+<span class="c1"># Set allowed_accuracy_drop to 0.9 to export the 90% drop point in pareto list</span>
+<span class="n">allowed_accuracy_drop</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">pareto_front_list</span> <span class="o">=</span> <span class="n">choose_mixed_precision</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">eval_callback_for_phase_1</span><span class="p">,</span>
+                                           <span class="n">eval_callback_for_phase_2</span><span class="p">,</span> <span class="n">allowed_accuracy_drop</span><span class="p">,</span> <span class="n">results_dir</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span>
+                                           <span class="n">clean_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">forward_pass_callback</span><span class="o">=</span><span class="n">forward_pass_callback</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pareto_front_list</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="s2">"./data"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">allowed_accuracy_drop</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="api">
+<h2 id="lumina-search-api">API<a class="headerlink" href="#api" title="Link to this heading">¶</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="platform" data-sync-id="torch" for="sd-tab-item-4">
+PyTorch</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">aimet_torch.mixed_precision.</span></span><span class="sig-name descname"><span class="pre">choose_mixed_precision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_torch/mixed_precision.html#choose_mixed_precision"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd></dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To enable phase-3 set the attribute GreedyMixedPrecisionAlgo.ENABLE_CONVERT_OP_REDUCTION = True</p>
+</div>
+<p>Currently only two candidates are supported - ((8,int), (8,int)) &amp; ((16,int), (8,int))</p>
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aimet_torch.amp.quantizer_groups.</span></span><span class="sig-name descname"><span class="pre">QuantizerGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_quantizers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">tuple()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_quantizers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">tuple()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_quantizers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">tuple()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supported_kernel_ops</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">tuple()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_torch/_base/amp/quantizer_groups.html#QuantizerGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Group of modules and quantizers</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_active_quantizers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_to_quantizer_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_torch/_base/amp/quantizer_groups.html#QuantizerGroup.get_active_quantizers"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Find all active tensor quantizers associated with this quantizer group</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_to_quantizer_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_torch/_base/amp/quantizer_groups.html#QuantizerGroup.get_candidate"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Gets Activation &amp; parameter bitwidth
+:type name_to_quantizer_dict: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></span>
+:param name_to_quantizer_dict: Gets module from module name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>]]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of Activation, parameter bitwidth and data type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_input_quantizer_modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_torch/_base/amp/quantizer_groups.html#QuantizerGroup.get_input_quantizer_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>helper method to get the module names corresponding to input_quantizers</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">set_quantizers_to_candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_to_quantizer_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_torch/_base/amp/quantizer_groups.html#QuantizerGroup.set_quantizers_to_candidate"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Sets a quantizer group to a given candidate bitwidth
+:type name_to_quantizer_dict: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></span>
+:param name_to_quantizer_dict: Gets module from module name
+:type candidate: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>]]</span>
+:param candidate: candidate with act and param bw and data types</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_torch/_base/amp/quantizer_groups.html#QuantizerGroup.to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Converts quantizer group to a list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List containing input/output quantizers &amp; weight quantizers</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aimet_torch.common.defs.</span></span><span class="sig-name descname"><span class="pre">CallbackFunc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_callback_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/_aimet_common/defs.html#CallbackFunc"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Class encapsulating call back function and it’s arguments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – Callable Function</p></li>
+<li><p><strong>func_callback_args</strong> – Arguments passed to the callable function</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aimet_torch.amp.mixed_precision_algo.</span></span><span class="sig-name descname"><span class="pre">EvalCallbackFactory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_torch/_base/amp/mixed_precision_algo.html#EvalCallbackFactory"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Factory class for various built-in eval callbacks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_loader</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></span>) – Data loader to be used for evaluation</p></li>
+<li><p><strong>forward_fn</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]</span>) – Function that runs forward pass and returns the output tensor.
+This function is expected to take 1) a model and 2) a single batch
+yielded from the data loader, and return a single torch.Tensor object
+which represents the output of the model.
+The default forward function is roughly equivalent to
+<code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">model,</span> <span class="pre">batch:</span> <span class="pre">model(batch)</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sqnr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_torch/_base/amp/mixed_precision_algo.html#EvalCallbackFactory.sqnr"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Returns SQNR eval callback.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_samples</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of samples used for evaluation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A callback function that evaluates the input model’s SQNR
+between fp32 outputs and fake-quantized outputs</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="platform" data-sync-id="onnx" for="sd-tab-item-5">
+ONNX</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">aimet_onnx.mixed_precision.</span></span><span class="sig-name descname"><span class="pre">choose_mixed_precision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_callback_for_phase1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_callback_for_phase2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_accuracy_drop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_pass_callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_all_amp_candidates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase1_optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_search_algo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">AMPSearchAlgo.Binary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/mixed_precision.html#choose_mixed_precision"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>High-level API to perform in place Mixed Precision evaluation on the given sim model. A pareto list is created and
+a curve for Accuracy vs BitOps is saved under the results directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../apiref/onnx/quantsim.html#aimet_onnx.QuantizationSimModel" title="aimet_onnx.quantsim.QuantizationSimModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationSimModel</span></code></a></span>) – Quantized sim model</p></li>
+<li><p><strong>candidates</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>]]]</span>) – <p>List of tuples for all possible bitwidth values for activations and parameters.
+Suppose the possible combinations are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">Activation</span> <span class="n">bitwidth</span> <span class="o">-</span> <span class="mi">8</span><span class="p">,</span> <span class="n">Activation</span> <span class="n">data</span> <span class="nb">type</span> <span class="o">-</span> <span class="nb">int</span><span class="p">),</span> <span class="p">(</span><span class="n">Parameter</span> <span class="n">bitwidth</span> <span class="o">-</span> <span class="mi">16</span><span class="p">,</span> <span class="n">parameter</span> <span class="n">data</span> <span class="nb">type</span> <span class="o">-</span> <span class="nb">int</span><span class="p">))</span>
+<span class="p">((</span><span class="n">Activation</span> <span class="n">bitwidth</span> <span class="o">-</span> <span class="mi">16</span><span class="p">,</span> <span class="n">Activation</span> <span class="n">data</span> <span class="nb">type</span> <span class="o">-</span> <span class="nb">float</span><span class="p">),</span> <span class="p">(</span><span class="n">Parameter</span> <span class="n">bitwidth</span> <span class="o">-</span> <span class="mi">16</span><span class="p">,</span> <span class="n">parameter</span> <span class="n">data</span> <span class="nb">type</span> <span class="o">-</span> <span class="nb">float</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then candidates will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[((</span><span class="mi">8</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">int</span><span class="p">)),</span>
+ <span class="p">((</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">float</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">QuantizationDataType</span><span class="o">.</span><span class="n">float</span><span class="p">))]</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>eval_callback_for_phase1</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">InferenceSession</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – Callable object used to measure sensitivity of each
+quantizer group during phase 1. The phase 1 involves finding accuracy list/sensitivity of each
+module. Therefore, a user might want to run the phase 1 with a smaller dataset</p></li>
+<li><p><strong>eval_callback_for_phase2</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">InferenceSession</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – Callale object used to get accuracy of quantized model
+for phase 2 calculations. The phase 2 involves finding pareto front curve</p></li>
+<li><p><strong>allowed_accuracy_drop</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – Maximum allowed drop in accuracy from FP32 baseline. The pareto front curve is plotted only till the point where the allowable
+accuracy drop is met. To get a complete plot for picking points on the curve, the user
+can set the allowable accuracy drop to None.</p></li>
+<li><p><strong>results_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Path to save results and cache intermediate results</p></li>
+<li><p><strong>clean_start</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If true, any cached information from previous runs will be deleted prior to starting the
+mixed-precision analysis. If false, prior cached information will be used if applicable. Note
+it is the user’s responsibility to set this flag to true if anything in the model or
+quantization parameters changes compared to the previous run.</p></li>
+<li><p><strong>forward_pass_callback</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">InferenceSession</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span>) – Callable object used to compute quantization encodings</p></li>
+<li><p><strong>use_all_amp_candidates</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Using the “supported_kernels” field in the config file (under defaults
+and op_type sections), a list of supported candidates can be specified. All the AMP candidates
+which are passed through the “candidates” field may not be supported based on the data passed
+through “supported_kernels”. When the field “use_all_amp_candidates” is set to True, the AMP
+algorithm will ignore the “supported_kernels” in the config file and continue to use all candidates.</p></li>
+<li><p><strong>phase1_optimize</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If user set this parameter to false then phase1 default logic will be executed else optimized logic will be executed.</p></li>
+<li><p><strong>amp_search_algo</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AMPSearchAlgo</span></code></span>) – A valid value from the Enum AMPSearchAlgo. Defines the search algorithm to be used for
+the phase 2 of AMP.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizerGroup</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Pareto front list containing information including Bitops, QuantizerGroup candidates and
+corresponding eval scores. The Pareto front list can be used for plotting a pareto front curve which
+provides information regarding how bit ops vary w.r.t. accuracy. If the allowable accuracy drop is set to
+100% then a user can use the pareto front curve to pick points and re-run,
+None if we early exit the mixed precision algorithm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is recommended to use onnx-simplifier before applying mixed-precision.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aimet_onnx.amp.quantizer_groups.</span></span><span class="sig-name descname"><span class="pre">QuantizerGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_quantizers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">tuple()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_quantizers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">tuple()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/amp/quantizer_groups.html#QuantizerGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Group of modules and quantizers</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_activation_quantizers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_to_quantizer_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/amp/quantizer_groups.html#QuantizerGroup.get_activation_quantizers"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Gets activation quantizers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name_to_quantizer_dict</strong> – Gets module from module name</p>
+</dd>
+</dl>
+<p>:return List of activation quantizers</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_active_quantizers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_to_quantizer_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/amp/quantizer_groups.html#QuantizerGroup.get_active_quantizers"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Find all active tensor quantizers associated with this quantizer group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name_to_quantizer_dict</strong> – Gets module from module name</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">QcQuantizeOp</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of active quantizers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_to_quantizer_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/amp/quantizer_groups.html#QuantizerGroup.get_candidate"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Gets Activation &amp; parameter bitwidth</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name_to_quantizer_dict</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></span>) – Gets module from module name</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple of Activation, parameter bitwidth and data type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_param_quantizers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_to_quantizer_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/amp/quantizer_groups.html#QuantizerGroup.get_param_quantizers"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Gets parameter quantizers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name_to_quantizer_dict</strong> – Gets module from module name</p>
+</dd>
+</dl>
+<p>:return List of parameter quantizers</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">set_quantizers_to_candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_to_quantizer_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/amp/quantizer_groups.html#QuantizerGroup.set_quantizers_to_candidate"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Sets a quantizer group to a given candidate bitwidth</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name_to_quantizer_dict</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></span>) – Gets module from module name</p></li>
+<li><p><strong>candidate</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationDataType</span></code>]]</span>) – candidate with act and param bw and data types</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/amp/quantizer_groups.html#QuantizerGroup.to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Converts quantizer group to a list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List containing input/output quantizers &amp; weight quantizers</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aimet_onnx.common.defs.</span></span><span class="sig-name descname"><span class="pre">CallbackFunc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_callback_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/_aimet_common/defs.html#CallbackFunc"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Class encapsulating call back function and it’s arguments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – Callable Function</p></li>
+<li><p><strong>func_callback_args</strong> – Arguments passed to the callable function</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aimet_onnx.amp.mixed_precision_algo.</span></span><span class="sig-name descname"><span class="pre">EvalCallbackFactory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/amp/mixed_precision_algo.html#EvalCallbackFactory"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Factory class for various built-in eval callbacks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_loader</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></span>) – Data loader to be used for evaluation</p></li>
+<li><p><strong>forward_fn</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">InferenceSession</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]</span>) – Function that runs forward pass and returns the output tensor.
+This function is expected to take 1) a model 2) List of starting op names
+3) List of output op names and 4) batch yielded from the data set, and
+return a single tf.Tensor (or np.ndarray) object which represents the output of the model.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sqnr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aimet_onnx/amp/mixed_precision_algo.html#EvalCallbackFactory.sqnr"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Returns SQNR eval callback.
+NOTE: sim object is required to enable/disable quantizer_info objects associated with quant ops.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../apiref/onnx/quantsim.html#aimet_onnx.QuantizationSimModel" title="aimet_onnx.quantsim.QuantizationSimModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantizationSimModel</span></code></a></span>) – Quantized sim model</p></li>
+<li><p><strong>num_samples</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of samples used for evaluation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">InferenceSession</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A callback function that evaluates model SQNR between fp32_outputs and quantized outputs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</section>
+</section>
+
+
+
+
+                </div>
+            </article>
+            
+
+                <div data-pagefind-ignore>
+
+                    <footer class="mt-10 border-t border-lumina-border pt-6">
+    
+    
+        <nav class="flex justify-between gap-4 mb-8"
+             aria-label="Page navigation">
+            
+                <a href="mmp.html"
+                   class="group flex flex-col items-start gap-1 rounded-lg border border-lumina-border p-4 no-underline hover:border-lumina-accent hover:bg-lumina-bg-secondary active:bg-lumina-accent-light transition-colors duration-150 flex-1">
+                    <span class="text-xs text-lumina-text-muted">Previous</span>
+                    <span class="text-sm font-medium text-lumina-text group-hover:text-lumina-accent transition-colors"><span class="inline-block rtl:-scale-x-100">←</span> Manual mixed precision</span>
+                </a>
+            
+            
+                <a href="../analysis_tools/index.html"
+                   class="group flex flex-col items-end gap-1 rounded-lg border border-lumina-border p-4 no-underline hover:border-lumina-accent hover:bg-lumina-bg-secondary active:bg-lumina-accent-light transition-colors duration-150 flex-1">
+                    <span class="text-xs text-lumina-text-muted">Next</span>
+                    <span class="text-sm font-medium text-lumina-text group-hover:text-lumina-accent transition-colors">Analysis tools <span class="inline-block rtl:-scale-x-100">→</span></span>
+                </a>
+            
+        </nav>
+    
+    
+    
+    
+    
+</footer>
+
+                </div>
+
+
+            
+        </main>
+        
+            <aside id="lumina-toc">
+
+                
+    <div class="lumina-toc-container sticky top-[var(--lumina-header-offset)] hidden h-[calc(100vh-var(--lumina-header-offset))] w-[220px] shrink-0 py-6 pe-4 xl:block">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-lumina-text-muted">On this page</p>
+        <div class="lumina-toc-scroll">
+            
+            <nav class="lumina-toc-nav"
+                 aria-label="Table of contents"
+                 x-data="scrollspy()">
+                <ul>
+<li><a class="reference internal" href="#">Automatic mixed precision</a><ul>
+<li><a class="reference internal" href="#context">Context</a><ul>
+<li><a class="reference internal" href="#mixed-precision-algorithm">Mixed Precision Algorithm</a><ul>
+<li><a class="reference internal" href="#phase-0-find-quantizer-groups">Phase 0: Find quantizer groups</a></li>
+<li><a class="reference internal" href="#phase-1-perform-sensitivity-analysis">Phase 1: Perform sensitivity analysis</a></li>
+<li><a class="reference internal" href="#phase-2-create-a-pareto-front-list">Phase 2: Create a Pareto-front list</a></li>
+<li><a class="reference internal" href="#phase-3-reduce-convert-overhead">Phase 3: Reduce Convert overhead</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#workflow">Workflow</a><ul>
+<li><a class="reference internal" href="#procedure">Procedure</a><ul>
+<li><a class="reference internal" href="#step-1">Step 1</a></li>
+<li><a class="reference internal" href="#step-2">Step 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+
+
+            </aside>
+        
+    </div>
+
+    
+        <button id="lumina-back-to-top"
+                x-data="backToTop()"
+                x-show="visible"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                @click="scrollToTop()"
+                class="lumina-back-to-top z-40 hover:border-lumina-accent transition-colors"
+                aria-label="Back to top"
+                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></button>
+    
+
+    <dialog id="lumina-search-modal"
+        x-data="searchModal()"
+        @cancel.prevent="close()"
+        @keydown.escape.stop.prevent="close()"
+        @keydown.meta.k.window.prevent="toggle()"
+        @keydown.ctrl.k.window.prevent="toggle()"
+        @click.self="close()"
+        class="lumina-overlay-backdrop fixed inset-0 z-[100] m-0 h-full w-full max-h-none max-w-none border-0 p-0"
+        aria-modal="true"
+        aria-label="Search documentation">
+    
+    <div class="relative mx-auto mt-[5vh] flex max-h-[90dvh] w-[calc(100%-2rem)] max-w-xl flex-col sm:mt-[12vh] sm:max-h-[80dvh] cursor-auto rounded-xl border border-lumina-border bg-lumina-bg shadow-2xl">
+        
+        <div class="flex items-center border-b border-lumina-border px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lumina-text-muted" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+            <input type="search"
+                   x-ref="searchInput"
+                   x-model="query"
+                   @input.debounce.150ms="search()"
+                   @keydown.arrow-down.prevent="moveDown()"
+                   @keydown.arrow-up.prevent="moveUp()"
+                   @keydown.enter.prevent="goToSelected()"
+                   role="combobox"
+                   aria-autocomplete="list"
+                   aria-controls="lumina-search-results"
+                   :aria-expanded="results.length > 0"
+                   :aria-activedescendant="results.length > 0 ? 'lumina-search-result-' + selectedIndex : ''"
+                   class="w-full border-0 bg-transparent px-3 py-4 text-lumina-text placeholder-lumina-text-muted outline-none"
+                   aria-label="Search documentation"
+                   placeholder="Search docs..."
+                   autocomplete="off">
+            <kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1.5 py-0.5 text-xs text-lumina-text-muted">esc</kbd>
+        </div>
+        <template x-if="loaded && scopes.length > 1 && pagefind">
+            <div class="flex shrink-0 items-center gap-3 border-b border-lumina-border px-4 py-2">
+                <label for="lumina-search-scope"
+                       class="shrink-0 text-xs text-lumina-text-muted">Search in</label>
+                <select id="lumina-search-scope"
+                        x-model="scope"
+                        @change="search()"
+                        class="min-w-0 flex-1 rounded border border-lumina-border bg-lumina-bg px-2 py-2 text-sm text-lumina-text focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                    <option value="">All docs</option>
+                    <template x-for="name in scopes" :key="name">
+                        <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+        
+        <div class="min-h-0 overflow-y-auto p-2" :aria-busy="searching">
+            <template x-if="!loaded || searching">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <span x-text="loaded ? $t('Searching…') : $t('Loading search index…')"></span>
+                </p>
+            </template>
+            <template x-if="loaded && !searching && !error && query.trim().length > 0 && results.length === 0">
+                <div class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <p x-text="scope ? $t('No results in {scope}.', { scope }) : $t('No results found.')"></p>
+                    <template x-if="scope">
+                        <button type="button"
+                                @click="searchAll()"
+                                class="mt-2 rounded px-3 py-2 text-lumina-accent underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                            Search all docs
+                        </button>
+                    </template>
+                </div>
+            </template>
+            <template x-if="error">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted"
+                   x-text="error"></p>
+            </template>
+            <div id="lumina-search-results"
+                 role="listbox"
+                 aria-label="Search documentation">
+                <template x-for="(result, index) in results" :key="result.url">
+                    <a :id="'lumina-search-result-' + index"
+                       :href="result.url"
+                       role="option"
+                       :aria-selected="index === selectedIndex"
+                       data-search-result
+                       class="flex flex-col gap-1 rounded-lg px-3 py-2.5 no-underline transition-colors focus-visible:outline-2 focus-visible:outline-lumina-accent"
+                       :class="[index === selectedIndex ? 'bg-lumina-accent-light text-lumina-accent' : 'hover:bg-lumina-bg-secondary text-lumina-text', result.isHeading ? 'ms-4 border-s border-lumina-border' : 'mt-1']"
+                       @click="rememberQuery()"
+                       @mouseenter="selectedIndex = index"
+                       @focus="selectedIndex = index">
+                        <template x-if="result.breadcrumb">
+                            <span class="truncate text-xs text-lumina-text-muted"
+                                  x-text="result.breadcrumb"></span>
+                        </template>
+                        <span class="break-words text-sm"
+                              :class="result.isSymbol ? 'font-mono' : result.isHeading ? '' : 'font-semibold'"
+                              x-text="result.title"></span>
+                        <span x-show="result.excerpt"
+                              class="line-clamp-2 text-xs text-lumina-text-muted"
+                              x-html="result.excerpt"></span>
+                    </a>
+                </template>
+            </div>
+            <template x-if="loaded && !error && query.trim().length === 0">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">Type to search...</p>
+            </template>
+        </div>
+        
+        <div class="sr-only"
+             role="status"
+             x-text="searching ? $t('Searching…') : loaded && query.trim().length > 0 ? (scope ? $t('{count} links in {scope}', { count: results.length, scope }) : $t('{count} links across all docs', { count: results.length })) : ''">
+        </div>
+        
+        <div class="flex shrink-0 items-center gap-3 border-t border-lumina-border px-4 py-2.5 text-xs text-lumina-text-muted">
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↑↓</kbd> Navigate</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↵</kbd> Open</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">esc</kbd> Close</span>
+        </div>
+    </div>
+</dialog>
+
+    
+
+
+
+
+  </body>
+</html>

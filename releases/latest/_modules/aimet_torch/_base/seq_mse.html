@@ -1,0 +1,1702 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aimet_torch._base.seq_mse &#8212; AI Model Efficiency Toolkit</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=ed8a8c84" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../../_static/pygments_dark.css?v=5175e31d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lumina.css?v=bc31efa2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/aimet-lumina.css?v=b1a32206" />
+    <script defer="defer" src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script defer="defer" src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script defer="defer" src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer="defer" src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="../../../_static/lumina.js?v=3e122351"></script>
+    <link rel="icon" href="../../../_static/ai-hub-workbench-icon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+    
+    
+        <meta data-pagefind-meta="breadcrumb[content]"
+              content="Module code">
+    
+    
+    
+        
+        <meta name="description" content="AIMET">
+        
+        <meta name="theme-color" content="#2A2AEA">
+        <meta property="og:title" content="aimet_torch._base.seq_mse">
+        
+            <meta property="og:description" content="AIMET">
+        
+        
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="AI Model Efficiency Toolkit">
+        <meta property="og:locale" content="en_US">
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="aimet_torch._base.seq_mse">
+        
+            <meta name="twitter:description" content="AIMET">
+        
+        
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Module code", "item": "../../index.html"}, {"@type": "ListItem", "position": 2, "name": "aimet_torch._base.seq_mse", "item": "/"}]}</script>
+        
+        
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "aimet_torch._base.seq_mse", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET"}</script>
+        
+        
+    
+    <link rel="preload"
+          as="font"
+          type="font/woff2"
+          href="../../../_static/fonts/source-sans-3-regular-latin.woff2"
+          crossorigin>
+    
+    <script>
+(function() {
+  var stored = null;
+  try { stored = localStorage.getItem('lumina-theme'); } catch (e) {}
+  
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Sphinx gates the dark highlight stylesheet on the OS color scheme only;
+  // a stored override or dark_mode_default must rewrite its media query
+  // before first paint.
+  var pygmentsDark = document.getElementById('pygments_dark_css');
+  if (pygmentsDark) {
+    pygmentsDark.media = document.documentElement.getAttribute('data-theme') === 'dark' ? 'screen' : 'not all';
+  }
+})();
+    </script>
+    
+    <meta name="lumina-search-backend" content="sphinx">
+    <meta name="lumina-base-url" content="../../../">
+    
+    
+    
+    
+    
+    
+    
+        <style>
+            :root,[data-theme="light"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 65%,#202624);--lumina-accent-light:color-mix(in srgb,#2A2AEA 12%,var(--lumina-bg));}
+            [data-theme="dark"]{--lumina-accent:#2A2AEA;--lumina-link:color-mix(in srgb,#2A2AEA 55%,#e9eeeb);--lumina-accent-light:color-mix(in srgb,#2A2AEA 15%,var(--lumina-bg));}
+            html:root,html[data-theme="dark"]{--sd-color-primary:color-mix(in srgb,#2A2AEA 85%,black);--sd-color-primary-highlight:color-mix(in srgb,#2A2AEA 70%,black);--sd-color-primary-text:#fff;--sd-color-primary-bg:color-mix(in srgb,#2A2AEA 12%,transparent);}
+        </style>
+    
+    
+    
+    
+
+
+  <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_torch/_base/seq_mse.html" />
+</head><body>
+
+
+
+
+
+    <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
+
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-lumina-border bg-lumina-bg/80 backdrop-blur-sm">
+
+    
+
+    <div class="lumina-header-inner mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
+        
+        <div class="flex items-center gap-3">
+            <a href="../../../index.html"
+               class="flex items-center gap-2 text-lumina-text no-underline hover:opacity-80 transition-opacity">
+                
+                    <img src="../../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-light h-7 w-auto">
+                    <img src="../../../_static/ai-hub-workbench-icon.png"
+                         alt="AI Model Efficiency Toolkit logo"
+                         class="lumina-logo-dark h-7 w-auto">
+                
+            </a>
+            
+                
+                <span class="flex flex-col leading-tight">
+                    <a href="../../../index.html"
+                       class="font-semibold text-base text-lumina-text no-underline hover:opacity-80 transition-opacity">AIMET</a>
+                    
+                        <a href="../../../versions.html"
+                           class="text-xs text-lumina-text-muted hover:text-lumina-accent no-underline"
+                           title="See other versions">v2.44.0</a>
+                    
+                </span>
+            
+
+            
+
+        </div>
+        
+        
+        
+        <div class="flex items-center gap-2">
+            
+            <button data-search-trigger
+                    class="flex items-center gap-2 rounded-lg border border-lumina-border bg-lumina-bg-secondary px-3 py-2 text-[0.8125rem] text-lumina-text-muted hover:border-lumina-accent transition-colors cursor-pointer lg:min-w-56"
+                    aria-label="Search documentation"
+                    aria-haspopup="dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+                <span class="hidden lg:inline flex-1 text-start">Search docs...</span>
+                <kbd data-search-shortcut
+                     class="hidden lg:inline rounded border border-lumina-border bg-lumina-bg px-1.5 py-0.5 text-[0.6875rem] font-[family-name:var(--lumina-font-mono)] tracking-[0.02em]">⌘K</kbd>
+            </button>
+            
+            <button data-theme-toggle
+                    x-data="themeToggle()"
+                    @click="cycle()"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-md text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors cursor-pointer"
+                    aria-label="Toggle color theme"
+                    title="Toggle color theme"
+                    :aria-label="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')"
+                    :title="mode === 'light' ? $t('Switch to dark mode') : mode === 'dark' ? $t('Switch to system theme') : $t('Switch to light mode')">
+                
+                <svg x-show="mode === 'light'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-[-90deg] scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+                </svg>
+                
+                <svg x-show="mode === 'dark'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 rotate-90 scale-0"
+                     x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                </svg>
+                
+                <svg x-show="mode === 'auto'"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 scale-0"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0 scale-0"
+                     class="h-5 w-5 absolute"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+            </button>
+            
+            
+            
+                
+                    <a href="https://github.com/qualcomm/aimet"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Github"
+                       aria-label="Github (opens in new tab)">
+                        
+                            <svg class="h-5 w-5"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://qualcomm-ai-hub.slack.com/archives/C08JKBE0UHY"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Slack"
+                       aria-label="Slack (opens in new tab)">
+                        
+                            
+                            <svg class="h-5 w-5" viewBox="0 0 127 127" aria-hidden="true">
+                                <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A" />
+                                <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0" />
+                                <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D" />
+                                <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E" />
+                            </svg>
+                        
+                    </a>
+                
+                    <a href="https://workbench.aihub.qualcomm.com/docs/hub/quantize_examples.html"
+                       class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text transition-colors no-underline"
+                       target="_blank"
+                       rel="noopener"
+                       title="Workbench"
+                       aria-label="Workbench (opens in new tab)">
+                        
+                            <img src="../../../_static/ai-hub-workbench-icon.png"
+                                 alt=""
+                                 class="h-5 w-5 rounded-sm"
+                                 aria-hidden="true">
+                        
+                    </a>
+                
+            
+            
+            
+                <button data-sidebar-toggle
+                        class="rounded-md p-2 text-lumina-text-muted hover:text-lumina-text hover:bg-lumina-bg-secondary transition-colors lg:hidden cursor-pointer"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false"
+                        aria-controls="lumina-sidebar-drawer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></button>
+            
+        </div>
+    </div>
+</header>
+
+    </div>
+    <div class="lumina-wrapper">
+        <aside id="lumina-sidebar">
+
+            <div x-data="sidebar()">
+    
+    <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-e border-lumina-border/45 bg-lumina-bg px-4 py-6 lg:flex">
+
+        
+
+
+        
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Main navigation"
+                 x-data="sidebarNav()">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+            </nav>
+        
+        
+            <div class="lumina-sidebar-footer">
+                Built with
+                <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                   target="_blank"
+                   rel="noopener">
+                    <svg class="lumina-sidebar-footer-icon"
+                         viewBox="0 0 32 32"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M16 3L28 27H4L16 3Z" stroke="currentColor" stroke-width="2.5" fill="none" />
+                        <path d="M16 10L8 27H16" fill="currentColor" opacity="0.15" />
+                        <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
+                    </svg>
+                Lumina</a>
+                <span class="lumina-sidebar-footer-version">v2.21.2</span>
+            </div>
+        
+    </div>
+    
+    <template x-teleport="body">
+        <div>
+            
+            <div x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="lumina-overlay-backdrop fixed inset-0 top-[var(--lumina-header-offset)] z-40 lg:hidden"
+                 @click="close()"></div>
+            
+            <div id="lumina-sidebar-drawer"
+                 x-show="mobileOpen"
+                 x-transition:enter="transition ease-out duration-250"
+                 x-transition:enter-start="-translate-x-full rtl:translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full rtl:translate-x-full"
+                 @keydown.escape.window="close()"
+                 class="fixed inset-y-0 top-[var(--lumina-header-offset)] start-0 z-50 w-[min(280px,85vw)] overflow-y-auto border-e border-lumina-border bg-lumina-bg px-4 py-6 lg:hidden">
+
+                
+                
+
+                    
+
+
+                
+
+                
+                
+                
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Main navigation"
+                         x-data="sidebarNav()">
+                        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview/install/index.html">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_workflow.html">Quantization Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantsim.html">Quantization Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe.html">Quantization Recipes for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/quantization_recipe_torch.html">Quantization Recipes for LLMs (AIMET Torch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/notebooks.html">Example Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/quantsim.html">Quantization simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/onnx/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/qat.html">Quantization-aware training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/v2/qat.html">Quantization-Aware Training (QAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/qat_range_learning.html">Quantization-aware training with range learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/cle.html">Cross-Layer Equalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/adaround.html">Adaptive Rounding (AdaRound)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/AMP.html">Automatic Mixed-Precision (AMP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/bn_reestimation.html">Quantization-Aware Training with BatchNorm Re-estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/quantization/quant_analyzer.html">Quant Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/channel_pruning.html">Model compression using channel pruning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/spatial_svd.html">Model compression using spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/notebooks/torch/compression/spatial_svd_channel_pruning.html">Model compression using spatial SVD and channel pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/on_target_inference.html">Running Quantized Models on-device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/debugging_guidelines.html">Debugging Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/ptq.html">Post Training Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/qat.html">Quantization Aware Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/blockwise.html">Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/lpbq.html">Low-Power Blockwise Quantization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/onnx_qdq.html">Convert existing AIMET encodings to ONNX QDQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/mixed_precision/index.html">Mixed precision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/litemp.html">Lite mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/mmp.html">Manual mixed precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/mixed_precision/amp.html">Automatic mixed precision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/analysis_tools/index.html">Analysis tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/quant_analyzer.html">Quantization analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/analysis_tools/layer_output_generation.html">Layer output generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../techniques/compression/index.html">Compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/feature_guidebook.html">Compression guidebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/greedy_compression_ratio_selection.html">Greedy compression ratio selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/visualization_compression.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/weight_svd.html">Weight SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/spatial_svd.html">Spatial SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../techniques/compression/channel_pruning.html">Channel pruning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../techniques/compression/winnowing.html">Winnowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ptq_techniques/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>PTQ Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adaround.html">Adaptive rounding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/seq_mse.html">Sequential MSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bnf.html">Batch norm folding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/cle.html">Cross-layer equalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/adascale.html">AdaScale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/bn.html">Batch norm re-estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/index.html">Quantized LoRa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/qw_lora.html">QW-LoRa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ptq_techniques/quantized_LoRa/qwa_lora.html">QWA-LoRa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/omniquant.html">OmniQuant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ptq_techniques/spinquant.html">SpinQuant</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apiref/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg>API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release_notes.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>External Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="http://www.qualcomm.com/developer/artificial-intelligence#overview">Qualcomm AI Stack</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-models/">Qualcomm Hub Models</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qualcomm/ai-hub-apps/">Qualcomm Hub Apps</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://aihub.qualcomm.com/">Qualcomm AI Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lumina-sidebar-icon" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2" /><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>Glossary</a></li>
+</ul>
+
+                    </nav>
+                
+                
+                    <div class="lumina-sidebar-footer">
+                        <a href="https://github.com/r4sky0/sphinx-lumina-theme"
+                           target="_blank"
+                           rel="noopener">Lumina</a>
+                        <span class="lumina-sidebar-footer-version">v2.21.2</span>
+                    </div>
+                
+            </div>
+        </div>
+    </template>
+</div>
+
+        </aside>
+        <main id="lumina-content" role="main" data-pagefind-body>
+            
+            
+            <div class="lumina-content-toolbar"
+                 data-pagefind-ignore>
+                
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-lumina-text-muted"
+     style="scrollbar-width:none"
+     aria-label="Breadcrumb">
+    
+    
+        
+            
+            
+            <a href="../../index.html"
+               class="min-w-0 truncate hover:text-lumina-accent no-underline transition-colors">Module code</a>
+        
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 rtl:-scale-x-100" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    <span class="shrink-0 whitespace-nowrap text-lumina-text"
+          aria-current="page">aimet_torch._base.seq_mse</span>
+</nav>
+
+                    </div>
+                
+
+                <details class="lumina-page-actions"
+         x-data
+         @click.outside="$el.open = false"
+         @keydown.escape.stop="$el.open = false; $el.querySelector('summary').focus()">
+    <summary aria-label="Page actions" title="Page actions">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+    </summary>
+    <div class="lumina-page-action-list">
+        <button x-data="copyPage()"
+                @click="copy()"
+                type="button"
+                aria-label="Copy page as Markdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+            <span aria-live="polite"
+                  x-text="copied ? $t('Copied!') : $t('Copy as Markdown')">Copy as Markdown</span>
+        </button>
+        
+    </div>
+</details>
+
+            </div>
+            
+            <article class="lumina-article" x-data="headerLinks()">
+                
+                <div class="body">
+
+                    
+
+    <h1>Source code for aimet_torch._base.seq_mse</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+
+<span class="sd">"""Sequential MSE base"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">abstractmethod</span><span class="p">,</span> <span class="n">ABC</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">contextlib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="kn">import</span> <span class="n">functional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.common.progress</span><span class="w"> </span><span class="kn">import</span> <span class="n">progress_bar</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.common.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AimetLogger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safetensors.torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">save_file</span><span class="p">,</span> <span class="n">load_file</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CachedDataset</span><span class="p">,</span>
+    <span class="n">get_ordered_list_of_modules</span><span class="p">,</span>
+    <span class="n">in_eval_mode</span><span class="p">,</span>
+    <span class="n">StopForwardException</span><span class="p">,</span>
+    <span class="n">change_tensor_device_placement</span><span class="p">,</span>
+    <span class="n">get_device</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.nn</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseQuantizationMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch._base.adaround.activation_sampler</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">create_modulelist_for_group_modules</span><span class="p">,</span>
+    <span class="n">get_block_inputs</span><span class="p">,</span>
+    <span class="n">get_block_outputs</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_torch.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">default_forward_fn</span>
+
+<span class="c1"># The following modules with weights are supported</span>
+<span class="n">SUPPORTED_MODULES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Skip running Sequential MSE if param BW is higher than supported PARAM_BW.</span>
+<span class="n">SUPPORTED_PARAM_BW</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">AimetLogger</span><span class="o">.</span><span class="n">get_area_logger</span><span class="p">(</span><span class="n">AimetLogger</span><span class="o">.</span><span class="n">LogAreas</span><span class="o">.</span><span class="n">SeqMse</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SeqMseParams">
+<a class="viewcode-back" href="../../../ptq_techniques/seq_mse.html#aimet_torch.seq_mse.SeqMseParams">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SeqMseParams</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Sequential MSE parameters</span>
+
+<span class="sd">    :param num_batches: Number of batches.</span>
+<span class="sd">    :param num_candidates: Number of candidates to perform grid search. Default 20.</span>
+<span class="sd">    :param inp_symmetry: Input symmetry. Available options are 'asym', 'symfp' and 'symqt'. Default 'symqt'.</span>
+<span class="sd">    :param loss_fn: Loss function. Available options are 'mse', 'l1' and 'sqnr'. Default 'mse'.</span>
+<span class="sd">    :param forward_fn: Optional adapter function that performs forward pass given a model and inputs</span>
+<span class="sd">     yielded from the data loader. The function expects model as first argument and inputs to model as second argument.</span>
+<span class="sd">    """</span>
+
+    <span class="n">num_batches</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">num_candidates</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">inp_symmetry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"symqt"</span>
+    <span class="n">loss_fn</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"mse"</span>
+    <span class="n">forward_fn</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">default_forward_fn</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># pylint: disable=attribute-defined-outside-init</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span> <span class="o">==</span> <span class="s2">"mse"</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_loss_fn</span> <span class="o">=</span> <span class="n">functional</span><span class="o">.</span><span class="n">mse_loss</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span> <span class="o">==</span> <span class="s2">"l1"</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_loss_fn</span> <span class="o">=</span> <span class="n">functional</span><span class="o">.</span><span class="n">l1_loss</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span> <span class="o">==</span> <span class="s2">"sqnr"</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_loss_fn</span> <span class="o">=</span> <span class="n">neg_sqnr</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid loss function: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SeqMseParams.get_loss_fn">
+<a class="viewcode-back" href="../../../ptq_techniques/seq_mse.html#aimet_torch.seq_mse.SeqMseParams.get_loss_fn">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_loss_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Returns loss function"""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loss_fn</span></div>
+</div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SequentialMseBase</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Sequentially minimizing activation MSE loss in layer-wise way to decide optimal param quantization encodings.</span>
+<span class="sd">    """</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_seq_mse</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+        <span class="n">sim</span><span class="p">,</span>
+        <span class="n">data_loader</span><span class="p">:</span> <span class="n">DataLoader</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">SeqMseParams</span><span class="p">,</span>
+        <span class="n">modules_to_exclude</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">checkpoints_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cache_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Sequentially minimizing activation MSE loss in layer-wise way to decide optimal param quantization encodings.</span>
+
+<span class="sd">            1 Disable all input/output quantizers, param quantizers of non-supported modules</span>
+<span class="sd">            2 Find and feeze optimal parameter encodings candidate for remaining supported modules</span>
+<span class="sd">            3 Re-enable disabled quantizers from step 1</span>
+
+<span class="sd">        Example userflow:</span>
+<span class="sd">        model = Model().eval()</span>
+<span class="sd">        sim = QuantizationSimModel(...)</span>
+<span class="sd">        apply_seq_mse(...)</span>
+<span class="sd">        sim.compute_encodings(...) [compute encodings for all activations and parameters of non-supported modules]</span>
+<span class="sd">        sim.export(...)</span>
+
+<span class="sd">        NOTE:</span>
+<span class="sd">        1) module reference passed to modules_to_exclude should be from FP32 model.</span>
+<span class="sd">        2) module from modules_to_exclude won't be quantized and skipped when applying sequential MSE.</span>
+<span class="sd">        3) Except finding param encodings for supported modules, config JSON file will be respected and</span>
+<span class="sd">        final state of sim will be unchanged.</span>
+
+<span class="sd">        :param model: Original fp32 model</span>
+<span class="sd">        :param sim: Corresponding QuantizationSimModel object</span>
+<span class="sd">        :param data_loader: Data loader</span>
+<span class="sd">        :param params: Sequential MSE parameters</span>
+<span class="sd">        :param modules_to_exclude: List of supported type module(s) to exclude when applying Sequential MSE</span>
+<span class="sd">        :param checkpoints_config: Config files to split fp32/quant model by checkpoints to speedup activations sampling</span>
+<span class="sd">        :param cache_dir: Optional directory to cache/load optimized param encodings</span>
+<span class="sd">        """</span>
+        <span class="c1"># disable all input/output activation quantizers and</span>
+        <span class="c1"># param quantizers of all the non-supported modules and from modules_to_exclude list.</span>
+        <span class="c1"># then, re-enable disabled quantizers after running sequential mse.</span>
+        <span class="c1"># this ensures that config JSON file will be respected and final state of sim will be unchanged.</span>
+        <span class="k">with</span> <span class="p">(</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">temporarily_disable_quantizers</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">modules_to_exclude</span><span class="p">),</span>
+            <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tempdir</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="c1"># Initialize param encodings of modules of supported types.</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">compute_all_param_encodings</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+
+            <span class="n">dummy_input</span> <span class="o">=</span> <span class="n">change_tensor_device_placement</span><span class="p">(</span>
+                <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">data_loader</span><span class="p">)),</span> <span class="n">get_device</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">cached_dataset</span> <span class="o">=</span> <span class="n">CachedDataset</span><span class="p">(</span>
+                <span class="n">data_loader</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">num_batches</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempdir</span><span class="p">,</span> <span class="s2">"cached_dataset"</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">checkpoints_config</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">apply_seq_mse_using_opt_sampling</span><span class="p">(</span>
+                    <span class="n">checkpoints_config</span><span class="p">,</span>
+                    <span class="n">model</span><span class="p">,</span>
+                    <span class="n">sim</span><span class="p">,</span>
+                    <span class="n">modules_to_exclude</span><span class="p">,</span>
+                    <span class="n">cached_dataset</span><span class="p">,</span>
+                    <span class="n">params</span><span class="p">,</span>
+                    <span class="n">tempdir</span><span class="p">,</span>
+                    <span class="n">cache_dir</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fp32_modules</span> <span class="o">=</span> <span class="n">get_ordered_list_of_modules</span><span class="p">(</span>
+                    <span class="n">model</span><span class="p">,</span>
+                    <span class="n">dummy_input</span><span class="p">,</span>
+                    <span class="n">fwd_func</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">forward_fn</span><span class="p">,</span>
+                    <span class="n">ignore_duplicates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">fp32_modules</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">fp32_modules</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">SUPPORTED_MODULES</span><span class="p">)</span>
+                <span class="p">]</span>
+
+                <span class="k">def</span><span class="w"> </span><span class="nf">map_from_qt_to_fp_model</span><span class="p">(</span><span class="n">inp_module</span><span class="p">):</span>
+                    <span class="c1"># helper function to map all modules_to_exclude from the QT object to the FP object</span>
+                    <span class="c1"># if necessary</span>
+                    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">named_modules</span><span class="p">():</span>
+                        <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="n">inp_module</span><span class="p">:</span>
+                            <span class="n">fp_module</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span>
+                                <span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">+</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)</span>
+                            <span class="p">)</span>
+                            <span class="k">return</span> <span class="n">fp_module</span>
+                    <span class="k">return</span> <span class="n">inp_module</span>
+
+                <span class="c1"># Pre-compute the set of excluded FP32 modules</span>
+                <span class="n">excluded_fp_modules</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">map_from_qt_to_fp_model</span><span class="p">,</span> <span class="n">modules_to_exclude</span><span class="p">))</span>
+                    <span class="k">if</span> <span class="n">modules_to_exclude</span>
+                    <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
+                <span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">cache_dir</span><span class="p">:</span>
+                    <span class="n">cached_module_names</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_module_names_from_cache</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">excluded_fp_modules</span><span class="p">:</span>
+                        <span class="n">cached_module_names</span> <span class="o">=</span> <span class="p">[</span>
+                            <span class="n">name</span>
+                            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">cached_module_names</span>
+                            <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">get_submodule</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluded_fp_modules</span>
+                        <span class="p">]</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="n">load_cached_optimized_params</span><span class="p">(</span>
+                        <span class="n">sim</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">cached_module_names</span><span class="p">,</span> <span class="n">cache_dir</span>
+                    <span class="p">)</span>
+                    <span class="n">fp32_modules</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">fp32_modules</span>
+                        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cached_module_names</span>
+                    <span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">excluded_fp_modules</span><span class="p">:</span>
+                    <span class="n">fp32_modules</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">fp32_modules</span>
+                        <span class="k">if</span> <span class="n">module</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluded_fp_modules</span>
+                    <span class="p">]</span>
+
+                <span class="c1"># Find and freeze optimal param encodings candidate</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">run_seq_mse</span><span class="p">(</span>
+                    <span class="n">fp32_modules</span><span class="p">,</span>
+                    <span class="n">model</span><span class="p">,</span>
+                    <span class="n">sim</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+                    <span class="n">params</span><span class="p">,</span>
+                    <span class="n">params</span><span class="o">.</span><span class="n">forward_fn</span><span class="p">,</span>
+                    <span class="n">cached_dataset</span><span class="p">,</span>
+                    <span class="n">cached_quant_dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">cache_dir</span><span class="o">=</span><span class="n">cache_dir</span><span class="p">,</span>
+                <span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_seq_mse_using_opt_sampling</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">checkpoints_config</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+        <span class="n">sim</span><span class="p">,</span>
+        <span class="n">modules_to_exclude</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">]],</span>
+        <span class="n">cached_dataset</span><span class="p">:</span> <span class="n">CachedDataset</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">SeqMseParams</span><span class="p">,</span>
+        <span class="n">tempdir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">cache_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply sequential MSE using optimized sampling of intermediate data. When checkpoints_config file is provided,</span>
+<span class="sd">        intermediate activations from breakpoint are treated as model inputs for next blocks.</span>
+
+<span class="sd">        NOTE: Assumption is that the outputs from the current block are fed directly to following block</span>
+<span class="sd">        and there are no functional operations in-between.</span>
+
+<span class="sd">        :param checkpoints_config: Config files to split fp32/quant model by checkpoints to speedup activations sampling</span>
+<span class="sd">        :param model: Original fp32 model</span>
+<span class="sd">        :param sim: Corresponding QuantizationSimModel object</span>
+<span class="sd">        :param modules_to_exclude: List of supported type module(s) to exclude when applying Sequential MSE</span>
+<span class="sd">        :param cached_dataset: Cached dataset</span>
+<span class="sd">        :param params: Sequential MSE parameters</span>
+<span class="sd">        :param tempdir: temporary working directory</span>
+<span class="sd">        :param cache_dir: Optional directory to cache/load optimized param encodings</span>
+<span class="sd">        """</span>
+        <span class="c1"># pylint: disable=too-many-locals</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">checkpoints_config</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">ckpts_file</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+        <span class="c1"># Validate required keys upfront with proper error handling (not assert, which can be</span>
+        <span class="c1"># disabled with the -O interpreter flag).</span>
+        <span class="n">required_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"grouped_modules"</span><span class="p">,</span> <span class="s2">"include_static_inputs"</span><span class="p">,</span> <span class="s2">"cache_on_cpu"</span><span class="p">}</span>
+        <span class="n">missing_keys</span> <span class="o">=</span> <span class="n">required_keys</span> <span class="o">-</span> <span class="n">ckpts_file</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">missing_keys</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Missing required keys in checkpoints config file '</span><span class="si">{</span><span class="n">checkpoints_config</span><span class="si">}</span><span class="s2">': </span><span class="si">{</span><span class="n">missing_keys</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
+
+        <span class="n">grouped_modules</span> <span class="o">=</span> <span class="n">ckpts_file</span><span class="p">[</span><span class="s2">"grouped_modules"</span><span class="p">]</span>
+        <span class="n">breakpoint_module_name</span> <span class="o">=</span> <span class="n">ckpts_file</span><span class="p">[</span><span class="s2">"grouped_modules"</span><span class="p">][</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">grouped_modules</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">include_static_inputs</span> <span class="o">=</span> <span class="n">ckpts_file</span><span class="p">[</span><span class="s2">"include_static_inputs"</span><span class="p">]</span>
+        <span class="n">cache_on_cpu</span> <span class="o">=</span> <span class="n">ckpts_file</span><span class="p">[</span><span class="s2">"cache_on_cpu"</span><span class="p">]</span>
+        <span class="n">cached_fp_dataset</span><span class="p">,</span> <span class="n">cached_quant_dataset</span> <span class="o">=</span> <span class="n">get_block_inputs</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span>
+            <span class="n">sim</span><span class="p">,</span>
+            <span class="n">breakpoint_module_name</span><span class="p">,</span>
+            <span class="n">cached_dataset</span><span class="p">,</span>
+            <span class="n">cache_on_cpu</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">forward_fn</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">num_batches</span><span class="p">,</span>
+            <span class="n">tempdir</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">get_device</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+        <span class="n">sim</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+
+        <span class="c1"># Forward function for the ModuleList object</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">fwd_fn_modulelist</span><span class="p">(</span><span class="n">modulelists</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">mod</span> <span class="ow">in</span> <span class="n">modulelists</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span> <span class="k">else</span> <span class="n">mod</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">x</span>
+
+        <span class="c1"># helper function to map all modules_to_exclude from the QT object to the FP object</span>
+        <span class="c1"># if necessary</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">map_from_qt_to_fp_model</span><span class="p">(</span><span class="n">inp_module</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">"""Map a module from the quantized model to the corresponding FP32 module."""</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">named_modules</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">module</span> <span class="o">==</span> <span class="n">inp_module</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">+</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">inp_module</span>
+
+        <span class="n">excluded_fp_modules</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">map_from_qt_to_fp_model</span><span class="p">,</span> <span class="n">modules_to_exclude</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">modules_to_exclude</span>
+            <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="n">sub_fp_models</span><span class="p">,</span> <span class="n">sub_sim_models</span> <span class="o">=</span> <span class="n">create_modulelist_for_group_modules</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">grouped_modules</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fp_block</span><span class="p">,</span> <span class="n">quant_sim_block</span><span class="p">,</span> <span class="n">static_input</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+            <span class="nb">zip</span><span class="p">(</span><span class="n">sub_fp_models</span><span class="p">,</span> <span class="n">sub_sim_models</span><span class="p">,</span> <span class="n">include_static_inputs</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">cached_fp_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># Use explicit error raises instead of assert, which can be silently disabled</span>
+            <span class="c1"># with the Python -O (optimize) flag.</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Keyword arguments are not supported for block inputs, got: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Expected exactly 1 positional argument for block inputs, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+
+            <span class="n">fp32_modules</span> <span class="o">=</span> <span class="n">get_ordered_list_of_modules</span><span class="p">(</span>
+                <span class="n">fp_block</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fwd_func</span><span class="o">=</span><span class="n">fwd_fn_modulelist</span><span class="p">,</span> <span class="n">ignore_duplicates</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+            <span class="n">fp32_modules</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">fp32_modules</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">SUPPORTED_MODULES</span><span class="p">)</span>
+            <span class="p">]</span>
+
+            <span class="c1"># Use a block-scoped cache directory to avoid mutating the outer cache_dir variable,</span>
+            <span class="c1"># which would corrupt subsequent iterations if an exception occurs mid-loop.</span>
+            <span class="n">block_cache_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">if</span> <span class="n">cache_dir</span> <span class="k">else</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">block_cache_dir</span><span class="p">:</span>
+                <span class="n">cached_module_names</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_module_names_from_cache</span><span class="p">(</span><span class="n">block_cache_dir</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">excluded_fp_modules</span><span class="p">:</span>
+                    <span class="n">cached_module_names</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="n">name</span>
+                        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">cached_module_names</span>
+                        <span class="k">if</span> <span class="n">fp_block</span><span class="o">.</span><span class="n">get_submodule</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluded_fp_modules</span>
+                    <span class="p">]</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">load_cached_optimized_params</span><span class="p">(</span>
+                    <span class="n">quant_sim_block</span><span class="p">,</span> <span class="n">cached_module_names</span><span class="p">,</span> <span class="n">block_cache_dir</span>
+                <span class="p">)</span>
+                <span class="n">fp32_modules</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">fp32_modules</span>
+                    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cached_module_names</span>
+                <span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">excluded_fp_modules</span><span class="p">:</span>
+                <span class="n">fp32_modules</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">fp32_modules</span>
+                    <span class="k">if</span> <span class="n">module</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluded_fp_modules</span>
+                <span class="p">]</span>
+
+            <span class="bp">cls</span><span class="o">.</span><span class="n">run_seq_mse</span><span class="p">(</span>
+                <span class="n">fp32_modules</span><span class="p">,</span>
+                <span class="n">fp_block</span><span class="p">,</span>
+                <span class="n">quant_sim_block</span><span class="p">,</span>
+                <span class="n">params</span><span class="p">,</span>
+                <span class="n">fwd_fn_modulelist</span><span class="p">,</span>
+                <span class="n">cached_fp_dataset</span><span class="p">,</span>
+                <span class="n">cached_quant_dataset</span><span class="o">=</span><span class="n">cached_quant_dataset</span><span class="p">,</span>
+                <span class="n">cache_dir</span><span class="o">=</span><span class="n">block_cache_dir</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Get the outputs from the current block and assign to be the inputs for next block</span>
+            <span class="c1"># except for the last block</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub_fp_models</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">get_block_outputs</span><span class="p">(</span>
+                    <span class="n">fp_block</span><span class="p">,</span>
+                    <span class="n">quant_sim_block</span><span class="p">,</span>
+                    <span class="n">static_input</span><span class="p">,</span>
+                    <span class="n">cached_fp_dataset</span><span class="p">,</span>
+                    <span class="n">cached_quant_dataset</span><span class="p">,</span>
+                    <span class="n">cache_on_cpu</span><span class="p">,</span>
+                    <span class="n">fwd_fn_modulelist</span><span class="p">,</span>
+                    <span class="n">device</span><span class="p">,</span>
+                    <span class="n">tempdir</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">sim</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_seq_mse</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">fp32_modules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">]],</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+        <span class="n">quant_model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">SeqMseParams</span><span class="p">,</span>
+        <span class="n">forward_fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">cached_fp_dataset</span><span class="p">:</span> <span class="n">CachedDataset</span><span class="p">,</span>
+        <span class="n">cached_quant_dataset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CachedDataset</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cache_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Run Sequential MSE</span>
+
+<span class="sd">        :param fp32_modules: List of FP32 candidate modules in order of occurence</span>
+<span class="sd">        :param model: FP32 model</span>
+<span class="sd">        :param quant_model: QuantizationSimModel object</span>
+<span class="sd">        :param params: Sequential MSE parameters</span>
+<span class="sd">        :param forward_fn: Optional adapter function that performs forward pass given a model and inputs</span>
+<span class="sd">        yielded from the data loader. The function expects model as first argument and inputs to model as second argument.</span>
+<span class="sd">        :param cached_fp_dataset: Cached dataset object</span>
+<span class="sd">        :param cached_quant_dataset: Cached dataset object</span>
+<span class="sd">        :param cache_dir: Optional directory to save optimized param encodings</span>
+<span class="sd">        """</span>
+        <span class="n">name_to_quant_module</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">quant_module</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">quant_module</span> <span class="ow">in</span> <span class="n">quant_model</span><span class="o">.</span><span class="n">named_modules</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">quant_module</span><span class="p">,</span> <span class="n">BaseQuantizationMixin</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cached_quant_dataset</span><span class="p">:</span>
+            <span class="n">cached_quant_dataset</span> <span class="o">=</span> <span class="n">cached_fp_dataset</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_is_optimizable</span><span class="p">(</span><span class="n">quant_module</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span>
+                <span class="n">quant_module</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="n">quant_module</span><span class="o">.</span><span class="n">param_quantizers</span><span class="p">[</span><span class="s2">"weight"</span><span class="p">]</span>
+                <span class="ow">and</span> <span class="n">quant_module</span><span class="o">.</span><span class="n">param_quantizers</span><span class="p">[</span><span class="s2">"weight"</span><span class="p">]</span><span class="o">.</span><span class="n">bitwidth</span>
+                <span class="o">&lt;=</span> <span class="n">SUPPORTED_PARAM_BW</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Total is the number of modules that will actually be optimized (the same</span>
+        <span class="c1"># filter applied inside the loop), so the bar reflects real per-layer progress</span>
+        <span class="c1"># rather than every module in the ordered list.</span>
+        <span class="n">num_optimizable</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="n">_is_optimizable</span><span class="p">(</span><span class="n">name_to_quant_module</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">))</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">fp32_modules</span>
+        <span class="p">)</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="n">progress_bar</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">num_optimizable</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Sequential MSE"</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"module"</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">module_qualified_name</span><span class="p">,</span> <span class="n">fp32_module</span> <span class="ow">in</span> <span class="n">fp32_modules</span><span class="p">:</span>
+            <span class="n">quant_module</span> <span class="o">=</span> <span class="n">name_to_quant_module</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">module_qualified_name</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">quant_module</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">"Module </span><span class="si">%s</span><span class="s2"> not found in quant model, skipping"</span><span class="p">,</span>
+                    <span class="n">module_qualified_name</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">quant_module</span><span class="o">.</span><span class="n">param_quantizers</span><span class="p">[</span><span class="s2">"weight"</span><span class="p">]:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">quant_module</span><span class="o">.</span><span class="n">param_quantizers</span><span class="p">[</span><span class="s2">"weight"</span><span class="p">]</span><span class="o">.</span><span class="n">bitwidth</span> <span class="o">&gt;</span> <span class="n">SUPPORTED_PARAM_BW</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">"Finding and freezing optimal param encodings candidate of module: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+                <span class="n">module_qualified_name</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">inp_symmetry</span> <span class="o">==</span> <span class="s2">"asym"</span><span class="p">:</span>
+                <span class="n">fp32_inp_acts</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_module_inp_acts</span><span class="p">(</span>
+                    <span class="n">fp32_module</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">forward_fn</span><span class="p">,</span> <span class="n">cached_fp_dataset</span>
+                <span class="p">)</span>
+                <span class="n">quant_inp_acts</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_module_inp_acts</span><span class="p">(</span>
+                    <span class="n">quant_module</span><span class="p">,</span> <span class="n">quant_model</span><span class="p">,</span> <span class="n">forward_fn</span><span class="p">,</span> <span class="n">cached_quant_dataset</span>
+                <span class="p">)</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">optimize_module</span><span class="p">(</span><span class="n">quant_module</span><span class="p">,</span> <span class="n">fp32_inp_acts</span><span class="p">,</span> <span class="n">quant_inp_acts</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">params</span><span class="o">.</span><span class="n">inp_symmetry</span> <span class="o">==</span> <span class="s2">"symfp"</span><span class="p">:</span>
+                <span class="n">fp32_inp_acts</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_module_inp_acts</span><span class="p">(</span>
+                    <span class="n">fp32_module</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">forward_fn</span><span class="p">,</span> <span class="n">cached_fp_dataset</span>
+                <span class="p">)</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">optimize_module</span><span class="p">(</span><span class="n">quant_module</span><span class="p">,</span> <span class="n">fp32_inp_acts</span><span class="p">,</span> <span class="n">fp32_inp_acts</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">params</span><span class="o">.</span><span class="n">inp_symmetry</span> <span class="o">==</span> <span class="s2">"symqt"</span><span class="p">:</span>
+                <span class="n">quant_inp_acts</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_module_inp_acts</span><span class="p">(</span>
+                    <span class="n">quant_module</span><span class="p">,</span> <span class="n">quant_model</span><span class="p">,</span> <span class="n">forward_fn</span><span class="p">,</span> <span class="n">cached_quant_dataset</span>
+                <span class="p">)</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">optimize_module</span><span class="p">(</span>
+                    <span class="n">quant_module</span><span class="p">,</span> <span class="n">quant_inp_acts</span><span class="p">,</span> <span class="n">quant_inp_acts</span><span class="p">,</span> <span class="n">params</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid inp_symmetry: </span><span class="si">{</span><span class="n">params</span><span class="o">.</span><span class="n">inp_symmetry</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">cache_dir</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">save_to_cache</span><span class="p">(</span><span class="n">module_qualified_name</span><span class="p">,</span> <span class="n">quant_module</span><span class="p">,</span> <span class="n">cache_dir</span><span class="p">)</span>
+
+            <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_cached_optimized_params</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">quant_model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">module_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">cache_dir</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Load optimized quantizer min/max from cache</span>
+
+<span class="sd">        :param quant_model: Quantized wrapper model</span>
+<span class="sd">        :type quant_model: torch.nn.Module</span>
+<span class="sd">        :param module_names: name of modules to load</span>
+<span class="sd">        :type module_names: List[str]</span>
+<span class="sd">        :param cache_dir: Directory containing cached param encodings</span>
+<span class="sd">        :type cache_dir: str</span>
+<span class="sd">        """</span>
+        <span class="c1"># Load optimized min-max value and re-compute encoding</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">module_names</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">qmodule</span> <span class="o">=</span> <span class="n">quant_model</span><span class="o">.</span><span class="n">get_submodule</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">"Module </span><span class="si">%s</span><span class="s2"> not found in model, skipping cached data"</span><span class="p">,</span> <span class="n">name</span>
+                <span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">cached_state_dict_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">cache_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.safetensors"</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cached_state_dict_file</span><span class="p">):</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"State dict cache file not found for </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">state_dict</span> <span class="o">=</span> <span class="n">load_file</span><span class="p">(</span><span class="n">cached_state_dict_file</span><span class="p">)</span>
+            <span class="n">quantizer</span> <span class="o">=</span> <span class="n">qmodule</span><span class="o">.</span><span class="n">param_quantizers</span><span class="p">[</span><span class="s2">"weight"</span><span class="p">]</span>
+            <span class="n">quantizer</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">"Loaded weight param quantizer state dict of </span><span class="si">%s</span><span class="s2"> from </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+                <span class="n">name</span><span class="p">,</span>
+                <span class="n">cached_state_dict_file</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_freeze_quantizer_encoding</span><span class="p">(</span><span class="n">quantizer</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_module_names_from_cache</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cache_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Get names of running modules from cache</span>
+
+<span class="sd">        :param cache_dir: Directory containing the cache file</span>
+<span class="sd">        :type cache_dir: str</span>
+<span class="sd">        :return: list of running module names</span>
+<span class="sd">        :rtype: List[str]</span>
+<span class="sd">        """</span>
+        <span class="n">cache_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">cache_dir</span><span class="si">}</span><span class="s2">/running_module_names.txt"</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cache_file</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">content</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[]</span>
+            <span class="k">return</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_to_cache</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">module_qualified_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quant_module</span><span class="p">,</span> <span class="n">cache_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Save quantizer min/max to cache to reuse</span>
+
+<span class="sd">        :param module_qualified_name: submodule name</span>
+<span class="sd">        :type module_qualified_name: str</span>
+<span class="sd">        :param quant_module: quantize wrapper module</span>
+<span class="sd">        :type quant_module: QuantizationMixin</span>
+<span class="sd">        :param cache_dir: Directory to save cache files</span>
+<span class="sd">        :type cache_dir: str</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cache_dir</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"cache_dir cannot be None or empty"</span><span class="p">)</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Save running module name</span>
+        <span class="n">cache_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">,</span> <span class="s2">"running_module_names.txt"</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">module_qualified_name</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="c1"># Save optimized min-max value</span>
+        <span class="n">saved_state_dict_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">cache_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">module_qualified_name</span><span class="si">}</span><span class="s2">.safetensors"</span>
+        <span class="p">)</span>
+        <span class="n">state_dict</span> <span class="o">=</span> <span class="n">quant_module</span><span class="o">.</span><span class="n">param_quantizers</span><span class="p">[</span><span class="s2">"weight"</span><span class="p">]</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+        <span class="c1"># TODO (vinhpham): extra_state is dict not tensor must be removed before save state with safetensor</span>
+        <span class="k">if</span> <span class="s2">"extra_state"</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="p">:</span>
+            <span class="n">state_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"extra_state"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">"_extra_state"</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="p">:</span>
+            <span class="n">state_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"_extra_state"</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">"Save </span><span class="si">%s</span><span class="s2"> weight param quantizer state dict to </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">module_qualified_name</span><span class="p">,</span>
+            <span class="n">saved_state_dict_file</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">save_file</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">saved_state_dict_file</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_module_inp_acts</span><span class="p">(</span>
+        <span class="n">module</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+        <span class="n">forward_fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">cached_dataset</span><span class="p">:</span> <span class="n">CachedDataset</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        For given module, get inputs to the module.</span>
+
+<span class="sd">        :param module: FP32/quant module</span>
+<span class="sd">        :param model: FP32/quant model</span>
+<span class="sd">        :param forward_fn: Optional adapter function that performs forward pass given a model and inputs</span>
+<span class="sd">        yielded from the data loader. The function expects model as first argument and inputs to model as second argument.</span>
+<span class="sd">        :param cached_dataset: Cached dataset</span>
+<span class="sd">        :return: Concatenated inputs</span>
+<span class="sd">        """</span>
+        <span class="n">inp_acts</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">hook_fn</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">__</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="n">inp_acts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">inp_acts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">StopForwardException</span>
+
+        <span class="n">handle</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">register_forward_hook</span><span class="p">(</span><span class="n">hook_fn</span><span class="p">)</span>
+
+        <span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">cached_dataset</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">inp</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+            <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">change_tensor_device_placement</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">get_device</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">in_eval_mode</span><span class="p">(</span><span class="n">model</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                    <span class="n">forward_fn</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">StopForwardException</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="n">handle</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">inp_acts</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"No input activations were captured for module </span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s2">. "</span>
+                <span class="s2">"Ensure the dataset is non-empty and the module is reachable during the forward pass."</span>
+            <span class="p">)</span>
+
+        <span class="n">inp_acts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">inp_acts</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">inp_acts</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_quantizers_to_be_disabled</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+        <span class="n">sim</span><span class="p">,</span>
+        <span class="n">modules_to_exclude</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">]],</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        For given quantsim model, get all quantizers to be disabled before applying sequential MSE.</span>
+<span class="sd">        """</span>
+        <span class="c1"># pylint: disable=protected-access</span>
+        <span class="n">name_to_fp32_module_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">fp32_module</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">fp32_module</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_modules</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">quantizers_to_be_disabled</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">quant_wrapper</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">quant_wrappers</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">quantizer</span> <span class="ow">in</span> <span class="n">quant_wrapper</span><span class="o">.</span><span class="n">input_quantizers</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">quantizer</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
+                    <span class="n">quantizers_to_be_disabled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quantizer</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">quantizer</span> <span class="ow">in</span> <span class="n">quant_wrapper</span><span class="o">.</span><span class="n">output_quantizers</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">quantizer</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
+                    <span class="n">quantizers_to_be_disabled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quantizer</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">quantizer</span> <span class="ow">in</span> <span class="n">quant_wrapper</span><span class="o">.</span><span class="n">param_quantizers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="p">(</span>
+                    <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">quant_wrapper</span><span class="o">.</span><span class="n">_module_to_wrap</span><span class="p">,</span> <span class="n">SUPPORTED_MODULES</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="n">quantizer</span><span class="o">.</span><span class="n">enabled</span>
+                <span class="p">):</span>
+                    <span class="n">quantizers_to_be_disabled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quantizer</span><span class="p">)</span>
+
+            <span class="c1"># disable param quantizers from exclusion list</span>
+            <span class="k">if</span> <span class="n">modules_to_exclude</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
+                    <span class="n">fp32_module</span> <span class="o">=</span> <span class="n">name_to_fp32_module_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">fp32_module</span> <span class="ow">in</span> <span class="n">modules_to_exclude</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">quantizer</span> <span class="ow">in</span> <span class="n">quant_wrapper</span><span class="o">.</span><span class="n">param_quantizers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                            <span class="k">if</span> <span class="n">quantizer</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
+                                <span class="n">quantizers_to_be_disabled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quantizer</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">quantizers_to_be_disabled</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_candidates</span><span class="p">(</span>
+        <span class="n">num_candidates</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">per_channel_max</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">per_channel_min</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Perform grid search.</span>
+
+<span class="sd">        :param num_candidates: Number of candidates</span>
+<span class="sd">        :param per_channel_max: Per channel max values</span>
+<span class="sd">        :param per_channel_min: Per channel min values</span>
+<span class="sd">        :return: candidates</span>
+<span class="sd">        """</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">per_channel_min</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">cand</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_candidates</span><span class="p">):</span>
+                <span class="n">cand_max</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">per_channel_max</span> <span class="o">/</span> <span class="n">num_candidates</span> <span class="o">*</span> <span class="p">(</span><span class="n">cand</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="n">cand_min</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">per_channel_min</span> <span class="o">/</span> <span class="n">num_candidates</span> <span class="o">*</span> <span class="p">(</span><span class="n">cand</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="n">candidates</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">cand_max</span><span class="p">,</span> <span class="n">cand_min</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">cand</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_candidates</span><span class="p">):</span>
+                <span class="n">cand_max</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">per_channel_max</span> <span class="o">/</span> <span class="n">num_candidates</span> <span class="o">*</span> <span class="p">(</span><span class="n">cand</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="n">cand_min</span> <span class="o">=</span> <span class="o">-</span><span class="n">cand_max</span>
+                <span class="n">candidates</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">cand_max</span><span class="p">,</span> <span class="n">cand_min</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">candidates</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_recon_loss</span><span class="p">(</span><span class="n">xqwq</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">xw</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">SeqMseParams</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute reconstruction loss and return the sum by reducing over all the dimensions except last channel dimension.</span>
+
+<span class="sd">        :param xqwq: X^Q^ quantized-dequantized values</span>
+<span class="sd">        :param xw: XW FP32 values</span>
+<span class="sd">        :param params: Sequential MSE parameters</span>
+<span class="sd">        :return: loss</span>
+<span class="sd">        """</span>
+        <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get_loss_fn</span><span class="p">()</span>
+        <span class="n">channel_dim</span> <span class="o">=</span> <span class="n">xqwq</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">xqwq</span> <span class="o">=</span> <span class="n">xqwq</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">channel_dim</span><span class="p">)</span>
+        <span class="n">xw</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">channel_dim</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">xqwq</span><span class="p">,</span> <span class="n">xw</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">loss</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="n">channel_dim</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">loss</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_per_channel_min_and_max</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">quant_module</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Get per channel min/max values across output channel.</span>
+
+<span class="sd">        :param quant_module: Quant module to be optimized</span>
+<span class="sd">        :return:</span>
+<span class="sd">        """</span>
+        <span class="c1"># pylint: disable=protected-access</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_original_module</span><span class="p">(</span><span class="n">quant_module</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">):</span>
+            <span class="n">channel_dim</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">out_channels</span>
+            <span class="n">weight</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">channel_dim</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="n">weight</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">weight</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Unsupported module: "</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_is_symmetric_quantizer</span><span class="p">(</span><span class="n">quant_module</span><span class="o">.</span><span class="n">param_quantizers</span><span class="p">[</span><span class="s2">"weight"</span><span class="p">]):</span>
+            <span class="n">per_channel_max</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">abs</span><span class="p">(),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+            <span class="n">per_channel_min</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">per_channel_max</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+            <span class="n">per_channel_min</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">per_channel_min</span><span class="p">,</span> <span class="n">per_channel_max</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_outputs</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">quant_module</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">xq</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">w</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">wq</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute X^W^ and XW output activations.</span>
+
+<span class="sd">        :param quant_module: Wrapper module to be optimized</span>
+<span class="sd">        :param x: Inputs from FP32 model</span>
+<span class="sd">        :param xq: Inputs from QuantSim model</span>
+<span class="sd">        :param w: FP32 weights</span>
+<span class="sd">        :param wq: Quantized-dequantized weights</span>
+<span class="sd">        :return: xqwq, xw</span>
+<span class="sd">        """</span>
+        <span class="c1"># pylint: disable=protected-access</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_original_module</span><span class="p">(</span><span class="n">quant_module</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="n">xqwq</span> <span class="o">=</span> <span class="n">functional</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">xq</span><span class="p">,</span> <span class="n">wq</span><span class="p">)</span>
+            <span class="n">xw</span> <span class="o">=</span> <span class="n">functional</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">):</span>
+            <span class="n">xqwq</span> <span class="o">=</span> <span class="n">functional</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span>
+                <span class="n">xq</span><span class="p">,</span>
+                <span class="n">wq</span><span class="p">,</span>
+                <span class="n">stride</span><span class="o">=</span><span class="n">module</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+                <span class="n">dilation</span><span class="o">=</span><span class="n">module</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span>
+                <span class="n">padding</span><span class="o">=</span><span class="n">module</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
+                <span class="n">groups</span><span class="o">=</span><span class="n">module</span><span class="o">.</span><span class="n">groups</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">xw</span> <span class="o">=</span> <span class="n">functional</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span>
+                <span class="n">x</span><span class="p">,</span>
+                <span class="n">w</span><span class="p">,</span>
+                <span class="n">stride</span><span class="o">=</span><span class="n">module</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+                <span class="n">dilation</span><span class="o">=</span><span class="n">module</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span>
+                <span class="n">padding</span><span class="o">=</span><span class="n">module</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
+                <span class="n">groups</span><span class="o">=</span><span class="n">module</span><span class="o">.</span><span class="n">groups</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="c1"># [N, C, H, W] --&gt; [N, H, W, C], so that loss can be computed across channel dimension.</span>
+            <span class="n">xqwq</span> <span class="o">=</span> <span class="n">xqwq</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">xw</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Unsupported module: "</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">xqwq</span><span class="p">,</span> <span class="n">xw</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">temporarily_disable_quantizers</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+        <span class="n">sim</span><span class="p">,</span>
+        <span class="n">modules_to_exclude</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">]],</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        For given quantsim model, disable quantizers needed to be disabled before applying sequential MSE.</span>
+
+<span class="sd">        :param model: Original fp32 model</span>
+<span class="sd">        :param sim: QuantizationSimModel object</span>
+<span class="sd">        :param modules_to_exclude: List of supported modules to exclude when applying Sequential MSE</span>
+<span class="sd">        :return: List of quantizers to be disabled.</span>
+<span class="sd">        """</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_all_param_encodings</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sim</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute encodings for all parameters, needed for initializing Sequential MSE</span>
+
+<span class="sd">        :param sim: Quant sim</span>
+<span class="sd">        """</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">optimize_module</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">quant_module</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">xq</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">SeqMseParams</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Find and freeze optimal parameter encodings candidate for given module.</span>
+
+<span class="sd">        :param quant_module: Quant module to be optimized</span>
+<span class="sd">        :param x: Inputs to module from FP32 model</span>
+<span class="sd">        :param xq: Inputs to module from QuantSim model</span>
+<span class="sd">        :param params: Sequenial MSE parameters</span>
+<span class="sd">        """</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_param_encodings</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">quantizer</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">x_max</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute encodings for parameter quantizer using given x_min and x_max values.</span>
+
+<span class="sd">        :param quantizer: Tensor quantizer</span>
+<span class="sd">        :param x_min: min values</span>
+<span class="sd">        :param x_max: max values</span>
+<span class="sd">        """</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_symmetric_quantizer</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">quantizer</span><span class="p">):</span> <span class="o">...</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_freeze_quantizer_encoding</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">quantizer</span><span class="p">):</span> <span class="o">...</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_quantized_weight</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">quant_module</span><span class="p">):</span> <span class="o">...</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_original_module</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">quant_module</span><span class="p">):</span> <span class="o">...</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">neg_sqnr</span><span class="p">(</span><span class="n">pred</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s2">"none"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Loss function to minimize negative SQNR which is equivalent to maximizing SQNR.</span>
+
+<span class="sd">    :param pred: X^Q^ quantized-dequantized values</span>
+<span class="sd">    :param target: XW FP32 values</span>
+<span class="sd">    :param eps: epsilon</span>
+<span class="sd">    :param reduction: unused arg added only to have the same signature as that of functional losses of pytorch library</span>
+<span class="sd">    :return: Negative SQNR</span>
+<span class="sd">    """</span>
+    <span class="c1"># pylint: disable=unused-argument</span>
+    <span class="n">quant_error</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">pred</span>
+    <span class="n">exp_noise</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">quant_error</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">eps</span>
+    <span class="n">exp_signal</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">target</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sqnr</span> <span class="o">=</span> <span class="n">exp_signal</span> <span class="o">/</span> <span class="n">exp_noise</span>
+    <span class="n">sqnr_db</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">sqnr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">sqnr_db</span>
+</pre></div>
+
+
+
+                </div>
+            </article>
+            
+
+                <div data-pagefind-ignore>
+
+                    <footer class="mt-10 border-t border-lumina-border pt-6">
+    
+    
+    
+    
+    
+    
+</footer>
+
+                </div>
+
+
+            
+        </main>
+        
+            <aside id="lumina-toc">
+
+                
+
+            </aside>
+        
+    </div>
+
+    
+        <button id="lumina-back-to-top"
+                x-data="backToTop()"
+                x-show="visible"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                @click="scrollToTop()"
+                class="lumina-back-to-top z-40 hover:border-lumina-accent transition-colors"
+                aria-label="Back to top"
+                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></button>
+    
+
+    <dialog id="lumina-search-modal"
+        x-data="searchModal()"
+        @cancel.prevent="close()"
+        @keydown.escape.stop.prevent="close()"
+        @keydown.meta.k.window.prevent="toggle()"
+        @keydown.ctrl.k.window.prevent="toggle()"
+        @click.self="close()"
+        class="lumina-overlay-backdrop fixed inset-0 z-[100] m-0 h-full w-full max-h-none max-w-none border-0 p-0"
+        aria-modal="true"
+        aria-label="Search documentation">
+    
+    <div class="relative mx-auto mt-[5vh] flex max-h-[90dvh] w-[calc(100%-2rem)] max-w-xl flex-col sm:mt-[12vh] sm:max-h-[80dvh] cursor-auto rounded-xl border border-lumina-border bg-lumina-bg shadow-2xl">
+        
+        <div class="flex items-center border-b border-lumina-border px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lumina-text-muted" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+            <input type="search"
+                   x-ref="searchInput"
+                   x-model="query"
+                   @input.debounce.150ms="search()"
+                   @keydown.arrow-down.prevent="moveDown()"
+                   @keydown.arrow-up.prevent="moveUp()"
+                   @keydown.enter.prevent="goToSelected()"
+                   role="combobox"
+                   aria-autocomplete="list"
+                   aria-controls="lumina-search-results"
+                   :aria-expanded="results.length > 0"
+                   :aria-activedescendant="results.length > 0 ? 'lumina-search-result-' + selectedIndex : ''"
+                   class="w-full border-0 bg-transparent px-3 py-4 text-lumina-text placeholder-lumina-text-muted outline-none"
+                   aria-label="Search documentation"
+                   placeholder="Search docs..."
+                   autocomplete="off">
+            <kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1.5 py-0.5 text-xs text-lumina-text-muted">esc</kbd>
+        </div>
+        <template x-if="loaded && scopes.length > 1 && pagefind">
+            <div class="flex shrink-0 items-center gap-3 border-b border-lumina-border px-4 py-2">
+                <label for="lumina-search-scope"
+                       class="shrink-0 text-xs text-lumina-text-muted">Search in</label>
+                <select id="lumina-search-scope"
+                        x-model="scope"
+                        @change="search()"
+                        class="min-w-0 flex-1 rounded border border-lumina-border bg-lumina-bg px-2 py-2 text-sm text-lumina-text focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                    <option value="">All docs</option>
+                    <template x-for="name in scopes" :key="name">
+                        <option :value="name" x-text="name"></option>
+                    </template>
+                </select>
+            </div>
+        </template>
+        
+        <div class="min-h-0 overflow-y-auto p-2" :aria-busy="searching">
+            <template x-if="!loaded || searching">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <span x-text="loaded ? $t('Searching…') : $t('Loading search index…')"></span>
+                </p>
+            </template>
+            <template x-if="loaded && !searching && !error && query.trim().length > 0 && results.length === 0">
+                <div class="px-3 py-8 text-center text-sm text-lumina-text-muted">
+                    <p x-text="scope ? $t('No results in {scope}.', { scope }) : $t('No results found.')"></p>
+                    <template x-if="scope">
+                        <button type="button"
+                                @click="searchAll()"
+                                class="mt-2 rounded px-3 py-2 text-lumina-accent underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-lumina-accent">
+                            Search all docs
+                        </button>
+                    </template>
+                </div>
+            </template>
+            <template x-if="error">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted"
+                   x-text="error"></p>
+            </template>
+            <div id="lumina-search-results"
+                 role="listbox"
+                 aria-label="Search documentation">
+                <template x-for="(result, index) in results" :key="result.url">
+                    <a :id="'lumina-search-result-' + index"
+                       :href="result.url"
+                       role="option"
+                       :aria-selected="index === selectedIndex"
+                       data-search-result
+                       class="flex flex-col gap-1 rounded-lg px-3 py-2.5 no-underline transition-colors focus-visible:outline-2 focus-visible:outline-lumina-accent"
+                       :class="[index === selectedIndex ? 'bg-lumina-accent-light text-lumina-accent' : 'hover:bg-lumina-bg-secondary text-lumina-text', result.isHeading ? 'ms-4 border-s border-lumina-border' : 'mt-1']"
+                       @click="rememberQuery()"
+                       @mouseenter="selectedIndex = index"
+                       @focus="selectedIndex = index">
+                        <template x-if="result.breadcrumb">
+                            <span class="truncate text-xs text-lumina-text-muted"
+                                  x-text="result.breadcrumb"></span>
+                        </template>
+                        <span class="break-words text-sm"
+                              :class="result.isSymbol ? 'font-mono' : result.isHeading ? '' : 'font-semibold'"
+                              x-text="result.title"></span>
+                        <span x-show="result.excerpt"
+                              class="line-clamp-2 text-xs text-lumina-text-muted"
+                              x-html="result.excerpt"></span>
+                    </a>
+                </template>
+            </div>
+            <template x-if="loaded && !error && query.trim().length === 0">
+                <p class="px-3 py-8 text-center text-sm text-lumina-text-muted">Type to search...</p>
+            </template>
+        </div>
+        
+        <div class="sr-only"
+             role="status"
+             x-text="searching ? $t('Searching…') : loaded && query.trim().length > 0 ? (scope ? $t('{count} links in {scope}', { count: results.length, scope }) : $t('{count} links across all docs', { count: results.length })) : ''">
+        </div>
+        
+        <div class="flex shrink-0 items-center gap-3 border-t border-lumina-border px-4 py-2.5 text-xs text-lumina-text-muted">
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↑↓</kbd> Navigate</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">↵</kbd> Open</span>
+            <span class="flex items-center gap-1"><kbd class="rounded border border-lumina-border bg-lumina-bg-secondary px-1 py-0.5 font-mono text-[11px]">esc</kbd> Close</span>
+        </div>
+    </div>
+</dialog>
+
+    
+
+
+
+
+  </body>
+</html>
