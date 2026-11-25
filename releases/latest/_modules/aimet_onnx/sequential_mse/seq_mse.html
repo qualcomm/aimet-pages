@@ -22,6 +22,7 @@
     <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
     <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script defer="defer" src="../../../_static/lumina.js?v=3e122351"></script>
+    <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/sequential_mse/seq_mse.html" />
     <link rel="icon" href="../../../_static/ai-hub-workbench-icon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -41,7 +42,7 @@
         
             <meta property="og:description" content="AIMET">
         
-        
+        <meta property="og:url" content="https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/sequential_mse/seq_mse.html">
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="AI Model Efficiency Toolkit">
         <meta property="og:locale" content="en_US">
@@ -54,10 +55,10 @@
         
         
         
-            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Module code", "item": "../../index.html"}, {"@type": "ListItem", "position": 2, "name": "aimet_onnx.sequential_mse.seq_mse", "item": "/"}]}</script>
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AI Model Efficiency Toolkit", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/"}, {"@type": "ListItem", "position": 2, "name": "Module code", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/_modules/index.html"}, {"@type": "ListItem", "position": 3, "name": "aimet_onnx.sequential_mse.seq_mse", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/sequential_mse/seq_mse.html"}]}</script>
         
         
-            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "aimet_onnx.sequential_mse.seq_mse", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET"}</script>
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "aimet_onnx.sequential_mse.seq_mse", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET", "url": "https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/sequential_mse/seq_mse.html", "mainEntityOfPage": "https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/sequential_mse/seq_mse.html"}</script>
         
         
     
@@ -110,8 +111,7 @@
     
 
 
-  <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/sequential_mse/seq_mse.html" />
-</head><body>
+  </head><body>
 
 
 
@@ -642,10 +642,11 @@
 
 <span class="c1"># pylint: disable=no-name-in-module, ungrouped-imports, too-many-lines</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
@@ -659,7 +660,10 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.libpymo</span><span class="w"> </span><span class="kn">import</span> <span class="n">TensorQuantizerOpMode</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.defs</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantScheme</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AimetLogger</span><span class="p">,</span> <span class="n">deprecated</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.onnx._utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">_iterate_graphs_recursive</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.common.onnx._utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_iterate_graphs_recursive</span><span class="p">,</span>
+    <span class="n">_iterate_graphs_recursive_ir</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.qc_quantize_op</span><span class="w"> </span><span class="kn">import</span> <span class="n">QcQuantizeOp</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.quantsim</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantizationSimModel</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -671,7 +675,16 @@
     <span class="n">_onnx_element_type</span><span class="p">,</span>
     <span class="n">_run_session_to_numpy</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.sequential_mse.dependency_graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">DependencyNode</span><span class="p">,</span> <span class="n">DependencyGraph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.blockwise_sampler</span><span class="w"> </span><span class="kn">import</span> <span class="n">BlockwiseSampler</span><span class="p">,</span> <span class="n">SamplingPlan</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.sequential_mse.frontier</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">FrontierPlan</span><span class="p">,</span>
+    <span class="n">SeqMseLayer</span><span class="p">,</span>
+    <span class="n">find_layers</span><span class="p">,</span>
+    <span class="n">get_weight_name</span><span class="p">,</span>
+    <span class="n">is_supported_op</span><span class="p">,</span>
+    <span class="n">plan_frontier</span><span class="p">,</span>
+    <span class="n">resolve_nodes_to_exclude</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">aimet_onnx.sequential_mse.progress</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">SeqMseProgress</span><span class="p">,</span>
     <span class="n">display_name</span><span class="p">,</span>
@@ -684,6 +697,7 @@
 <span class="p">)</span>
 
 <span class="n">_GPU_ALLOC_MARGIN</span> <span class="o">=</span> <span class="mf">0.8</span>
+
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">AimetLogger</span><span class="o">.</span><span class="n">get_area_logger</span><span class="p">(</span><span class="n">AimetLogger</span><span class="o">.</span><span class="n">LogAreas</span><span class="o">.</span><span class="n">SeqMse</span><span class="p">)</span>
 
 
@@ -771,14 +785,14 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ir_model</span> <span class="o">=</span> <span class="n">onnx_ir</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span> <span class="o">=</span> <span class="n">DependencyGraph</span><span class="p">(</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">connected_graph</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">,</span> <span class="n">nodes_to_exclude</span>
+        <span class="c1"># The user-supplied exclusions plus auto-excluded ops (e.g. SpinQuant R3 online</span>
+        <span class="c1"># rotations), so quantizer handling stays in sync.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes_to_exclude</span> <span class="o">=</span> <span class="n">resolve_nodes_to_exclude</span><span class="p">(</span>
+            <span class="n">_sim_nodes</span><span class="p">(</span><span class="n">sim</span><span class="p">),</span> <span class="n">nodes_to_exclude</span>
         <span class="p">)</span>
-        <span class="c1"># Use the dependency graph's resolved exclusion set as the single source</span>
-        <span class="c1"># of truth: it augments the user-supplied list with auto-excluded ops</span>
-        <span class="c1"># (e.g. SpinQuant R3 online rotations) so quantizer handling stays in sync.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_nodes_to_exclude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">nodes_to_exclude</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_loader</span> <span class="o">=</span> <span class="n">data_loader</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inputs</span> <span class="o">=</span> <span class="n">_collect_inputs</span><span class="p">(</span>
+            <span class="n">data_loader</span><span class="p">,</span> <span class="p">[</span><span class="n">inp</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">inp</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">]</span>
+        <span class="p">)</span>
 
     <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">"Use aimet_onnx.apply_seq_mse instead"</span><span class="p">)</span>
     <span class="nd">@staticmethod</span>
@@ -805,11 +819,12 @@
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        It performs following steps:</span>
 <span class="sd">        1) disable the quantizer for unsupported modules</span>
-<span class="sd">        2) create the dependency graph</span>
+<span class="sd">        2) plan the levels of layers to optimize together</span>
 <span class="sd">        3) run the onnx graph and compute encoding using seq mse algorithm</span>
 <span class="sd">        4) re-enable the quantizer disabled in first step</span>
 <span class="sd">        """</span>
-        <span class="n">names_to_optimize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_quantizer_names_to_optimize</span><span class="p">()</span>
+        <span class="n">plan</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frontier_plan</span><span class="p">()</span>
+        <span class="n">names_to_optimize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_quantizer_names_to_optimize</span><span class="p">(</span><span class="n">plan</span><span class="p">)</span>
         <span class="n">quantizers_to_optimize</span> <span class="o">=</span> <span class="p">[</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names_to_optimize</span>
         <span class="p">]</span>
@@ -826,7 +841,7 @@
                 <span class="p">),</span>
                 <span class="n">_remove_session</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="p">),</span>
             <span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_topological_traversal</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_frontier_traversal</span><span class="p">(</span><span class="n">plan</span><span class="p">,</span> <span class="n">names_to_optimize</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_quantizers_to_be_disabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names_to_optimize</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
@@ -852,24 +867,21 @@
 
         <span class="k">return</span> <span class="n">quantizers_to_be_disabled</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_quantizer_names_to_optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_quantizer_names_to_optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plan</span><span class="p">:</span> <span class="n">FrontierPlan</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Get list of enabled param quantizer names of the ops optimized by seq mse.</span>
+<span class="sd">        Get list of enabled param quantizer names of the layers the plan optimizes</span>
+<span class="sd">        (top-level only). Layers inside control-flow bodies are not optimized, so their</span>
+<span class="sd">        param quantizers are not listed here.</span>
 
-<span class="sd">        :return Returns the param quantizer names of supported ops.</span>
+<span class="sd">        :param plan: Frontier plan whose levels give the layers to optimize</span>
+<span class="sd">        :return Returns the param quantizer names of the layers the plan optimizes.</span>
 <span class="sd">        """</span>
         <span class="n">param_quantizer_names</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">cg_op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">conn_graph</span><span class="o">.</span><span class="n">ordered_ops</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">is_supported_op</span><span class="p">(</span><span class="n">cg_op</span><span class="p">):</span>
-                <span class="k">continue</span>
-
-            <span class="k">if</span> <span class="n">cg_op</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes_to_exclude</span><span class="p">:</span>
-                <span class="k">continue</span>
-
-            <span class="k">for</span> <span class="n">param_name</span> <span class="ow">in</span> <span class="n">cg_op</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
-                <span class="n">quantizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">quantizer</span> <span class="ow">and</span> <span class="n">quantizer</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
-                    <span class="n">param_quantizer_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="p">(</span><span class="n">layer</span> <span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="n">plan</span><span class="o">.</span><span class="n">levels</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">level</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">get_weight_name</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">quantizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">quantizer</span> <span class="ow">and</span> <span class="n">quantizer</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
+                <span class="n">param_quantizer_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">param_quantizer_names</span>
 
@@ -902,17 +914,17 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_min_and_max_for_candidate_selection</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">dependency_node</span><span class="p">:</span> <span class="n">DependencyNode</span><span class="p">,</span>
+        <span class="n">layer</span><span class="p">:</span> <span class="n">SeqMseLayer</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Get recalibrated min/max values for candidate selection.</span>
 
-<span class="sd">        :param dependency_node: Dependency node which is to be optimized</span>
+<span class="sd">        :param layer: Layer to optimize</span>
 <span class="sd">        :return: Tuple of min and max values for candidate selection.</span>
 <span class="sd">        """</span>
         <span class="c1"># pylint: disable=protected-access</span>
 
-        <span class="n">weight_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">get_param_name</span><span class="p">(</span><span class="n">dependency_node</span><span class="p">)</span>
+        <span class="n">weight_name</span> <span class="o">=</span> <span class="n">get_weight_name</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
 
         <span class="c1"># Retrieve the quantizer and its encodings</span>
         <span class="n">quantizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span><span class="p">[</span><span class="n">weight_name</span><span class="p">]</span>
@@ -954,19 +966,19 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_compute_encoding_from_candidate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">dependency_node</span><span class="p">:</span> <span class="n">DependencyNode</span><span class="p">,</span>
+        <span class="n">layer</span><span class="p">:</span> <span class="n">SeqMseLayer</span><span class="p">,</span>
         <span class="n">x_min</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
         <span class="n">x_max</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Computes the encoding using candidate min and candidate max values.</span>
 
-<span class="sd">        :param dependency_node: Corresponding Dependency node</span>
+<span class="sd">        :param layer: Layer the encoding is for</span>
 <span class="sd">        :param x_min: min values</span>
 <span class="sd">        :param x_max: max values</span>
 <span class="sd">        """</span>
         <span class="c1"># Get the parameter name and corresponding quantizer</span>
-        <span class="n">weight_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">get_param_name</span><span class="p">(</span><span class="n">dependency_node</span><span class="p">)</span>
+        <span class="n">weight_name</span> <span class="o">=</span> <span class="n">get_weight_name</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
         <span class="n">quantizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span><span class="p">[</span><span class="n">weight_name</span><span class="p">]</span>
 
         <span class="c1"># Extract quantization configuration</span>
@@ -1001,12 +1013,12 @@
         <span class="n">quantizer</span><span class="o">.</span><span class="n">compute_encodings</span><span class="p">()</span>
         <span class="n">quantizer</span><span class="o">.</span><span class="n">op_mode</span> <span class="o">=</span> <span class="n">TensorQuantizerOpMode</span><span class="o">.</span><span class="n">quantizeDequantize</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_freeze_encodings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dependency_node</span><span class="p">:</span> <span class="n">DependencyNode</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_freeze_encodings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="n">SeqMseLayer</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Freezes the encoding after the node is optimized</span>
-<span class="sd">        :param dependency_node: Optimized dependency node</span>
+<span class="sd">        :param layer: Optimized layer</span>
 <span class="sd">        """</span>
-        <span class="n">weight_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">get_param_name</span><span class="p">(</span><span class="n">dependency_node</span><span class="p">)</span>
+        <span class="n">weight_name</span> <span class="o">=</span> <span class="n">get_weight_name</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
         <span class="n">quantize_op</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span><span class="p">[</span><span class="n">weight_name</span><span class="p">]</span>
         <span class="n">quantize_op</span><span class="o">.</span><span class="n">freeze_encodings</span><span class="p">()</span>
 
@@ -1033,14 +1045,14 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">fp_outputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
         <span class="n">sim_outputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
-        <span class="n">dependency_node</span><span class="p">:</span> <span class="n">DependencyNode</span><span class="p">,</span>
+        <span class="n">layer</span><span class="p">:</span> <span class="n">SeqMseLayer</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Compute reconstruction loss and return the sum by reducing over all the dimensions except last channel dimension.</span>
 
 <span class="sd">        :param fp_outputs: fp_outputs (X^W)</span>
 <span class="sd">        :param sim_outputs: sim_outputs (X^W^)</span>
-<span class="sd">        :param dependency_node: Dependency node</span>
+<span class="sd">        :param layer: Layer the outputs are of</span>
 <span class="sd">        :return: loss</span>
 <span class="sd">        """</span>
         <span class="n">xqwq</span> <span class="o">=</span> <span class="n">sim_outputs</span>
@@ -1056,7 +1068,7 @@
 
         <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">loss_fn_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">]</span>
 
-        <span class="n">weight_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">get_param_name</span><span class="p">(</span><span class="n">dependency_node</span><span class="p">)</span>
+        <span class="n">weight_name</span> <span class="o">=</span> <span class="n">get_weight_name</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
         <span class="n">quantizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span><span class="p">[</span><span class="n">weight_name</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">quantizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1069,22 +1081,22 @@
 
         <span class="c1"># Handle block-wise quantization</span>
         <span class="k">if</span> <span class="n">block_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">dependency_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">"Conv"</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Conv"</span><span class="p">:</span>
                 <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">xqwq</span><span class="p">,</span> <span class="n">xqw</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
                 <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tensor_shape</span><span class="p">[</span><span class="n">block_axis</span><span class="p">]</span> <span class="o">//</span> <span class="n">block_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
                 <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">dependency_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Gemm"</span><span class="p">,</span> <span class="s2">"MatMul"</span><span class="p">]:</span>
+            <span class="k">elif</span> <span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Gemm"</span><span class="p">,</span> <span class="s2">"MatMul"</span><span class="p">]:</span>
                 <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">xqwq</span><span class="p">,</span> <span class="n">xqw</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">block_axis</span> <span class="o">&gt;</span> <span class="n">channel_axis</span><span class="p">:</span>
                     <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># For transposed form of Gemm</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">"Unsupported op type with block quantization: </span><span class="si">{</span><span class="n">dependency_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">"</span>
+                    <span class="sa">f</span><span class="s2">"Unsupported op type with block quantization: </span><span class="si">{</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">op_type</span><span class="si">}</span><span class="s2">"</span>
                 <span class="p">)</span>
             <span class="k">return</span> <span class="n">loss</span>
 
         <span class="c1"># Handle per-tensor and per-channel case</span>
-        <span class="k">if</span> <span class="n">dependency_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">"Conv"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">"Conv"</span><span class="p">:</span>
             <span class="c1"># Permute to move channel dimension to the end</span>
             <span class="n">xqwq</span> <span class="o">=</span> <span class="n">xqwq</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">xqwq</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">xqw</span> <span class="o">=</span> <span class="n">xqw</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">xqw</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
@@ -1100,14 +1112,17 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_run_seq_mse</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">dep_nodes_to_parallelize</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DependencyNode</span><span class="p">],</span>
+        <span class="n">layers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SeqMseLayer</span><span class="p">],</span>
         <span class="n">progress</span><span class="p">:</span> <span class="n">SeqMseProgress</span><span class="p">,</span>
+        <span class="n">sim_inputs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Run Sequential MSE for all the dep_nodes_to_parallelize at same level.</span>
+<span class="sd">        Run Sequential MSE for all the layers of one level.</span>
 
-<span class="sd">        :param dep_nodes_to_parallelize: Dependency nodes to be parallelized.</span>
+<span class="sd">        :param layers: Layers of the level.</span>
 <span class="sd">        :param progress: Progress report of the run this group belongs to.</span>
+<span class="sd">        :param sim_inputs: Input name -&gt; its array per calibration sample, for every input of</span>
+<span class="sd">            the nodes.</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">_set_candidates</span><span class="p">(</span><span class="n">candidate_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
@@ -1117,12 +1132,12 @@
 
 <span class="sd">            :param candidate_index: Index of candidate</span>
 <span class="sd">            """</span>
-            <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">dep_nodes_to_parallelize</span><span class="p">:</span>
-                <span class="n">init_min_val</span><span class="p">,</span> <span class="n">init_max_val</span> <span class="o">=</span> <span class="n">initial_min_max</span><span class="p">[</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
+                <span class="n">init_min_val</span><span class="p">,</span> <span class="n">init_max_val</span> <span class="o">=</span> <span class="n">initial_min_max</span><span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
                 <span class="n">cand_min</span><span class="p">,</span> <span class="n">cand_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_candidate</span><span class="p">(</span>
                     <span class="n">candidate_index</span><span class="p">,</span> <span class="n">init_min_val</span><span class="p">,</span> <span class="n">init_max_val</span>
                 <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_compute_encoding_from_candidate</span><span class="p">(</span><span class="n">dep_node</span><span class="p">,</span> <span class="n">cand_min</span><span class="p">,</span> <span class="n">cand_max</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_compute_encoding_from_candidate</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">cand_min</span><span class="p">,</span> <span class="n">cand_max</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">_compute_loss</span><span class="p">(</span>
             <span class="n">all_fp_outputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">all_sim_outputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]</span>
@@ -1135,26 +1150,26 @@
 <span class="sd">            """</span>
             <span class="n">candidate_loss</span> <span class="o">=</span> <span class="p">{}</span>
 
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dep_nodes_to_parallelize</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">layers</span><span class="p">):</span>
                 <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_recon_loss</span><span class="p">(</span>
-                    <span class="n">all_fp_outputs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">all_sim_outputs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dep_node</span>
+                    <span class="n">all_fp_outputs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">all_sim_outputs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">layer</span>
                 <span class="p">)</span>
-                <span class="n">candidate_loss</span><span class="p">[</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">loss</span>
+                <span class="n">candidate_loss</span><span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">loss</span>
 
             <span class="k">return</span> <span class="n">candidate_loss</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_get_dep_node_io_names</span><span class="p">(</span><span class="n">dep_nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DependencyNode</span><span class="p">]):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_get_layer_io_names</span><span class="p">(</span><span class="n">layers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SeqMseLayer</span><span class="p">]):</span>
 <span class="w">            </span><span class="sd">"""</span>
 <span class="sd">            Helper function to get the input and output names of subgraph.</span>
 
-<span class="sd">            :param dep_nodes: List of dependency nodes to be parallelized.</span>
+<span class="sd">            :param layers: Layers of the level.</span>
 <span class="sd">            :return: Subgraph input and output names.</span>
 <span class="sd">            """</span>
             <span class="n">subgraph_inputs</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">subgraph_outputs</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">dep_nodes</span><span class="p">:</span>
-                <span class="n">subgraph_inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dep_node</span><span class="o">.</span><span class="n">op_input_names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-                <span class="n">subgraph_outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dep_node</span><span class="o">.</span><span class="n">op_output_names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
+                <span class="n">subgraph_inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">op_input_names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">subgraph_outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">op_output_names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
             <span class="n">subgraph_inputs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">subgraph_inputs</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">subgraph_inputs</span><span class="p">,</span> <span class="n">subgraph_outputs</span>
@@ -1163,22 +1178,18 @@
 
         <span class="c1"># Cache the initial min and max values</span>
         <span class="n">initial_min_max</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">dep_nodes_to_parallelize</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
             <span class="n">init_min_val</span><span class="p">,</span> <span class="n">init_max_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_min_and_max_for_candidate_selection</span><span class="p">(</span>
-                <span class="n">dep_node</span>
+                <span class="n">layer</span>
             <span class="p">)</span>
-            <span class="n">initial_min_max</span><span class="p">[</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">init_min_val</span><span class="p">,</span> <span class="n">init_max_val</span><span class="p">)</span>
+            <span class="n">initial_min_max</span><span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">init_min_val</span><span class="p">,</span> <span class="n">init_max_val</span><span class="p">)</span>
 
-        <span class="n">subgraph_inp_names</span><span class="p">,</span> <span class="n">subgraph_outs_names</span> <span class="o">=</span> <span class="n">_get_dep_node_io_names</span><span class="p">(</span>
-            <span class="n">dep_nodes_to_parallelize</span>
-        <span class="p">)</span>
+        <span class="n">subgraph_inp_names</span><span class="p">,</span> <span class="n">subgraph_outs_names</span> <span class="o">=</span> <span class="n">_get_layer_io_names</span><span class="p">(</span><span class="n">layers</span><span class="p">)</span>
 
         <span class="c1"># For now, we only expose "symqt" input symmetry.</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">inp_symmetry</span> <span class="o">==</span> <span class="s2">"symqt"</span><span class="p">,</span> <span class="p">(</span>
             <span class="s2">"Only symmetric quantsim inputs ('symqt') are supported."</span>
         <span class="p">)</span>
-        <span class="n">sim_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">get_sim_data</span><span class="p">(</span><span class="n">dep_nodes_to_parallelize</span><span class="p">)</span>
-
         <span class="n">subgraph_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_onnx_graph</span><span class="p">(</span><span class="n">subgraph_inp_names</span><span class="p">,</span> <span class="n">subgraph_outs_names</span><span class="p">)</span>
         <span class="n">subgraph_model</span> <span class="o">=</span> <span class="n">onnx</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">subgraph_path</span><span class="p">,</span> <span class="n">load_external_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -1230,14 +1241,14 @@
                 <span class="p">)</span>
                 <span class="n">dataset_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">sim_inputs</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span>
 
-            <span class="c1"># Store accumulated loss per dep_node across candidates</span>
+            <span class="c1"># Store accumulated loss per layer across candidates</span>
             <span class="n">total_loss</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 
             <span class="n">progress</span><span class="o">.</span><span class="n">start_phase</span><span class="p">(</span><span class="s2">"search"</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">candidate_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">num_candidates</span><span class="p">):</span>
                 <span class="n">_set_candidates</span><span class="p">(</span><span class="n">candidate_index</span><span class="p">)</span>
 
-                <span class="c1"># Initialize per dep_node loss accumulator</span>
+                <span class="c1"># Initialize per layer loss accumulator</span>
                 <span class="n">accumulated_loss</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
 
                 <span class="k">for</span> <span class="n">batch_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dataset_len</span><span class="p">):</span>
@@ -1307,8 +1318,8 @@
         <span class="n">progress</span><span class="o">.</span><span class="n">start_phase</span><span class="p">(</span><span class="s2">"finalize"</span><span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># Postprocessing (not vectorized)</span>
-        <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">dep_nodes_to_parallelize</span><span class="p">:</span>
-            <span class="n">loss</span> <span class="o">=</span> <span class="n">total_loss</span><span class="p">[</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">total_loss</span><span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
             <span class="n">stacked_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
                 <span class="n">loss</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span>
             <span class="p">)</span>  <span class="c1"># Resulting shape depends on granularity: per-tensor and per-channel: (num_candidates, num_channels) and per-block: (num_candidates, num_channels, num_blocks)</span>
@@ -1317,13 +1328,13 @@
             <span class="n">best_indices</span> <span class="o">=</span> <span class="n">stacked_loss</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="n">weight_result</span><span class="p">(</span>
-                    <span class="n">display_name</span><span class="p">(</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="p">),</span>
+                    <span class="n">display_name</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="p">),</span>
                     <span class="n">stacked_loss</span><span class="p">,</span>
                     <span class="n">best_indices</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">num_candidates</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-            <span class="n">init_min</span><span class="p">,</span> <span class="n">init_max</span> <span class="o">=</span> <span class="n">initial_min_max</span><span class="p">[</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="n">init_min</span><span class="p">,</span> <span class="n">init_max</span> <span class="o">=</span> <span class="n">initial_min_max</span><span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
 
             <span class="c1"># Unsqueeze best_indices until it matches dim length of max_val</span>
             <span class="k">while</span> <span class="n">best_indices</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;</span> <span class="n">init_max</span><span class="o">.</span><span class="n">ndim</span><span class="p">:</span>
@@ -1334,13 +1345,13 @@
             <span class="n">best_min</span><span class="p">,</span> <span class="n">best_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_candidate</span><span class="p">(</span><span class="n">best_indices</span><span class="p">,</span> <span class="n">init_min</span><span class="p">,</span> <span class="n">init_max</span><span class="p">)</span>
 
             <span class="c1"># Compute and freeze parameter encodings using best candidate</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_compute_encoding_from_candidate</span><span class="p">(</span><span class="n">dep_node</span><span class="p">,</span> <span class="n">best_min</span><span class="p">,</span> <span class="n">best_max</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_freeze_encodings</span><span class="p">(</span><span class="n">dep_node</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_compute_encoding_from_candidate</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">best_min</span><span class="p">,</span> <span class="n">best_max</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_freeze_encodings</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 
-        <span class="n">dep_node_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">dep_nodes_to_parallelize</span><span class="p">]</span>
+        <span class="n">layer_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">]</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
             <span class="s2">"Computed optimal parameter encodings for ops: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
-            <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dep_node_names</span><span class="p">),</span>
+            <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">layer_names</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="n">progress</span><span class="o">.</span><span class="n">end_group</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 
@@ -1430,126 +1441,81 @@
         <span class="n">onnx_ir</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">subgraph_path</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">subgraph_path</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_run_onnx_graph</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">onnxruntime</span><span class="o">.</span><span class="n">InferenceSession</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">Dict</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_frontier_traversal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plan</span><span class="p">:</span> <span class="n">FrontierPlan</span><span class="p">,</span> <span class="n">names_to_optimize</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Run the onnx graph using onnx runtime</span>
+<span class="sd">        Optimize the layers level by level, sampling each level's inputs with a</span>
+<span class="sd">        BlockwiseSampler that advances a cache of the frontier tensors from one level to the</span>
+<span class="sd">        next. A level is optimized on inputs computed with every earlier level frozen.</span>
 
-<span class="sd">        :param session: Onnxruntime session</span>
-<span class="sd">        :param inputs: inputs to the model</span>
-<span class="sd">        :return: outputs</span>
+<span class="sd">        :param plan: Frontier plan giving the levels to optimize and the tensors to sample</span>
+<span class="sd">        :param names_to_optimize: Param quantizer names optimized by seq mse</span>
 <span class="sd">        """</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">dataset_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dataset_len</span><span class="p">):</span>
-            <span class="n">input_batch</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">inputs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">input_batch</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">output</span> <span class="o">=</span> <span class="n">_run_session_to_numpy</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">input_batch</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">outputs</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">))]</span>
-            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">out</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
-                <span class="n">outputs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">outputs</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_cache_subgraph_input_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dep_nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DependencyNode</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        For given dependency nodes at the same level, cache intermediate activation data</span>
-
-<span class="sd">        - Extract a subgraph using the parent nodes,</span>
-<span class="sd">        - Collect the intermediate activations by executing the subgraph,</span>
-<span class="sd">        - Cache these data to provide them to the next subgraph.</span>
-
-<span class="sd">        :param dep_nodes: List of dependency nodes at same level</span>
-<span class="sd">        """</span>
-        <span class="n">dep_node_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">dep_nodes</span><span class="p">]</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">"Started caching inputs for dep nodes: </span><span class="si">{</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dep_node_names</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+            <span class="s2">"Frontier sampling plan: </span><span class="si">%d</span><span class="s2"> levels, block inputs </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">plan</span><span class="o">.</span><span class="n">levels</span><span class="p">),</span>
+            <span class="n">plan</span><span class="o">.</span><span class="n">block_inputs</span><span class="p">,</span>
         <span class="p">)</span>
-
-        <span class="n">subgraph_inp_names</span><span class="p">,</span> <span class="n">subgraph_out_names</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">get_subgraph_inp_out_names</span><span class="p">(</span><span class="n">dep_nodes</span><span class="p">)</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="n">BlockwiseSampler</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ir_model</span><span class="p">,</span>
+            <span class="n">SamplingPlan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ir_model</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">plan</span><span class="o">.</span><span class="n">block_inputs</span><span class="p">,</span> <span class="n">plan</span><span class="o">.</span><span class="n">block_outputs</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inputs</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">providers</span><span class="p">,</span>
+            <span class="n">may_update</span><span class="o">=</span><span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                <span class="n">_is_unfrozen</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">names_to_optimize</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span>
+            <span class="p">),</span>
+            <span class="n">session_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">_ort_session_options</span><span class="p">,</span>  <span class="c1"># pylint: disable=protected-access</span>
         <span class="p">)</span>
-        <span class="n">subgraph_inps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">dependency_node_inputs</span><span class="p">(</span><span class="n">dep_nodes</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgraph_inp_names</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgraph_inps</span><span class="p">)</span>
-
-        <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">"Subgraph input names: </span><span class="si">{</span><span class="n">subgraph_inp_names</span><span class="si">}</span><span class="s2">, Subgraph output names: </span><span class="si">{</span><span class="n">subgraph_out_names</span><span class="si">}</span><span class="s2">"</span>
-        <span class="p">)</span>
-        <span class="n">sim_split_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_onnx_graph</span><span class="p">(</span><span class="n">subgraph_inp_names</span><span class="p">,</span> <span class="n">subgraph_out_names</span><span class="p">)</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_session</span><span class="p">(</span><span class="n">sim_split_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-            <span class="n">subgraph_outs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_onnx_graph</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">subgraph_inps</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">update_sim_data</span><span class="p">(</span><span class="n">subgraph_out_names</span><span class="p">,</span> <span class="n">subgraph_outs</span><span class="p">)</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">"Collected intermediate data for output names: </span><span class="si">{</span><span class="n">subgraph_out_names</span><span class="si">}</span><span class="s2">"</span>
-        <span class="p">)</span>
-        <span class="k">del</span> <span class="n">subgraph_inps</span><span class="p">,</span> <span class="n">subgraph_outs</span>
-
-        <span class="c1"># Decrease the reference count for the input data.</span>
-        <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">dep_nodes</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">inward_node</span> <span class="ow">in</span> <span class="n">dep_node</span><span class="o">.</span><span class="n">inward_nodes</span><span class="p">:</span>
-                <span class="n">inward_node</span><span class="o">.</span><span class="n">out_degree</span> <span class="o">=</span> <span class="n">inward_node</span><span class="o">.</span><span class="n">out_degree</span> <span class="o">-</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">inward_node</span><span class="o">.</span><span class="n">out_degree</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">dec_ref_count</span><span class="p">(</span><span class="n">inward_node</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_topological_traversal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Start the topo sort from the starting ops i.e. ops having in_degree equal to zero</span>
-<span class="sd">        Flow:</span>
-<span class="sd">            - Cache intermediate activations input data before applying Seq MSE at a given level in topological order.</span>
-<span class="sd">            - Use cached intermediate activations and run Seq MSE in parallel.</span>
-
-<span class="sd">        NOTE: For the first iteration, no need to cache subgraph input data since model graph inputs are already saved.</span>
-<span class="sd">        """</span>
-        <span class="n">sorted_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">get_topologically_sorted_nodes</span><span class="p">()</span>
-        <span class="n">groups</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">[</span>
-                <span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span>
-                <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">sorted_nodes</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">is_supported_op</span><span class="p">(</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="p">)</span>
-            <span class="p">]</span>
-            <span class="k">for</span> <span class="n">sorted_nodes</span> <span class="ow">in</span> <span class="n">sorted_order</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-        <span class="p">]</span>
         <span class="n">progress</span> <span class="o">=</span> <span class="n">SeqMseProgress</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">group</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span> <span class="k">if</span> <span class="n">group</span><span class="p">],</span>
+            <span class="p">[[</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">level</span><span class="p">]</span> <span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="n">plan</span><span class="o">.</span><span class="n">levels</span><span class="p">],</span>
             <span class="n">num_candidates</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">num_candidates</span><span class="p">,</span>
-            <span class="n">num_batches</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">num_samples</span><span class="p">,</span>
+            <span class="n">num_batches</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inputs</span><span class="p">),</span>
             <span class="n">loss_fn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">,</span>
             <span class="n">excluded</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_excluded_weight_names</span><span class="p">(),</span>
         <span class="p">)</span>
 
         <span class="c1"># The summary still reports what was done if a group fails</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sorted_nodes</span> <span class="ow">in</span> <span class="n">sorted_order</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">progress</span><span class="o">.</span><span class="n">start_phase</span><span class="p">(</span><span class="s2">"cache inputs"</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_cache_subgraph_input_data</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">sorted_nodes</span><span class="p">])</span>
-
-                <span class="n">dep_nodes_to_parallelize</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="n">dep_node</span>
-                    <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">sorted_nodes</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">is_supported_op</span><span class="p">(</span><span class="n">dep_node</span><span class="o">.</span><span class="n">cg_op</span><span class="p">)</span>
-                <span class="p">]</span>
-                <span class="k">if</span> <span class="n">dep_nodes_to_parallelize</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_run_seq_mse</span><span class="p">(</span><span class="n">dep_nodes_to_parallelize</span><span class="p">,</span> <span class="n">progress</span><span class="p">)</span>
-
-                <span class="c1"># Nodes without dependents are never released by _cache_subgraph_input_data, so</span>
-                <span class="c1"># release their inputs once they have been optimized.</span>
-                <span class="k">for</span> <span class="n">dep_node</span> <span class="ow">in</span> <span class="n">sorted_nodes</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dep_node</span><span class="o">.</span><span class="n">outward_nodes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">dec_ref_count</span><span class="p">(</span><span class="n">dep_node</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plan</span><span class="o">.</span><span class="n">levels</span><span class="p">):</span>
+                <span class="n">progress</span><span class="o">.</span><span class="n">start_phase</span><span class="p">(</span><span class="s2">"cache inputs"</span><span class="p">)</span>
+                <span class="n">samples</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">sample_block</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+                <span class="n">position</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plan</span><span class="o">.</span><span class="n">block_inputs</span><span class="p">[</span><span class="n">idx</span><span class="p">])}</span>
+                <span class="c1"># Each layer's subgraph is split on its first activation input</span>
+                <span class="n">sim_inputs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">layer</span><span class="o">.</span><span class="n">op_input_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="p">[</span>
+                        <span class="n">sample</span><span class="p">[</span><span class="n">position</span><span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">op_input_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span>
+                    <span class="p">]</span>
+                    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">level</span>
+                <span class="p">}</span>
+                <span class="k">del</span> <span class="n">samples</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_run_seq_mse</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">sim_inputs</span><span class="p">)</span>
+                <span class="c1"># Free this level's inputs so the next level's sampling doesn't hold two levels</span>
+                <span class="k">del</span> <span class="n">sim_inputs</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">progress</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_frontier_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FrontierPlan</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Levels of the layers to optimize, and the tensors to sample for each level."""</span>
+        <span class="n">layers</span> <span class="o">=</span> <span class="n">find_layers</span><span class="p">(</span><span class="n">_sim_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes_to_exclude</span><span class="p">)</span>
+        <span class="n">layer_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">layer</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">}</span>
+        <span class="c1"># SamplingPlan needs a sorted graph, and the sim appends its quantizers to the end</span>
+        <span class="n">onnx_ir</span><span class="o">.</span><span class="n">passes</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">TopologicalSortPass</span><span class="p">()</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ir_model</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">plan_frontier</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ir_model</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span>
+            <span class="n">layers</span><span class="p">,</span>
+            <span class="n">weighted_op_names</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">name</span>
+                <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">_sim_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">is_supported_op</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">layer_names</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_excluded_weight_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Names of the excluded ops sequential MSE would otherwise optimize."""</span>
         <span class="n">excluded</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nodes_to_exclude</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span>
-            <span class="n">cg_op</span><span class="o">.</span><span class="n">name</span>
-            <span class="k">for</span> <span class="n">cg_op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">conn_graph</span><span class="o">.</span><span class="n">ordered_ops</span>
-            <span class="k">if</span> <span class="n">cg_op</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">excluded</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependency_graph</span><span class="o">.</span><span class="n">is_supported_op</span><span class="p">(</span><span class="n">cg_op</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">_sim_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">excluded</span> <span class="ow">and</span> <span class="n">is_supported_op</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
         <span class="p">]</span>
 
     <span class="nd">@contextmanager</span>
@@ -1664,6 +1630,18 @@
             <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">sim_inputs</span><span class="p">,</span> <span class="n">num_blocks</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Subgraph contains no conv or linear ops."</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sim_nodes</span><span class="p">(</span><span class="n">sim</span><span class="p">:</span> <span class="n">QuantizationSimModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">onnx_ir</span><span class="o">.</span><span class="n">Node</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    The nodes of the sim's model from before quantizers were inserted, which are named like its</span>
+<span class="sd">    quantizers: the nodes the sim quantizes, so those of If branches only if it quantizes them.</span>
+<span class="sd">    """</span>
+    <span class="c1"># pylint: disable=protected-access</span>
+    <span class="n">graphs</span> <span class="o">=</span> <span class="n">_iterate_graphs_recursive_ir</span><span class="p">(</span>
+        <span class="n">sim</span><span class="o">.</span><span class="n">_ir_model</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">include_if</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">_quantize_subgraphs</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">graphs</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">]</span>
 
 
 <span class="nd">@contextmanager</span>
@@ -1939,6 +1917,41 @@
         <span class="k">del</span> <span class="n">outputs</span>
 
     <span class="k">return</span> <span class="n">all_out_shapes</span><span class="p">,</span> <span class="n">all_out_dtypes</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_collect_inputs</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span> <span class="n">input_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    The calibration samples, each a dict of every graph input.</span>
+
+<span class="sd">    :param inputs: Calibration samples</span>
+<span class="sd">    :param input_names: Names of the graph inputs</span>
+<span class="sd">    :return: The samples, restricted to the graph inputs</span>
+<span class="sd">    """</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Expected each input sample to be type `Dict[str, np.ndarray]` but got type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span><span class="si">}</span><span class="s2">. "</span>
+                <span class="s2">"To resolve this, ensure that `inputs` argument is type `Iterable[Dict[str, np.ndarray]]`"</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">input_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"All inputs to the graph must be present in the dataloader. </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is missing in the dataloader"</span>
+                <span class="p">)</span>
+        <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="n">sample</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">input_names</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">samples</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_unfrozen</span><span class="p">(</span>
+    <span class="n">names_to_optimize</span><span class="p">:</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">quantizer_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QcQuantizeOp</span><span class="p">],</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Whether sequential MSE may still change the encodings of the quantizer of ``name``."""</span>
+    <span class="k">return</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names_to_optimize</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">quantizer_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">is_encoding_frozen</span><span class="p">()</span>
 </pre></div>
 
 

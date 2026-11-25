@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <meta name="robots" content="noindex,follow" />
     <title>Installation &#8212; AI Model Efficiency Toolkit</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ed8a8c84" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../_static/pygments_dark.css?v=5175e31d" />
@@ -23,6 +24,7 @@
     <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script defer="defer" src="../../_static/lumina.js?v=3e122351"></script>
+    <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/index.html" />
     <link rel="icon" href="../../_static/ai-hub-workbench-icon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -47,7 +49,7 @@
         
             <meta property="og:description" content="This page provides instructions for installing the latest version of AIMET across supported frameworks: ONNX, PyTorch.">
         
-        
+        <meta property="og:url" content="https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/index.html">
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="AI Model Efficiency Toolkit">
         <meta property="og:locale" content="en_US">
@@ -60,10 +62,10 @@
         
         
         
-            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "What is AIMET?", "item": "../index.html"}, {"@type": "ListItem", "position": 2, "name": "Installation", "item": "/"}]}</script>
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AI Model Efficiency Toolkit", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/"}, {"@type": "ListItem", "position": 2, "name": "What is AIMET?", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/overview/index.html"}, {"@type": "ListItem", "position": 3, "name": "Installation", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/index.html"}]}</script>
         
         
-            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Installation", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "This page provides instructions for installing the latest version of AIMET across supported frameworks: ONNX, PyTorch."}</script>
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Installation", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "This page provides instructions for installing the latest version of AIMET across supported frameworks: ONNX, PyTorch.", "url": "https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/index.html", "mainEntityOfPage": "https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/index.html"}</script>
         
         
     
@@ -116,9 +118,7 @@
     
 
 
-  <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/index.html" />
-<meta name="robots" content="noindex,follow" />
-</head><body data-aimet-section="overview">
+  </head><body data-aimet-section="overview">
 
 
 
@@ -737,8 +737,8 @@ each package is obtained per platform.</p>
 <p class="admonition-title">Note</p>
 <p>aimet-torch is pure Python (<code class="docutils literal notranslate"><span class="pre">py310-none-any</span></code>), so one wheel installs on
 every platform, though it is CI-tested only on Linux. aimet-onnx ships a
-compiled extension, so it has per-platform wheels. All wheels use the
-CPython stable ABI (<code class="docutils literal notranslate"><span class="pre">cp310-abi3</span></code>) and run on Python 3.10+ (tested through 3.13).</p>
+compiled extension, so its per-platform wheels use the CPython stable ABI
+(<code class="docutils literal notranslate"><span class="pre">cp310-abi3</span></code>) and run on CPython 3.10+ (tested through 3.13).</p>
 </div>
 <section id="cuda-gpu-acceleration">
 <h4 id="lumina-search-cuda-gpu-acceleration">CUDA (GPU) acceleration<a class="headerlink" href="#cuda-gpu-acceleration" title="Link to this heading">¶</a></h4>
@@ -762,8 +762,8 @@ install <code class="docutils literal notranslate"><span class="pre">onnxruntime
 <section id="choose-and-install-a-package">
 <h3 id="lumina-search-choose-and-install-a-package">Choose and install a package<a class="headerlink" href="#choose-and-install-a-package" title="Link to this heading">¶</a></h3>
 <p>Use one of the following commands to install AIMET based on your choice of framework and platform.
-All wheels below use the CPython stable ABI (<code class="docutils literal notranslate"><span class="pre">cp310-abi3</span></code>) and install on any Python 3.10+ interpreter
-without needing a version-specific URL.</p>
+aimet-onnx wheels use the CPython stable ABI (<code class="docutils literal notranslate"><span class="pre">cp310-abi3</span></code>) for CPython 3.10+; aimet-torch
+uses a platform-independent <code class="docutils literal notranslate"><span class="pre">py310-none-any</span></code> wheel. Neither needs a Python-version-specific URL.</p>
 <section id="pytorch">
 <h4 id="lumina-search-pytorch">PyTorch<a class="headerlink" href="#pytorch" title="Link to this heading">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>https://github.com/qualcomm/aimet/releases/download/2.44.0/aimet_torch-2.44.0-py310-none-any.whl
