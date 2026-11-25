@@ -22,6 +22,7 @@
     <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script defer="defer" src="../../_static/lumina.js?v=3e122351"></script>
+    <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/quantsim.html" />
     <link rel="icon" href="../../_static/ai-hub-workbench-icon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -41,7 +42,7 @@
         
             <meta property="og:description" content="AIMET">
         
-        
+        <meta property="og:url" content="https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/quantsim.html">
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="AI Model Efficiency Toolkit">
         <meta property="og:locale" content="en_US">
@@ -54,10 +55,10 @@
         
         
         
-            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Module code", "item": "../index.html"}, {"@type": "ListItem", "position": 2, "name": "aimet_onnx.quantsim", "item": "/"}]}</script>
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AI Model Efficiency Toolkit", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/"}, {"@type": "ListItem", "position": 2, "name": "Module code", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/_modules/index.html"}, {"@type": "ListItem", "position": 3, "name": "aimet_onnx.quantsim", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/quantsim.html"}]}</script>
         
         
-            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "aimet_onnx.quantsim", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET"}</script>
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "aimet_onnx.quantsim", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET", "url": "https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/quantsim.html", "mainEntityOfPage": "https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/quantsim.html"}</script>
         
         
     
@@ -110,8 +111,7 @@
     
 
 
-  <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/_modules/aimet_onnx/quantsim.html" />
-</head><body>
+  </head><body>
 
 
 
@@ -1182,6 +1182,7 @@
             <span class="n">providers</span> <span class="o">=</span> <span class="n">_with_low_memory_cuda_options</span><span class="p">(</span><span class="n">providers</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">providers</span> <span class="o">=</span> <span class="n">providers</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_invalidate_session</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quant_scheme</span> <span class="o">=</span> <span class="n">quant_scheme</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_param_type</span> <span class="o">=</span> <span class="n">param_type</span>
@@ -1293,13 +1294,42 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_use_external_data</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_sort_quantizer_nodes</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">OrtInferenceSession</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">providers</span><span class="p">,</span>
-            <span class="n">session_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ort_session_options</span><span class="p">,</span>
-            <span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">,</span>
-            <span class="n">save_as_external_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_use_external_data</span><span class="p">,</span>
-        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">session</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">OrtInferenceSession</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        ORT session of the sim. Built on first use, and again on the first use after a change</span>
+<span class="sd">        to the quantizers invalidates it: building it takes minutes for large models.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session_stale</span><span class="p">:</span>
+            <span class="c1"># Cleared first: while it is built, the session reads as None, as it did when it</span>
+            <span class="c1"># was rebuilt eagerly, instead of recursing</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_session_stale</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_session</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+                <span class="c1"># Still stale: the next use retries, and raises again, rather than get None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_session_stale</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">raise</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span>
+
+    <span class="nd">@session</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">OrtInferenceSession</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Overwriting the sim's active ORT session"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">session</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session_stale</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="nd">@session</span><span class="o">.</span><span class="n">deleter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_invalidate_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Drops the session, so that it is rebuilt on its next use.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session_stale</span> <span class="o">=</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="QuantizationSimModel.from_onnx_qdq">
 <a class="viewcode-back" href="../../apiref/onnx/quantsim.html#aimet_onnx.quantsim.QuantizationSimModel.from_onnx_qdq">[docs]</a>
@@ -1746,28 +1776,49 @@
 <span class="sd">        """</span>
         <span class="n">body_of</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_body_of_tensors</span><span class="p">()</span>
         <span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes_by_name</span><span class="p">()</span>
+        <span class="n">param_ops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param_ops</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_names</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_insert_quantizer</span><span class="p">(</span>
                 <span class="n">name</span><span class="p">,</span>
                 <span class="n">is_param</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="n">graph</span><span class="o">=</span><span class="n">body_of</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">()),</span>
                 <span class="n">nodes</span><span class="o">=</span><span class="n">nodes</span><span class="p">,</span>
+                <span class="n">param_ops</span><span class="o">=</span><span class="n">param_ops</span><span class="p">,</span>
             <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_tensor_quantizer_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_param_ops</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Op</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Map each parameter name to the first connected graph op holding it and its shape, so</span>
+<span class="sd">        quantizers can be created without scanning all ops per parameter.</span>
+<span class="sd">        """</span>
+        <span class="n">param_ops</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected_graph</span><span class="o">.</span><span class="n">get_all_ops</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">op</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">param_ops</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">param_ops</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_tensor_quantizer_params</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">param_ops</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Op</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Creates TensorQuantizerParams object for QcQuantizeOp and QDQ node</span>
 
 <span class="sd">        :param param_name: Name of the parameter for which the quant info object will be created</span>
+<span class="sd">        :param param_ops: Op and shape of each parameter by name. Searched for if not given.</span>
 <span class="sd">        :return: TensorQuantizerParams object</span>
 <span class="sd">        """</span>
-        <span class="n">op</span> <span class="o">=</span> <span class="n">get_op_given_param_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">connected_graph</span><span class="p">,</span> <span class="n">param_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">param_ops</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">op</span> <span class="o">=</span> <span class="n">get_op_given_param_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">connected_graph</span><span class="p">,</span> <span class="n">param_name</span><span class="p">)</span>
+            <span class="n">param_shape</span> <span class="o">=</span> <span class="n">get_param_shape_using_connected_graph</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">connected_graph</span><span class="p">,</span> <span class="n">param_name</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">op</span><span class="p">,</span> <span class="n">param_shape</span> <span class="o">=</span> <span class="n">param_ops</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param_name</span><span class="p">,</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">op</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-        <span class="n">param_shape</span> <span class="o">=</span> <span class="n">get_param_shape_using_connected_graph</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">connected_graph</span><span class="p">,</span> <span class="n">param_name</span>
-        <span class="p">)</span>
         <span class="n">tensor_quantizer_params</span> <span class="o">=</span> <span class="n">TensorQuantizerParams</span><span class="p">(</span><span class="n">param_shape</span><span class="p">)</span>
         <span class="n">channel_axis</span><span class="p">,</span> <span class="n">block_axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param_quantization_axes</span><span class="p">(</span>
             <span class="n">op</span><span class="p">,</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">param_shape</span>
@@ -1853,6 +1904,7 @@
         <span class="n">is_param</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
         <span class="n">graph</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">onnx</span><span class="o">.</span><span class="n">GraphProto</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">onnx</span><span class="o">.</span><span class="n">NodeProto</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">param_ops</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Op</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Inserts a quantizer for tensor `input_name` in the graph and adds it to `self.qc_quantize_op_dict`</span>
@@ -1863,6 +1915,7 @@
 <span class="sd">        :param is_param: True if the tensor is a parameter, False if it is an activation</span>
 <span class="sd">        :param graph: Graph which defines `input_name`. Searched for if not given.</span>
 <span class="sd">        :param nodes: Nodes of the model by name. Searched for if not given.</span>
+<span class="sd">        :param param_ops: Op and shape of each parameter by name. Searched for if not given.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">input_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_quantize_op_dict</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Quantizer already exists for tensor </span><span class="si">{</span><span class="n">input_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -1873,7 +1926,9 @@
             <span class="n">output_name</span> <span class="o">=</span> <span class="n">input_name</span> <span class="o">+</span> <span class="s2">"_qdq"</span>
             <span class="n">op_mode</span> <span class="o">=</span> <span class="n">OpMode</span><span class="o">.</span><span class="n">oneShotQuantizeDequantize</span>
             <span class="n">precision</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_param_type</span>
-            <span class="n">tensor_quantizer_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_tensor_quantizer_params</span><span class="p">(</span><span class="n">input_name</span><span class="p">)</span>
+            <span class="n">tensor_quantizer_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_tensor_quantizer_params</span><span class="p">(</span>
+                <span class="n">input_name</span><span class="p">,</span> <span class="n">param_ops</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">output_name</span> <span class="o">=</span> <span class="n">input_name</span> <span class="o">+</span> <span class="s2">"_updated"</span>
             <span class="n">op_mode</span> <span class="o">=</span> <span class="n">OpMode</span><span class="o">.</span><span class="n">updateStats</span>
@@ -3268,11 +3323,12 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">set_quantizers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quantizer_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QcQuantizeOp</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Updates `self.qc_quantize_op_dict` with the entries in `quantizer_dict`</span>
+<span class="sd">        Updates `self.qc_quantize_op_dict` with the entries in `quantizer_dict`. The session is</span>
+<span class="sd">        rebuilt on its next use.</span>
 
 <span class="sd">        :param quantizer_dict: Dictionary mapping tensor names to QcQuantizeOp objects</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_quantizers</span><span class="p">(</span><span class="n">quantizer_dict</span><span class="p">,</span> <span class="n">rebuild_session</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_quantizers</span><span class="p">(</span><span class="n">quantizer_dict</span><span class="p">,</span> <span class="n">rebuild_session</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_quantizers</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">quantizer_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QcQuantizeOp</span><span class="p">],</span> <span class="n">rebuild_session</span><span class="p">:</span> <span class="nb">bool</span>
@@ -3333,8 +3389,8 @@
         <span class="k">for</span> <span class="n">atr</span> <span class="ow">in</span> <span class="n">dst_onnx_node</span><span class="o">.</span><span class="n">attribute</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">atr</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"quant_info"</span><span class="p">:</span>
                 <span class="n">atr</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="n">libpymo</span><span class="o">.</span><span class="n">PtrToInt64</span><span class="p">(</span><span class="n">src_qtzr</span><span class="o">.</span><span class="n">quant_info</span><span class="p">)</span>
-                <span class="c1"># Session is now invalid and must be rebuilt</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="c1"># ORT reads quant_info when it builds the session, so the session is now stale</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_invalidate_session</span><span class="p">()</span>
                 <span class="k">return</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_tie_quantizers_for_op_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op_types_to_tie</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>

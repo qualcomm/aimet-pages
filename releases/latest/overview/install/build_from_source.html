@@ -23,6 +23,7 @@
     <script defer="defer" data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script defer="defer" crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script defer="defer" src="../../_static/lumina.js?v=3e122351"></script>
+    <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/build_from_source.html" />
     <link rel="icon" href="../../_static/ai-hub-workbench-icon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -39,7 +40,7 @@
         
             <meta property="og:description" content="AIMET provides a single script, scripts/all/build_and_test.py, to build wheels, run unit tests, and build documentation across Linux, Windows, and macOS. It ma…">
         
-        
+        <meta property="og:url" content="https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/build_from_source.html">
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="AI Model Efficiency Toolkit">
         <meta property="og:locale" content="en_US">
@@ -52,10 +53,10 @@
         
         
         
-            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Building from source", "item": "/"}]}</script>
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AI Model Efficiency Toolkit", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/"}, {"@type": "ListItem", "position": 2, "name": "Building from source", "item": "https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/build_from_source.html"}]}</script>
         
         
-            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Building from source", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET provides a single script, scripts/all/build_and_test.py, to build wheels, run unit tests, and build documentation across Linux, Windows, and macOS. It ma…"}</script>
+            <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Building from source", "author": {"@type": "Person", "name": "Qualcomm Technologies, Inc. and/or its subsidiaries"}, "publisher": {"@type": "Organization", "name": "AI Model Efficiency Toolkit"}, "description": "AIMET provides a single script, scripts/all/build_and_test.py, to build wheels, run unit tests, and build documentation across Linux, Windows, and macOS. It ma…", "url": "https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/build_from_source.html", "mainEntityOfPage": "https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/build_from_source.html"}</script>
         
         
     
@@ -108,8 +109,7 @@
     
 
 
-  <link rel="canonical" href="https://qualcomm.github.io/aimet-pages/releases/latest/overview/install/build_from_source.html" />
-</head><body data-aimet-section="overview">
+  </head><body data-aimet-section="overview">
 
 
 
@@ -680,7 +680,7 @@ python3<span class="w"> </span>scripts/all/build_and_test.py<span class="w"> </s
 <span class="c1"># Build aimet-onnx (GPU/CUDA)</span>
 python3<span class="w"> </span>scripts/all/build_and_test.py<span class="w"> </span>--task<span class="w"> </span>build<span class="w"> </span>--package<span class="w"> </span>aimet_onnx<span class="w"> </span>--gpu
 
-<span class="c1"># Build documentation (wheelhouse/Docs/index.html)</span>
+<span class="c1"># Build documentation (wheelhouse/Docs/releases/&lt;version&gt;/index.html)</span>
 python3<span class="w"> </span>scripts/all/build_and_test.py<span class="w"> </span>--task<span class="w"> </span>build<span class="w"> </span>--package<span class="w"> </span>docs
 </pre></div>
 </div>
