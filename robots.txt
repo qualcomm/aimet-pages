@@ -1,3 +1,0 @@
-User-agent: *
-Disallow: /aimet-pages/releases/
-Allow: /aimet-pages/releases/latest/
